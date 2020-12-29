@@ -3,17 +3,24 @@ import unittest
 import BirDayBerDB_manager
 
 
-class BirthDB_testing(unittest.TestCase):  # BirDayBer database's testing
+class BirthDB_testing(unittest.TestCase):
+    # BirDayBer database's testing
     @classmethod
     def setUpClass(cls):
+        # It should connect the testing DB.
+
         cls.birth_db = BirDayBerDB_manager.Birthdays_db()
-        cls.birth_db.prepare_database("test_db.db")  # It should connect de DB.
+        cls.birth_db.prepare_database("test_db.db")
 
     @classmethod
     def tearDownClass(cls):
-        cls.birth_db.close_database()  # It should close the DB.
+        # It should close the DB.
 
-    def setUp(self, cls):  # La ID va a ser automática
+        cls.birth_db.close_database()
+
+    def setUp(self, cls):
+        # The ID will be set automatically.
+
         cls.birth_db.add_person("Franco", "Frias", "Argentina",
                                 "Male", "2003-11-18", None)
 
@@ -21,6 +28,8 @@ class BirthDB_testing(unittest.TestCase):  # BirDayBer database's testing
                                 "Male", "1919-12-23", None)
 
     def tearDown(self, cls):
+        # All rows deletion.
+
         cls.birth_db.remove_people([1, 2])  # id 1 = Franco | id 2 = Randolph
 
     def test_check_names(self, cls):
