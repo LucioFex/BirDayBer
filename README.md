@@ -19,7 +19,7 @@ opening an issue to check that change that you want to make.
 
 ## Updates
 
-I'll try to be active with this proyect, so I'll be doing what is planificated with this one, but that doesn't mean that I could change some ideas of this one. I insist, every pull request will be welcome.
+I'll try to be active with this proyect, so I'll be doing what is planificated with this one, but that doesn't mean that I couldn't change some ideas of this one. I insist, every pull request will be welcome.
 
 ## License
 [MIT License](https://choosealicense.com/licenses/mit/)
