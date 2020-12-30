@@ -12,23 +12,28 @@ class BirthDB_testing(unittest.TestCase):
 
         cls.birth_db = BirDayBerDB_manager.Birthdays_db("test_db.db")
         cls.birth_db.create_table({
-            "gender": f"id_gender {id_type}, gender VARCHAR(6)",
+            "gender":
+                f"id_gender {id_type}, gender VARCHAR(6)",
 
-            "photo": f"id_photo {id_type}, photo BLOB",
+            "photo":
+                f"id_photo {id_type}, photo BLOB",
 
-            "country": f"id_country {id_type}, country VARCHAR(40)",
+            "country":
+                f"id_country {id_type}, country VARCHAR(40)",
 
-            "birth_date": f"""id_birth {id_type},
-            id_country2 INTEGER, birth DATE, age INTEGER,
-            FOREIGN KEY (id_country2) REFERENCES country (id_country)""",
+            "birth_date":
+                f"id_birth {id_type}, " +
+                "id_country2 INTEGER, birth DATE, age INTEGER, " +
+                "FOREIGN KEY (id_country2) REFERENCES country (id_country)",
 
-            "person": f"""id_person {id_type}, per_first VARCHAR(35),
-            per_last VARCHAR(35), id_country1 INTEGER,
-            id_gender1 INTEGER, id_birth1 INTEGER, id_photo1 INTEGER,
-            FOREIGN KEY (id_country1) REFERENCES country (id_country),
-            FOREIGN KEY (id_gender1) REFERENCES gender (id_gender),
-            FOREIGN KEY (id_birth1) REFERENCES birth_date (id_birth),
-            FOREIGN KEY (id_photo1) REFERENCES photo (id_photo)"""})
+            "person":
+                f"id_person {id_type}, per_first VARCHAR(35), " +
+                "per_last VARCHAR(35), id_country1 INTEGER, " +
+                "id_gender1 INTEGER, id_birth1 INTEGER, id_photo1 INTEGER, " +
+                "FOREIGN KEY (id_country1) REFERENCES country (id_country), " +
+                "FOREIGN KEY (id_gender1) REFERENCES gender (id_gender), " +
+                "FOREIGN KEY (id_birth1) REFERENCES birth_date (id_birth), " +
+                "FOREIGN KEY (id_photo1) REFERENCES photo (id_photo)"})
 
         del id_type
 

@@ -11,8 +11,8 @@ class Birthdays_db:
         self.connection.close()
 
     def create_table(self, tables):
-        # for table in tables.items():
-        pass
+        for table in tables.items():
+            self.cursor.executemany("CREATE TABLE ? (?);", table)
 
     def add_person(name, surname, country, gender, birth, photo):
         """
