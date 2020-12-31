@@ -46,11 +46,19 @@ class BirthDB_testing(unittest.TestCase):
     def setUp(self, cls):
         # The ID will be set automatically.
 
-        cls.birth_db.add_person("Franco", "Frias", "Argentina",
-                                "Male", "2003-11-18", None)
+        cls.birth_db.add_person({
+            "person": {"per_first": "Franco", "per_last": "Frias"},
+            "country": {"country", "Argentina"},
+            "gender": {"gender", "Male"},
+            "birth_date": {"birth": "2003-11-18", "age": None},
+            "photo": {"photo": None})
 
-        cls.birth_db.add_person("Randolph", "Carter", "United States",
-                                "Male", "1919-12-23", None)
+        cls.birth_db.add_person({
+            "person": {"per_first": "Randolph", "per_last": "Carter"},
+            "country": {"country", "United States"},
+            "gender": {"gender", "Male"},
+            "birth_date": {"birth": "1919-12-23", "age": None},
+            "photo": {"photo": None})
 
     def tearDown(self, cls):
         # All rows deletion.
