@@ -1,14 +1,25 @@
 import sqlite3
 
 
+def get_dict(key_or_value, position=0):
+    """
+    Function to get the key or value from a dictionary in its own data type
+    """
+    return tuple(key_or_value)[position]
+
+
 class Birthdays_db:
     def __init__(self, connection):
-        #  Preparation of the DB
+        """
+        Preparation of the DB
+        """
         self.connection = sqlite3.connect(connection)
         self.cursor = self.connection.cursor()
 
     def close_database(self):
-        #  Finish DataBase connection
+        """
+        Finish DataBase connection
+        """
         self.connection.close()
 
     def create_table(self, tables):
@@ -31,9 +42,25 @@ class Birthdays_db:
 
         Example:
 
-        Birthdays_db().add_person({
-            "country": {"country": "United States"},
-            "person":  {"per_first": "Randolph", "per_last": "Carter"}})
+        Input:
+
+            Birthdays_db().add_person({
+                "country": {"country": "United States"},
+                "person":  {"per_first": "Randolph", "per_last": "Carter"}})
+
+        Result:
+
+            sqlite3.connection.cursor("INSERT INTO Country
+                (country) VALUES ("United States"))
+
+            sqlite3.connection.cursor("INSERT INTO person
+                (per_first, per_last) VALUES ("Randolph", "Carter")")
         """
 
-        # query = "INSERT INTO ? (?) VALUES (?)"
+        rows = rows[0]
+        query = "INSERT INTO ? (?) VALUES (?)"
+
+        for table, value in rows.items():
+            for length in len(value):
+                self.cursor.executemany(
+                    query, table, get_dict(value.values(), length))
