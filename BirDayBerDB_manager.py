@@ -27,23 +27,13 @@ class Birthdays_db:
     def add_person(self, *rows):
         """ Insertion of rows to the table:
         To insert data, you have to especify the table with his columns
-        and data of the row.
+        and data of the row in a dictionary.
 
         Example:
 
-        Birthdays_db().add_person({"country": {"country", "United States"}},
-        "person": {"per_first": "Randolph", "per_last": "Carter"}})
+        Birthdays_db().add_person({
+            "country": {"country": "United States"},
+            "person":  {"per_first": "Randolph", "per_last": "Carter"}})
         """
 
-        # Continue with this: ----------------------------------------------------
-
-        # self.cursor.execute("PRAGMA tabla_info(?)", table_name) ...
-        # all_columns = [] ...
-        # for table in ...
-
-        # if len(rows) > all_columns:
-        #     raise TypeError(
-        #         "Tried to introduce %d columns when total\n" % (len(rows)) +
-        #         "columns of the %s table is of %d" % (table_name, all_columns))
-
-        self.cursor.executemany()
+        # query = "INSERT INTO ? (?) VALUES (?)"
