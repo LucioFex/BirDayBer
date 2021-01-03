@@ -50,17 +50,29 @@ class Birthdays_db:
 
         Result:
 
-            sqlite3.connection.cursor("INSERT INTO Country
+            sqlite3.connection.cursor.execute("INSERT INTO Country
                 (country) VALUES ("United States"))
 
-            sqlite3.connection.cursor("INSERT INTO person
+            sqlite3.connection.cursor.execute("INSERT INTO person
                 (per_first, per_last) VALUES ("Randolph", "Carter")")
         """
 
         rows = rows[0]
-        query = "INSERT INTO ? (?) VALUES (?)"
+        columns = []
+        query = "INSERT INTO ? (?) VALUES (?);"
 
-        for table, value in rows.items():
-            for length in len(value):
-                self.cursor.executemany(
-                    query, table, get_dict(value.values(), length))
+        for index, (k, v) in enumerate(rows.items()):
+            columns.append(None)
+
+            for length in range(len(v)):
+                if columns[index] is None:
+                    columns[index] = [
+                        k, get_dict(v.keys(), length),
+                        get_dict(v.values(), length)]
+
+                elif columns[index] is not None:
+                    columns[index][1] = [
+                        columns[index][1], get_dict(v.keys(), length)]
+
+                    columns[index][2] = [
+                        columns[index][2], get_dict(v.values(), length)]
