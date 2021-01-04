@@ -8,7 +8,7 @@ def get_dict(key_or_value, position=0):
     return tuple(key_or_value)[position]
 
 
-class Birthdays_db:
+class Db_manager:
     def __init__(self, connection):
         """
         Preparation of the DB
@@ -29,37 +29,25 @@ class Birthdays_db:
 
         Example:
 
-        Birthdays_db().create_table({'photo': f'id_photo {id_type} photo BLOB',
+        DB_manager().create_table({'photo': f'id_photo {id_type} photo BLOB',
         "country": f'id_country {id_type}, country VARCHAR(40)'})
         """
         for table in tables.items():
             self.cursor.executemany("CREATE TABLE ? (?);", table)
 
-    def add_person(self, *rows):
+    def add_attributes(self, *rows):
         """ Insertion of rows to the table:
         To insert data, you have to especify the table with his columns
         and data of the row in a dictionary.
 
         Example:
 
-        Input:
-
-            Birthdays_db().add_person({
+            DB_manager().add_attributes({
                 "country": {"country": "United States"},
-                "person":  {"per_first": "Randolph", "per_last": "Carter"}})
-
-        Result:
-
-            sqlite3.connection.cursor.execute("INSERT INTO Country
-                (country) VALUES ("United States"))
-
-            sqlite3.connection.cursor.execute("INSERT INTO person
-                (per_first, per_last) VALUES ("Randolph", "Carter")")
+                "person": {"per_first": "Randolph", "per_last": "Carter"}})
         """
-
         rows = rows[0]
         columns = []
-        query = "INSERT INTO ? (?) VALUES (?);"
 
         for index, (k, v) in enumerate(rows.items()):
             columns.append(None)
@@ -67,12 +55,11 @@ class Birthdays_db:
             for length in range(len(v)):
                 if columns[index] is None:
                     columns[index] = [
-                        k, get_dict(v.keys(), length),
-                        get_dict(v.values(), length)]
+                        k, [get_dict(v.keys(), length)],
+                        [get_dict(v.values(), length)]]
 
                 elif columns[index] is not None:
-                    columns[index][1] = [
-                        columns[index][1], get_dict(v.keys(), length)]
+                    columns[index][1].append(get_dict(v.keys(), length))
+                    columns[index][2].append(get_dict(v.values(), length))
 
-                    columns[index][2] = [
-                        columns[index][2], get_dict(v.values(), length)]
+        return self.process_attributes(columns)

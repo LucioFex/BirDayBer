@@ -1,6 +1,6 @@
 import unittest
 # import BirDayBer
-import BirDayBerDB_manager
+import db_manager
 
 
 class BirthDB_testing(unittest.TestCase):
@@ -10,7 +10,7 @@ class BirthDB_testing(unittest.TestCase):
         # It should connect the testing DB.
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
-        cls.birth_db = BirDayBerDB_manager.Birthdays_db("test_db.db")
+        cls.birth_db = db_manager.Db_manager("test_db.db")
         cls.birth_db.create_table({
             "gender":
                 f"id_gender {id_type}, gender VARCHAR(6)",
@@ -46,14 +46,14 @@ class BirthDB_testing(unittest.TestCase):
     def setUp(self, cls):
         # The ID will be set automatically.
 
-        cls.birth_db.add_person({  # ID 1
+        cls.birth_db.add_attributes({  # ID 1
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
             "birth_date": {"birth": "2003-11-18", "age": None},
             "person": {"per_first": "Franco", "per_last": "Frias"}})
 
-        cls.birth_db.add_person({  # ID 2
+        cls.birth_db.add_attributes({  # ID 2
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
