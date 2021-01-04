@@ -62,4 +62,18 @@ class Db_manager:
                     columns[index][1].append(get_dict(v.keys(), length))
                     columns[index][2].append(get_dict(v.values(), length))
 
+        for index in range(len(columns)):
+            columns[index] = tuple(columns[index])
+
         return self.process_attributes(columns)
+
+    def process_attributes(self, data):
+        """
+        This method tells Sqlite3 to INSERT the data in the tables of the DB.
+
+        data[0] = Table Name | data[1] = Column names | data[2] = Row values
+        """
+        sql_query = "INSERT ? (?) VALUES (?)"
+
+        for column in data:
+            self.cursor.executemany(sql_query, column)
