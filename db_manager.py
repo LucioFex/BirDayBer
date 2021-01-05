@@ -59,7 +59,8 @@ class Db_manager:
                         [get_dict(v.values(), length)]]
 
                 elif columns[index] is not None:
-                    columns[index][1].append(get_dict(v.keys(), length))
+                    columns[index][1] = (
+                        columns[index][1] + ", " + get_dict(v.keys(), length))
                     columns[index][2].append(get_dict(v.values(), length))
 
         for index in range(len(columns)):
@@ -69,11 +70,16 @@ class Db_manager:
 
     def process_attributes(self, data):
         """
-        This method tells Sqlite3 to INSERT the data in the tables of the DB.
+        This method tells the DB to INSERT the data in the tables of the DB.
 
-        data[0] = Table Name | data[1] = Column names | data[2] = Row values
+        data[x][0] = Table Names,
+        data[x][1] = Column names,
+        data[x][2] = Row values
         """
-        sql_query = "INSERT ? (?) VALUES (?)"
 
         for column in data:
-            self.cursor.executemany(sql_query, column)
+            values = ("?," * len(column[1]))[0:-1]  # Example: [a, b] == "?, ?"
+            self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})
+                VALUES ({values})""", column[2])
+
+        return True
