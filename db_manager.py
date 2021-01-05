@@ -17,10 +17,7 @@ class Db_manager:
         self.cursor = self.connection.cursor()
 
     def close_database(self):
-        """
-        Finish DataBase connection
-        """
-        self.connection.close()
+        return self.connection.close()
 
     def create_table(self, tables):
         """ Table insertion:
@@ -33,7 +30,7 @@ class Db_manager:
         "country": f'id_country {id_type}, country VARCHAR(40)'})
         """
         for table in tables.items():
-            self.cursor.executemany("CREATE TABLE ? (?);", table)
+            self.cursor.execute(f"CREATE TABLE {table[0]} ({table[1]});")
 
     def add_attributes(self, *rows):
         """ Insertion of rows to the table:
@@ -81,5 +78,3 @@ class Db_manager:
             values = ("?," * len(column[1]))[0:-1]  # Example: [a, b] == "?, ?"
             self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})
                 VALUES ({values})""", column[2])
-
-        return True
