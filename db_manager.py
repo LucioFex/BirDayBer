@@ -57,8 +57,10 @@ class Db_manager:
 
                 elif columns[index] is not None:
                     columns[index][1] = (
-                        columns[index][1] + ", " + get_dict(v.keys(), length))
+                        str(columns[index][1]) + ", " +
+                        get_dict(v.keys(), length))
                     columns[index][2].append(get_dict(v.values(), length))
+                    print(columns[index][1])
 
         for index in range(len(columns)):
             columns[index] = tuple(columns[index])

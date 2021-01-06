@@ -43,7 +43,7 @@ class BirthDB_testing(unittest.TestCase):
 
         cls.birth_db.close_database()
 
-    def setUp(self, cls):
+    def setUp(cls):
         # The ID will be set automatically.
 
         cls.birth_db.add_rows({  # ID 1
@@ -108,5 +108,5 @@ class BirthDB_testing(unittest.TestCase):
         self.assertEqual(len(self.all_photos), 2)
 
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
