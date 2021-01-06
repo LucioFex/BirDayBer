@@ -32,14 +32,14 @@ class Db_manager:
         for table in tables.items():
             self.cursor.execute(f"CREATE TABLE {table[0]} ({table[1]});")
 
-    def add_attributes(self, *rows):
+    def add_rows(self, *rows):
         """ Insertion of rows to the table:
         To insert data, you have to especify the table with his columns
         and data of the row in a dictionary.
 
         Example:
 
-            DB_manager().add_attributes({
+            DB_manager().add_rows({
                 "country": {"country": "United States"},
                 "person": {"per_first": "Randolph", "per_last": "Carter"}})
         """
@@ -63,9 +63,9 @@ class Db_manager:
         for index in range(len(columns)):
             columns[index] = tuple(columns[index])
 
-        return self.process_attributes(columns)
+        return self.process_rows(columns)
 
-    def process_attributes(self, data):
+    def process_rows(self, data):
         """
         This method tells the DB to INSERT the data in the tables of the DB.
 
