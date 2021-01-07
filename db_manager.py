@@ -46,21 +46,20 @@ class Db_manager:
         rows = rows[0]
         columns = []
 
-        for index, (k, v) in enumerate(rows.items()):
+        for index, (k, v) in enumerate(rows.items()):  # k = keys | v = values
             columns.append(None)
 
             for length in range(len(v)):
                 if columns[index] is None:
                     columns[index] = [
-                        k, [get_dict(v.keys(), length)],
+                        k, get_dict(v.keys(), length),
                         [get_dict(v.values(), length)]]
 
                 elif columns[index] is not None:
                     columns[index][1] = (
-                        str(columns[index][1]) + ", " +
+                        columns[index][1] + ", " +
                         get_dict(v.keys(), length))
                     columns[index][2].append(get_dict(v.values(), length))
-                    print(columns[index][1])
 
         for index in range(len(columns)):
             columns[index] = tuple(columns[index])
@@ -77,7 +76,7 @@ class Db_manager:
         """
 
         for column in data:
-            values = ("?," * len(column[1]))[0:-1]  # Example: [a, b] == "?, ?"
+            values = ("?," * len(column[2]))[0:-1]  # Example: [a, b] == "?, ?"
             self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})
                 VALUES ({values})""", column[2])
 

@@ -60,7 +60,7 @@ class BirthDB_testing(unittest.TestCase):
             "birth_date": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
-    def tearDown(self, cls):
+    def tearDown(cls):
         # All rows deletion.
 
         cls.birth_db.remove_rows([1, 2])  # id 1 = Franco | id 2 = Randolph
