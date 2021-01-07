@@ -80,6 +80,12 @@ class Db_manager:
             self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})
                 VALUES ({values})""", column[2])
 
+    def remove_rows(self, table, *primary_keys):
+        """
+        This method allows you to delete rows
+        """
+
+
     def column_search(self, table, column="*", where="&None%"):
         """
         This is a method that allows you select a table, a column and

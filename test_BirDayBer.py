@@ -34,7 +34,6 @@ class BirthDB_testing(unittest.TestCase):
                 "FOREIGN KEY (id_gender1) REFERENCES gender (id_gender), " +
                 "FOREIGN KEY (id_birth1) REFERENCES birth_date (id_birth), " +
                 "FOREIGN KEY (id_photo1) REFERENCES photo (id_photo)"})
-
         del id_type
 
     @classmethod
@@ -43,66 +42,66 @@ class BirthDB_testing(unittest.TestCase):
 
         cls.birth_db.close_database()
 
-    def setUp(cls):
+    def setUp(self):
         # The ID will be set automatically.
 
-        cls.birth_db.add_rows({  # ID 1
+        self.birth_db.add_rows({  # ID 1
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
             "birth_date": {"birth": "2003-11-18", "age": None},
             "person": {"per_first": "Franco", "per_last": "Frias"}})
 
-        cls.birth_db.add_rows({  # ID 2
+        self.birth_db.add_rows({  # ID 2
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
             "birth_date": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
-    def tearDown(cls):
+    def tearDown(self):
         # All rows deletion.
 
-        cls.birth_db.remove_rows([1, 2])  # id 1 = Franco | id 2 = Randolph
+        self.birth_db.remove_rows(1, 2)  # id 1 = Franco | id 2 = Randolph
 
-    def test_check_names(self, cls):
-        self.all_names = cls.birth_db.column_search("person", "per_first")
+    def test_check_names(self):
+        self.all_names = self.birth_db.column_search("person", "per_first")
 
         self.assertEqual(self.all_names, ("Franco", "Randolph"))
         self.assertEqual(len(self.all_names), 2)
 
-    def test_check_surnames(self, cls):
-        self.all_surnames = cls.birth_db.column_search("person", "per_last")
+    def test_check_surnames(self):
+        self.all_surnames = self.birth_db.column_search("person", "per_last")
 
         self.assertEqual(self.all_surnames, ("Frias", "Carter"))
         self.assertEqual(len(self.all_surnames), 2)
 
-    def test_check_births(self, cls):
-        self.all_births = cls.birth_db.column_search("birth_date", "birth")
+    def test_check_births(self):
+        self.all_births = self.birth_db.column_search("birth_date", "birth")
 
         self.assertEqual(self.all_births, ("2003-11-18", "1919-12-23"))
         self.assertEqual(len(self.all_births), 2)
 
-    def test_check_ages(self, cls):
-        self.all_ages = cls.birth_db.column_search("birth_date", "age")
+    def test_check_ages(self):
+        self.all_ages = self.birth_db.column_search("birth_date", "age")
 
         self.assertEqual(self.all_ages, (None, None))
         self.assertEqual(len(self.all_ages), 2)
 
-    def test_check_countries(self, cls):
-        self.all_countries = cls.birth_db.column_search("country", "country")
+    def test_check_countries(self):
+        self.all_countries = self.birth_db.column_search("country", "country")
 
         self.assertEqual(self.all_countries, ("Argentina", "United States"))
         self.assertEqual(len(self.all_countries), 2)
 
-    def test_check_genders(self, cls):
-        self.all_genders = cls.birth_db.column_search("gender", "gender")
+    def test_check_genders(self):
+        self.all_genders = self.birth_db.column_search("gender", "gender")
 
         self.assertEqual(self.all_genders, ("Male", "Male"))
         self.assertEqual(len(self.all_genders), 2)
 
-    def test_check_photos(self, cls):
-        self.all_photos = cls.birth_db.column_search("photo", "photo")
+    def test_check_photos(self):
+        self.all_photos = self.birth_db.column_search("photo", "photo")
 
         self.assertEqual(self.all_photos, (None, None))
         self.assertEqual(len(self.all_photos), 2)
