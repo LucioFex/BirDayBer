@@ -36,33 +36,51 @@ class BirthDB_testing(unittest.TestCase):
                 "FOREIGN KEY (id_photo1) REFERENCES photo (id_photo)"})
         del id_type
 
-    @classmethod
-    def tearDownClass(cls):
-        # It should close the DB.
-
-        cls.birth_db.close_database()
-
-    def setUp(self):
-        # The ID will be set automatically.
-
-        self.birth_db.add_rows({  # ID 1
+        cls.birth_db.add_rows({  # ID 1
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
             "birth_date": {"birth": "2003-11-18", "age": None},
             "person": {"per_first": "Franco", "per_last": "Frias"}})
 
-        self.birth_db.add_rows({  # ID 2
+        cls.birth_db.add_rows({  # ID 2
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
             "birth_date": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
-    def tearDown(self):
-        # All rows deletion.
+    @classmethod
+    def tearDownClass(cls):
+        # It should close the DB.
+        cls.birth_db.close_database()
 
-        self.birth_db.remove_rows(1, 2)  # id 1 = Franco | id 2 = Randolph
+    def setUp(self):
+        # The ID will be set automatically.  Check later
+
+        # self.birth_db.add_rows({  # ID 1
+        #     "country": {"country": "Argentina"},
+        #     "gender": {"gender": "Male"},
+        #     "photo": {"photo": None},
+        #     "birth_date": {"birth": "2003-11-18", "age": None},
+        #     "person": {"per_first": "Franco", "per_last": "Frias"}})
+
+        # self.birth_db.add_rows({  # ID 2
+        #     "country": {"country": "United States"},
+        #     "gender": {"gender": "Male"},
+        #     "photo": {"photo": None},
+        #     "birth_date": {"birth": "1919-12-23", "age": None},
+        #     "person": {"per_first": "Randolph", "per_last": "Carter"}})
+        pass
+
+    def tearDown(self):
+        # All rows deletion.  Check later
+        # self.birth_db.remove_rows("country", "&deleteAll")
+        # self.birth_db.remove_rows("gender", "&deleteAll")
+        # self.birth_db.remove_rows("photo", "&deleteAll")
+        # self.birth_db.remove_rows("birth_date", "&deleteAll")
+        # self.birth_db.remove_rows("person", "&deleteAll")
+        pass
 
     def test_check_names(self):
         self.all_names = self.birth_db.column_search("person", "per_first")

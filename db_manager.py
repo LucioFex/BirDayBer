@@ -80,11 +80,19 @@ class Db_manager:
             self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})
                 VALUES ({values})""", column[2])
 
-    def remove_rows(self, table, *primary_keys):
+    def remove_rows(self, table, where):
         """
-        This method allows you to delete rows
-        """
+        This method allows you to delete rows from a table.
 
+        First Parameter: Table name.
+        Second Parameter: WHERE clause.
+
+        Special Parameters:
+        If you write "&deleteAll", then there'll be no "WHERE clause"
+        """
+        sql_query = "DELETE FROM %s;" % table
+        if where != "&deleteAll":
+            sql_query = sql_query.replace(";", "WHERE %s" % where)
 
     def column_search(self, table, column="*", where="&None%"):
         """
@@ -101,7 +109,6 @@ class Db_manager:
         Example --> "per_last != 'randolph'" or "age >= 18".
 
         Special Parameters:
-
         You can see all columns if in the second parameter
         you write "*" or nothing in it.
 
