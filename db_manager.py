@@ -125,7 +125,4 @@ class Db_manager:
         self.cursor.execute(sql_query)
         search = self.cursor.fetchall()
 
-        for index in range(len(search)):
-            search[index] = search[index][0]
-
         return tuple(search)
