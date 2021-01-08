@@ -30,7 +30,7 @@ class Db_manager:
         "country": f'id_country {id_type}, country VARCHAR(40)'})
         """
         for table in tables.items():
-            self.cursor.execute(f"CREATE TABLE {table[0]} ({table[1]});")
+            self.cursor.execute("CREATE TABLE %s (%s)" % (table[0], table[1]))
 
     def add_rows(self, *rows):
         """ Insertion of rows to the table:
@@ -88,11 +88,13 @@ class Db_manager:
         Second Parameter: WHERE clause.
 
         Special Parameters:
-        If you write "&deleteAll", then there'll be no "WHERE clause"
+        If you write "&deleteAll", then there'll be no "WHERE clause".
         """
-        sql_query = "DELETE FROM %s;" % table
+        sql_query = "DELETE FROM %s" % table
         if where != "&deleteAll":
-            sql_query = sql_query.replace(";", "WHERE %s" % where)
+            sql_query = sql_query + " WHERE %s" % where
+
+        return "%s rows deleted" % self.cursor.execute(sql_query).rowcount
 
     def column_search(self, table, column="*", where="&None%"):
         """
@@ -115,12 +117,15 @@ class Db_manager:
         Olso, you avoid the where clause if in the third parameter
         you write "&None%" or nothing in it.
         """
-        sql_query = "SELECT %s FROM %s;" % (column, table)
+        sql_query = "SELECT %s FROM %s" % (column, table)
 
         if where != "&None%":
-            sql_query = sql_query.replace(";", "WHERE %s" % where)
+            sql_query = sql_query + " WHERE %s" % where
 
         self.cursor.execute(sql_query)
         search = self.cursor.fetchall()
 
-        return search
+        for index in range(len(search)):
+            search[index] = search[index][0]
+
+        return tuple(search)
