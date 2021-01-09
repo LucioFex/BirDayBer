@@ -1,6 +1,7 @@
 import unittest
 # import BirDayBer
 import db_manager
+import os
 
 
 class BirthDB_testing(unittest.TestCase):
@@ -52,18 +53,14 @@ class BirthDB_testing(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # It should close the DB.
+        # It should close the DB and delete it.
         cls.birth_db.close_database()
+        os.remove("test_db.db")
 
     def setUp(self):
         pass
 
     def tearDown(self):
-        # All rows deletion.  Check later
-        # self.birth_db.remove_rows("gender", "&deleteAll")
-        # self.birth_db.remove_rows("photo", "&deleteAll")
-        # self.birth_db.remove_rows("birth_date", "&deleteAll")
-        # self.birth_db.remove_rows("person", "&deleteAll")
         pass
 
     def test_check_genders(self):
