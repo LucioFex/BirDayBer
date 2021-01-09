@@ -10,9 +10,6 @@ def get_dict(key_or_value, position=0):
 
 class Db_manager:
     def __init__(self, connection):
-        """
-        Preparation of the DB
-        """
         self.connection = sqlite3.connect(connection)
         self.cursor = self.connection.cursor()
 
@@ -96,28 +93,35 @@ class Db_manager:
 
         return "%s rows deleted" % self.cursor.execute(sql_query).rowcount
 
-    def column_search(self, table, column="*", where="&None%"):
+    def column_search(self, table, columns="*", joins="", where="&None%"):
         """
-        This is a method that allows you select a table, a column and
-        a where clause to get the values of the table column/s.
+        This is a method that allows you select a table, columns, prepare joins
+        clauses and a where clause to get the values of the table columns/s.
 
         First Parameter: Table Name:
         Example --> "country" or "person".
 
-        Second Parameter: Column Name/s:
-        Example --> "per_last" or "age" or "*".
+        Second Parameter: Columns Name/s:
+        Example --> "per_last" or "age" or "*" or "per_last, per_first, age".
 
-        Third Parameter: Where condition:
+        Third Parameter: Join Clause:
+        Example --> "inner join gender on gender.id_gender = person.id_person"
+
+        Fourth Parameter: Where condition:
         Example --> "per_last != 'randolph'" or "age >= 18".
+
 
         Special Parameters:
         You can see all columns if in the second parameter
         you write "*" or nothing in it.
 
-        Olso, you avoid the where clause if in the third parameter
-        you write "&None%" or nothing in it.
+        If you don't want to make use a Join Clause, you can simply avoid it,
+        or write in the third parameter "".
+
+        Olso, you can avoid the where clause if in the fourth
+        parameter you write "&None%" or nothing in it.
         """
-        sql_query = "SELECT %s FROM %s" % (column, table)
+        sql_query = "SELECT %s FROM %s %s" % (columns, table, joins)
 
         if where != "&None%":
             sql_query = sql_query + " WHERE %s" % where

@@ -5,10 +5,15 @@ import os
 
 
 class BirthDB_testing(unittest.TestCase):
-    # BirDayBer database's testing
+    """
+    BirDayBer database's testing.
+    """
+
     @classmethod
     def setUpClass(cls):
-        # It should connect the testing DB.
+        """
+        It connects the testing DB and creates the tables and some rows.
+        """
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
         cls.birth_db = db_manager.Db_manager("test_db.db")
@@ -53,7 +58,9 @@ class BirthDB_testing(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # It should close the DB and delete it.
+        """
+        It close the DB and delete it.
+        """
         cls.birth_db.close_database()
         os.remove("test_db.db")
 
@@ -129,6 +136,21 @@ class BirthDB_testing(unittest.TestCase):
         self.assertEqual(deleted, "1 rows deleted")
         self.assertEqual(all_people, (("Randolph",),))
         self.assertEqual(len(all_people), 1)
+
+    def test_check_data(self):
+        # for table in ("country", "gender", "photo", "birth_date", "person"):
+        #     self.birth_db.remove_rows(table, "&deleteAll")
+
+        all_data = self.birth_db.column_search(
+            "person", "per_first, per_last, country, gender, birth",
+            "INNER JOIN country on country.id_country = person.id_country1 " +
+            "INNER JOIN gender on gender.id_gender = person.id_gender1 " +
+            "INNER JOIN birth_date on birth_date.id_birth = person.id_birth1")
+
+        self.assertEqual(all_data, (
+            ("Franco", "Randolph"), ("Frias", "Carter"),
+            ("Argentina", "United States"), ("Male", "Male"),
+            ("2003-11-18", "1919-12-23")))
 
 
 if __name__ == "__main__":
