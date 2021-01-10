@@ -28,6 +28,7 @@ class Db_manager:
         """
         for table in tables.items():
             self.cursor.execute("CREATE TABLE %s (%s)" % (table[0], table[1]))
+        self.connection.commit()
 
     def add_rows(self, *rows):
         """ Insertion of rows to the table:
@@ -35,7 +36,6 @@ class Db_manager:
         and data of the row in a dictionary.
 
         Example:
-
             DB_manager().add_rows({
                 "country": {"country": "United States"},
                 "person": {"per_first": "Randolph", "per_last": "Carter"}})
@@ -77,6 +77,8 @@ class Db_manager:
             self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})
                 VALUES ({values})""", column[2])
 
+        self.connection.commit()
+
     def remove_rows(self, table, where):
         """
         This method allows you to delete rows from a table.
@@ -87,11 +89,14 @@ class Db_manager:
         Special Parameters:
         If you write "&deleteAll", then there'll be no "WHERE clause".
         """
-        sql_query = "DELETE FROM %s" % table
+        sql_query = "DELETE FROM " + table
         if where != "&deleteAll":
-            sql_query = sql_query + " WHERE %s" % where
+            sql_query = sql_query + " WHERE " + where
 
-        return "%s rows deleted" % self.cursor.execute(sql_query).rowcount
+        deleted = "%s rows deleted" % self.cursor.execute(sql_query).rowcount
+        self.connection.commit()
+
+        return deleted
 
     def column_search(self, table, columns="*", joins="", where="&None%"):
         """
@@ -124,7 +129,7 @@ class Db_manager:
         sql_query = "SELECT %s FROM %s %s" % (columns, table, joins)
 
         if where != "&None%":
-            sql_query = sql_query + " WHERE %s" % where
+            sql_query = sql_query + " WHERE " + where
 
         self.cursor.execute(sql_query)
         search = self.cursor.fetchall()
