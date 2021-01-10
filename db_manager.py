@@ -130,8 +130,6 @@ class Db_manager:
 
         if where != "&None%":
             sql_query = sql_query + " WHERE " + where
-
         self.cursor.execute(sql_query)
-        search = self.cursor.fetchall()
 
-        return tuple(search)
+        return tuple(self.cursor.fetchall())

@@ -57,15 +57,22 @@ class BirthDB_testing(unittest.TestCase):
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
-            "birth_date": {"birth": "2003-11-18", "age": None},
-            "person": {"per_first": "Franco", "per_last": "Frias"}})
+            "birth_date": {
+                "birth": "2003-11-18", "age": None, "id_country2": 1},
+            "person": {
+                "per_first": "Franco", "per_last": "Frias", "id_country1": 1,
+                "id_gender1": 1, "id_birth1": 1, "id_photo1": 1}})
 
         self.birth_db.add_rows({  # ID 2
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
-            "birth_date": {"birth": "1919-12-23", "age": None},
-            "person": {"per_first": "Randolph", "per_last": "Carter"}})
+            "birth_date": {
+                "birth": "1919-12-23", "age": None, "id_country2": 2},
+            "person": {
+                "per_first": "Randolph", "per_last": "Carter",
+                "id_country1": 2, "id_gender1": 2,
+                "id_birth1": 2, "id_photo1": 2}})
 
     def tearDown(self):
         """
@@ -142,17 +149,17 @@ class BirthDB_testing(unittest.TestCase):
         self.assertEqual(all_people, (("Randolph",),))
         self.assertEqual(len(all_people), 1)
 
-    # def test_check_data(self):
-    #     all_data = self.birth_db.column_search(
-    #         "person", "per_first, per_last, country, gender, birth",
-    #         "INNER JOIN country on country.id_country = person.id_country1 " +
-    #         "INNER JOIN gender on gender.id_gender = person.id_gender1 " +
-    #         "INNER JOIN birth_date on birth_date.id_birth = person.id_birth1")
+    def test_check_data(self):
+        all_data = self.birth_db.column_search(
+            "person", "per_first, per_last, country, gender, birth",
+            "INNER JOIN country on country.id_country = person.id_country1 " +
+            "INNER JOIN gender on gender.id_gender = person.id_gender1 " +
+            "INNER JOIN birth_date on birth_date.id_birth = person.id_birth1")
 
-    #     self.assertEqual(all_data, (
-    #         ("Franco", "Randolph"), ("Frias", "Carter"),
-    #         ("Argentina", "United States"), ("Male", "Male"),
-    #         ("2003-11-18", "1919-12-23")))
+        self.assertEqual(all_data, (
+            ("Franco", "Randolph"), ("Frias", "Carter"),
+            ("Argentina", "United States"), ("Male", "Male"),
+            ("2003-11-18", "1919-12-23")))
 
 
 if __name__ == "__main__":
