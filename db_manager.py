@@ -90,12 +90,12 @@ class Db_manager:
         If you write "&deleteAll", then there'll be no "WHERE clause".
         """
         sql_query = "DELETE FROM " + table
+
         if where != "&deleteAll":
             sql_query = sql_query + " WHERE " + where
-
         deleted = "%s rows deleted" % self.cursor.execute(sql_query).rowcount
-        self.connection.commit()
 
+        self.connection.commit()
         return deleted
 
     def column_search(self, table, columns="*", joins="", where="&None%"):
