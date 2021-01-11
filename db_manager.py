@@ -72,6 +72,18 @@ class Db_manager:
         data[x][2] = Row values
         """
 
+        foreign_columns = []  # Continue from here!!!
+        for table_name in data:
+            # print(table_name[0])
+            self.cursor.execute("PRAGMA table_info(%s);" % table_name[0])
+
+            for column in self.cursor.fetchall():
+                if column[1][-3:] == "_fk":
+                    foreign_columns.append(column[1])
+                    print(table_name[0], "-->", column[1])
+
+        print("=" * 25)
+
         for column in data:
             values = ("?," * len(column[2]))[0:-1]  # Example: [a, b] == "?, ?"
             self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})

@@ -28,17 +28,19 @@ class BirthDB_testing(unittest.TestCase):
 
             "birth_date":
                 f"""id_birth {id_type},
-                id_country2 INTEGER, birth DATE, age INTEGER,
-                FOREIGN KEY (id_country2) REFERENCES country (id_country)""",
+                id_country2_fk INTEGER, birth DATE, age INTEGER,
+                FOREIGN KEY (id_country2_fk)
+                REFERENCES country (id_country)""",
 
             "person":
                 f"""id_person {id_type}, per_first VARCHAR(35),
-                per_last VARCHAR(35), id_country1 INTEGER,
-                id_gender1 INTEGER, id_birth1 INTEGER, id_photo1 INTEGER,
-                FOREIGN KEY (id_country1) REFERENCES country (id_country),
-                FOREIGN KEY (id_gender1) REFERENCES gender (id_gender),
-                FOREIGN KEY (id_birth1) REFERENCES birth_date (id_birth),
-                FOREIGN KEY (id_photo1) REFERENCES photo (id_photo)"""})
+                per_last VARCHAR(35), id_country1_fk INTEGER,
+                id_gender1_fk INTEGER, id_birth1_fk INTEGER,
+                id_photo1_fk INTEGER,
+                FOREIGN KEY (id_country1_fk) REFERENCES country (id_country),
+                FOREIGN KEY (id_gender1_fk) REFERENCES gender (id_gender),
+                FOREIGN KEY (id_birth1_fk) REFERENCES birth_date (id_birth),
+                FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)"""})
         del id_type
 
     @classmethod
@@ -57,22 +59,15 @@ class BirthDB_testing(unittest.TestCase):
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
-            "birth_date": {
-                "birth": "2003-11-18", "age": None, "id_country2": 1},
-            "person": {
-                "per_first": "Franco", "per_last": "Frias", "id_country1": 1,
-                "id_gender1": 1, "id_birth1": 1, "id_photo1": 1}})
+            "birth_date": {"birth": "2003-11-18", "age": None},
+            "person": {"per_first": "Franco", "per_last": "Frias"}})
 
         self.birth_db.add_rows({  # ID 2
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
-            "birth_date": {
-                "birth": "1919-12-23", "age": None, "id_country2": 2},
-            "person": {
-                "per_first": "Randolph", "per_last": "Carter",
-                "id_country1": 2, "id_gender1": 2,
-                "id_birth1": 2, "id_photo1": 2}})
+            "birth_date": {"birth": "1919-12-23", "age": None},
+            "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
     def tearDown(self):
         """
@@ -152,9 +147,9 @@ class BirthDB_testing(unittest.TestCase):
     def test_check_data(self):
         all_data = self.birth_db.column_search(
             "person", "per_first, per_last, country, gender, birth",
-            "INNER JOIN country on country.id_country = person.id_country1 " +
-            "INNER JOIN gender on gender.id_gender = person.id_gender1 " +
-            "INNER JOIN birth_date on birth_date.id_birth = person.id_birth1")
+            "INNER JOIN country on country.id_country = person.id_country1_fk " +
+            "INNER JOIN gender on gender.id_gender = person.id_gender1_fk " +
+            "INNER JOIN birth_date on birth_date.id_birth = person.id_birth1_fk")
 
         self.assertEqual(all_data, (
             ("Franco", "Randolph"), ("Frias", "Carter"),
