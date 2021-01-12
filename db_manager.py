@@ -35,6 +35,10 @@ class Db_manager:
         To insert data, you have to especify the table with his columns
         and data of the row in a dictionary.
 
+        Every column that ends with the name '_fk' will be aumatically taken
+        as a foreign column, and it will be given an automated ID.
+        You shouldn't input the foreign keys by yourself.
+
         Example:
             DB_manager().add_rows({
                 "country": {"country": "United States"},
@@ -58,9 +62,6 @@ class Db_manager:
                         get_dict(v.keys(), length))
                     columns[index][2].append(get_dict(v.values(), length))
 
-        for index in range(len(columns)):
-            columns[index] = tuple(columns[index])
-
         return self.process_rows(columns)
 
     def process_rows(self, data):
@@ -71,23 +72,23 @@ class Db_manager:
         data[x][1] = Column names,
         data[x][2] = Row values
         """
+        for element in data:
+            try:  # Select the num of the last ID number + 1 for the new one
+                self.cursor.execute("SELECT * FROM %s" % element[0])
+                id_num = self.cursor.fetchall()[-1][0] + 1
+            except IndexError:  # If there's not rows yet
+                id_num = 1
 
-        foreign_columns = []  # Continue from here!!!
-        for table_name in data:
-            # print(table_name[0])
-            self.cursor.execute("PRAGMA table_info(%s);" % table_name[0])
-
+            self.cursor.execute("PRAGMA table_info(%s);" % element[0])
             for column in self.cursor.fetchall():
                 if column[1][-3:] == "_fk":
-                    foreign_columns.append(column[1])
-                    print(table_name[0], "-->", column[1])
+                    element[1] = element[1] + ", " + column[1]
+                    element[2].append(id_num)
 
-        print("=" * 25)
-
-        for column in data:
-            values = ("?," * len(column[2]))[0:-1]  # Example: [a, b] == "?, ?"
-            self.cursor.execute(f"""INSERT INTO {column[0]} ({column[1]})
-                VALUES ({values})""", column[2])
+            #  Insertion of data
+            values = ("?," * len(element[2]))[0:-1]  # Example: [a, b] == "?,?"
+            self.cursor.execute(f"""INSERT INTO {element[0]} ({element[1]})
+                VALUES ({values})""", element[2])
 
         self.connection.commit()
 

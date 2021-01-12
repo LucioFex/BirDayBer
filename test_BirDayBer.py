@@ -145,16 +145,19 @@ class BirthDB_testing(unittest.TestCase):
         self.assertEqual(len(all_people), 1)
 
     def test_check_data(self):
+        # self.birth_db.remove_rows("person", "per_first = 'Randolph'")
         all_data = self.birth_db.column_search(
             "person", "per_first, per_last, country, gender, birth",
-            "INNER JOIN country on country.id_country = person.id_country1_fk " +
-            "INNER JOIN gender on gender.id_gender = person.id_gender1_fk " +
-            "INNER JOIN birth_date on birth_date.id_birth = person.id_birth1_fk")
+            """INNER JOIN
+                country on country.id_country = person.id_country1_fk
+            INNER JOIN
+                gender on gender.id_gender = person.id_gender1_fk
+            INNER JOIN
+                birth_date on birth_date.id_birth = person.id_birth1_fk""")
 
         self.assertEqual(all_data, (
-            ("Franco", "Randolph"), ("Frias", "Carter"),
-            ("Argentina", "United States"), ("Male", "Male"),
-            ("2003-11-18", "1919-12-23")))
+            ("Franco", "Frias", "Argentina", "Male", "2003-11-18"),
+            ("Randolph", "Carter", "United States", "Male", "1919-12-23")))
 
 
 if __name__ == "__main__":
