@@ -73,11 +73,14 @@ class Db_manager:
         data[x][2] = Row values
         """
         for element in data:
+            self.cursor.execute("SELECT * FROM %s" % element[0])
             try:  # Select the num of the last ID number + 1 for the new one
-                self.cursor.execute("SELECT * FROM %s" % element[0])
                 id_num = self.cursor.fetchall()[-1][0] + 1
-            except IndexError:  # If there's not rows yet
-                id_num = 1
+            except IndexError:
+                try:  # Increase the number id number for the first row
+                    id_num += 1
+                except UnboundLocalError:  # If there aren't rows yet
+                    id_num = 1
 
             self.cursor.execute("PRAGMA table_info(%s);" % element[0])
             for column in self.cursor.fetchall():
@@ -139,6 +142,8 @@ class Db_manager:
         Olso, you can avoid the where clause if in the fourth
         parameter you write "&None%" or nothing in it.
         """
+        # self.cursor.execute("SELECT * FROM person")
+        # print(self.cursor.fetchall())
         sql_query = "SELECT %s FROM %s %s" % (columns, table, joins)
 
         if where != "&None%":
