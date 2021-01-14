@@ -58,7 +58,7 @@ class BirthDB_testing(unittest.TestCase):
         self.birth_db.add_rows({  # ID 1
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
-            "photo": {"photo": None},
+            "photo": {"photo": 'conceptual/image_test.png'},
             "birth_date": {"birth": "2003-11-18", "age": None},
             "person": {"per_first": "Franco", "per_last": "Frias"}})
 
@@ -92,15 +92,15 @@ class BirthDB_testing(unittest.TestCase):
     def test_check_photos(self):
         all_photos = self.birth_db.column_search("photo", "photo")
 
-        self.assertEqual(all_photos, ((None,), (None,)))
+        self.assertNotEqual(all_photos, ((None,), (None,)))
         self.assertEqual(len(all_photos), 2)
 
         deleted = self.birth_db.remove_rows("photo", "photo is Null")
         all_photos = self.birth_db.column_search("photo", "photo")
 
-        self.assertEqual(deleted, "2 rows deleted")
-        self.assertEqual(all_photos, ())
-        self.assertEqual(len(all_photos), 0)
+        self.assertEqual(deleted, "1 rows deleted")
+        self.assertEqual(all_photos, ((None,), ))
+        self.assertEqual(len(all_photos), 1)
 
     def test_check_countries(self):
         all_countries = self.birth_db.column_search("country", "country")

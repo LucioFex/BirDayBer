@@ -8,6 +8,16 @@ def get_dict(key_or_value, position=0):
     return tuple(key_or_value)[position]
 
 
+def photo_to_binary(self, photo):
+    """
+    Method that gets the binary data of an image
+    """
+    with open(photo, 'rb') as binary_photo:
+        blob = binary_photo.read()
+
+    return blob
+
+
 class Db_manager:
     def __init__(self, connection):
         self.connection = sqlite3.connect(connection)
@@ -87,6 +97,10 @@ class Db_manager:
                 if column[1][-3:] == "_fk":
                     element[1] = element[1] + ", " + column[1]
                     element[2].append(id_num)
+
+                if column[2] == "BLOB":  # Continue checking this
+                    print(element[2])
+                    # blob = photo_to_binary(element[2][0])
 
             #  Insertion of data
             values = ("?," * len(element[2]))[0:-1]  # Example: [a, b] == "?,?"
