@@ -77,7 +77,7 @@ class Db_manager:
             try:  # Select the num of the last ID number + 1 for the new one
                 id_num = self.cursor.fetchall()[-1][0] + 1
             except IndexError:
-                try:  # Increase the number id number for the first row
+                try:  # Increase the id number for the this row
                     id_num += 1
                 except UnboundLocalError:  # If there aren't rows yet
                     id_num = 1
