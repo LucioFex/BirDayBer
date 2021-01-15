@@ -95,7 +95,7 @@ class BirthDB_testing(unittest.TestCase):
         self.assertNotEqual(all_photos, ((None,), (None,)))
         self.assertEqual(len(all_photos), 2)
 
-        deleted = self.birth_db.remove_rows("photo", "photo is Null")
+        deleted = self.birth_db.remove_rows("photo", "photo is not Null")
         all_photos = self.birth_db.column_search("photo", "photo")
 
         self.assertEqual(deleted, "1 rows deleted")

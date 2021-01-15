@@ -3,19 +3,23 @@ import sqlite3
 
 def get_dict(key_or_value, position=0):
     """
-    Function to get the key or value from a dictionary in its own data type
+    Function to get the key or value from a dictionary in its own data type.
     """
     return tuple(key_or_value)[position]
 
 
-def photo_to_binary(self, photo):
+def photo_to_binary(photo):
     """
-    Method that gets the binary data of an image
+    Function that gets the binary data of an image and return it.
+    If 'photo' parameter is None, then it returns None.
     """
-    with open(photo, 'rb') as binary_photo:
-        blob = binary_photo.read()
-
-    return blob
+    try:
+        if photo is not None:
+            with open(photo, 'rb') as binary_photo:
+                blob = binary_photo.read()
+            return blob
+    except FileNotFoundError:
+        return None
 
 
 class Db_manager:
@@ -98,9 +102,9 @@ class Db_manager:
                     element[1] = element[1] + ", " + column[1]
                     element[2].append(id_num)
 
-                if column[2] == "BLOB":  # Continue checking this
-                    print(element[2])
-                    # blob = photo_to_binary(element[2][0])
+                if column[2] == "BLOB":
+                    for index in range(len(element[2])):
+                        element[2][index] = photo_to_binary(element[2][index])
 
             #  Insertion of data
             values = ("?," * len(element[2]))[0:-1]  # Example: [a, b] == "?,?"
