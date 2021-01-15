@@ -22,6 +22,20 @@ def photo_to_binary(photo):
         return None
 
 
+def binary_to_photo(id_person, binary, folder="bin//rows_content//photos"):
+    """
+    Function that convert the binary data to an image in a X folder.
+    The default folder will be "bin//rows_content//photos"
+
+    Every photo will be saved in '.png' type.
+    """
+    try:
+        with open(f'{folder}//photo_{id_person}.png', 'wb') as photo:
+            photo.write(binary)
+    except FileNotFoundError:
+        return None
+
+
 class Db_manager:
     def __init__(self, connection):
         self.connection = sqlite3.connect(connection)
@@ -52,6 +66,9 @@ class Db_manager:
         Every column that ends with the name '_fk' will be aumatically taken
         as a foreign column, and it will be given an automated ID.
         You shouldn't input the foreign keys by yourself.
+
+        Olso every column that has a Blob type will be automatically checked
+        to convert it to 'bytes' data type.
 
         Example:
             DB_manager().add_rows({
@@ -160,8 +177,6 @@ class Db_manager:
         Olso, you can avoid the where clause if in the fourth
         parameter you write "&None%" or nothing in it.
         """
-        # self.cursor.execute("SELECT * FROM person")
-        # print(self.cursor.fetchall())
         sql_query = "SELECT %s FROM %s %s" % (columns, table, joins)
 
         if where != "&None%":
