@@ -15,7 +15,7 @@ class BirthDB_testing(unittest.TestCase):
         """
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
-        cls.birth_db = db_manager.Db_manager("test_db.db")
+        cls.birth_db = db_manager.Db_manager("data//database//test_db.db")
         cls.birth_db.create_table({
             "gender":
                 f"id_gender {id_type}, gender VARCHAR(6)",
@@ -26,7 +26,7 @@ class BirthDB_testing(unittest.TestCase):
             "country":
                 f"id_country {id_type}, country VARCHAR(40)",
 
-            "birth_date":
+            "birth":
                 f"""id_birth {id_type},
                 id_country2_fk INTEGER, birth DATE, age INTEGER,
                 FOREIGN KEY (id_country2_fk)
@@ -39,7 +39,7 @@ class BirthDB_testing(unittest.TestCase):
                 id_photo1_fk INTEGER,
                 FOREIGN KEY (id_country1_fk) REFERENCES country (id_country),
                 FOREIGN KEY (id_gender1_fk) REFERENCES gender (id_gender),
-                FOREIGN KEY (id_birth1_fk) REFERENCES birth_date (id_birth),
+                FOREIGN KEY (id_birth1_fk) REFERENCES birth (id_birth),
                 FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)"""})
         del id_type
 
@@ -49,7 +49,7 @@ class BirthDB_testing(unittest.TestCase):
         It close the DB and delete it.
         """
         cls.birth_db.close_database()
-        os.remove("test_db.db")
+        cls.birth_db.drop_database()
 
     def setUp(self):
         """
@@ -58,22 +58,22 @@ class BirthDB_testing(unittest.TestCase):
         self.birth_db.add_rows({  # ID 1
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
-            "photo": {"photo": 'conceptual/image_test.png'},
-            "birth_date": {"birth": "2003-11-18", "age": None},
+            "photo": {"photo": 'testing/image_test.png'},
+            "birth": {"birth": "2003-11-18", "age": None},
             "person": {"per_first": "Franco", "per_last": "Frias"}})
 
         self.birth_db.add_rows({  # ID 2
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
-            "birth_date": {"birth": "1919-12-23", "age": None},
+            "birth": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
     def tearDown(self):
         """
         Deletion of every row in the columns.
         """
-        for table in ("country", "gender", "photo", "birth_date", "person"):
+        for table in ("country", "gender", "photo", "birth", "person"):
             self.birth_db.remove_rows(table, "&deleteAll")
 
     def test_check_genders(self):
@@ -104,7 +104,7 @@ class BirthDB_testing(unittest.TestCase):
 
         all_photos = self.birth_db.column_search("photo", "id_photo, photo")
         db_manager.binary_to_photo(all_photos[0][0], all_photos[0][1])
-        os.remove("bin//rows_content//photos//photo_%s.png" % all_photos[0][0])
+        os.remove("data//rows_content//photo_%s.png" % all_photos[0][0])
 
     def test_check_countries(self):
         all_countries = self.birth_db.column_search("country", "country")
@@ -120,14 +120,14 @@ class BirthDB_testing(unittest.TestCase):
         self.assertEqual(len(all_countries), 1)
 
     def test_check_births(self):
-        all_births = self.birth_db.column_search("birth_date", "birth")
+        all_births = self.birth_db.column_search("birth", "birth")
 
         self.assertEqual(all_births, (("2003-11-18",), ("1919-12-23",)))
         self.assertEqual(len(all_births), 2)
 
         deleted = self.birth_db.remove_rows(
-            "birth_date", "birth = '1919-12-23'")
-        all_births = self.birth_db.column_search("birth_date", "birth")
+            "birth", "birth = '1919-12-23'")
+        all_births = self.birth_db.column_search("birth", "birth")
 
         self.assertEqual(deleted, "1 rows deleted")
         self.assertEqual(all_births, (("2003-11-18",),))
@@ -157,11 +157,11 @@ class BirthDB_testing(unittest.TestCase):
             INNER JOIN
                 gender on gender.id_gender = person.id_gender1_fk
             INNER JOIN
-                birth_date on birth_date.id_birth = person.id_birth1_fk""")
+                birth on birth.id_birth = person.id_birth1_fk""")
 
         self.assertEqual(all_data, (
-            ("Franco", "Frias", "Argentina", "Male", "2003-11-18"),
-            ("Randolph", "Carter", "United States", "Male", "1919-12-23")))
+            ("Franco", "Frias", "Argentina", "Male", "2003-11-18",),
+            ("Randolph", "Carter", "United States", "Male", "1919-12-23",)))
 
 
 if __name__ == "__main__":

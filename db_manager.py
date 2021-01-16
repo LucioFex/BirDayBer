@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 
 def get_dict(key_or_value, position=0):
@@ -6,7 +7,6 @@ def get_dict(key_or_value, position=0):
     Function to get the key or value from a dictionary in its own data type.
     """
     return tuple(key_or_value)[position]
-
 
 def photo_to_binary(photo):
     """
@@ -22,10 +22,10 @@ def photo_to_binary(photo):
         return None
 
 
-def binary_to_photo(id_person, binary, folder="bin//rows_content//photos"):
+def binary_to_photo(id_person, binary, folder="data//rows_content"):
     """
     Function that convert the binary data to an image in a X folder.
-    The default folder will be "bin//rows_content//photos"
+    The default folder will be "data//rows_content"
 
     Every photo will be saved in '.png' type.
     """
@@ -40,6 +40,7 @@ class Db_manager:
     def __init__(self, connection):
         self.connection = sqlite3.connect(connection)
         self.cursor = self.connection.cursor()
+        self.db_path = connection
 
     def close_database(self):
         return self.connection.close()
@@ -49,10 +50,14 @@ class Db_manager:
         This method let you create a table with dictionary where
         the Key is the table name and the values are the table columns.
 
+        Every Primary Key should be called in the following way:
+        id_[table_name]
+
         Example:
 
-        DB_manager().create_table({'photo': f'id_photo {id_type} photo BLOB',
-        "country": f'id_country {id_type}, country VARCHAR(40)'})
+        DB_manager().create_table({
+            'photo': f'id_photo INTEGER PRIMARY KEY AUTOINCREMENT, photo BLOB',
+            "country": f'id_country {id_type}, country VARCHAR(40)'})
         """
         for table in tables.items():
             self.cursor.execute("CREATE TABLE %s (%s)" % (table[0], table[1]))
@@ -184,3 +189,9 @@ class Db_manager:
         self.cursor.execute(sql_query)
 
         return tuple(self.cursor.fetchall())
+
+    def drop_database(self):
+        """
+        Elimination of the database.
+        """
+        os.remove(self.db_path)

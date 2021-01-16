@@ -6,6 +6,7 @@
 - Programming Language [Python](https://www.python.org/) (version 3).
 - Python [Tkinter (Tcl/Tk)](https://docs.python.org/3/library/tkinter.html) library.
 - Python [Sqlite3](https://docs.python.org/3/library/sqlite3.html) library.
+- Python [OS](https://docs.python.org/3/library/os.html) module.
 
 ## Posible Future Requeriments:
 
