@@ -15,7 +15,7 @@ class BirthDB_testing(unittest.TestCase):
         """
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
-        cls.birth_db = db_manager.Db_manager("data//database//test_db.db")
+        cls.birth_db = db_manager.Db_manager("bin//test_db.db")
         cls.birth_db.create_table({
             "gender":
                 f"id_gender {id_type}, gender VARCHAR(6)",
@@ -104,7 +104,7 @@ class BirthDB_testing(unittest.TestCase):
 
         all_photos = self.birth_db.column_search("photo", "id_photo, photo")
         db_manager.binary_to_photo(all_photos[0][0], all_photos[0][1])
-        os.remove("data//rows_content//photo_%s.png" % all_photos[0][0])
+        os.remove("bin//rows_content//photo_%s.png" % all_photos[0][0])
 
     def test_check_countries(self):
         all_countries = self.birth_db.column_search("country", "country")
