@@ -37,6 +37,18 @@ def binary_to_photo(id_person, binary, folder="bin//rows_content"):
         return None
 
 
+def delete_files(*location):
+    """
+    Function that deletes all the files submitted in the parameters.
+    The parameters are unlimited to add locations.
+
+    Example:
+    delete_photo("location/1.png", "location/2.png")
+    """
+    for file in location:
+        os.remove(file)
+
+
 class Db_manager:
     def __init__(self, connection):
         self.connection = sqlite3.connect(connection)

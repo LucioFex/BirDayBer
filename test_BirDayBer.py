@@ -1,12 +1,11 @@
 import unittest
-# import BirDayBer
+import BirDayBer
 import db_manager
-import os
 
 
-class BirthDB_testing(unittest.TestCase):
+class BirDayBerhDB_testing(unittest.TestCase):
     """
-    BirDayBer database's testing.
+    BirDayBer database testing.
     """
     @classmethod
     def setUpClass(cls):
@@ -103,8 +102,10 @@ class BirthDB_testing(unittest.TestCase):
         self.assertEqual(len(all_photos), 1)
 
         all_photos = self.birth_db.column_search("photo", "id_photo, photo")
-        db_manager.binary_to_photo(all_photos[0][0], all_photos[0][1])
-        os.remove("bin//rows_content//photo_%s.png" % all_photos[0][0])
+
+        db_manager.binary_to_photo(
+            all_photos[0][0], all_photos[0][1], "testing//")
+        db_manager.delete_files("testing//photo_%s.png" % all_photos[0][0])
 
     def test_check_countries(self):
         all_countries = self.birth_db.column_search("country", "country")
@@ -162,6 +163,32 @@ class BirthDB_testing(unittest.TestCase):
         self.assertEqual(all_data, (
             ("Franco", "Frias", "Argentina", "Male", "2003-11-18",),
             ("Randolph", "Carter", "United States", "Male", "1919-12-23",)))
+
+
+class Birth_testing(unittest.TestCase):
+    """
+    BirDayBer graphical user interface testing.
+    """
+    @classmethod
+    def setUpClass(cls):
+        """
+        Initialize the GUI.
+        """
+        cls.bir_interface = BirDayBer.Birdayber_main()
+        cls.bir_interface.init_interface()
+
+    @classmethod
+    def tearDownClass(cls):
+        """
+        Finish the process of the GUI.
+        """
+        cls.bir_interface.close_interface()
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
 
 
 if __name__ == "__main__":
