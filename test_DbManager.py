@@ -1,6 +1,8 @@
 import unittest
-import BirDayBer
 import db_manager
+"""
+Testing file of BirDayBer.py.
+"""
 
 
 class BirDayBerhDB_testing(unittest.TestCase):
@@ -163,32 +165,6 @@ class BirDayBerhDB_testing(unittest.TestCase):
         self.assertEqual(all_data, (
             ("Franco", "Frias", "Argentina", "Male", "2003-11-18",),
             ("Randolph", "Carter", "United States", "Male", "1919-12-23",)))
-
-
-class Birth_testing(unittest.TestCase):
-    """
-    BirDayBer graphical user interface testing.
-    """
-    @classmethod
-    def setUpClass(cls):
-        """
-        Initialize the GUI.
-        """
-        cls.bir_interface = BirDayBer.Birdayber_main()
-        cls.bir_interface.init_interface()
-
-    @classmethod
-    def tearDownClass(cls):
-        """
-        Finish the process of the GUI.
-        """
-        cls.bir_interface.close_interface()
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
 
 
 if __name__ == "__main__":
