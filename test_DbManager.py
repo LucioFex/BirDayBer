@@ -60,8 +60,8 @@ class BirDayBerhDB_testing(unittest.TestCase):
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": 'testing/image_test.png'},
-            "birth": {"birth": "2003-11-18", "age": None},
-            "person": {"per_first": "Franco", "per_last": "Frias"}})
+            "birth": {"birth": "2003-07-15", "age": None},
+            "person": {"per_first": "Severus", "per_last": "Snape"}})
 
         self.birth_db.add_rows({  # ID 2
             "country": {"country": "United States"},
@@ -77,7 +77,7 @@ class BirDayBerhDB_testing(unittest.TestCase):
         for table in ("country", "gender", "photo", "birth", "person"):
             self.birth_db.remove_rows(table, "&deleteAll")
 
-    def test_check_genders(self):
+    def test_genders(self):
         all_genders = self.birth_db.column_search("gender", "gender")
 
         self.assertEqual(all_genders, (("Male",), ("Male",)))
@@ -90,7 +90,7 @@ class BirDayBerhDB_testing(unittest.TestCase):
         self.assertEqual(all_genders, ())
         self.assertEqual(len(all_genders), 0)
 
-    def test_check_photos(self):
+    def test_photos(self):
         all_photos = self.birth_db.column_search("photo", "photo")
 
         self.assertNotEqual(all_photos, ((None,), (None,)))
@@ -109,7 +109,7 @@ class BirDayBerhDB_testing(unittest.TestCase):
             all_photos[0][0], all_photos[0][1], "testing//")
         db_manager.delete_files("testing//photo_%s.png" % all_photos[0][0])
 
-    def test_check_countries(self):
+    def test_countries(self):
         all_countries = self.birth_db.column_search("country", "country")
 
         self.assertEqual(all_countries, (("Argentina",), ("United States",)))
@@ -122,10 +122,10 @@ class BirDayBerhDB_testing(unittest.TestCase):
         self.assertEqual(all_countries, (("United States",),))
         self.assertEqual(len(all_countries), 1)
 
-    def test_check_births(self):
+    def test_births(self):
         all_births = self.birth_db.column_search("birth", "birth")
 
-        self.assertEqual(all_births, (("2003-11-18",), ("1919-12-23",)))
+        self.assertEqual(all_births, (("2003-07-15",), ("1919-12-23",)))
         self.assertEqual(len(all_births), 2)
 
         deleted = self.birth_db.remove_rows(
@@ -133,25 +133,25 @@ class BirDayBerhDB_testing(unittest.TestCase):
         all_births = self.birth_db.column_search("birth", "birth")
 
         self.assertEqual(deleted, "1 rows deleted")
-        self.assertEqual(all_births, (("2003-11-18",),))
+        self.assertEqual(all_births, (("2003-07-15",),))
         self.assertEqual(len(all_births), 1)
 
-    def test_check_people(self):
+    def test_people(self):
         all_people = self.birth_db.column_search(
             "person", "per_first, per_last")
 
         self.assertEqual(all_people, (
-            ("Franco", "Frias"), ("Randolph", "Carter")))
+            ("Severus", "Snape"), ("Randolph", "Carter")))
         self.assertEqual(len(all_people), 2)
 
-        deleted = self.birth_db.remove_rows("person", "per_first = 'Franco'")
+        deleted = self.birth_db.remove_rows("person", "per_first = 'Severus'")
         all_people = self.birth_db.column_search("person", "per_first")
 
         self.assertEqual(deleted, "1 rows deleted")
         self.assertEqual(all_people, (("Randolph",),))
         self.assertEqual(len(all_people), 1)
 
-    def test_check_data(self):
+    def test_data(self):
         # self.birth_db.remove_rows("person", "per_first = 'Randolph'")
         all_data = self.birth_db.column_search(
             "person", "per_first, per_last, country, gender, birth",
@@ -163,7 +163,7 @@ class BirDayBerhDB_testing(unittest.TestCase):
                 birth on birth.id_birth = person.id_birth1_fk""")
 
         self.assertEqual(all_data, (
-            ("Franco", "Frias", "Argentina", "Male", "2003-11-18",),
+            ("Severus", "Snape", "Argentina", "Male", "2003-07-15",),
             ("Randolph", "Carter", "United States", "Male", "1919-12-23",)))
 
 
