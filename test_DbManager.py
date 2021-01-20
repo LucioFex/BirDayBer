@@ -54,7 +54,7 @@ class BirDayBerhDB_testing(unittest.TestCase):
 
     def setUp(self):
         """
-        Insertion of all testing data
+        Insertion of all testing data.
         """
         self.birth_db.add_rows({  # ID 1
             "country": {"country": "Argentina"},
