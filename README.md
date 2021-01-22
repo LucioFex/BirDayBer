@@ -30,8 +30,10 @@ I insist, every pull request will be welcome.
 
 ## Credits
 
-- Skull icon from [Freepik_flaticon](https://www.flaticon.com/free-icon/skull_485605?related_id=485564&origin=search).
-- Party-hat icon from [Freepik_flaticon](https://www.flaticon.com/free-icon/party-hat_3990692).
+- Skull icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/skull_485605?related_id=485564&origin=search).
+- Party-hat icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/party-hat_3990692).
+- Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&page=1&position=4&page=1&position=4&related_id=860814&origin=search)
+- Garbage icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/garbage_3143497?related_id=3143497&origin=search)
 
 ## License
 
