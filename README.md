@@ -13,8 +13,6 @@
 - Python [Pillow](https://pypi.org/project/Pillow/) library.
 - Python [Pygame](https://www.pygame.org/news) library.
 
-## This repository will not include an .exe file within a [.rar](https://www.winrar.es/) as in 'The Weird Way'
-
 ## Contributions
 
 Pull requests are welcome.
@@ -32,8 +30,13 @@ I insist, every pull request will be welcome.
 
 - Skull icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/skull_485605?related_id=485564&origin=search).
 - Party-hat icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/party-hat_3990692).
-- Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&page=1&position=4&page=1&position=4&related_id=860814&origin=search)
-- Garbage icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/garbage_3143497?related_id=3143497&origin=search)
+- Nut icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/nut_3593739).
+- Garbage icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/garbage_3143497?related_id=3143497&origin=search).
+- GitHub icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/github_1051275).
+- Twitter icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/twitter_185961).
+- Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&.page=1&position=4&page=1&position=4&related_id=860814&origin=search).
+- User icon from [DinosoftLabs (flaticon)](https://www.flaticon.com/free-icon/user_4018596).
+- Court icon from [Nikita Golubev (flaticon)](https://www.flaticon.com/free-icon/court_1750412?related_id=1750530&origin=search).
 
 ## License
 

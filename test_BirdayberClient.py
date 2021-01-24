@@ -86,6 +86,12 @@ class Birth_testing(unittest.TestCase):
                 "1919", None, "United States",
                 "Male", "2003-07-15")))
 
+    def test_license(self):
+        license_data = self.interface.get_license()
+
+        self.assertEqual(
+            license_data, "Mit License", "2020-2021", "Luciano Esteban")
+
 
 if __name__ == "__main__":
     unittest.main()
