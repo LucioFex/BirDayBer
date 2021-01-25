@@ -37,4 +37,4 @@ class Birdayber_client:
 
 
 if __name__ == '__main__':
-    BirDayBer = Birdayber_client("bin/BirDayBer_db")
+    BirDayBer = Birdayber_client("bin/BirDayBer_db.db")

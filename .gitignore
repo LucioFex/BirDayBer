@@ -2,3 +2,5 @@ __pycache__/
 index.py
 conceptual/entity_relationship_diagram_2.jpg
 conceptual/interface_design_updated.psd
+testing/BirDayBer_db.db
+bin/BirDayBer_db.db
