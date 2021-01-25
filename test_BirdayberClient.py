@@ -14,8 +14,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Initialize the GUI and adds some people to be tested.
         """
-        cls.interface = BirDayBer.Birdayber_client()
-        cls.interface.new_database()
+        cls.interface = BirDayBer.Birdayber_client("testing/BirDayBer_db")
 
         cls.interface.add_person({  # ID 1
             "country": {"country": "Argentina"},
@@ -35,12 +34,12 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Finish the process of the GUI and deletes all tested people.
         """
-        people_id = cls.interface.get_all_people("id")
+        people_id = cls.interface.get_people("id")
         for person in people_id:
             cls.interface.delete_person(person[0])
 
-        cls.interface.delete_database()
         cls.interface.close_client()
+        cls.interface.drop_database()
 
     def setUp(self):
         pass
@@ -49,9 +48,9 @@ class BirDayBerClient_testing(unittest.TestCase):
         pass
 
     def test_window_size(self):
-        position = self.interface.get_window()
+        position = self.interface.window_resolution()
 
-        self.assertNotEqual(position, "1x1+0+0")
+        self.assertNotEqual(position, "1152x648+183+123")
         self.assertEqual(type(position), str)
 
     def test_menu_buttons(self):
