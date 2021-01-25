@@ -5,52 +5,48 @@ Testing file of BirDayBer.py.
 """
 
 
-class Birth_testing(unittest.TestCase):
+class BirDayBerClient_testing(unittest.TestCase):
     """
     BirDayBer graphical user interface testing.
     """
     @classmethod
     def setUpClass(cls):
         """
-        Initialize the GUI.
+        Initialize the GUI and adds some people to be tested.
         """
-        cls.interface = BirDayBer.Birdayber_client()
-        cls.interface.new_database()
-
-    @classmethod
-    def tearDownClass(cls):
-        """
-        Finish the process of the GUI.
-        """
-        cls.interface.delete_database()
-        cls.interface.close_client()
-
-    def setUp(self):
-        """
-        It adds some people to be tested.
-        """
-        self.interface.add_person({  # ID 1
+        cls.interface.add_person({  # ID 1
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": 'testing/image_test.png'},
             "birth": {"birth": "2003-07-15", "age": None},
             "person": {"per_first": "Severus", "per_last": "Snape"}})
-
-        self.interface.add_person({  # ID 2
+        cls.interface.add_person({  # ID 2
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
             "birth": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
-    def tearDown(self):
-        """
-        It delete all tested people.
-        """
-        people_id = self.interface.get_all_people("id")
+        cls.interface = BirDayBer.Birdayber_client()
+        cls.interface.new_database()
 
+    @classmethod
+    def tearDownClass(cls):
+        """
+        Finish the process of the GUI and deletes all tested people.
+        """
+        people_id = cls.interface.get_all_people("id")
         for person in people_id:
-            self.interface.delete_person(person[0])
+            cls.interface.delete_person(person[0])
+
+        cls.interface.delete_database()
+        cls.interface.close_client()
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
 
     def test_window_size(self):
         position = self.interface.get_window()
@@ -73,9 +69,9 @@ class Birth_testing(unittest.TestCase):
         self.assertEqual(len(modifiers), 5)
 
     def test_people(self):
-        all_people = self.interface.get_all_people("&all", "id")
+        all_people = self.interface.get_people("&all", "id")
 
-        # id-name-photo-birthYear-age-country-gender-date (natural order)
+        # id-name-photo-birthDate-age-country-gender-date (natural order)
         self.assertEqual(all_people, (
             (
                 "Severus", "Snape", "testing/image_test.png",
@@ -84,13 +80,23 @@ class Birth_testing(unittest.TestCase):
             (
                 "Randolph", "Carter", None,
                 "1919", None, "United States",
-                "Male", "2003-07-15")))
+                "Male", "1919-12-23")))
 
     def test_license(self):
         license_data = self.interface.get_license()
 
         self.assertEqual(
             license_data, "Mit License", "2020-2021", "Luciano Esteban")
+
+    def test_image(self):
+        person_id = self.interface.get_people("photo", type="bytes")[0][0]
+
+        self.assertEqual(type(person_id), bytes)
+
+    def test_birthdayNotification(self):
+
+        notification = self.interface.get_birthdays("num")
+        self.assertEqual(notification, 0)
 
 
 if __name__ == "__main__":

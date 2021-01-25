@@ -5,7 +5,7 @@ Testing file of BirDayBer.py.
 """
 
 
-class BirDayBerhDB_testing(unittest.TestCase):
+class BirDayBerDB_testing(unittest.TestCase):
     """
     BirDayBer database testing.
     """
