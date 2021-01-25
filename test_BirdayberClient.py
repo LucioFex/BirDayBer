@@ -14,6 +14,9 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Initialize the GUI and adds some people to be tested.
         """
+        cls.interface = BirDayBer.Birdayber_client()
+        cls.interface.new_database()
+
         cls.interface.add_person({  # ID 1
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
@@ -26,9 +29,6 @@ class BirDayBerClient_testing(unittest.TestCase):
             "photo": {"photo": None},
             "birth": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
-
-        cls.interface = BirDayBer.Birdayber_client()
-        cls.interface.new_database()
 
     @classmethod
     def tearDownClass(cls):
