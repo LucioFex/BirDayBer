@@ -14,7 +14,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Initialize the GUI and adds some people to be tested.
         """
-        cls.interface = BirDayBer.Birdayber_client("testing/BirDayBer_db")
+        cls.interface = BirDayBer.Birdayber_client("testing/BirDayBer_db.db")
 
         cls.interface.add_person({  # ID 1
             "country": {"country": "Argentina"},
@@ -50,22 +50,8 @@ class BirDayBerClient_testing(unittest.TestCase):
     def test_window_size(self):
         position = self.interface.window_resolution()
 
-        self.assertNotEqual(position, "1152x648+183+123")
+        self.assertNotEqual(position, "1x1+0+0")
         self.assertEqual(type(position), str)
-
-    def test_menu_buttons(self):
-        menu_buttons = self.interface.get_menu_buttons()
-
-        self.assertEqual(len(menu_buttons), 5)
-        self.assertEqual(menu_buttons, (
-            "Add", "Remove", "Modify", "Config", "About"))
-
-    def test_modifier_buttons(self):
-        modifiers = self.interface.get_modifier_buttons()
-
-        self.assertEqual(modifiers, (
-            "Add Person", "Edit Person", "Delete Person"))
-        self.assertEqual(len(modifiers), 5)
 
     def test_people(self):
         all_people = self.interface.get_people("&all", "id")
@@ -83,17 +69,14 @@ class BirDayBerClient_testing(unittest.TestCase):
 
     def test_license(self):
         license_data = self.interface.get_license()
-
         self.assertEqual(
             license_data, "Mit License", "2020-2021", "Luciano Esteban")
 
     def test_image(self):
         person_id = self.interface.get_people("photo", type="bytes")[0][0]
-
         self.assertEqual(type(person_id), bytes)
 
-    def test_birthdayNotification(self):
-
+    def test_birthdayNotation(self):
         notification = self.interface.get_birthdays("num")
         self.assertEqual(notification, 0)
 
