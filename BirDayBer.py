@@ -6,6 +6,7 @@ import os
 class Birdayber_client:
     def __init__(self, db_connection, mainloop=False):
         """
+        Method that only accepts a sqlite3 database lotaction and Boolean:
         Creation of the database and previous configuration of the main window.
         If the second parameter is 'True' the program will main-loop.
         """
@@ -39,6 +40,7 @@ class Birdayber_client:
 
     def generate_database(self, db_connection):
         """
+        Method that only accepts sqlite3 database locations:
         Generation of the database connection and tables.
         The generation of the tables is pre-created.
         """
@@ -48,7 +50,7 @@ class Birdayber_client:
         self.db.create_table({
             "gender":
                 f"""id_gender {id_type},
-                gender VARCHAR(6)""",
+                gender VARCHAR(6) NOT NULL""",
             "photo":
                 f"""id_photo {id_type},
                 photo BLOB""",
@@ -58,15 +60,16 @@ class Birdayber_client:
             "birth":
                 f"""id_birth {id_type},
                 id_country2_fk INTEGER,
-                birth DATE, age INTEGER""",
+                birth DATE NOT NULL,
+                age INTEGER""",
             "person":
                 f"""id_person {id_type},
-                per_first VARCHAR(35),
+                per_first VARCHAR(35) NOT NULL,
                 per_last VARCHAR(35),
-                id_country1_fk INTEGER,
-                id_gender1_fk INTEGER,
-                id_birth1_fk INTEGER,
-                id_photo1_fk INTEGER,
+                id_country1_fk INTEGER NOT NULL,
+                id_gender1_fk INTEGER NOT NULL,
+                id_birth1_fk INTEGER NOT NULL,
+                id_photo1_fk INTEGER NOT NULL,
                 FOREIGN KEY (id_country1_fk) REFERENCES country (id_country),
                 FOREIGN KEY (id_gender1_fk) REFERENCES gender (id_gender),
                 FOREIGN KEY (id_birth1_fk) REFERENCES birth (id_birth),
@@ -75,9 +78,10 @@ class Birdayber_client:
         del id_type
         return db_connection
 
-    def add_person(self, person):
+    def add_person(self, person):  # Check the BLOB type later...
         """
-        Addition of people to the database. The method only accepts 'dicts'.
+        Method that only accepts dicts:
+        Addition of people to the database.
 
         For example:
             self.add_person({
@@ -91,8 +95,44 @@ class Birdayber_client:
             return self.db.add_rows(person)
 
         raise ValueError(
-            "add_person method only accepts as a parameter a 'dict' type" +
-            "but recieved %s." % type(person))
+            "add_person method only accepts as a parameter a <class 'dict'>," +
+            " but a '%s' was recieved." % type(person))
+
+    def get_people(self, id_person="&None%"):  # Check the BLOB column later...
+        """
+        This method brings all the information of the people.
+        The parameter "id" is part of a WHERE clause. If there's no WHERE
+        given, then all the data will be displayed.
+        """
+        if id_person != "&None%":
+            id_person = "id_person = %s" % id_person
+
+        people_data = self.db.column_search(
+            "person",
+            "per_first, per_last, birth, age, photo, country, gender",
+            """INNER JOIN
+                birth on birth.id_birth = person.id_birth1_fk
+            INNER JOIN
+                photo on photo.id_photo = person.id_photo1_fk
+            INNER JOIN
+                country on country.id_country = person.id_country1_fk
+            INNER JOIN
+                gender on gender.id_gender = person.id_gender1_fk""",
+            id_person)
+
+        return people_data
+
+    def drop_database(self):
+        """
+        This method deletes the database file.
+        """
+        self.db.drop_database()
+
+    def close_client(self):
+        """
+        It makes the program stop mainlooping.
+        """
+        self.window.destroy()
 
 
 if __name__ == '__main__':

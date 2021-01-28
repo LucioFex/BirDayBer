@@ -34,7 +34,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Finish the process of the GUI and deletes all tested people.
         """
-        people_id = cls.interface.get_people("id")
+        people_id = cls.interface.get_people()
         for person in people_id:
             cls.interface.delete_person(person[0])
 
@@ -54,7 +54,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(type(position), str)
 
     def test_people(self):
-        all_people = self.interface.get_people("&all", "id")
+        all_people = self.interface.get_people()
 
         # id-name-photo-birthDate-age-country-gender-date (natural order)
         self.assertEqual(all_people, (
@@ -73,8 +73,8 @@ class BirDayBerClient_testing(unittest.TestCase):
             license_data, "Mit License", "2020-2021", "Luciano Esteban")
 
     def test_image(self):
-        person_id = self.interface.get_people("photo", type="bytes")[0][0]
-        self.assertEqual(type(person_id), bytes)
+        photo_person = self.interface.get_people()
+        self.assertEqual(type(photo_person), bytes)
 
     def test_birthdayNotation(self):
         notification = self.interface.get_birthdays("num")
