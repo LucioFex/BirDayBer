@@ -78,7 +78,7 @@ class Birdayber_client:
         del id_type
         return db_connection
 
-    def add_person(self, person):  # Check the BLOB type later...
+    def add_person(self, person):
         """
         Method that only accepts dicts:
         Addition of people to the database.
@@ -98,27 +98,43 @@ class Birdayber_client:
             "add_person method only accepts as a parameter a <class 'dict'>," +
             " but a '%s' was recieved." % type(person))
 
-    def get_people(self, id_person="&None%"):  # Check the BLOB column later...
+    def get_people(self, id_person="&None%", binary=True):  # Continue here...
         """
+        Method that only accepts Str or Int:
         This method brings all the information of the people.
         The parameter "id" is part of a WHERE clause. If there's no WHERE
         given, then all the data will be displayed.
+
+        Special parameters:
+
+        If the 'id_person' parameter is "&None%",
+        then there'll be no WHERE clause.
+
+        If the 'binary' parameter is False, then the photo (BLOB) 
+        will be omitted. If it's True, then it will return
+        the binary data that it has (the photo data).
         """
+        if binary:
+            selection = (
+                "per_first, per_last, birth, age, photo, country, gender",
+                "INNER JOIN photo on photo.id_photo = person.id_photo1_fk")
+        elif binary is False:
+            selection = (
+                "per_first, per_last, birth, age, country, gender",
+                "INNER JOIN photo on photo.id_photo = person.id_photo1_fk")
+
         if id_person != "&None%":
             id_person = "id_person = %s" % id_person
 
         people_data = self.db.column_search(
-            "person",
-            "per_first, per_last, birth, age, photo, country, gender",
+            "person", selection[0],
             """INNER JOIN
-                birth on birth.id_birth = person.id_birth1_fk
-            INNER JOIN
-                photo on photo.id_photo = person.id_photo1_fk
+                birth on birth.id_birth = person.id_birth1_fk %s
             INNER JOIN
                 country on country.id_country = person.id_country1_fk
             INNER JOIN
-                gender on gender.id_gender = person.id_gender1_fk""",
-            id_person)
+                gender on gender.id_gender = person.id_gender1_fk"""
+            % (selection[1]), id_person)
 
         return people_data
 

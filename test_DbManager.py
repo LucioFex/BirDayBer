@@ -56,14 +56,14 @@ class BirDayBerDB_testing(unittest.TestCase):
         """
         Insertion of all testing data.
         """
-        self.birth_db.add_rows({  # ID 1
+        self.birth_db.add_rows({
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": 'testing/image_test.png'},
             "birth": {"birth": "2003-07-15", "age": None},
             "person": {"per_first": "Severus", "per_last": "Snape"}})
 
-        self.birth_db.add_rows({  # ID 2
+        self.birth_db.add_rows({
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},

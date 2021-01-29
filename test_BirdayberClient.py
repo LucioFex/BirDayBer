@@ -16,13 +16,13 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         cls.interface = BirDayBer.Birdayber_client("testing/BirDayBer_db.db")
 
-        cls.interface.add_person({  # ID 1
+        cls.interface.add_person({
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": 'testing/image_test.png'},
             "birth": {"birth": "2003-07-15", "age": None},
             "person": {"per_first": "Severus", "per_last": "Snape"}})
-        cls.interface.add_person({  # ID 2
+        cls.interface.add_person({
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
@@ -54,27 +54,20 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(type(position), str)
 
     def test_people(self):
-        all_people = self.interface.get_people()
+        all_people = self.interface.get_people(binary=False)
 
-        # id-name-photo-birthDate-age-country-gender-date (natural order)
         self.assertEqual(all_people, (
             (
-                "Severus", "Snape", "testing/image_test.png",
-                "2003", None, "Argentina",
-                "Male", "2003-07-15"),
+                "Severus", "Snape", "2003-07-15",
+                None, "Argentina", "Male"),
             (
-                "Randolph", "Carter", None,
-                "1919", None, "United States",
-                "Male", "1919-12-23")))
+                "Randolph", "Carter", "1919-12-23",
+                None, "United States", "Male")))
 
     def test_license(self):
         license_data = self.interface.get_license()
         self.assertEqual(
             license_data, "Mit License", "2020-2021", "Luciano Esteban")
-
-    def test_image(self):
-        photo_person = self.interface.get_people()
-        self.assertEqual(type(photo_person), bytes)
 
     def test_birthdayNotation(self):
         notification = self.interface.get_birthdays("num")
