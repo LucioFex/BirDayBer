@@ -14,12 +14,12 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Initialize the GUI and adds some people to be tested.
         """
-        cls.interface = BirDayBer.Birdayber_client("testing/BirDayBer_db.db")
+        cls.interface = BirDayBer.Birdayber_client("testing//BirDayBer.db")
 
         cls.interface.add_person({
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
-            "photo": {"photo": 'testing/image_test.png'},
+            "photo": {"photo": 'testing//image_test.png'},
             "birth": {"birth": "2003-07-15", "age": None},
             "person": {"per_first": "Severus", "per_last": "Snape"}})
         cls.interface.add_person({
@@ -34,9 +34,9 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Finish the process of the GUI and deletes all tested people.
         """
-        people_id = cls.interface.get_people()
-        for person in people_id:
-            cls.interface.delete_person(person[0])
+        # people_id = cls.interface.get_people()
+        # for person in people_id:
+        #     cls.interface.delete_person(person[0])
 
         cls.interface.close_client()
         cls.interface.drop_database()
@@ -54,7 +54,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(type(position), str)
 
     def test_people(self):
-        all_people = self.interface.get_people(binary=False)
+        all_people = self.interface.get_people()
 
         self.assertEqual(all_people, (
             (

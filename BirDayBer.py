@@ -3,6 +3,15 @@ import tkinter as tk
 import os
 
 
+def wrong_input_type(desired, acquired):
+    """
+    Function that raises a ValueError because of the data type given.
+    """
+    raise ValueError(
+        "add_person method only expects as a parameter a " +
+        "%s, but a %s was recieved." % (desired, acquired))
+
+
 class Birdayber_client:
     def __init__(self, db_connection, mainloop=False):
         """
@@ -82,6 +91,7 @@ class Birdayber_client:
         """
         Method that only accepts dicts:
         Addition of people to the database.
+        Every key in the dictionary must be a String, like in the example.
 
         For example:
             self.add_person({
@@ -92,49 +102,38 @@ class Birdayber_client:
                 "person": {"per_first": "Randolph", "per_last": "Carter"}})
         """
         if type(person) == dict:
+            for row in person.items():
+                if type(row[0]) != str:
+                    wrong_input_type(str, type(row))
+
+            for row in person.items():
+                if type(row[1]) != dict:
+                    wrong_input_type(dict, type(row))
+
             return self.db.add_rows(person)
 
-        raise ValueError(
-            "add_person method only accepts as a parameter a <class 'dict'>," +
-            " but a '%s' was recieved." % type(person))
-
-    def get_people(self, id_person="&None%", binary=True):  # Continue here...
+    def get_people(self, id_person="&None%"):
         """
         Method that only accepts Str or Int:
         This method brings all the information of the people.
         The parameter "id" is part of a WHERE clause. If there's no WHERE
-        given, then all the data will be displayed.
-
-        Special parameters:
-
-        If the 'id_person' parameter is "&None%",
-        then there'll be no WHERE clause.
-
-        If the 'binary' parameter is False, then the photo (BLOB) 
-        will be omitted. If it's True, then it will return
-        the binary data that it has (the photo data).
+        given or "&None%" recieved, then all the data will be displayed.
         """
-        if binary:
-            selection = (
-                "per_first, per_last, birth, age, photo, country, gender",
-                "INNER JOIN photo on photo.id_photo = person.id_photo1_fk")
-        elif binary is False:
-            selection = (
-                "per_first, per_last, birth, age, country, gender",
-                "INNER JOIN photo on photo.id_photo = person.id_photo1_fk")
-
         if id_person != "&None%":
             id_person = "id_person = %s" % id_person
 
         people_data = self.db.column_search(
-            "person", selection[0],
+            "person",
+            "per_first, per_last, birth, age, photo, country, gender",
             """INNER JOIN
-                birth on birth.id_birth = person.id_birth1_fk %s
+                birth on birth.id_birth = person.id_birth1_fk
+            INNER JOIN
+                photo on photo.id_photo = person.id_photo1_fk
             INNER JOIN
                 country on country.id_country = person.id_country1_fk
             INNER JOIN
-                gender on gender.id_gender = person.id_gender1_fk"""
-            % (selection[1]), id_person)
+                gender on gender.id_gender = person.id_gender1_fk""",
+            id_person)
 
         return people_data
 
@@ -142,14 +141,16 @@ class Birdayber_client:
         """
         This method deletes the database file.
         """
+        self.db.close_database()
         self.db.drop_database()
 
     def close_client(self):
         """
         It makes the program stop mainlooping.
         """
+        self.db.close_database()
         self.window.destroy()
 
 
 if __name__ == '__main__':
-    BirDayBer = Birdayber_client("bin//BirDayBer_db.db", True)
+    BirDayBer = Birdayber_client("bin//BirDayBer.db", True)
