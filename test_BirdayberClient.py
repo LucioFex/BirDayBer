@@ -20,13 +20,13 @@ class BirDayBerClient_testing(unittest.TestCase):
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
             "photo": {"photo": 'testing//image_test.png'},
-            "birth": {"birth": "2003-07-15", "age": None},
+            "birth": {"birth": "2003-07-15"},
             "person": {"per_first": "Severus", "per_last": "Snape"}})
         cls.interface.add_person({
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
             "photo": {"photo": None},
-            "birth": {"birth": "1919-12-23", "age": None},
+            "birth": {"birth": "1919-12-23"},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
     @classmethod

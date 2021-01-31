@@ -68,9 +68,9 @@ class Birdayber_client:
                 country VARCHAR(40)""",
             "birth":
                 f"""id_birth {id_type},
-                id_country2_fk INTEGER,
                 birth DATE NOT NULL,
                 age INTEGER""",
+
             "person":
                 f"""id_person {id_type},
                 per_first VARCHAR(35) NOT NULL,
@@ -101,16 +101,15 @@ class Birdayber_client:
                 "birth": {"birth": "1919-12-23", "age": None},
                 "person": {"per_first": "Randolph", "per_last": "Carter"}})
         """
-        if type(person) == dict:
+        if type(person) == dict:  # Data type detector
             for row in person.items():
                 if type(row[0]) != str:
                     wrong_input_type(str, type(row))
-
-            for row in person.items():
-                if type(row[1]) != dict:
+                elif type(row[1]) != dict:
                     wrong_input_type(dict, type(row))
 
-            return self.db.add_rows(person)
+            return self.db.add_rows(person)  # If all the data type is fine
+        return wrong_input_type(dict, type(row))
 
     def get_people(self, id_person="&None%"):
         """

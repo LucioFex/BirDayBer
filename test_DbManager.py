@@ -16,7 +16,7 @@ class BirDayBerDB_testing(unittest.TestCase):
         """
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
-        cls.birth_db = db_manager.Db_manager("bin//test.db")
+        cls.birth_db = db_manager.Db_manager("testing//test.db")
         cls.birth_db.create_table({
             "gender":
                 f"id_gender {id_type}, gender VARCHAR(6)",

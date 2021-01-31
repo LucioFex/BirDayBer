@@ -113,7 +113,7 @@ class Db_manager:
 
         return self.process_rows(columns)
 
-    def process_rows(self, data):
+    def process_rows(self, data):  # FIX THIS
         """
         This method tells the DB to INSERT the data in the tables of the DB.
 
