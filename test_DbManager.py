@@ -166,6 +166,18 @@ class BirDayBerDB_testing(unittest.TestCase):
             ("Severus", "Snape", "Argentina", "Male", "2003-07-15",),
             ("Randolph", "Carter", "United States", "Male", "1919-12-23",)))
 
+    def test_foreign_values(self):
+        foregin_values = self.birth_db.column_search(
+            "person", """per_first, id_person, id_country1_fk,
+            id_gender1_fk, id_birth1_fk, id_photo1_fk""")
+        print(foregin_values)
+
+        fk_1 = foregin_values[0][1]  # Example of foreign key of Subject 1
+        fk_2 = foregin_values[1][1]  # Example of foreign key of Subject 2
+        self.assertEqual(foregin_values, (
+            ("Severus", fk_1, fk_1, fk_1, fk_1, fk_1),
+            ("Randolph", fk_2, fk_2, fk_2, fk_2, fk_2)))
+
 
 if __name__ == "__main__":
     unittest.main()
