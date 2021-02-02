@@ -111,7 +111,7 @@ class Birdayber_client:
             return self.db.add_rows(person)  # If all the data type is fine
         return wrong_input_type(dict, type(row))
 
-    def get_people(self, id_person="&None%"):
+    def get_people(self, id_person="&None%", binary=True):
         """
         Method that only accepts Str or Int:
         This method brings all the information of the people.
@@ -121,9 +121,13 @@ class Birdayber_client:
         if id_person != "&None%":
             id_person = "id_person = %s" % id_person
 
+        if binary:
+            select = "per_first, per_last, birth, age, photo, country, gender"
+        elif binary is False:
+            select = "per_first, per_last, birth, age, country, gender"
+
         people_data = self.db.column_search(
-            "person",
-            "per_first, per_last, birth, age, photo, country, gender",
+            "person", select,
             """INNER JOIN
                 birth on birth.id_birth = person.id_birth1_fk
             INNER JOIN

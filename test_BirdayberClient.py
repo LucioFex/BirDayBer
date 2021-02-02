@@ -54,7 +54,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(type(position), str)
 
     def test_people(self):
-        all_people = self.interface.get_people()
+        all_people = self.interface.get_people("&None%", False)
 
         self.assertEqual(all_people, (
             (

@@ -122,20 +122,11 @@ class Db_manager:
         data[x][2] = Row values
         """
         for element in data:
-            self.cursor.execute("SELECT * FROM %s" % element[0])
-            try:  # Select the num of the last ID number + 1 for the new one
-                id_num = self.cursor.fetchall()[-1][0] + 1
-            except IndexError:
-                try:  # Increase the id number for the this row
-                    id_num += 1
-                except UnboundLocalError:  # If there aren't rows yet
-                    id_num = 1
-
             self.cursor.execute("PRAGMA table_info(%s);" % element[0])
             for column in self.cursor.fetchall():
                 if column[1][-3:] == "_fk":
                     element[1] = element[1] + ", " + column[1]
-                    element[2].append(id_num)
+                    element[2].append(self.cursor.lastrowid)
 
                 if column[2] == "BLOB":
                     for index in range(len(element[2])):
