@@ -40,4 +40,4 @@ I insist, every pull request will be welcome.
 
 ## License
 
-[MIT License](https://choosealicense.com/licenses/mit/)
+MIT © [Luciano Esteban](https://github.com/LucioFex)

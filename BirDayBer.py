@@ -47,6 +47,10 @@ class Birdayber_client:
         return "%sx%s+%s+%s" % (
             screen_width, screen_height, x_position, y_position)
 
+    def get_license(self):
+        with open("LICENSE", "r", encoding="utf-8") as mit_license:
+            return mit_license.readlines()[2][0:-1]
+
     def generate_database(self, db_connection):
         """
         Method that only accepts sqlite3 database locations:
@@ -128,14 +132,10 @@ class Birdayber_client:
 
         people_data = self.db.column_search(
             "person", select,
-            """INNER JOIN
-                birth on birth.id_birth = person.id_birth1_fk
-            INNER JOIN
-                photo on photo.id_photo = person.id_photo1_fk
-            INNER JOIN
-                country on country.id_country = person.id_country1_fk
-            INNER JOIN
-                gender on gender.id_gender = person.id_gender1_fk""",
+            """INNER JOIN birth on birth.id_birth = person.id_birth1_fk
+            INNER JOIN photo on photo.id_photo = person.id_photo1_fk
+            INNER JOIN country on country.id_country = person.id_country1_fk
+            INNER JOIN gender on gender.id_gender = person.id_gender1_fk""",
             id_person)
 
         return people_data

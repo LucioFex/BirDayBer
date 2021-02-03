@@ -67,11 +67,7 @@ class BirDayBerClient_testing(unittest.TestCase):
     def test_license(self):
         license_data = self.interface.get_license()
         self.assertEqual(
-            license_data, "Mit License", "2020-2021", "Luciano Esteban")
-
-    def test_birthdayNotation(self):
-        notification = self.interface.get_birthdays("num")
-        self.assertEqual(notification, 0)
+            license_data, "Copyright (c) 2020-2021 Luciano Esteban")
 
 
 if __name__ == "__main__":
