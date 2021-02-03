@@ -78,11 +78,6 @@ class BirDayBerDB_testing(unittest.TestCase):
             self.birth_db.remove_rows(table, "&deleteAll")
 
     def test_genders(self):
-        foregin_values = self.birth_db.column_search(
-            "person", """per_first, id_person, id_country1_fk,
-            id_gender1_fk, id_birth1_fk, id_photo1_fk""")
-        print(foregin_values)
-
         all_genders = self.birth_db.column_search("gender", "gender")
 
         self.assertEqual(all_genders, (("Male",), ("Male",)))
@@ -96,11 +91,6 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.assertEqual(len(all_genders), 0)
 
     def test_photos(self):
-        foregin_values = self.birth_db.column_search(
-            "person", """per_first, id_person, id_country1_fk,
-            id_gender1_fk, id_birth1_fk, id_photo1_fk""")
-        print(foregin_values)
-
         all_photos = self.birth_db.column_search("photo", "photo")
 
         self.assertNotEqual(all_photos, ((None,), (None,)))
@@ -120,11 +110,6 @@ class BirDayBerDB_testing(unittest.TestCase):
         db_manager.delete_files("testing//photo_%s.png" % all_photos[0][0])
 
     def test_countries(self):
-        foregin_values = self.birth_db.column_search(
-            "person", """per_first, id_person, id_country1_fk,
-            id_gender1_fk, id_birth1_fk, id_photo1_fk""")
-        print(foregin_values)
-
         all_countries = self.birth_db.column_search("country", "country")
 
         self.assertEqual(all_countries, (("Argentina",), ("United States",)))
@@ -138,11 +123,6 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.assertEqual(len(all_countries), 1)
 
     def test_births(self):
-        foregin_values = self.birth_db.column_search(
-            "person", """per_first, id_person, id_country1_fk,
-            id_gender1_fk, id_birth1_fk, id_photo1_fk""")
-        print(foregin_values)
-
         all_births = self.birth_db.column_search("birth", "birth")
 
         self.assertEqual(all_births, (("2003-07-15",), ("1919-12-23",)))
@@ -157,11 +137,6 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.assertEqual(len(all_births), 1)
 
     def test_people(self):
-        foregin_values = self.birth_db.column_search(
-            "person", """per_first, id_person, id_country1_fk,
-            id_gender1_fk, id_birth1_fk, id_photo1_fk""")
-        print(foregin_values)
-
         all_people = self.birth_db.column_search(
             "person", "per_first, per_last")
 
@@ -177,11 +152,6 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.assertEqual(len(all_people), 1)
 
     def test_data(self):
-        foregin_values = self.birth_db.column_search(
-            "person", """per_first, id_person, id_country1_fk,
-            id_gender1_fk, id_birth1_fk, id_photo1_fk""")
-        print(foregin_values)
-
         # self.birth_db.remove_rows("person", "per_first = 'Randolph'")
         all_data = self.birth_db.column_search(
             "person", "per_first, per_last, country, gender, birth",
@@ -200,7 +170,6 @@ class BirDayBerDB_testing(unittest.TestCase):
         foregin_values = self.birth_db.column_search(
             "person", """per_first, id_person, id_country1_fk,
             id_gender1_fk, id_birth1_fk, id_photo1_fk""")
-        print(foregin_values)
 
         fk_1 = foregin_values[0][1]  # Example of foreign key of Subject 1
         fk_2 = foregin_values[1][1]  # Example of foreign key of Subject 2
