@@ -145,8 +145,9 @@ class Birdayber_client(Birdayber_database):
     This class is specialized in the generation and maintenance of the UI.
     """
     def __init__(self, db_connection, mainloop=False):
-        #  If the 'mainloop' parameter is 'True' the program will main-loop.
-        #  Window size and posotion definition. Root generation:
+        """
+        If the 'mainloop' parameter is 'True' the program will main-loop.
+        """
         super().__init__(db_connection, mainloop)
         self.window = tk.Tk()
         self.window_resolution()
@@ -172,6 +173,10 @@ class Birdayber_client(Birdayber_database):
         self.window.update()
 
         return str(self.window.geometry)
+
+    def titlebar_change(self):
+        # self.window.overrideredirect(1)
+        pass
 
 
 if __name__ == '__main__':
