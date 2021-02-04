@@ -14,7 +14,8 @@ def wrong_input_type(desired, acquired):
 
 class Birdayber_database:
     """
-    This class is specialized in the generation and maintenance of the DB.
+    This class is specialized in the generation and maintenance
+    of the DB and get data of the project's LICENSE.
     """
     def __init__(self, db_connection, mainloop):
         """
@@ -150,18 +151,6 @@ class Birdayber_client(Birdayber_database):
         self.window = tk.Tk()
         self.window_resolution()
         self.window.mainloop() if mainloop else None
-
-    def add_person(self, person):
-        return super().add_person(person)
-
-    def close_client(self):
-        return super().close_client()
-
-    def drop_database(self):
-        return super().drop_database()
-
-    def get_people(self, id_person="&None%", binary=True):
-        return super().get_people(id_person, binary)
 
     def window_resolution(self):
         """
