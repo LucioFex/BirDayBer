@@ -12,42 +12,27 @@ def wrong_input_type(desired, acquired):
         "%s, but a %s was recieved." % (desired, acquired))
 
 
-class Birdayber_client:
-    def __init__(self, db_connection, mainloop=False):
+class Birdayber_system:
+    """
+    This class is specialized in the generation and maintenance of the DB
+    and to get data of the project's LICENSE.
+    """
+    def __init__(self, db_connection, mainloop):
         """
         Method that only accepts a sqlite3 database lotaction and Boolean:
-        Creation of the database and previous configuration of the main window.
-        If the second parameter is 'True' the program will main-loop.
+        Creation of the database and preparation to generate the interface.
+        If the second parameter is 'True' the program will start main-looping.
         """
         #  Db management and generation:
         if os.path.exists(db_connection) is False:  # If there's not db
             self.generate_database(db_connection)
         self.db = db_manager.Db_manager(db_connection)  # If there's a db
 
-        #  Window size and posotion definition. Root generation:
-        self.window = tk.Tk()
-        self.window.geometry(self.window_resolution())
-        self.window.update()
-        self.window.mainloop() if mainloop else None
-
-    def window_resolution(self):
-        """
-        This method returns the information of the best
-        possible resolution and position for the client's window.
-        """
-        screen_width = self.window.winfo_screenwidth()
-        screen_height = self.window.winfo_screenheight()
-
-        screen_width = screen_width - round(screen_width / 4)
-        screen_height = screen_height - round(screen_height / 4)
-
-        x_position = round(screen_width / 6.3)
-        y_position = round(screen_height / 7)
-
-        return "%sx%s+%s+%s" % (
-            screen_width, screen_height, x_position, y_position)
-
     def get_license(self):
+        """
+        This method returns the type of BirDayBer project's license,
+        the duration of this one and the name of its creator.
+        """
         with open("LICENSE", "r", encoding="utf-8") as mit_license:
             return mit_license.readlines()[2][0:-1]
 
@@ -155,5 +140,39 @@ class Birdayber_client:
         self.window.destroy()
 
 
+class Birdayber_client(Birdayber_system):
+    """
+    This class is specialized in the generation and maintenance of the UI.
+    """
+    def __init__(self, db_connection, mainloop=False):
+        #  If the 'mainloop' parameter is 'True' the program will main-loop.
+        #  Window size and posotion definition. Root generation:
+        super().__init__(db_connection, mainloop)
+        self.window = tk.Tk()
+        self.window_resolution()
+        self.window.mainloop() if mainloop else None
+
+    def window_resolution(self):
+        """
+        This method returns the information of the best
+        possible resolution and position for the client's window.
+        Then it sets the new values in the root.geometry() function.
+        """
+        screen_width = self.window.winfo_screenwidth()
+        screen_height = self.window.winfo_screenheight()
+
+        screen_width = screen_width - round(screen_width / 4)
+        screen_height = screen_height - round(screen_height / 4)
+
+        x_position = round(screen_width / 6.3)
+        y_position = round(screen_height / 7)
+
+        self.window.geometry("%sx%s+%s+%s" % (
+            screen_width, screen_height, x_position, y_position))
+        self.window.update()
+
+        return str(self.window.geometry)
+
+
 if __name__ == '__main__':
-    BirDayBer = Birdayber_client("bin//BirDayBer.db", True)
+    BirDayBer = Birdayber_system("bin//BirDayBer.db", True)

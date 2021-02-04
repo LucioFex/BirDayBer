@@ -14,7 +14,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Initialize the GUI and adds some people to be tested.
         """
-        cls.interface = BirDayBer.Birdayber_client("testing//BirDayBer.db")
+        cls.interface = BirDayBer.Birdayber_system("testing//BirDayBer.db")
 
         cls.interface.add_person({
             "country": {"country": "Argentina"},
