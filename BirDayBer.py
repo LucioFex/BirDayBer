@@ -12,10 +12,9 @@ def wrong_input_type(desired, acquired):
         "%s, but a %s was recieved." % (desired, acquired))
 
 
-class Birdayber_system:
+class Birdayber_database:
     """
-    This class is specialized in the generation and maintenance of the DB
-    and to get data of the project's LICENSE.
+    This class is specialized in the generation and maintenance of the DB.
     """
     def __init__(self, db_connection, mainloop):
         """
@@ -140,7 +139,7 @@ class Birdayber_system:
         self.window.destroy()
 
 
-class Birdayber_client(Birdayber_system):
+class Birdayber_client(Birdayber_database):
     """
     This class is specialized in the generation and maintenance of the UI.
     """
@@ -151,6 +150,18 @@ class Birdayber_client(Birdayber_system):
         self.window = tk.Tk()
         self.window_resolution()
         self.window.mainloop() if mainloop else None
+
+    def add_person(self, person):
+        return super().add_person(person)
+
+    def close_client(self):
+        return super().close_client()
+
+    def drop_database(self):
+        return super().drop_database()
+
+    def get_people(self, id_person="&None%", binary=True):
+        return super().get_people(id_person, binary)
 
     def window_resolution(self):
         """
