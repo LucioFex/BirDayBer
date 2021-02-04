@@ -186,4 +186,4 @@ class Birdayber_client(Birdayber_database):
 
 
 if __name__ == '__main__':
-    BirDayBer = Birdayber_system("bin//BirDayBer.db", True)
+    BirDayBer = Birdayber_client("bin//BirDayBer.db", True)
