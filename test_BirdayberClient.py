@@ -51,7 +51,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         position = self.interface.window_resolution()
 
         self.assertNotEqual(position, "1x1+0+0")
-        self.assertEqual(type(position), str)
+        self.assertIsInstance(position, str)
 
     def test_people(self):
         all_people = self.interface.get_people("&None%", False)
