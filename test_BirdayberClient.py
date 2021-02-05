@@ -48,7 +48,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         pass
 
     def test_window_size(self):
-        position = self.interface.window_resolution()
+        position = self.interface.window_init_resolution()
 
         self.assertNotEqual(position, "1x1+0+0")
         self.assertIsInstance(position, str)

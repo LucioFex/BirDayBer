@@ -150,10 +150,12 @@ class Birdayber_client(Birdayber_database):
         """
         super().__init__(db_connection, mainloop)
         self.window = tk.Tk()
-        self.window_resolution()
+        self.window_init_resolution()
+        self.titlebar_init_change()
+
         self.window.mainloop() if mainloop else None
 
-    def window_resolution(self):
+    def window_init_resolution(self):
         """
         This method returns the information of the best
         possible resolution and position for the client's window.
@@ -162,21 +164,29 @@ class Birdayber_client(Birdayber_database):
         screen_width = self.window.winfo_screenwidth()
         screen_height = self.window.winfo_screenheight()
 
-        screen_width = screen_width - round(screen_width / 4)
-        screen_height = screen_height - round(screen_height / 4)
+        self.screen_width = screen_width - round(screen_width / 4)
+        self.screen_height = screen_height - round(screen_height / 4)
 
-        x_position = round(screen_width / 6.3)
-        y_position = round(screen_height / 7)
+        self.x_position = round(screen_width / 6.3)
+        self.y_position = round(screen_height / 7)
 
         self.window.geometry("%sx%s+%s+%s" % (
-            screen_width, screen_height, x_position, y_position))
-        self.window.update()
+            self.screen_width, self.screen_height,
+            self.x_position, self.y_position))
 
+        self.window.update()
         return str(self.window.geometry)
 
-    def titlebar_change(self):
-        # self.window.overrideredirect(1)
-        pass
+    def titlebar_init_change(self):
+        """
+        Generation of the new Title Bar and elimination of the previous one.
+        """
+        self.window.overrideredirect(1)
+        self.title_bar = tk.Frame(
+            self.window, bg="#316477", width=self.screen_width,
+            height=round(self.screen_height / 8.3))
+
+        self.title_bar.pack(side=tk.TOP)
 
 
 if __name__ == '__main__':
