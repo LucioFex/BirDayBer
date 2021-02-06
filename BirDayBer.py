@@ -177,25 +177,24 @@ class Birdayber_client(Birdayber_database):
         self.window.update()
         return str(self.window.geometry)
 
-    def titlebar_init(self):
+    def titlebar_init(self):  # Continue working in the size of the buttons
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
         self.window.overrideredirect(1)
         self.title_bar = tk.Frame(
-            self.window, bg="#316477", width=self.screen_width,
-            height=round(self.screen_height / 8.3))
+            self.window, bg="#316477", height=round(self.screen_height / 8.33))
+        self.title_bar.pack(side=tk.TOP, fill="x")
 
-        buttons = []
-        for index, button in enumerate(("-", "+", "x")):
-            buttons.append(None)
-            buttons[index] = tk.Label(
-                self.title_bar, bg="#2c5c6d", text=button,
-                width=round(self.screen_width / 8.125),
-                height=round(self.screen_height / 15.9))
+        buttons = ["x", "+", "-"]
+        for index, button in enumerate(buttons):
+            buttons[index] = tk.Button(
+                self.title_bar, bg="#2c5c6d", fg="#f4f4f4", text=button,
+                activebackground="#61a0b7", font=("Century Gothic", 10),
+                activeforeground="#f4f4f4", relief=tk.FLAT, width=10, height=2)
             buttons[index].pack(side=tk.RIGHT)
-
-        self.title_bar.pack(side=tk.TOP)
+            # buttons[index].grid(row=0, column=index)
+        buttons[0].config(activebackground="#cf1728")
 
 
 if __name__ == '__main__':
