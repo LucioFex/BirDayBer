@@ -151,7 +151,7 @@ class Birdayber_client(Birdayber_database):
         super().__init__(db_connection, mainloop)
         self.window = tk.Tk()
         self.window_init_resolution()
-        self.titlebar_init_change()
+        self.titlebar_init()
 
         self.window.mainloop() if mainloop else None
 
@@ -177,7 +177,7 @@ class Birdayber_client(Birdayber_database):
         self.window.update()
         return str(self.window.geometry)
 
-    def titlebar_init_change(self):
+    def titlebar_init(self):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
@@ -185,6 +185,15 @@ class Birdayber_client(Birdayber_database):
         self.title_bar = tk.Frame(
             self.window, bg="#316477", width=self.screen_width,
             height=round(self.screen_height / 8.3))
+
+        buttons = []
+        for index, button in enumerate(("-", "+", "x")):
+            buttons.append(None)
+            buttons[index] = tk.Label(
+                self.title_bar, bg="#2c5c6d", text=button,
+                width=round(self.screen_width / 8.125),
+                height=round(self.screen_height / 15.9))
+            buttons[index].pack(side=tk.RIGHT)
 
         self.title_bar.pack(side=tk.TOP)
 
