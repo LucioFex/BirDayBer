@@ -196,7 +196,6 @@ class Birdayber_client(Birdayber_database):
                 height=round(self.screen_height / 19 / 13))
             buttons[index].pack(side=tk.RIGHT)
         buttons[0].config(activebackground="#cf1728")
-        pepe = tk.Frame(self.window, bg="purple", width=50, height=25)
 
 
 if __name__ == '__main__':
