@@ -167,7 +167,7 @@ class Birdayber_client(Birdayber_database):
         self.screen_width = screen_width - round(screen_width / 4)
         self.screen_height = screen_height - round(screen_height / 4)
 
-        self.x_position = round(screen_width / 6.3)
+        self.x_position = round(screen_width / 7)
         self.y_position = round(screen_height / 7)
 
         self.window.geometry("%sx%s+%s+%s" % (
@@ -177,7 +177,7 @@ class Birdayber_client(Birdayber_database):
         self.window.update()
         return str(self.window.geometry)
 
-    def titlebar_init(self):  # Continue working in the size of the buttons
+    def titlebar_init(self):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
@@ -185,14 +185,17 @@ class Birdayber_client(Birdayber_database):
         self.title_bar = tk.Frame(
             self.window, bg="#316477", height=round(self.screen_height / 8.33))
         self.title_bar.grid(
-            row=0, column=0, columnspan=1, ipadx=self.screen_width / 2 - 135)
+            row=0, column=0, columnspan=1,
+            ipadx=self.screen_width / 8.125 * 3.0222)
 
         buttons = ["x", "+", "-"]
         for index, button in enumerate(buttons):
             buttons[index] = tk.Button(
                 self.title_bar, bg="#2c5c6d", fg="#f4f4f4", text=button,
                 activebackground="#61a0b7", font=("Century Gothic", 10),
-                activeforeground="#f4f4f4", relief=tk.FLAT, width=10, height=2)
+                activeforeground="#f4f4f4", relief=tk.FLAT,
+                width=round(self.screen_width / 8.125 / 13),
+                height=2)
             buttons[index].pack(side=tk.RIGHT)
         buttons[0].config(activebackground="#cf1728")
 
