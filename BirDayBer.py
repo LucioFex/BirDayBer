@@ -183,10 +183,8 @@ class Birdayber_client(Birdayber_database):
         """
         self.window.overrideredirect(1)
         self.title_bar = tk.Frame(
-            self.window, bg="#316477", height=round(self.screen_height / 8.33))
-        self.title_bar.grid(
-            row=0, column=0, columnspan=1,
-            ipadx=self.screen_width / 8.125 * 3.0222)
+            self.window, bg="#316477", height=round(self.screen_height / 19))
+        self.title_bar.pack(fill="x")
 
         buttons = ["x", "+", "-"]
         for index, button in enumerate(buttons):
@@ -195,9 +193,10 @@ class Birdayber_client(Birdayber_database):
                 activebackground="#61a0b7", font=("Century Gothic", 10),
                 activeforeground="#f4f4f4", relief=tk.FLAT,
                 width=round(self.screen_width / 8.125 / 13),
-                height=2)
+                height=round(self.screen_height / 19 / 13))
             buttons[index].pack(side=tk.RIGHT)
         buttons[0].config(activebackground="#cf1728")
+        pepe = tk.Frame(self.window, bg="purple", width=50, height=25)
 
 
 if __name__ == '__main__':
