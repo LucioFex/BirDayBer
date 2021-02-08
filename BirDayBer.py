@@ -181,19 +181,20 @@ class Birdayber_client(Birdayber_database):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
-        self.window.overrideredirect(1)
+        self.window.overrideredirect(1)  # Deletion of the original Title Bar
+
         self.title_bar = tk.Frame(
-            self.window, bg="#316477", height=round(self.screen_height / 19))
+            self.window, bg="#316477", height=round(self.screen_height / 20))
         self.title_bar.pack(fill="x")
 
         buttons = ["x", "+", "-"]
-        for index, button in enumerate(buttons):
+        for index, button in enumerate(buttons):  # Generation of buttons
             buttons[index] = tk.Button(
                 self.title_bar, bg="#2c5c6d", fg="#f4f4f4", text=button,
                 activebackground="#61a0b7", font=("Century Gothic", 10),
                 activeforeground="#f4f4f4", relief=tk.FLAT,
                 width=round(self.screen_width / 8.125 / 13),
-                height=round(self.screen_height / 19 / 13))
+                height=round(self.screen_height / 20 / 13))
             buttons[index].pack(side=tk.RIGHT)
         buttons[0].config(activebackground="#cf1728")
 

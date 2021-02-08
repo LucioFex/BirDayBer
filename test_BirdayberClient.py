@@ -1,5 +1,6 @@
 import unittest
 import BirDayBer
+import os
 """
 Testing file of BirDayBer.py.
 """
@@ -68,6 +69,14 @@ class BirDayBerClient_testing(unittest.TestCase):
         license_data = self.interface.get_license()
         self.assertEqual(
             license_data, "Copyright (c) 2020-2021 Luciano Esteban")
+
+    def test_image_generator(self):
+        self.interface.delete_images()
+        self.interface.generate_images()
+
+        for file in os.walk("bin//system_content//visual_content"):
+            self.assertTrue(
+                os.exists("bin//system_content//visual_content//%s" % file[2]))
 
 
 if __name__ == "__main__":
