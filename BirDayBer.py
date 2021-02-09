@@ -33,8 +33,12 @@ class Birdayber_database:
         This method returns the type of BirDayBer project's license,
         the duration of this one and the name of its creator.
         """
-        with open("LICENSE", "r", encoding="utf-8") as mit_license:
-            return mit_license.readlines()[2][0:-1]
+        license_type = []
+        with open("LICENSE", "r", encoding="utf-8") as license_data:
+            license_type.append(license_data.readlines()[0][0:-1])
+            license_data.seek(0)
+            license_type.append(license_data.readlines()[2][0:-1])
+        return license_type
 
     def generate_database(self, db_connection):
         """

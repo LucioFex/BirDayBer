@@ -68,7 +68,8 @@ class BirDayBerClient_testing(unittest.TestCase):
     def test_license(self):
         license_data = self.interface.get_license()
         self.assertEqual(
-            license_data, "Copyright (c) 2020-2021 Luciano Esteban")
+            license_data,
+            ["MIT License", "Copyright (c) 2020-2021 Luciano Esteban"])
 
     def test_image_generator(self):
         self.interface.delete_images()
