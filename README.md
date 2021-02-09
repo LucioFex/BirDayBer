@@ -34,6 +34,9 @@ I insist, every pull request will be welcome.
 - Garbage icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/garbage_3143497?related_id=3143497&origin=search).
 - GitHub icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/github_1051275).
 - Twitter icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/twitter_185961).
+- Minimize button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/minimise-button_74888)
+- Maximized & Maximize buttons icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/move_2749235?related_id=2749235&origin=search).
+- Close button icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/close_1828778?related_id=1828778&origin=search).
 - Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&.page=1&position=4&page=1&position=4&related_id=860814&origin=search).
 - User icon from [DinosoftLabs (flaticon)](https://www.flaticon.com/free-icon/user_4018596).
 - Court icon from [Nikita Golubev (flaticon)](https://www.flaticon.com/free-icon/court_1750412?related_id=1750530&origin=search).
