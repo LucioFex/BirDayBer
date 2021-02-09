@@ -71,7 +71,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             license_data,
             ["MIT License", "Copyright (c) 2020-2021 Luciano Esteban"])
 
-    def test_image_generator(self):
+    def test_image_generator(self):  # Modify this test later...
         self.interface.delete_images()
         self.interface.generate_images()
 
