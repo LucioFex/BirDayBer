@@ -71,13 +71,21 @@ class BirDayBerClient_testing(unittest.TestCase):
             license_data,
             ["MIT License", "Copyright (c) 2020-2021 Luciano Esteban"])
 
-    def test_image_generator(self):  # Modify this test later...
+    def test_image_generator(self):
         self.interface.delete_images()
         self.interface.generate_images()
 
-        for file in os.walk("bin//system_content//visual_content"):
+        for file in (
+            "about.png", "add_person.png", "BirDayBerIcon.ico", "nut.png",
+            "BirDayBerIcon.png", "cancel_person.png", "close-button.png",
+            "edit.png", "garbage1.png", "garbage2.png", "twitter.png",
+            "license.png", "maximize-button.png", "maximized-button.png",
+            "minimize-button.png", "party_hat_female.png", "github.png",
+                "party_hat_male.png", "party_randolph.png", "randolph.png"):
+
             self.assertTrue(
-                os.exists("bin//system_content//visual_content//%s" % file[2]))
+                os.path.exists(
+                    "bin//system_content//visual_content//%s" % file))
 
 
 if __name__ == "__main__":
