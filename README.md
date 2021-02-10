@@ -35,7 +35,7 @@ I insist, every pull request will be welcome.
 - GitHub icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/github_1051275).
 - Twitter icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/twitter_185961).
 - User icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/user_747376).
-- Male icon from [Freepik (flaticon)](hhttps://www.flaticon.com/free-icon/man_2284900?related_id=2284900&origin=search).
+- Male icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/man_2284900?related_id=2284900&origin=search).
 - Female icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/woman_2284897).
 - Minimize button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/minimise-button_74888)
 - Maximized & Maximize buttons icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/move_2749235?related_id=2749235&origin=search).
