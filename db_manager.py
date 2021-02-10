@@ -13,12 +13,15 @@ def photo_to_binary(photo):
     """
     Function that gets the binary data of an image and return it.
     If 'photo' parameter is None, then it returns None.
+    But if the 'photo' parameter is a binary object already,
+    it will return the 'photo' itself.
     """
     try:
-        if photo is not None:
+        if photo is not None and type(photo) != bytes:
             with open(photo, 'rb') as binary_photo:
                 blob = binary_photo.read()
             return blob
+        return photo  # If is a binary type already
     except FileNotFoundError:
         return None
 
@@ -50,6 +53,9 @@ def delete_files(*location):
 
 
 class Db_manager:
+    """
+    Data base manager.
+    """
     def __init__(self, connection):
         self.connection = sqlite3.connect(connection)
         self.cursor = self.connection.cursor()
@@ -60,7 +66,7 @@ class Db_manager:
 
     def create_table(self, tables):
         """ Table insertion:
-        This method let you create a table with dictionary where
+        This method let you create a table with a dictionary where
         the Key is the table name and the values are the table columns.
 
         Every Primary Key should be called in the following way:
@@ -85,7 +91,7 @@ class Db_manager:
         as a foreign column, and it will be given an automated ID.
         You shouldn't input the foreign keys by yourself.
 
-        Olso every column that has a Blob type will be automatically checked
+        Also every column that has a Blob type will be automatically checked
         to convert it to 'bytes' data type.
 
         Example:
@@ -183,7 +189,7 @@ class Db_manager:
         If you don't want to make use a Join Clause, you can simply avoid it,
         or write in the third parameter "".
 
-        Olso, you can avoid the where clause if in the fourth
+        Also, you can avoid the where clause if in the fourth
         parameter you write "&None%" or nothing in it.
         """
         sql_query = "SELECT %s FROM %s %s" % (columns, table, joins)

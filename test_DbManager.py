@@ -59,7 +59,7 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.birth_db.add_rows({
             "country": {"country": "Argentina"},
             "gender": {"gender": "Male"},
-            "photo": {"photo": 'testing/image_test.png'},
+            "photo": {"photo": 'testing//image_test.png'},
             "birth": {"birth": "2003-07-15", "age": None},
             "person": {"per_first": "Severus", "per_last": "Snape"}})
 
