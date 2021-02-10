@@ -83,9 +83,8 @@ class BirDayBerClient_testing(unittest.TestCase):
             "minimize-button.png", "party_hat_female.png", "github.png",
                 "party_hat_male.png", "party_randolph.png", "randolph.png"):
 
-            self.assertTrue(
-                os.path.exists(
-                    "bin//system_content//visual_content//%s" % file))
+            self.assertTrue(os.path.exists(
+                "bin//system_content//visual_content//%s" % file))
 
 
 if __name__ == "__main__":
