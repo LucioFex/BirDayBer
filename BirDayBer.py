@@ -39,7 +39,7 @@ class Birdayber_database:
             license_data.seek(0)
             license_type.append(license_data.readlines()[2][0:-1])
 
-        return license_type
+        return tuple(license_type)
 
     def generate_database(self, db_connection):
         """
