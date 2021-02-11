@@ -22,7 +22,7 @@ class BirDayBerDB_testing(unittest.TestCase):
                 f"id_gender {id_type}, gender VARCHAR(6)",
 
             "photo":
-                f"id_photo {id_type}, photo BLOB",
+                f"id_photo {id_type}, photo_name VARCHAR(20), photo BLOB",
 
             "country":
                 f"id_country {id_type}, country VARCHAR(40)",
@@ -66,7 +66,7 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.birth_db.add_rows({
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
-            "photo": {"photo": None},
+            "photo": {"photo_name": "No photo", "photo": None},
             "birth": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
@@ -90,15 +90,16 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.assertEqual(all_genders, ())
         self.assertEqual(len(all_genders), 0)
 
-    def test_photos(self):
-        all_photos = self.birth_db.column_search("photo", "photo")
-
-        self.assertNotEqual(all_photos, ((None,), (None,)))
+    def test_photos(self):  # Bug found in the DB_MANAGER (again) about BLOBS
+        all_photos = self.birth_db.column_search("photo", "photo_name, photo")
+        self.assertNotEqual(all_photos, ((None, None), (None, None)))
         self.assertEqual(len(all_photos), 2)
+
+        all_photos = self.birth_db.column_search("photo", "photo_name")
+        self.assertEqual(all_photos, ((None,), ("No photo",)))
 
         deleted = self.birth_db.remove_rows("photo", "photo is Null")
         all_photos = self.birth_db.column_search("photo", "photo")
-
         self.assertEqual(deleted, "1 rows deleted")
         self.assertNotEqual(all_photos, ((None,), ))
         self.assertEqual(len(all_photos), 1)
