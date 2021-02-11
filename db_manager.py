@@ -17,7 +17,7 @@ def photo_to_binary(photo):
     it will return the 'photo' itself.
     """
     try:
-        if photo is not None and type(photo) != bytes:
+        if photo is not None or type(photo) == bytes:
             with open(photo, 'rb') as binary_photo:
                 blob = binary_photo.read()
             return blob
@@ -136,6 +136,7 @@ class Db_manager:
 
                 if column[2] == "BLOB":
                     for index in range(len(element[2])):
+                        print(element[2][index])
                         element[2][index] = photo_to_binary(element[2][index])
 
             #  Insertion of data
