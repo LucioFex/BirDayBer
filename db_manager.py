@@ -16,14 +16,19 @@ def photo_to_binary(photo):
     But if the 'photo' parameter is a binary object already,
     it will return the 'photo' itself.
     """
-    try:
-        if photo is not None or type(photo) == bytes:
-            with open(photo, 'rb') as binary_photo:
-                blob = binary_photo.read()
-            return blob
-        return photo  # If is a binary type already
-    except FileNotFoundError:
-        return None
+    if photo is not None:
+        try:
+            if os.path.exists(photo):
+                with open(photo, 'rb') as binary_photo:
+                    blob = binary_photo.read()
+                return blob
+
+            elif os.path.exists(photo) is False:
+                return photo
+
+            raise FileExistsError  # If there's no file found
+        except FileNotFoundError:
+            return None
 
 
 def binary_to_photo(id_person, binary, folder="bin//rows_content"):
@@ -119,7 +124,7 @@ class Db_manager:
 
         return self.process_rows(columns)
 
-    def process_rows(self, data):  # FIX THIS
+    def process_rows(self, data):
         """
         This method tells the DB to INSERT the data in the tables of the DB.
 
@@ -136,7 +141,6 @@ class Db_manager:
 
                 if column[2] == "BLOB":
                     for index in range(len(element[2])):
-                        print(element[2][index])
                         element[2][index] = photo_to_binary(element[2][index])
 
             #  Insertion of data
