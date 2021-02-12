@@ -72,8 +72,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             ("MIT License", "Copyright (c) 2020-2021 Luciano Esteban"))
 
     def test_image_generator(self):
-        self.interface.delete_images()
-        self.interface.generate_images()
+        self.interface.generate_all_images()
 
         for file in (
             "about.png", "add_person.png", "BirDayBerIcon.ico", "nut.png",
@@ -85,6 +84,11 @@ class BirDayBerClient_testing(unittest.TestCase):
 
             self.assertTrue(os.path.exists(
                 "bin//system_content//visual_content//%s" % file))
+
+        self.interface.delete_all_images()
+        images_folder = os.walk("bin//system_content//visual_content//")
+        next(images_folder, 2)
+        self.assertEqual(images_folder, [])
 
 
 if __name__ == "__main__":
