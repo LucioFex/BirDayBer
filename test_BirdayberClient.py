@@ -18,17 +18,17 @@ class BirDayBerClient_testing(unittest.TestCase):
         cls.interface = BirDayBer.Birdayber_client("testing//BirDayBer.db")
 
         cls.interface.add_person({
-            "country": {"country": "Argentina"},
-            "gender": {"gender": "Male"},
-            "photo": {"photo": 'testing//image_test.png'},
-            "birth": {"birth": "2003-07-15"},
-            "person": {"per_first": "Severus", "per_last": "Snape"}})
+            "countries": {"country": "Argentina"},
+            "genders": {"gender": "Male"},
+            "photos": {"photo": 'testing//image_test.png'},
+            "births": {"birth": "2003-07-15"},
+            "people": {"per_first": "Severus", "per_last": "Snape"}})
         cls.interface.add_person({
-            "country": {"country": "United States"},
-            "gender": {"gender": "Male"},
-            "photo": {"photo": None},
-            "birth": {"birth": "1919-12-23"},
-            "person": {"per_first": "Randolph", "per_last": "Carter"}})
+            "countries": {"country": "United States"},
+            "genders": {"gender": "Male"},
+            "photos": {"photo": None},
+            "births": {"birth": "1919-12-23"},
+            "people": {"per_first": "Randolph", "per_last": "Carter"}})
 
     @classmethod
     def tearDownClass(cls):
@@ -72,7 +72,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             ("MIT License", "Copyright (c) 2020-2021 Luciano Esteban"))
 
     def test_image_generator(self):
-        self.interface.generate_all_images()
+        self.interface.save_all_images()
 
         for file in (
             "about.png", "add_person.png", "BirDayBerIcon.ico", "nut.png",

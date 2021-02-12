@@ -51,21 +51,21 @@ class Birdayber_database:
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
         self.db.create_table({
-            "gender":
+            "genders":
                 f"""id_gender {id_type},
                 gender VARCHAR(6) NOT NULL""",
-            "photo":
+            "photos":
                 f"""id_photo {id_type},
                 photo BLOB""",
-            "country":
+            "countries":
                 f"""id_country {id_type},
                 country VARCHAR(40)""",
-            "birth":
+            "births":
                 f"""id_birth {id_type},
                 birth DATE NOT NULL,
                 age INTEGER""",
 
-            "person":
+            "people":
                 f"""id_person {id_type},
                 per_first VARCHAR(35) NOT NULL,
                 per_last VARCHAR(35),
@@ -76,7 +76,11 @@ class Birdayber_database:
                 FOREIGN KEY (id_country1_fk) REFERENCES country (id_country),
                 FOREIGN KEY (id_gender1_fk) REFERENCES gender (id_gender),
                 FOREIGN KEY (id_birth1_fk) REFERENCES birth (id_birth),
-                FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)"""})
+                FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)""",
+            "system_image":
+                f"""id_image {id_type},
+                image_name VARCHAR(30),
+                image_bin BLOB"""})
 
         del id_type
         return db_connection
@@ -121,11 +125,15 @@ class Birdayber_database:
             select = "per_first, per_last, birth, age, country, gender"
 
         people_data = self.db.column_search(
-            "person", select,
-            """INNER JOIN birth on birth.id_birth = person.id_birth1_fk
-            INNER JOIN photo on photo.id_photo = person.id_photo1_fk
-            INNER JOIN country on country.id_country = person.id_country1_fk
-            INNER JOIN gender on gender.id_gender = person.id_gender1_fk""",
+            "people", select,
+            """INNER JOIN
+                births on births.id_birth = people.id_birth1_fk
+            INNER JOIN
+                photos on photos.id_photo = people.id_photo1_fk
+            INNER JOIN
+                countries on countries.id_country = people.id_country1_fk
+            INNER JOIN
+                genders on genders.id_gender = people.id_gender1_fk""",
             id_person)
 
         return people_data
