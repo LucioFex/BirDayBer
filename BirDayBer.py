@@ -76,11 +76,7 @@ class Birdayber_database:
                 FOREIGN KEY (id_country1_fk) REFERENCES country (id_country),
                 FOREIGN KEY (id_gender1_fk) REFERENCES gender (id_gender),
                 FOREIGN KEY (id_birth1_fk) REFERENCES birth (id_birth),
-                FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)""",
-            "system_image":
-                f"""id_image {id_type},
-                image_name VARCHAR(30),
-                image_bin BLOB"""})
+                FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)"""})
 
         del id_type
         return db_connection
