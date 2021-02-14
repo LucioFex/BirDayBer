@@ -72,7 +72,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             ("MIT License", "Copyright (c) 2020-2021 Luciano Esteban"))
 
     def test_default_images(self):
-        for file in (
+        for image in (
             "about.png", "add_person.png", "BirDayBerIcon.ico", "nut.png",
             "BirDayBerIcon.png", "cancel_person.png", "close-button.png",
             "edit.png", "garbage1.png", "garbage2.png", "twitter.png",
@@ -81,7 +81,19 @@ class BirDayBerClient_testing(unittest.TestCase):
                 "party_hat_male.png", "party_randolph.png", "randolph.png"):
 
             self.assertTrue(os.path.exists(
-                "bin//system_content//visual_content//%s" % file))
+                "bin//system_content//visual_content//%s" % image))
+
+    def test_responsive_images(self):
+        for image in (
+            "about.png", "add_person.png", "BirDayBerIcon.ico", "nut.png",
+            "BirDayBerIcon.png", "cancel_person.png", "close-button.png",
+            "edit.png", "garbage1.png", "garbage2.png", "twitter.png",
+            "license.png", "maximize-button.png", "maximized-button.png",
+            "minimize-button.png", "party_hat_female.png", "github.png",
+                "party_hat_male.png", "party_randolph.png", "randolph.png"):
+
+            self.assertTrue(os.path.exists(
+                "bin//system_content//visual_content//responsive//%s" % image))
 
 
 if __name__ == "__main__":
