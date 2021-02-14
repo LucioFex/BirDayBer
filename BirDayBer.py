@@ -172,14 +172,14 @@ class Birdayber_client(Birdayber_database):
         possible resolution and position for the client's window.
         Then it sets the new values in the root.geometry() function.
         """
-        screen_width = self.window.winfo_screenwidth()
-        screen_height = self.window.winfo_screenheight()
+        real_screen_width = self.window.winfo_screenwidth()
+        real_screen_height = self.window.winfo_screenheight()
 
-        self.screen_width = screen_width - round(screen_width / 4)
-        self.screen_height = screen_height - round(screen_height / 4)
+        self.screen_width = real_screen_width - round(real_screen_width / 4)
+        self.screen_height = real_screen_height - round(real_screen_height / 4)
 
-        self.x_position = round(screen_width / 7)
-        self.y_position = round(screen_height / 7)
+        self.x_position = round(real_screen_width / 7)
+        self.y_position = round(real_screen_height / 7)
 
         self.window.geometry("%sx%s+%s+%s" % (
             self.screen_width, self.screen_height,
