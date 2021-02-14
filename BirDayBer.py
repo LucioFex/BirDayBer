@@ -161,7 +161,7 @@ class Birdayber_client(Birdayber_database):
         super().__init__(db_connection, mainloop)
         self.window = tk.Tk()
         self.window_init_resolution()  # Set of the window screen resolution
-        self.window.overrideredirect(1)  # Deletion of the original Title Bar
+        self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
 
         self.window.mainloop() if mainloop else None
@@ -199,33 +199,37 @@ class Birdayber_client(Birdayber_database):
 
         for img in files:
             if img in (  # Title bar section
-                "close-button.png", "BirDayBerIcon.png",
-                "minimize-button.png", "maximize-button.png",
-                    "maximized-button.png", "about.png"):
+                "close-button.png", "BirDayBerIcon.png", "minimize-button.png",
+                    "maximize-button.png", "maximized-button.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
 
                 responsive_img.thumbnail((
                     round(self.screen_width * 8.125 / 100),
-                    round(self.screen_height * 20 / 100)))
+                    round(self.screen_height * 15.9 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def titlebar_init(self):  # Continue later...
+    def titlebar_init(self):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
+        self.window.overrideredirect(1)  # Deletion of the original Title Bar
+        location = "bin//system_content//visual_content//responsive//"
+
         self.title_bar = tk.Frame(
             self.window, bg="#316477", height=round(self.screen_height / 20))
         self.title_bar.pack(fill="x")
 
         buttons = ["x", "+", "-"]
+        self.images = []
+        for img in ("close-button.png", "maximize-button.png",
+                    "minimize-button.png"):
+            self.images.append(tk.PhotoImage(file=location + img))
+
         for index, button in enumerate(buttons):  # Generation of buttons
             buttons[index] = tk.Button(
-                self.title_bar, bg="#2c5c6d", fg="#f4f4f4", text=button,
-                activebackground="#61a0b7", font=("Century Gothic", 19),
-                activeforeground="#f4f4f4", relief=tk.FLAT,
-                width=round(self.screen_width / 8.125 / 22),
-                height=round(self.screen_height / 20 / 22))
+                self.title_bar, image=self.images[index], bg="#2c5c6d")
             buttons[index].pack(side=tk.RIGHT)
+
         buttons[0].config(activebackground="#cf1728")
 
 
