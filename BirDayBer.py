@@ -204,6 +204,11 @@ class Birdayber_client(Birdayber_database):
                     "maximized-button.png", "about.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
 
+                responsive_img.thumbnail((
+                    round(self.screen_width * 8.125 / 100),
+                    round(self.screen_height * 20 / 100)))
+                responsive_img.save("%s//responsive//%s" % (location, img))
+
     def titlebar_init(self):  # Continue later...
         """
         Generation of the new Title Bar and elimination of the previous one.
