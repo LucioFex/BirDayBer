@@ -7,10 +7,10 @@
 - Python [Tkinter (Tcl/Tk)](https://docs.python.org/3/library/tkinter.html) library.
 - Python [Sqlite3](https://docs.python.org/3/library/sqlite3.html) library.
 - Python [OS](https://docs.python.org/3/library/os.html) module.
+- Python [Pillow](https://pypi.org/project/Pillow/) library.
 
 ## Posible Future Requeriments:
 
-- Python [Pillow](https://pypi.org/project/Pillow/) library.
 - Python [Pygame](https://www.pygame.org/news) library.
 
 ## Contributions

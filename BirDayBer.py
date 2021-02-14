@@ -1,5 +1,6 @@
 import db_manager
 import tkinter as tk
+from PIL import Image
 import os
 
 
@@ -187,7 +188,23 @@ class Birdayber_client(Birdayber_database):
         self.window.update()
         return str(self.window.geometry)
 
-    def titlebar_init(self):
+    def responsive_imgs(self):
+        """
+        Method that modifies all the sizes of images and clone these in the
+        BirDayBer's system to something more visible for the user.
+        The new clones will be saved in the 'responsive' folder.
+        """
+        location = "bin//system_content//visual_content"
+        files = next(os.walk(location))[2]
+
+        for img in files:
+            if img in (  # Title bar section
+                "close-button.png", "BirDayBerIcon.png",
+                "minimize-button.png", "maximize-button.png",
+                    "maximized-button.png", "about.png"):
+                responsive_img = Image.open("%s//%s" % (location, img))
+
+    def titlebar_init(self):  # Continue later...
         """
         Generation of the new Title Bar and elimination of the previous one.
         """

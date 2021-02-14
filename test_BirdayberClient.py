@@ -84,6 +84,7 @@ class BirDayBerClient_testing(unittest.TestCase):
                 "bin//system_content//visual_content//%s" % image))
 
     def test_responsive_images(self):
+        self.interface.responsive_imgs()
         for image in (
             "about.png", "add_person.png", "nut.png", "BirDayBerIcon.png",
             "cancel_person.png", "close-button.png", "edit.png",
@@ -92,8 +93,9 @@ class BirDayBerClient_testing(unittest.TestCase):
             "minimize-button.png", "party_hat_female.png", "github.png",
                 "party_hat_male.png", "party_randolph.png", "randolph.png"):
 
-            self.assertTrue(os.path.exists(
-                "bin//system_content//visual_content//responsive//%s" % image))
+            img = "bin//system_content//visual_content//responsive//%s" % image
+            self.assertTrue(os.path.exists(img))
+            os.remove(img)
 
 
 if __name__ == "__main__":
