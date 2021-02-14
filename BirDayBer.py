@@ -204,8 +204,8 @@ class Birdayber_client(Birdayber_database):
                 responsive_img = Image.open("%s//%s" % (location, img))
 
                 responsive_img.thumbnail((
-                    round(self.screen_width * 8.125 / 100),
-                    round(self.screen_height * 15.9 / 100)))
+                    round(self.screen_width * 5 / 100),
+                    round(self.screen_height * 8 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def titlebar_init(self):
