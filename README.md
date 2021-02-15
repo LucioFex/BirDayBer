@@ -1,13 +1,18 @@
 # BirDayBer (Still in development)
 'BirDayBer' is an application made for irresponsible people with friends or family birthdays like me. So it allows you to add birthdays and other minimal information to a database to notify you to remember them.
 
+### Image of the BirDayBer conceptual interface:
+
+![.](conceptual/interface_design_updated.png)
+
+
 ## Official Requeriments:
 
 - Programming Language [Python](https://www.python.org/) (version 3).
 - Python [Tkinter (Tcl/Tk)](https://docs.python.org/3/library/tkinter.html) library.
 - Python [Sqlite3](https://docs.python.org/3/library/sqlite3.html) library.
-- Python [OS](https://docs.python.org/3/library/os.html) module.
 - Python [Pillow](https://pypi.org/project/Pillow/) library.
+- Python [OS](https://docs.python.org/3/library/os.html) module.
 
 ## Posible Future Requeriments:
 
