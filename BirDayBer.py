@@ -204,8 +204,8 @@ class Birdayber_client(Birdayber_database):
                 responsive_img = Image.open("%s//%s" % (location, img))
 
                 responsive_img.thumbnail((
-                    round(self.screen_width * 5 / 100),
-                    round(self.screen_height * 8 / 100)))
+                    round(self.screen_width * 4 / 100),
+                    round(self.screen_height * 4.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def titlebar_init(self):
@@ -219,18 +219,18 @@ class Birdayber_client(Birdayber_database):
             self.window, bg="#316477", height=round(self.screen_height / 20))
         self.title_bar.pack(fill="x")
 
-        buttons = ["x", "+", "-"]
         self.images = []
         for img in ("close-button.png", "maximize-button.png",
-                    "minimize-button.png"):
+                    "minimize-button.png", "BirDayBerIcon.png"):
             self.images.append(tk.PhotoImage(file=location + img))
 
+        buttons = ["x", "+", "-"]
         for index, button in enumerate(buttons):  # Generation of buttons
             buttons[index] = tk.Button(
-                self.title_bar, image=self.images[index], bg="#2c5c6d")
-            buttons[index].pack(side=tk.RIGHT)
-
-        buttons[0].config(activebackground="#cf1728")
+                self.title_bar, image=self.images[index],
+                bg="#2c5c6d", relief=tk.FLAT, bd=0, activebackground="#1e5061")
+            buttons[index].pack(side=tk.RIGHT, ipadx=12, ipady=6)
+        buttons[0].config(activebackground="#911722")
 
 
 if __name__ == '__main__':
