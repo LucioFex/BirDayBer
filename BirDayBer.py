@@ -163,7 +163,6 @@ class Birdayber_client(Birdayber_database):
         self.window_init_resolution()  # Set of the window screen resolution
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
-
         self.window.mainloop() if mainloop else None
 
     def window_init_resolution(self):
@@ -197,15 +196,21 @@ class Birdayber_client(Birdayber_database):
         location = "bin//system_content//visual_content"
         files = next(os.walk(location))[2]
 
-        for img in files:
+        for img in files:  # Refactor later
             if img in (  # Title bar section
-                "close-button.png", "BirDayBerIcon.png", "minimize-button.png",
+                "close-button.png", "minimize-button.png",
                     "maximize-button.png", "maximized-button.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
-
                 responsive_img.thumbnail((
                     round(self.screen_width * 4 / 100),
                     round(self.screen_height * 4.5 / 100)))
+                responsive_img.save("%s//responsive//%s" % (location, img))
+
+            elif img in ("BirDayBerIcon.png"):
+                responsive_img = Image.open("%s//%s" % (location, img))
+                responsive_img.thumbnail((
+                    round(self.screen_width * 6.5 / 100),
+                    round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def titlebar_init(self):
@@ -229,8 +234,12 @@ class Birdayber_client(Birdayber_database):
             buttons[index] = tk.Button(
                 self.title_bar, image=self.images[index],
                 bg="#2c5c6d", relief=tk.FLAT, bd=0, activebackground="#1e5061")
-            buttons[index].pack(side=tk.RIGHT, ipadx=12, ipady=6)
+            buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7)
         buttons[0].config(activebackground="#911722")
+
+        self.icon = tk.Label(
+            self.title_bar, image=self.images[3], bg="#316477")
+        self.icon.pack(side=tk.LEFT)
 
 
 if __name__ == '__main__':
