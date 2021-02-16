@@ -160,14 +160,22 @@ class Birdayber_client(Birdayber_database):
         """
         super().__init__(db_connection, mainloop)
         self.root = tk.Tk()
+        self.root.title("BirDayBer")
         self.window = tk.Toplevel(self.root)
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
         self.window_init_resolution()  # Sets the window screen resolution
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
 
+        img = tk.PhotoImage(
+            file="bin//system_content//visual_content//illusion.png")
+        tk.Label(self.root, image=img).pack()  # Illusory task bar image
+
         self.root.bind("<Unmap>", self.windowIconify)
         self.root.bind("<Map>", self.windowDeiconify)
+        for closable in (self.root, self.window):
+            closable.protocol("WM_DELETE_WINDOW", self.close_client)
+
         self.window.mainloop() if mainloop else None
 
     def window_init_resolution(self):
@@ -219,8 +227,11 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def windowIconify(self, event): self.window.withdraw()
-    def windowDeiconify(self, event): self.window.deiconify()
+    def windowIconify(self, event):
+        self.window.withdraw()
+
+    def windowDeiconify(self, event):
+        self.window.deiconify()
 
     def titlebar_init(self):
         """
