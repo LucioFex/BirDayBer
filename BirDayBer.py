@@ -147,7 +147,7 @@ class Birdayber_database:
         It makes the program stop mainlooping.
         """
         self.db.close_database()
-        self.window.destroy()
+        self.root.destroy()
 
 
 class Birdayber_client(Birdayber_database):
@@ -161,11 +161,13 @@ class Birdayber_client(Birdayber_database):
         super().__init__(db_connection, mainloop)
         self.root = tk.Tk()
         self.window = tk.Toplevel(self.root)
-        self.window.overrideredirect(1)  # Deletion of the original Title Bar
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
-        self.window_init_resolution()  # Set of the window screen resolution
+        self.window_init_resolution()  # Sets the window screen resolution
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
+
+        self.root.bind("<Unmap>", self.windowIconify)
+        self.root.bind("<Map>", self.windowDeiconify)
         self.window.mainloop() if mainloop else None
 
     def window_init_resolution(self):
@@ -173,6 +175,7 @@ class Birdayber_client(Birdayber_database):
         This method returns the information of the best
         possible resolution and position for the client's window.
         Then it sets the new values in the root.geometry() function.
+        It also calls the 'responsive_imgs' method to resize the system imgs.
         """
         real_screen_width = self.window.winfo_screenwidth()
         real_screen_height = self.window.winfo_screenheight()
@@ -216,10 +219,14 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
+    def windowIconify(self, event): self.window.withdraw()
+    def windowDeiconify(self, event): self.window.deiconify()
+
     def titlebar_init(self):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
+        self.window.overrideredirect(1)  # Deletion of the original Title Bar
         location = "bin//system_content//visual_content//responsive//"
 
         self.title_bar = tk.Frame(
