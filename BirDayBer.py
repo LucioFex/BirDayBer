@@ -159,8 +159,10 @@ class Birdayber_client(Birdayber_database):
         If the 'mainloop' parameter is 'True' the program will main-loop.
         """
         super().__init__(db_connection, mainloop)
-        self.window = tk.Tk()
+        self.root = tk.Tk()
+        self.window = tk.Toplevel(self.root)
         self.window.overrideredirect(1)  # Deletion of the original Title Bar
+        self.root.attributes("-alpha", 0.0)  # Hide of the root window
         self.window_init_resolution()  # Set of the window screen resolution
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
