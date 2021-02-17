@@ -255,11 +255,11 @@ class Birdayber_client(Birdayber_database):
             self.title_bar, image=self.images[3], bg="#316477")
         self.icon.pack(side=tk.LEFT)
 
-        buttons = ["x", "+", "-"]
-        for index, button in enumerate(buttons):  # Generation of buttons
-            buttons[index] = tk.Button(
-                self.title_bar, image=self.images[index],
-                bg="#2c5c6d", relief=tk.FLAT, bd=0, activebackground="#1e5061")
+        buttons = []
+        for index in range(3):  # Generation of buttons
+            buttons.append(tk.Button(
+                self.title_bar, image=self.images[index], bg="#2c5c6d",
+                relief=tk.FLAT, bd=0, activebackground="#1e5061"))
             buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
 
         buttons[0].config(
