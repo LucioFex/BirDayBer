@@ -232,6 +232,9 @@ class Birdayber_client(Birdayber_database):
     def windowIconify(self, event=None): self.window.withdraw()
     def windowDeiconify(self, event=None): self.window.deiconify()
 
+    def windowDragging(self, event):
+        self.window.geometry("+%s+%s" % (event.x_root, event.y_root))
+
     def titlebar_init(self):
         """
         Generation of the new Title Bar and elimination of the previous one.
@@ -262,6 +265,9 @@ class Birdayber_client(Birdayber_database):
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
         buttons[2].config(command=self.windowIconify)
+
+        for label in (self.title_bar, self.icon):  # Contie working in this
+            label.bind("<B1-Motion>", self.windowDragging)
 
 
 if __name__ == '__main__':
