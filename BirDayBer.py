@@ -229,10 +229,10 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def windowIconify(self, event):
+    def windowIconify(self, event=None):
         self.window.withdraw()
 
-    def windowDeiconify(self, event):
+    def windowDeiconify(self, event=None):
         self.window.deiconify()
 
     def titlebar_init(self):
@@ -261,8 +261,10 @@ class Birdayber_client(Birdayber_database):
                 self.title_bar, image=self.images[index],
                 bg="#2c5c6d", relief=tk.FLAT, bd=0, activebackground="#1e5061")
             buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
+
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
+        buttons[2].config(command=self.windowIconify)
 
 
 if __name__ == '__main__':
