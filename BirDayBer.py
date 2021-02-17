@@ -229,11 +229,8 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def windowIconify(self, event=None):
-        self.window.withdraw()
-
-    def windowDeiconify(self, event=None):
-        self.window.deiconify()
+    def windowIconify(self, event=None): self.window.withdraw()
+    def windowDeiconify(self, event=None): self.window.deiconify()
 
     def titlebar_init(self):
         """
