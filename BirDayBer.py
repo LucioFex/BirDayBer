@@ -165,8 +165,8 @@ class Birdayber_client(Birdayber_database):
         self.window_init_resolution()  # Sets the window screen resolution
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
-        self.root.bind("<Unmap>", self.windowIconify)
-        self.root.bind("<Map>", self.windowDeiconify)
+        self.root.bind("<Unmap>", self.window_iconify)
+        self.root.bind("<Map>", self.window_deiconify)
         for closable in (self.root, self.window):
             closable.protocol("WM_DELETE_WINDOW", self.close_client)
 
@@ -229,10 +229,10 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def windowIconify(self, event=None): self.window.withdraw()
-    def windowDeiconify(self, event=None): self.window.deiconify()
+    def window_iconify(self, event=None): self.window.withdraw()
+    def window_deiconify(self, event=None): self.window.deiconify()
 
-    def windowDragging(self, event):
+    def window_dragging(self, event):
         self.window.geometry("+%s+%s" % (event.x_root, event.y_root))
 
     def titlebar_init(self):
@@ -264,10 +264,10 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.windowIconify)
+        buttons[2].config(command=self.window_iconify)
 
         for label in (self.title_bar, self.icon):  # Contie working in this
-            label.bind("<B1-Motion>", self.windowDragging)
+            label.bind("<B1-Motion>", self.window_dragging)
 
 
 if __name__ == '__main__':
