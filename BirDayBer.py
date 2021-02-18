@@ -193,7 +193,7 @@ class Birdayber_client(Birdayber_database):
         self.screen_width = real_screen_width - round(real_screen_width / 4)
         self.screen_height = real_screen_height - round(real_screen_height / 4)
 
-        self.x_position = round(real_screen_width / 7)
+        self.x_position = round(real_screen_width / 7.5)
         self.y_position = round(real_screen_height / 7)
 
         self.window.geometry("%sx%s+%s+%s" % (
@@ -236,6 +236,13 @@ class Birdayber_client(Birdayber_database):
     def cursor_end_move(self, event): self.x, self.y = None, None
 
     def window_dragging(self, event):
+        """
+        Changes the position of the window without
+        changing the mouse coordinates.
+
+        This method works with 'cursor_start_move'
+        and 'cursor_end_move' methods.
+        """
         cursor_position_x = event.x - self.x
         cursor_position_y = event.y - self.y
 
