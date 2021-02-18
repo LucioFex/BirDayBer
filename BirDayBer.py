@@ -159,18 +159,19 @@ class Birdayber_client(Birdayber_database):
         If the 'mainloop' parameter is 'True' the program will main-loop.
         """
         super().__init__(db_connection)
+        # Root configuration
         self.root = tk.Tk()
-        self.window = tk.Toplevel(self.root)
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
+        self.root.title("BirDayBer")
+        self.root.bind("<Unmap>", self.window_iconify)  # Open from TaskBar
+        self.root.bind("<Map>", self.window_deiconify)  # Minimize from TaskBar
+        # Window configuration
+        self.window = tk.Toplevel(self.root)
         self.window_init_resolution()  # Sets the window screen resolution
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
-        self.root.bind("<Unmap>", self.window_iconify)
-        self.root.bind("<Map>", self.window_deiconify)
         for closable in (self.root, self.window):
             closable.protocol("WM_DELETE_WINDOW", self.close_client)
-
-        self.root.title("BirDayBer")
         self.root.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
 
