@@ -18,7 +18,7 @@ class Birdayber_database:
     This class is specialized in the generation and maintenance
     of the DB and get data of the project's LICENSE.
     """
-    def __init__(self, db_connection, mainloop):
+    def __init__(self, db_connection):
         """
         Method that only accepts a sqlite3 database lotaction and Boolean:
         Creation of the database and preparation to generate the interface.
@@ -158,7 +158,7 @@ class Birdayber_client(Birdayber_database):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
         """
-        super().__init__(db_connection, mainloop)
+        super().__init__(db_connection)
         self.root = tk.Tk()
         self.window = tk.Toplevel(self.root)
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
