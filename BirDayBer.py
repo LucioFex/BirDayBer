@@ -232,8 +232,17 @@ class Birdayber_client(Birdayber_database):
     def window_iconify(self, event=None): self.window.withdraw()
     def window_deiconify(self, event=None): self.window.deiconify()
 
+    def cursor_start_move(self, event): self.x, self.y = event.x, event.y
+    def cursor_end_move(self, event): self.x, self.y = None, None
+
     def window_dragging(self, event):
-        self.window.geometry("+%s+%s" % (event.x_root, event.y_root))
+        cursor_position_x = event.x - self.x
+        cursor_position_y = event.y - self.y
+
+        window_position_x = self.window.winfo_x() + cursor_position_x
+        window_position_y = self.window.winfo_y() + cursor_position_y
+
+        self.window.geometry("+%s+%s" % (window_position_x, window_position_y))
 
     def titlebar_init(self):
         """
@@ -267,6 +276,8 @@ class Birdayber_client(Birdayber_database):
         buttons[2].config(command=self.window_iconify)
 
         for label in (self.title_bar, self.icon):  # Contie working in this
+            label.bind("<ButtonPress-1>", self.cursor_start_move)
+            label.bind("<ButtonRelease-1>", self.cursor_end_move)
             label.bind("<B1-Motion>", self.window_dragging)
 
 
