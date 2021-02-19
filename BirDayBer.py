@@ -232,17 +232,14 @@ class Birdayber_client(Birdayber_database):
 
     def window_iconify(self, event=None): self.window.withdraw()
     def window_deiconify(self, event=None): self.window.deiconify()
-
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
-    def cursor_end_move(self, event): self.x, self.y = None, None
 
     def window_dragging(self, event):
         """
         Changes the position of the window without
         changing the mouse coordinates.
 
-        This method works with 'cursor_start_move'
-        and 'cursor_end_move' methods.
+        This method works with the 'cursor_start_move' method.
         """
         cursor_position_x = event.x - self.x
         cursor_position_y = event.y - self.y
@@ -283,9 +280,8 @@ class Birdayber_client(Birdayber_database):
             activebackground="#911722", command=self.close_client)
         buttons[2].config(command=self.window_iconify)
 
-        for label in (self.title_bar, self.icon):  # Contie working in this
+        for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
-            label.bind("<ButtonRelease-1>", self.cursor_end_move)
             label.bind("<B1-Motion>", self.window_dragging)
 
 
