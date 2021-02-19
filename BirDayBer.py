@@ -159,19 +159,24 @@ class Birdayber_client(Birdayber_database):
         If the 'mainloop' parameter is 'True' the program will main-loop.
         """
         super().__init__(db_connection)
+
         # Root configuration
         self.root = tk.Tk()
+
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
         self.root.title("BirDayBer")
         self.root.bind("<Unmap>", self.window_iconify)  # Open from TaskBar
         self.root.bind("<Map>", self.window_deiconify)  # Minimize from TaskBar
+
         # Window configuration
         self.window = tk.Toplevel(self.root)
-        self.window_init_resolution()  # Sets the window screen resolution
+
+        self.window_init_resolution(  # Sets the window screen resolution
+            self.window.winfo_screenwidth(), self.window.winfo_screenheight())
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
-        for closable in (self.root, self.window):
-            closable.protocol("WM_DELETE_WINDOW", self.close_client)
+        self.window.protocol("WM_DELETE_WINDOW", self.close_client)
+        self.root.protocol("WM_DELETE_WINDOW", self.close_client)
         self.root.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
 
@@ -181,21 +186,19 @@ class Birdayber_client(Birdayber_database):
 
         self.window.mainloop() if mainloop else None
 
-    def window_init_resolution(self):
+    def window_init_resolution(self, width, height):
         """
         This method returns the information of the best
         possible resolution and position for the client's window.
         Then it sets the new values in the root.geometry() function.
         It also calls the 'responsive_imgs' method to resize the system imgs.
         """
-        real_screen_width = self.window.winfo_screenwidth()
-        real_screen_height = self.window.winfo_screenheight()
 
-        self.screen_width = real_screen_width - round(real_screen_width / 4)
-        self.screen_height = real_screen_height - round(real_screen_height / 4)
+        self.screen_width = width - round(width / 4)
+        self.screen_height = height - round(height / 4)
 
-        self.x_position = round(real_screen_width / 7.5)
-        self.y_position = round(real_screen_height / 7)
+        self.x_position = round(width / 7.5)
+        self.y_position = round(height / 7)
 
         self.window.geometry("%sx%s+%s+%s" % (
             self.screen_width, self.screen_height,
