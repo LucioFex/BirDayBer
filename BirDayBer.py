@@ -198,14 +198,14 @@ class Birdayber_client(Birdayber_database):
         self.screen_height = height - round(height / 4)
 
         self.x_position = round(width / 7.5)
-        self.y_position = round(height / 7)
+        self.y_position = round(height / 8)
 
         self.window.geometry("%sx%s+%s+%s" % (
             self.screen_width, self.screen_height,
             self.x_position, self.y_position))
 
         self.window.update()
-        return str(self.window.geometry)
+        return str(self.window.geometry())
 
     def responsive_imgs(self):
         """

@@ -48,11 +48,33 @@ class BirDayBerClient_testing(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_window_size(self):
-        position = self.interface.window_init_resolution()
+    def test_window_resize(self):
+        window_data = self.interface.window_init_resolution(1920, 1080)
+        self.assertEqual(window_data, "1440x810+256+135")
 
-        self.assertNotEqual(position, "1x1+0+0")
-        self.assertIsInstance(position, str)
+        window_data = self.interface.window_init_resolution(1680, 1050)
+        self.assertEqual(window_data, "1260x788+224+131")
+
+        window_data = self.interface.window_init_resolution(1600, 900)
+        self.assertEqual(window_data, "1200x675+213+112")
+
+        window_data = self.interface.window_init_resolution(1400, 900)
+        self.assertEqual(window_data, "1050x675+187+112")
+
+        window_data = self.interface.window_init_resolution(1366, 768)
+        self.assertEqual(window_data, "1024x576+182+96")
+
+        window_data = self.interface.window_init_resolution(1280, 1024)
+        self.assertEqual(window_data, "960x768+171+128")
+
+        window_data = self.interface.window_init_resolution(1280, 720)
+        self.assertEqual(window_data, "960x540+171+90")
+
+        window_data = self.interface.window_init_resolution(1024, 768)
+        self.assertEqual(window_data, "768x576+137+96")
+
+        window_data = self.interface.window_init_resolution(800, 600)
+        self.assertEqual(window_data, "600x450+107+75")
 
     def test_people(self):
         all_people = self.interface.get_people("&None%", False)
