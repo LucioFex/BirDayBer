@@ -188,6 +188,10 @@ class Birdayber_client(Birdayber_database):
         self.window.mainloop() if mainloop else None
 
     def window_desapear(self, action, opacity=1):
+        """
+        Method that adds a little animation to the main window when this
+        one is minimized, maximized and closed.
+        """
         if opacity > 0.2:
             self.window.attributes("-alpha", opacity)
             return self.root.after(
