@@ -175,8 +175,9 @@ class Birdayber_client(Birdayber_database):
             self.window.winfo_screenwidth(), self.window.winfo_screenheight())
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
-        # self.window.protocol("WM_DELETE_WINDOW", self.close_client)
-        self.root.protocol("WM_DELETE_WINDOW", self.close_client)
+        for window in (self.root, self.window):
+            window.protocol(
+                "WM_DELETE_WINDOW", lambda: self.window_desapear("close"))
         self.root.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
 
@@ -185,6 +186,17 @@ class Birdayber_client(Birdayber_database):
         tk.Label(self.root, image=img, bd=0, highlightthickness=0).pack()
 
         self.window.mainloop() if mainloop else None
+
+    def window_desapear(self, action, opacity=1):
+        if opacity > 0.2:
+            self.window.attributes("-alpha", opacity)
+            return self.root.after(
+                43, lambda: self.window_desapear(action, opacity - 0.2))
+
+        elif action == "close":
+            self.close_client()
+        elif action == "minimize":
+            self.window_iconify()
 
     def window_init_resolution(self, width, height):
         """
@@ -280,8 +292,9 @@ class Birdayber_client(Birdayber_database):
             buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
 
         buttons[0].config(
-            activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.window_iconify)
+            activebackground="#911722",
+            command=lambda: self.window_desapear("close"))
+        buttons[2].config(command=lambda: self.window_desapear("minimize"))
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
