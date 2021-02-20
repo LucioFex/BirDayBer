@@ -144,7 +144,7 @@ class Birdayber_database:
 
     def close_client(self):
         """
-        It makes the program stop mainlooping.
+        It makes the program close the database and stop mainlooping.
         """
         self.db.close_database()
         self.root.destroy()
@@ -175,7 +175,7 @@ class Birdayber_client(Birdayber_database):
             self.window.winfo_screenwidth(), self.window.winfo_screenheight())
         self.responsive_imgs()  # Generation of new responsive images
         self.titlebar_init()  # Generation of the new title bar
-        self.window.protocol("WM_DELETE_WINDOW", self.close_client)
+        # self.window.protocol("WM_DELETE_WINDOW", self.close_client)
         self.root.protocol("WM_DELETE_WINDOW", self.close_client)
         self.root.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
