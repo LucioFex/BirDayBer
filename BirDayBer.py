@@ -165,8 +165,8 @@ class Birdayber_client(Birdayber_database):
 
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
         self.root.title("BirDayBer")
-        self.root.bind("<Map>", lambda: self.window_desapear("maximize", 0))  # Open from TaskBar
-        self.root.bind("<Unmap>", lambda: self.window_desapear("minimize", 1))  # Minimize from TaskBar
+        self.root.bind("<Unmap>", self.window_iconify)  # Minimize from TaskBar
+        self.root.bind("<Map>", self.window_deiconify)  # Open from TaskBar
 
         # Window configuration
         self.window = tk.Toplevel(self.root)
@@ -177,7 +177,7 @@ class Birdayber_client(Birdayber_database):
         self.titlebar_init()  # Generation of the new title bar
         for window in (self.root, self.window):
             window.protocol(
-                "WM_DELETE_WINDOW", lambda: self.window_desapear("close"))
+                "WM_DELETE_WINDOW", lambda: self.window_desapear("close", 1))
         self.root.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
 
@@ -187,29 +187,28 @@ class Birdayber_client(Birdayber_database):
 
         self.window.mainloop() if mainloop else None
 
-    def window_desapear(self, action, opacity=1):
+    def window_desapear(self, action, opacity, bind=None):
         """
         Method that adds a little animation to the main window when this
-        one is minimized, maximized and closed.
+        one is minimized, maximized or closed.
         """
-        if action == "close" or action == "minimize":
-            opacity -= 0.2
-            condition = opacity > 0.2
-        elif action == "maximize":
-            opacity += 0.2
-            condition = opacity < 1
+        self.window.attributes("-alpha", opacity)
+        if opacity > 0.2 and (action == "close" or action == "minimize"):
+            return self.root.after(43, lambda: self.window_desapear(
+                action, opacity - 0.1))
 
-        if condition is False:
-            self.window.attributes("-alpha", opacity)
-            return self.root.after(
-                43, lambda: self.window_desapear(action, opacity))
+        elif opacity < 1 and action == "maximize":
+            return self.root.after(43, lambda: self.window_desapear(
+                action, opacity + 0.1))
 
-        elif action == "close":
-            self.close_client()
-        elif action == "maximize":
-            self.window_deiconify()
+        if action == "close":
+            return self.close_client()
         elif action == "minimize":
             self.window_iconify()
+        elif action == "maximize":
+            self.window_deiconify()
+
+        self.window.attributes("-alpha", 1)
 
     def window_init_resolution(self, width, height):
         """
@@ -306,8 +305,8 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722",
-            command=lambda: self.window_desapear("close"))
-        buttons[2].config(command=lambda: self.window_desapear("minimize"))
+            command=lambda: self.window_desapear("close", 1))
+        buttons[2].config(command=lambda: self.window_desapear("minimize", 1))
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
