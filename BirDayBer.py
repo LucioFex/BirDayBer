@@ -165,8 +165,10 @@ class Birdayber_client(Birdayber_database):
 
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
         self.root.title("BirDayBer")
-        self.root.bind("<Unmap>", self.window_iconify)  # Minimize from TaskBar
-        self.root.bind("<Map>", self.window_deiconify)  # Open from TaskBar
+        self.root.bind("<Unmap>", lambda x: (
+            self.window_desapear("minimize", 1, x)))  # Minimize from TaskBar
+        self.root.bind(
+            "<Map>", self.window_deiconify)  # Open from TaskBar
 
         # Window configuration
         self.window = tk.Toplevel(self.root)
@@ -194,21 +196,18 @@ class Birdayber_client(Birdayber_database):
         """
         self.window.attributes("-alpha", opacity)
         if opacity > 0.2 and (action == "close" or action == "minimize"):
-            return self.root.after(43, lambda: self.window_desapear(
+            return self.window.after(40, lambda: self.window_desapear(
                 action, opacity - 0.1))
 
         elif opacity < 1 and action == "maximize":
-            return self.root.after(43, lambda: self.window_desapear(
+            return self.window.after(40, lambda: self.window_desapear(
                 action, opacity + 0.1))
 
         if action == "close":
-            return self.close_client()
+            self.close_client()
         elif action == "minimize":
             self.window_iconify()
-        elif action == "maximize":
-            self.window_deiconify()
-
-        self.window.attributes("-alpha", 1)
+            self.window.attributes("-alpha", 1)
 
     def window_init_resolution(self, width, height):
         """
