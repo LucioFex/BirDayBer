@@ -165,8 +165,8 @@ class Birdayber_client(Birdayber_database):
 
         self.root.attributes("-alpha", 0.0)  # Hide of the root window
         self.root.title("BirDayBer")
-        self.root.bind("<Unmap>", self.window_iconify)  # Open from TaskBar
-        self.root.bind("<Map>", self.window_deiconify)  # Minimize from TaskBar
+        self.root.bind("<Map>", lambda: self.window_desapear("maximize", 0))  # Open from TaskBar
+        self.root.bind("<Unmap>", lambda: self.window_desapear("minimize", 1))  # Minimize from TaskBar
 
         # Window configuration
         self.window = tk.Toplevel(self.root)
@@ -192,13 +192,22 @@ class Birdayber_client(Birdayber_database):
         Method that adds a little animation to the main window when this
         one is minimized, maximized and closed.
         """
-        if opacity > 0.2:
+        if action == "close" or action == "minimize":
+            opacity -= 0.2
+            condition = opacity > 0.2
+        elif action == "maximize":
+            opacity += 0.2
+            condition = opacity < 1
+
+        if condition is False:
             self.window.attributes("-alpha", opacity)
             return self.root.after(
-                43, lambda: self.window_desapear(action, opacity - 0.2))
+                43, lambda: self.window_desapear(action, opacity))
 
         elif action == "close":
             self.close_client()
+        elif action == "maximize":
+            self.window_deiconify()
         elif action == "minimize":
             self.window_iconify()
 
