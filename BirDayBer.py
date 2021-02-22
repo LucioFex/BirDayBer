@@ -146,6 +146,7 @@ class Birdayber_database:
         """
         It makes the program close the database and stop mainlooping.
         """
+        print("HELLO")
         self.db.close_database()
         self.root.destroy()
 
@@ -163,48 +164,50 @@ class Birdayber_client(Birdayber_database):
         # Root configuration
         self.root = tk.Tk()
 
-        self.root.attributes("-alpha", 0.0)  # Hide of the root window
-        self.root.title("BirDayBer")
-
-        self.root.bind("<Map>", self.window_deiconify)  # Open from TaskBar
-        self.root.bind(  # Minimize from TaskBar
-            "<Unmap>", lambda event: self.window_desapear("minimize"))
+        # Deletion of the original Title Bar
+        self.root.overrideredirect(1)
+        #   Sets the window screen resolution
+        self.window_init_resolution(
+            self.root.winfo_screenwidth(),
+            self.root.winfo_screenheight())
+        #   Generation of new responsive images
+        self.responsive_imgs()
+        #   Generation of the new title bar
+        self.titlebar_init()
 
         # Window configuration
-        self.window = tk.Toplevel(self.root)
+        self.hidden_window = tk.Toplevel(self.root)
 
-        self.window_init_resolution(  # Sets the window screen resolution
-            self.window.winfo_screenwidth(), self.window.winfo_screenheight())
-        self.responsive_imgs()  # Generation of new responsive images
-        self.titlebar_init()  # Generation of the new title bar
-        for window in (self.root, self.window):
-            window.protocol(
-                "WM_DELETE_WINDOW", lambda: self.window_desapear("close"))
-        self.root.iconbitmap(
+        #   Hide of the top window
+        self.hidden_window.attributes("-alpha", 0.0)
+        self.hidden_window.title("BirDayBer")
+        self.hidden_window.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
+        #   Actions for maximizing and minimizing the root from the taskbar
+        self.root.bind("<Map>",   self.window_deiconify)
+        self.root.bind("<Unmap>", self.window_iconify)
 
-        img = tk.PhotoImage(  # Illusory task bar image
-            file="bin//system_content//visual_content//illusion.png")
-        tk.Label(self.root, image=img, bd=0, highlightthickness=0).pack()
+        #   Implementation of actions for when the window is closed
+        for widget in (self.hidden_window, self.root):
+            widget.protocol("WM_DELETE_WINDOW", self.close_client)
 
-        self.window.mainloop() if mainloop else None
+        self.root.mainloop() if mainloop else None
 
-    def window_desapear(self, action, opacity=1):
-        """
-        Method that adds a little animation to the main window when this
-        one is minimized, maximized or closed.
-        """
-        if opacity > 0.2:
-            self.window.attributes("-alpha", opacity)
-            return self.window.after(43, lambda: self.window_desapear(
-                action, opacity - 0.1))
+    # def window_desapear(self, action, opacity=1):  # Check later...
+    #     """
+    #     Method that adds a little animation to the main window when this
+    #     one is minimized, maximized or closed.
+    #     """
+    #     if opacity > 0.2:
+    #         self.root.attributes("-alpha", opacity)
+    #         return self.root.after(43, lambda: self.window_desapear(
+    #             action, opacity - 0.1))
 
-        if action == "close":
-            self.close_client()
-        elif action == "minimize":
-            self.window_iconify()
-            self.window.attributes("-alpha", 1)
-            # Conitnue checking about the new auto-generative window
+    #     if action == "close":
+    #         self.close_client()
+    #     elif action == "minimize":
+    #         self.root.attributes("-alpha", 1.0)
+    #         self.window_iconify()
 
     def window_init_resolution(self, width, height):
         """
@@ -220,12 +223,12 @@ class Birdayber_client(Birdayber_database):
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
 
-        self.window.geometry("%sx%s+%s+%s" % (
+        self.root.geometry("%sx%s+%s+%s" % (
             self.screen_width, self.screen_height,
             self.x_position, self.y_position))
 
-        self.window.update()
-        return str(self.window.geometry())
+        self.root.update()
+        return str(self.root.geometry())
 
     def responsive_imgs(self):
         """
@@ -253,8 +256,8 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def window_iconify(self, event=None): self.window.withdraw()
-    def window_deiconify(self, event=None): self.window.deiconify()
+    def window_iconify(self, event=None): self.root.withdraw()
+    def window_deiconify(self, event=None): self.root.deiconify()
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
     def window_dragging(self, event):
@@ -267,20 +270,19 @@ class Birdayber_client(Birdayber_database):
         cursor_position_x = event.x - self.x
         cursor_position_y = event.y - self.y
 
-        window_position_x = self.window.winfo_x() + cursor_position_x
-        window_position_y = self.window.winfo_y() + cursor_position_y
+        window_position_x = self.root.winfo_x() + cursor_position_x
+        window_position_y = self.root.winfo_y() + cursor_position_y
 
-        self.window.geometry("+%s+%s" % (window_position_x, window_position_y))
+        self.root.geometry("+%s+%s" % (window_position_x, window_position_y))
 
     def titlebar_init(self):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
-        self.window.overrideredirect(1)  # Deletion of the original Title Bar
         location = "bin//system_content//visual_content//responsive//"
 
         self.title_bar = tk.Frame(
-            self.window, bg="#316477", height=round(self.screen_height / 20))
+            self.root, bg="#316477", height=round(self.screen_height / 20))
         self.title_bar.pack(fill="x")
 
         self.images = []
@@ -301,8 +303,8 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722",
-            command=lambda: self.window_desapear("close"))
-        buttons[2].config(command=lambda: self.window_desapear("minimize"))
+            command=lambda: self.close_client())
+        buttons[2].config(command=lambda: self.window_deiconify)
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
