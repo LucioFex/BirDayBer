@@ -164,7 +164,7 @@ class Birdayber_client(Birdayber_database):
         # Root configuration
         self.root = tk.Tk()
 
-        # Deletion of the original Title Bar
+        #   Deletion of the original Title Bar
         self.root.overrideredirect(1)
         #   Sets the window screen resolution
         self.window_init_resolution(
@@ -180,11 +180,10 @@ class Birdayber_client(Birdayber_database):
 
         #   Hide of the top window
         self.hidden_window.attributes("-alpha", 0.0)
-        self.hidden_window.title("BirDayBer")
         self.hidden_window.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
         #   Actions for maximizing and minimizing the root from the taskbar
-        self.root.bind("<Map>",   self.window_deiconify)
+        self.root.bind("<Map>", self.window_deiconify)  #  Continue working here
         self.root.bind("<Unmap>", self.window_iconify)
 
         #   Implementation of actions for when the window is closed
@@ -302,9 +301,8 @@ class Birdayber_client(Birdayber_database):
             buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
 
         buttons[0].config(
-            activebackground="#911722",
-            command=lambda: self.close_client())
-        buttons[2].config(command=lambda: self.window_deiconify)
+            activebackground="#911722", command=self.close_client)
+        buttons[2].config(command=self.root.withdraw)
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
