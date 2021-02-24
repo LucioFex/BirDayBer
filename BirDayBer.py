@@ -146,7 +146,6 @@ class Birdayber_database:
         """
         It makes the program close the database and stop mainlooping.
         """
-        print("HELLO")
         self.db.close_database()
         self.root.destroy()
 
@@ -183,8 +182,8 @@ class Birdayber_client(Birdayber_database):
         self.hidden_window.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
         #   Actions for maximizing and minimizing the root from the taskbar
-        self.root.bind("<Map>", self.window_deiconify)  #  Continue working here
-        self.root.bind("<Unmap>", self.window_iconify)
+        self.hidden_window.bind("<Map>", self.window_deiconify)
+        self.hidden_window.bind("<Unmap>", self.window_iconify)
 
         #   Implementation of actions for when the window is closed
         for widget in (self.hidden_window, self.root):
@@ -302,7 +301,7 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.root.withdraw)
+        buttons[2].config(command=self.window_iconify)
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
