@@ -174,7 +174,7 @@ class Birdayber_client(Birdayber_database):
         #   Generation of the new title bar
         self.titlebar_init()
 
-        # Window configuration
+        # Hidden-Window configuration
         self.hidden_window = tk.Toplevel(self.root)
 
         #   Hide of the top window
@@ -182,12 +182,13 @@ class Birdayber_client(Birdayber_database):
         self.hidden_window.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
         #   Actions for maximizing and minimizing the root from the taskbar
-        self.hidden_window.bind("<Map>", self.window_deiconify)
-        self.hidden_window.bind("<Unmap>", self.window_iconify)
+        self.hidden_window.bind("<Map>", self.visual_window)
+        self.hidden_window.bind("<Unmap>", self.visual_window)
 
         #   Implementation of actions for when the window is closed
         for widget in (self.hidden_window, self.root):
             widget.protocol("WM_DELETE_WINDOW", self.close_client)
+        # self.root.wm_attributes("-topmost", True)
 
         self.root.mainloop() if mainloop else None
 
@@ -254,8 +255,15 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def window_iconify(self, event=None): self.root.withdraw()
-    def window_deiconify(self, event=None): self.root.deiconify()
+    def visual_window(self, event):
+        if event.type == tk.EventType.Map:
+            self.root.deiconify()
+            self.root.wm_attributes("-topmost", True)
+            self.root.wm_attributes("-topmost", False)
+
+        elif event.type == tk.EventType.Unmap:
+            self.root.withdraw()
+
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
     def window_dragging(self, event):
@@ -301,7 +309,7 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.window_iconify)
+        buttons[2].config(command=self.root.withdraw)
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
