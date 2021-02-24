@@ -256,6 +256,9 @@ class Birdayber_client(Birdayber_database):
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def visual_window(self, event):
+        """
+        Method in charge to maximize or minimize the main window (root)
+        """
         if event.type == tk.EventType.Map:
             self.root.deiconify()
             self.root.wm_attributes("-topmost", True)
