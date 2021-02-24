@@ -178,6 +178,8 @@ class Birdayber_client(Birdayber_database):
         self.hidden_window = tk.Toplevel(self.root)
 
         #   Hide of the top window
+        self.hidden_window.title("BirDayBer")
+        self.hidden_window.geometry("0x0+10000+10000")
         self.hidden_window.attributes("-alpha", 0.0)
         self.hidden_window.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
@@ -191,22 +193,6 @@ class Birdayber_client(Birdayber_database):
         # self.root.wm_attributes("-topmost", True)
 
         self.root.mainloop() if mainloop else None
-
-    # def window_desapear(self, action, opacity=1):  # Check later...
-    #     """
-    #     Method that adds a little animation to the main window when this
-    #     one is minimized, maximized or closed.
-    #     """
-    #     if opacity > 0.2:
-    #         self.root.attributes("-alpha", opacity)
-    #         return self.root.after(43, lambda: self.window_desapear(
-    #             action, opacity - 0.1))
-
-    #     if action == "close":
-    #         self.close_client()
-    #     elif action == "minimize":
-    #         self.root.attributes("-alpha", 1.0)
-    #         self.window_iconify()
 
     def window_init_resolution(self, width, height):
         """
