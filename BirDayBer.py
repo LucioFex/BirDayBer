@@ -190,7 +190,6 @@ class Birdayber_client(Birdayber_database):
         #   Implementation of actions for when the window is closed
         for widget in (self.hidden_window, self.root):
             widget.protocol("WM_DELETE_WINDOW", self.close_client)
-        # self.root.wm_attributes("-topmost", True)
 
         self.root.mainloop() if mainloop else None
 
@@ -241,16 +240,16 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def visual_window(self, event):
+    def visual_window(self, event):  # Continue working here
         """
         Method in charge to maximize or minimize the main window (root)
         """
+        stack_order = self.root.tk.eval("wm stackorder %s" % self.root)
+
         if event.type == tk.EventType.Map:
             self.root.deiconify()
-            self.root.wm_attributes("-topmost", True)
-            self.root.wm_attributes("-topmost", False)
 
-        elif event.type == tk.EventType.Unmap:
+        elif event.type == tk.EventType.Unmap or stack_order == ".":
             self.root.withdraw()
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
