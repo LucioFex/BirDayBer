@@ -245,6 +245,10 @@ class Birdayber_client(Birdayber_database):
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def window_focus(self, event):
+        """
+        Method that declares if the program (recognized by the task manager)
+        is focused or not.
+        """
         if event.type == tk.EventType.FocusIn:
             self.focus = True
         elif event.type == tk.EventType.FocusOut:
