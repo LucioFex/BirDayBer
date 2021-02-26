@@ -245,11 +245,21 @@ class Birdayber_client(Birdayber_database):
         Method in charge to maximize or minimize the main window (root)
         """
         stack_order = self.root.tk.eval("wm stackorder %s" % self.root)
+        print(stack_order)
+
+        # if stack_order == ".!toplevel":
+        #     print("1 -- Maped")
+
+        # elif stack_order == ".":
+        #     print("2 -- Unmaped")
+
+        # elif stack_order == ". .!toplevel":
+        #     print("3 -- Behind")
 
         if event.type == tk.EventType.Map:
             self.root.deiconify()
 
-        elif event.type == tk.EventType.Unmap or stack_order == ".":
+        elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
