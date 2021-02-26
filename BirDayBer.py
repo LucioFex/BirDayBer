@@ -240,22 +240,10 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def visual_window(self, event):  # Continue working here
+    def visual_window(self, event):
         """
-        Method in charge to maximize or minimize the main window (root)
+        Method in charge to map or unmap the main window (root)
         """
-        stack_order = self.root.tk.eval("wm stackorder %s" % self.root)
-        print(stack_order)
-
-        # if stack_order == ".!toplevel":
-        #     print("1 -- Maped")
-
-        # elif stack_order == ".":
-        #     print("2 -- Unmaped")
-
-        # elif stack_order == ". .!toplevel":
-        #     print("3 -- Behind")
-
         if event.type == tk.EventType.Map:
             self.root.deiconify()
 
