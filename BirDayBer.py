@@ -154,6 +154,8 @@ class Birdayber_client(Birdayber_database):
     """
     This class is specialized in the generation and maintenance of the UI.
     """
+    focus = True
+
     def __init__(self, db_connection, mainloop=False):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
@@ -186,6 +188,8 @@ class Birdayber_client(Birdayber_database):
         #   Actions for maximizing and minimizing the root from the taskbar
         self.hidden_window.bind("<Map>", self.visual_window)
         self.hidden_window.bind("<Unmap>", self.visual_window)
+        self.hidden_window.bind("<FocusIn>", self.window_focus)
+        self.hidden_window.bind("<FocusOut>", self.window_focus)
 
         #   Implementation of actions for when the window is closed
         for widget in (self.hidden_window, self.root):
@@ -239,6 +243,12 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_width * 6.5 / 100),
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
+
+    def window_focus(self, event):
+        if event.type == tk.EventType.FocusIn:
+            self.focus = True
+        elif event.type == tk.EventType.FocusOut:
+            self.focus = False
 
     def visual_window(self, event):
         """
