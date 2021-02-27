@@ -186,8 +186,8 @@ class Birdayber_client(Birdayber_database):
         self.hidden_window.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
         #   Actions for maximizing and minimizing the root from the taskbar
-        self.hidden_window.bind("<Map>", self.visual_window)
-        self.hidden_window.bind("<Unmap>", self.visual_window)
+        # self.hidden_window.bind("<Map>", self.visual_window)
+        # self.hidden_window.bind("<Unmap>", self.visual_window)
         self.hidden_window.bind("<FocusIn>", self.window_focus)
         self.hidden_window.bind("<FocusOut>", self.window_focus)
 
@@ -250,19 +250,20 @@ class Birdayber_client(Birdayber_database):
         is focused or not.
         """
         if event.type == tk.EventType.FocusIn:
-            self.focus = True
-        elif event.type == tk.EventType.FocusOut:
-            self.focus = False
-
-    def visual_window(self, event):
-        """
-        Method in charge to map or unmap the main window (root)
-        """
-        if event.type == tk.EventType.Map:
             self.root.deiconify()
 
-        elif event.type == tk.EventType.Unmap:
+        elif event.type == tk.EventType.FocusOut:
             self.root.withdraw()
+
+    # def visual_window(self, window):
+    #     """
+    #     Method in charge to map or unmap the main window (root)
+    #     """
+    #     if window:
+    #         self.root.deiconify()
+
+    #     elif window is False:
+    #         self.root.withdraw()
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
