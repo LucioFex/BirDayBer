@@ -187,9 +187,9 @@ class Birdayber_client(Birdayber_database):
             "bin//system_content//visual_content//BirDayBerIcon.ico")
         #   Actions for maximizing and minimizing the root from the taskbar
         # self.hidden_window.bind("<Map>", self.visual_window)
-        # self.hidden_window.bind("<Unmap>", self.visual_window)
+        self.hidden_window.bind("<Unmap>", self.window_focus)
         self.hidden_window.bind("<FocusIn>", self.window_focus)
-        self.hidden_window.bind("<FocusOut>", self.window_focus)
+        # self.hidden_window.bind("<FocusOut>", self.window_focus)
 
         #   Implementation of actions for when the window is closed
         for widget in (self.hidden_window, self.root):
@@ -252,8 +252,9 @@ class Birdayber_client(Birdayber_database):
         if event.type == tk.EventType.FocusIn:
             self.root.deiconify()
 
-        elif event.type == tk.EventType.FocusOut:
+        elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
+        print(event.type)
 
     # def visual_window(self, window):
     #     """
