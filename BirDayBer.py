@@ -254,17 +254,6 @@ class Birdayber_client(Birdayber_database):
 
         elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
-        print(event.type)
-
-    # def visual_window(self, window):
-    #     """
-    #     Method in charge to map or unmap the main window (root)
-    #     """
-    #     if window:
-    #         self.root.deiconify()
-
-    #     elif window is False:
-    #         self.root.withdraw()
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
