@@ -1,5 +1,8 @@
-# BirDayBer (Still in development)
-'BirDayBer' is an application made for irresponsible people with friends or family birthdays like me. So it allows you to add birthdays and other minimal information to a database to notify you to remember them.
+# BirDayBer
+'BirDayBer' is an application made for irresponsible people with friends or family birthdays like me.
+It allows you to add birthdays and other minimal information to a database.
+
+This program will also remind you with a notification if it is someone's birthday.
 
 ### Image of the BirDayBer conceptual interface:
 
@@ -49,6 +52,9 @@ I insist, every pull request will be welcome.
 - User icon from [DinosoftLabs (flaticon)](https://www.flaticon.com/free-icon/user_4018596).
 - Court icon from [Nikita Golubev (flaticon)](https://www.flaticon.com/free-icon/court_1750412?related_id=1750530&origin=search).
 
+
+## ```Project Status: Incomplete```
+
 ## License
 
-MIT © [Luciano Esteban](https://github.com/LucioFex)
+#### MIT © [Luciano Esteban](https://github.com/LucioFex)
