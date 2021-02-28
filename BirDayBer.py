@@ -186,12 +186,12 @@ class Birdayber_client(Birdayber_database):
         self.hidden_window.iconbitmap(
             "bin//system_content//visual_content//BirDayBerIcon.ico")
         #   Actions for maximizing and minimizing the root from the taskbar
-        self.hidden_window.bind("<Unmap>", lambda x: self.window_desapear(x, 1.0))
-        self.hidden_window.bind("<FocusIn>", lambda x: self.window_desapear(x, 1.0))
+        self.hidden_window.bind("<Unmap>", self.window_focus)
+        self.hidden_window.bind("<FocusIn>", self.window_focus)
 
         #   Implementation of actions for when the window is closed
-
-        self.root.protocol("WM_DELETE_WINDOW", self.close_client)
+        for widget in (self.hidden_window, self.root):
+            widget.protocol("WM_DELETE_WINDOW", self.close_client)
 
         self.root.mainloop() if mainloop else None
 
@@ -247,26 +247,14 @@ class Birdayber_client(Birdayber_database):
         Method that declares if the program (recognized by the task manager)
         is focused or not.
         """
+        self.root.attributes("-alpha", 1.0)
         if event.type == tk.EventType.FocusIn:
             self.root.deiconify()
         elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
 
-    def window_desapear(self, event, opacity):
-        self.root.attributes("-alpha", opacity)
-
-        if opacity > 0.2 and event.type == tk.EventType.Unmap:
-            opacity -= 0.2
-            return self.root.after(
-                43, lambda: self.window_desapear(event, opacity))
-
-        # elif opacity < 1.0 and event.type == tk.EventType.Unmap:
-
-        # self.root.attributes("-alpha", 0.2)
-        self.root.attributes("-alpha", 1.0)
-        self.window_focus(event)
-        # if opacity <= 0.2:
-        #     self.hidden_window.destroy()
+        # self.hidden_window.protocol("WM_DELETE_WINDOW", None)
+            # self.hidden_window.destroy()  # Continue here Lucio
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
