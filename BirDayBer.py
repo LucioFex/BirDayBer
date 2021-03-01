@@ -154,8 +154,6 @@ class Birdayber_client(Birdayber_database):
     """
     This class is specialized in the generation and maintenance of the UI.
     """
-    focus = True
-
     def __init__(self, db_connection, mainloop=False):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
@@ -247,14 +245,10 @@ class Birdayber_client(Birdayber_database):
         Method that declares if the program (recognized by the task manager)
         is focused or not.
         """
-        self.root.attributes("-alpha", 1.0)
         if event.type == tk.EventType.FocusIn:
             self.root.deiconify()
         elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
-
-        # self.hidden_window.protocol("WM_DELETE_WINDOW", None)
-            # self.hidden_window.destroy()  # Continue here Lucio
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
