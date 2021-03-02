@@ -246,7 +246,7 @@ class Birdayber_client(Birdayber_database):
     def window_focus(self, event):
         """
         Method that declares if the program (recognized by the task manager)
-        is focused or not.
+        is focused or not. Then it will minimize or re-open the window
         """
         if event.type == tk.EventType.FocusIn:
             self.root.deiconify()
