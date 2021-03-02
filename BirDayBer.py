@@ -277,25 +277,24 @@ class Birdayber_client(Birdayber_database):
             self.root, bg="#316477", height=round(self.screen_height / 20))
         self.title_bar.pack(fill="x")
 
-        self.images = []
+        self.imgs = []
         for img in ("close-button.png", "maximize-button.png",
                     "minimize-button.png", "BirDayBerIcon.png"):
-            self.images.append(tk.PhotoImage(file=location + img))
-
-        self.icon = tk.Label(
-            self.title_bar, image=self.images[3], bg="#316477")
-        self.icon.pack(side=tk.LEFT)
+            self.imgs.append(tk.PhotoImage(file=location + img))
 
         buttons = []
         for index in range(3):  # Generation of buttons
             buttons.append(tk.Button(
-                self.title_bar, image=self.images[index], bg="#2c5c6d",
+                self.title_bar, image=self.imgs[index], bg="#2c5c6d",
                 relief=tk.FLAT, bd=0, activebackground="#1e5061"))
             buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
         buttons[2].config(command=self.root.withdraw)
+
+        self.icon = tk.Label(self.title_bar, image=self.imgs[3], bg="#316477")
+        self.icon.pack(side=tk.LEFT)
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
