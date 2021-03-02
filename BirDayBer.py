@@ -178,18 +178,21 @@ class Birdayber_client(Birdayber_database):
         self.hidden_window = tk.Toplevel(self.root)
 
         #   Hide of the top window
-        self.hidden_window.title("BirDayBer")
         self.hidden_window.geometry("0x0+10000+10000")
         self.hidden_window.attributes("-alpha", 0.0)
-        self.hidden_window.iconbitmap(
-            "bin//system_content//visual_content//BirDayBerIcon.ico")
         #   Actions for maximizing and minimizing the root from the taskbar
         self.hidden_window.bind("<Unmap>", self.window_focus)
         self.hidden_window.bind("<FocusIn>", self.window_focus)
 
-        #   Implementation of actions for when the window is closed
+        # Implementation of actions for when the window is closed
         for widget in (self.hidden_window, self.root):
             widget.protocol("WM_DELETE_WINDOW", self.close_client)
+
+        # Visual brand modifications
+        for visual_brand in (self.root, self.hidden_window):
+            visual_brand.title("BirDayBer")
+            visual_brand.iconbitmap(
+                "bin//system_content//visual_content//BirDayBerIcon.ico")
 
         self.root.mainloop() if mainloop else None
 
