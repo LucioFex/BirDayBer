@@ -243,12 +243,23 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def window_focus(self, event):
+    try_it = True
+
+    def try_it_on(self):
+        if self.try_it:
+            self.try_it = False
+        elif self.try_it is False:
+            self.try_it = True
+
+    def window_focus(self, event=None):
         """
         Method that declares if the program (recognized by the task manager)
         is focused or not. Then it will minimize or re-open the window
         """
-        if event.type == tk.EventType.FocusIn:
+
+        if self.try_it is False:
+            self.try_it = True
+        elif event.type == tk.EventType.FocusIn:
             self.root.deiconify()
         elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
@@ -294,7 +305,7 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.root.withdraw)
+        buttons[2].config(command=lambda: (self.try_it_on(), self.root.withdraw()))
 
         self.icon = tk.Label(self.title_bar, image=self.imgs[3], bg="#316477")
         self.icon.pack(side=tk.LEFT)
