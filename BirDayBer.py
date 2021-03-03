@@ -154,6 +154,8 @@ class Birdayber_client(Birdayber_database):
     """
     This class is specialized in the generation and maintenance of the UI.
     """
+    manual_focus = True
+
     def __init__(self, db_connection, mainloop=False):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
@@ -243,29 +245,21 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    try_it = True
-
-    def try_it_on(self):
-        if self.try_it:
-            self.try_it = False
-        elif self.try_it is False:
-            self.try_it = True
-
     def window_focus(self, event):
         """
         Method that declares if the program (recognized by the task manager)
         is focused or not. Then it will minimize or re-open the window
         """
         if event == "manual":
-            self.try_it = False
+            self.manual_focus = False
             return self.root.withdraw()
 
-        if event.type == tk.EventType.FocusIn and self.try_it:
+        if event.type == tk.EventType.FocusIn and self.manual_focus:
             self.root.deiconify()
         elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
 
-        self.try_it = True
+        self.manual_focus = True
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
