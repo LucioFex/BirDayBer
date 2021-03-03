@@ -251,18 +251,21 @@ class Birdayber_client(Birdayber_database):
         elif self.try_it is False:
             self.try_it = True
 
-    def window_focus(self, event=None):
+    def window_focus(self, event):
         """
         Method that declares if the program (recognized by the task manager)
         is focused or not. Then it will minimize or re-open the window
         """
+        if event == "manual":
+            self.try_it = False
+            return self.root.withdraw()
 
-        if self.try_it is False:
-            self.try_it = True
-        elif event.type == tk.EventType.FocusIn:
+        if event.type == tk.EventType.FocusIn and self.try_it:
             self.root.deiconify()
         elif event.type == tk.EventType.Unmap:
             self.root.withdraw()
+
+        self.try_it = True
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
@@ -305,7 +308,7 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=lambda: (self.try_it_on(), self.root.withdraw()))
+        buttons[2].config(command=lambda: self.window_focus("manual"))
 
         self.icon = tk.Label(self.title_bar, image=self.imgs[3], bg="#316477")
         self.icon.pack(side=tk.LEFT)
