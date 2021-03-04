@@ -250,7 +250,6 @@ class Birdayber_client(Birdayber_database):
         Method that declares if the program (recognized by the task manager)
         is focused or not. Then it will minimize or re-open the window
         """
-        print(event)
         stack_order = self.hidden_window.tk.eval(
             "wm stackorder %s" % self.hidden_window)
 
