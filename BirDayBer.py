@@ -255,9 +255,8 @@ class Birdayber_client(Birdayber_database):
 
         if event == "manual" and stack_order != ".!toplevel .":
             self.manual_focus = False
-            return self.root.withdraw()
 
-        elif event == "manual" and stack_order == ".!toplevel .":
+        if event == "manual":
             return self.root.withdraw()
 
         if event.type == tk.EventType.FocusIn and self.manual_focus:
