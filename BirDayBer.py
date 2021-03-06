@@ -245,7 +245,11 @@ class Birdayber_client(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-    def manual_minimize(self):
+    def title_bar_minimize(self):
+        """
+        This method is a manual way to minimize the window
+        with the 'minimize' button of the title bar.
+        """
         self.hidden_window.unbind("<FocusIn>")
         self.root.withdraw()
         self.root.update()
@@ -303,7 +307,7 @@ class Birdayber_client(Birdayber_database):
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.manual_minimize)
+        buttons[2].config(command=self.title_bar_minimize)
 
         self.icon = tk.Label(self.title_bar, image=self.imgs[3], bg="#316477")
         self.icon.pack(side=tk.LEFT)
