@@ -172,7 +172,7 @@ class Birdayber_client(Birdayber_database):
         #   Generation of new responsive images
         self.responsive_imgs()
         #  Generation of the main frame
-        self.frame = tk.Frame(self.root, bg="#0f6aa6")
+        self.frame = tk.Frame(self.root)
         self.frame.pack(fill=tk.BOTH)
         #   Generation of the new title bar
         self.titlebar_init()
