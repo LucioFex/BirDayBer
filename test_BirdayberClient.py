@@ -119,6 +119,15 @@ class BirDayBerClient_testing(unittest.TestCase):
             self.assertTrue(os.path.exists(img))
             os.remove(img)
 
+    def test_window_focus(self):
+        root = self.interface.root
+
+        self.assertEqual(root.tk.eval(f"wm stackorder {root}"), ". .!toplevel")
+        self.interface.title_bar_minimize()
+        self.assertEqual(root.tk.eval(f"wm stackorder {root}"), ".!toplevel")
+        self.interface.root.deiconify()
+        self.assertEqual(root.tk.eval(f"wm stackorder {root}"), ".!toplevel .")
+
 
 if __name__ == "__main__":
     unittest.main()
