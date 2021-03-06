@@ -154,8 +154,6 @@ class Birdayber_client(Birdayber_database):
     """
     This class is specialized in the generation and maintenance of the UI.
     """
-    manual_focus = True
-
     def __init__(self, db_connection, mainloop=False):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
@@ -228,7 +226,7 @@ class Birdayber_client(Birdayber_database):
         location = "bin//system_content//visual_content"
         files = next(os.walk(location))[2]
 
-        for img in files:  # Refactor later
+        for img in files:  # Refactor when you have all the imgs
             if img in (  # Title bar section
                 "close-button.png", "minimize-button.png",
                     "maximize-button.png", "maximized-button.png"):
