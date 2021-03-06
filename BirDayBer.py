@@ -160,7 +160,7 @@ class Birdayber_client(Birdayber_database):
         """
         super().__init__(db_connection)
 
-        # Root configuration
+        # Root and Frame - generation and configuration:
         self.root = tk.Tk()
 
         #   Deletion of the original Title Bar
@@ -171,10 +171,13 @@ class Birdayber_client(Birdayber_database):
             self.root.winfo_screenheight())
         #   Generation of new responsive images
         self.responsive_imgs()
+        #  Generation of the main frame
+        self.frame = tk.Frame(self.root, bg="#0f6aa6", height=200, width=200)
+        self.frame.pack(fill=tk.BOTH)
         #   Generation of the new title bar
         self.titlebar_init()
 
-        # Hidden-Window configuration
+        # Hidden Window - generation and configuration:
         self.hidden_window = tk.Toplevel(self.root)
 
         #   Hide of the top window
@@ -288,7 +291,7 @@ class Birdayber_client(Birdayber_database):
         location = "bin//system_content//visual_content//responsive//"
 
         self.title_bar = tk.Frame(
-            self.root, bg="#316477", height=round(self.screen_height / 20))
+            self.frame, bg="#316477", height=round(self.screen_height / 20))
         self.title_bar.pack(fill="x")
 
         self.imgs = []
