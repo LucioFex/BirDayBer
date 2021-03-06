@@ -147,7 +147,7 @@ class Birdayber_database:
         It makes the program close the database and stop mainlooping.
         """
         self.db.close_database()
-        self.root.destroy()
+        self.root.quit()
 
 
 class Birdayber_client(Birdayber_database):
@@ -188,7 +188,7 @@ class Birdayber_client(Birdayber_database):
         self.hidden_window.bind("<FocusIn>", self.window_focus)
 
         # Implementation of actions for when the window is closed
-        for widget in (self.hidden_window, self.root):
+        for widget in (self.root, self.hidden_window):
             widget.protocol("WM_DELETE_WINDOW", self.close_client)
 
         # Visual brand modifications
