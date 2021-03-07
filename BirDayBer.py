@@ -142,13 +142,6 @@ class Birdayber_database:
         self.db.close_database()
         self.db.drop_database()
 
-    def close_client(self):
-        """
-        It makes the program close the database and stop mainlooping.
-        """
-        self.db.close_database()
-        self.root.quit()
-
 
 class Birdayber_setUp(Birdayber_database):
     """
@@ -277,9 +270,15 @@ class Birdayber_setUp(Birdayber_database):
 
         self.root.geometry("+%s+%s" % (window_position_x, window_position_y))
 
+    def close_client(self):
+        """
+        It makes the program close the database and stop mainlooping.
+        """
+        self.db.close_database()
+        self.root.quit()
+
 
 class Birdayber(Birdayber_setUp):
-
     def __init__(self, db_connection, mainloop=False):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
