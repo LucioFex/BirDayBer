@@ -291,6 +291,8 @@ class Birdayber(Birdayber_setUp):
 
         # Generation of the new title bar
         self.titlebar_init()
+        # Generation of the left and right side in the main body.
+        self.body_structure()
 
         self.root.mainloop() if mainloop else None
 
@@ -327,6 +329,13 @@ class Birdayber(Birdayber_setUp):
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
             label.bind("<B1-Motion>", self.window_dragging)
+
+    def body_structure(self):
+        self.left_side = tk.Frame(
+            self.frame, bg="#43575f",
+            height=round(self.screen_height * 93 / 100),
+            width=round(self.screen_width * 34 / 100))
+        self.left_side.pack(side=tk.LEFT)
 
 
 if __name__ == '__main__':
