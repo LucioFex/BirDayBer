@@ -15,7 +15,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Initialize the GUI and adds some people to be tested.
         """
-        cls.interface = BirDayBer.Birdayber_client("testing//BirDayBer.db")
+        cls.interface = BirDayBer.Birdayber("testing//BirDayBer.db")
 
         cls.interface.add_person({
             "countries": {"country": "Argentina"},
@@ -129,7 +129,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(root.tk.eval(f"wm stackorder {root}"), ".!toplevel .")
 
     def test_total_children_per_widget(self):
-        self.assertEqual(len(self.interface.root.winfo_children()), 2)
+        self.assertEqual(len(self.interface.root.winfo_children()), 4)
         self.assertEqual(len(self.interface.title_bar.winfo_children()), 4)
 
 
