@@ -331,6 +331,10 @@ class Birdayber(Birdayber_setUp):
             label.bind("<B1-Motion>", self.window_dragging)
 
     def body_structure(self):
+        """
+        This method generates the frames (background) for the
+        user interactivity with the GUI.
+        """
         self.left_side = tk.Frame(
             self.frame, bg="#43575f",
             height=round(self.screen_height * 93 / 100),
