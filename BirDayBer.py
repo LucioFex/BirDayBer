@@ -150,14 +150,11 @@ class Birdayber_database:
         self.root.quit()
 
 
-class Birdayber_client(Birdayber_database):
+class Birdayber_setUp(Birdayber_database):
     """
-    This class is specialized in the generation and maintenance of the UI.
+    This class is specialized in the generation of the GUI.
     """
-    def __init__(self, db_connection, mainloop=False):
-        """
-        If the 'mainloop' parameter is 'True' the program will main-loop.
-        """
+    def __init__(self, db_connection):
         super().__init__(db_connection)
 
         # Root and Frame - Generation and Configuration:
@@ -174,8 +171,6 @@ class Birdayber_client(Birdayber_database):
         #  Generation of the main frame
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill=tk.BOTH)
-        #   Generation of the new title bar
-        self.titlebar_init()
 
         # Hidden Window - Generation and Configuration:
         self.hidden_window = tk.Toplevel(self.root)
@@ -196,8 +191,6 @@ class Birdayber_client(Birdayber_database):
             visual_brand.title("BirDayBer")
             visual_brand.iconbitmap(
                 "bin//system_content//visual_content//BirDayBerIcon.ico")
-
-        self.root.mainloop() if mainloop else None
 
     def window_init_resolution(self, width, height):
         """
@@ -284,6 +277,20 @@ class Birdayber_client(Birdayber_database):
 
         self.root.geometry("+%s+%s" % (window_position_x, window_position_y))
 
+
+class Birdayber(Birdayber_setUp):
+
+    def __init__(self, db_connection, mainloop=False):
+        """
+        If the 'mainloop' parameter is 'True' the program will main-loop.
+        """
+        super().__init__(db_connection)
+
+        # Generation of the new title bar
+        self.titlebar_init()
+
+        self.root.mainloop() if mainloop else None
+
     def titlebar_init(self):
         """
         Generation of the new Title Bar and elimination of the previous one.
@@ -319,4 +326,4 @@ class Birdayber_client(Birdayber_database):
 
 
 if __name__ == '__main__':
-    BirDayBer = Birdayber_client("bin//BirDayBer.db", True)
+    BirDayBer = Birdayber("bin//BirDayBer.db", True)
