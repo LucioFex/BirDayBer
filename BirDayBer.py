@@ -279,6 +279,10 @@ class Birdayber_setUp(Birdayber_database):
 
 
 class Birdayber(Birdayber_setUp):
+    """
+    This class is prepared to generate all the visual
+    aspect and functionality of the main window (GUI).
+    """
     def __init__(self, db_connection, mainloop=False):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
@@ -296,19 +300,19 @@ class Birdayber(Birdayber_setUp):
         """
         location = "bin//system_content//visual_content//responsive//"
 
+        self.titlebar_img = []
+        for img in ("close-button.png", "maximize-button.png",
+                    "minimize-button.png", "BirDayBerIcon.png"):
+            self.titlebar_img.append(tk.PhotoImage(file=location + img))
+
         self.title_bar = tk.Frame(
             self.frame, bg="#316477", height=round(self.screen_height / 20))
         self.title_bar.pack(fill="x")
 
-        self.imgs = []
-        for img in ("close-button.png", "maximize-button.png",
-                    "minimize-button.png", "BirDayBerIcon.png"):
-            self.imgs.append(tk.PhotoImage(file=location + img))
-
         buttons = []
         for index in range(3):  # Generation of buttons
             buttons.append(tk.Button(
-                self.title_bar, image=self.imgs[index], bg="#2c5c6d",
+                self.title_bar, image=self.titlebar_img[index], bg="#2c5c6d",
                 relief=tk.FLAT, bd=0, activebackground="#1e5061"))
             buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
 
@@ -316,7 +320,8 @@ class Birdayber(Birdayber_setUp):
             activebackground="#911722", command=self.close_client)
         buttons[2].config(command=self.title_bar_minimize)
 
-        self.icon = tk.Label(self.title_bar, image=self.imgs[3], bg="#316477")
+        self.icon = tk.Label(
+            self.title_bar, image=self.titlebar_img[3], bg="#316477")
         self.icon.pack(side=tk.LEFT)
 
         for label in (self.title_bar, self.icon):
