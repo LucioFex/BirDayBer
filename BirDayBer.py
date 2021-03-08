@@ -347,6 +347,16 @@ class Birdayber(Birdayber_setUp):
             height=round(self.screen_height * 93 / 100))
         self.right_side.pack(side=tk.RIGHT)
 
+        self.left_side_structure()
+
+    def left_side_structure(self):
+        self.title = tk.Label(
+            self.left_side, bg="forestgreen", text="BirDayBer",
+            font=("Century Gothic MS", 15),
+            width=round((self.screen_width * 17.1 / 100) / 18),
+            height=round((self.screen_height * 7 / 100) / 18))
+        self.title.pack()
+
 
 if __name__ == '__main__':
     BirDayBer = Birdayber("bin//BirDayBer.db", True)
