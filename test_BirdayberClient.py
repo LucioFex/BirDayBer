@@ -132,6 +132,8 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(len(self.interface.root.winfo_children()), 2)
         self.assertEqual(len(self.interface.frame.winfo_children()), 3)
         self.assertEqual(len(self.interface.title_bar.winfo_children()), 4)
+        self.assertEqual(len(self.interface.left_side.winfo_children()), 5)
+        self.assertEqual(len(self.interface.right_side.winfo_children()), 8)
 
 
 if __name__ == "__main__":
