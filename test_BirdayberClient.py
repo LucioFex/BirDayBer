@@ -129,7 +129,8 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(root.tk.eval(f"wm stackorder {root}"), ".!toplevel .")
 
     def test_total_children_per_widget(self):
-        self.assertEqual(len(self.interface.root.winfo_children()), 4)
+        self.assertEqual(len(self.interface.root.winfo_children()), 2)
+        self.assertEqual(len(self.interface.frame.winfo_children()), 3)
         self.assertEqual(len(self.interface.title_bar.winfo_children()), 4)
 
 
