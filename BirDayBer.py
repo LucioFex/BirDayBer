@@ -339,13 +339,13 @@ class Birdayber(Birdayber_setUp):
             self.frame, bg="#43575f",
             width=round(self.screen_width * 34 / 100),
             height=round(self.screen_height * 93 / 100))
-        self.left_side.pack(side=tk.LEFT)
+        self.left_side.pack(side=tk.LEFT, fill=tk.BOTH)
 
         self.right_side = tk.Frame(
             self.frame, bg="#3b4d54",
             width=round(self.screen_width * 66.6 / 100),
             height=round(self.screen_height * 93 / 100))
-        self.right_side.pack(side=tk.RIGHT)
+        self.right_side.pack(side=tk.RIGHT, fill=tk.BOTH)
 
         self.left_side_structure()
 
