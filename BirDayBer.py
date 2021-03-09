@@ -370,12 +370,15 @@ class Birdayber(Birdayber_setUp):
             height=round((self.screen_height * 7 / 100) / 33))
 
         self.search_entry = tk.Entry(
-            self.left_top, text="hola", width=50)
+            self.left_top, font=("Century Gothic", 18),
+            width=round((self.screen_width * 25.4 / 100) / 13),
+            bg="#517684", fg="#e3e3e3", bd=0, relief=tk.FLAT)
 
         self.title.pack(
             anchor="w", padx=round(self.screen_width * 1.62 / 100),
             pady=round(self.screen_width * 1.9 / 100))
-        self.search_entry.pack(anchor="w")
+        self.search_entry.pack(
+            anchor="w", ipady=9, padx=round(self.screen_width * 1.62 / 100))
 
 
 if __name__ == '__main__':
