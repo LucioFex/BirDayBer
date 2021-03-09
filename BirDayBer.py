@@ -335,6 +335,9 @@ class Birdayber(Birdayber_setUp):
         This method generates the frames (background) for the
         user interactivity with the GUI.
         """
+        self.root.config(bg="#3b4d54")
+        self.frame.config(bg="#3b4d54")
+
         self.left_side = tk.Frame(
             self.frame, bg="#43575f",
             width=round(self.screen_width * 34 / 100),
