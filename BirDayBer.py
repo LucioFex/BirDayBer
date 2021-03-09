@@ -350,7 +350,7 @@ class Birdayber(Birdayber_setUp):
         self.left_side_structure()
 
     def left_side_structure(self):
-        self.left_top = tk.Frame(self.left_side, bg="purple")
+        self.left_top = tk.Frame(self.left_side, bg="#43575f")
         self.left_middle = tk.Frame(self.left_side, bg="darkgoldenrod3")
         self.left_bottom = tk.Frame(self.left_side, bg="brown")
 
@@ -361,16 +361,18 @@ class Birdayber(Birdayber_setUp):
             left_frame.pack(fill="x")
 
         self.title = tk.Label(
-            self.left_top, bg="forestgreen", text="BirDayBer",
-            font=("Century Gothic MS", 15),
-            width=round((self.screen_width * 17.1 / 100) / 18),
-            height=round((self.screen_height * 7 / 100) / 18))
+            self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
+            font=("Century Gothic", 30),
+            width=round((self.screen_width * 17.1 / 100) / 25),
+            height=round((self.screen_height * 7 / 100) / 33))
 
         self.search_entry = tk.Entry(
             self.left_top, text="hola", width=50)
 
-        self.title.pack(anchor="w")
-        self.search_entry.pack(side=tk.BOTTOM)
+        self.title.pack(
+            anchor="w", padx=round(self.screen_width * 1.62 / 100),
+            pady=round(self.screen_width * 1.9 / 100))
+        self.search_entry.pack(anchor="w")
 
 
 if __name__ == '__main__':
