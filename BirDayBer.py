@@ -235,8 +235,8 @@ class Birdayber_setUp(Birdayber_database):
             elif img in ("user_white.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
-                    round(self.screen_width * 4.4 / 100),
-                    round(self.screen_height * 7.3 / 100)))
+                    round(self.screen_width * 6 / 100),
+                    round(self.screen_height * 8 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def title_bar_minimize(self):
@@ -379,14 +379,14 @@ class Birdayber(Birdayber_setUp):
         self.search_entry.insert(0, "Search")
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
-        self.person_icon = tk.Label(self.left_top, image=self.person_icon_img)
+        self.person_icon = tk.Label(
+            self.left_top, image=self.person_icon_img, bg="#4d717f")
 
         self.title.pack(
             anchor="w", padx=round(self.screen_width * 1.62 / 100),
             pady=round(self.screen_width * 1.9 / 100))
-        self.person_icon.pack(anchor="w")
-        self.search_entry.pack(
-            anchor="w", ipady=8, padx=round(self.screen_width * 1.62 / 100))
+        self.person_icon.pack(anchor="w", side=tk.LEFT)
+        self.search_entry.pack(anchor="w", ipady=8)
 
 
 if __name__ == '__main__':
