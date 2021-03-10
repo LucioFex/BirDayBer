@@ -358,10 +358,7 @@ class Birdayber(Birdayber_setUp):
         self.left_bottom = tk.Frame(self.left_side, bg="brown")
 
         for left_frame in (self.left_top, self.left_middle, self.left_bottom):
-            left_frame.config(
-                height=round((self.screen_height * 93 / 100) / 3),
-                width=round(self.screen_width * 34 / 100))
-            left_frame.pack(fill="x")
+            left_frame.pack()
 
         self.title = tk.Label(
             self.left_top, bg="#334248", text="BirDayBer",
