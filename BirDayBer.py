@@ -360,6 +360,8 @@ class Birdayber(Birdayber_setUp):
         self.left_side_structure()
 
     def left_side_structure(self):
+        location = "bin//system_content//visual_content//responsive//"
+
         self.left_top = tk.Frame(self.left_side, bg="#43575f")
         self.left_middle = tk.Frame(self.left_side, bg="darkgoldenrod3")
         self.left_bottom = tk.Frame(self.left_side, bg="brown")
@@ -376,9 +378,13 @@ class Birdayber(Birdayber_setUp):
             font=("Century Gothic", round(self.screen_width / 52)))
         self.search_entry.insert(0, "Search")
 
+        self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
+        self.person_icon = tk.Label(self.left_top, image=self.person_icon_img)
+
         self.title.pack(
             anchor="w", padx=round(self.screen_width * 1.62 / 100),
             pady=round(self.screen_width * 1.9 / 100))
+        self.person_icon.pack(anchor="w")
         self.search_entry.pack(
             anchor="w", ipady=8, padx=round(self.screen_width * 1.62 / 100))
 
