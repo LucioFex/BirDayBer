@@ -232,6 +232,13 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
+            elif img in ("user_white.png"):
+                responsive_img = Image.open("%s//%s" % (location, img))
+                responsive_img.thumbnail((
+                    round(self.screen_width * 4.4 / 100),
+                    round(self.screen_height * 7.3 / 100)))
+                responsive_img.save("%s//responsive//%s" % (location, img))
+
     def title_bar_minimize(self):
         """
         This method is a manual way to minimize the window
