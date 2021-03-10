@@ -364,10 +364,8 @@ class Birdayber(Birdayber_setUp):
             left_frame.pack(fill="x")
 
         self.title = tk.Label(
-            self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
-            font=("Century Gothic", 30),
-            width=round((self.screen_width * 17.1 / 100) / 25),
-            height=round((self.screen_height * 7 / 100) / 33))
+            self.left_top, bg="#334248", text="BirDayBer",
+            fg="#e3e3e3", font=("Century Gothic", 30))
 
         self.search_entry = tk.Entry(
             self.left_top, font=("Century Gothic", 18),
