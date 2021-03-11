@@ -375,8 +375,8 @@ class Birdayber(Birdayber_setUp):
 
         self.search_entry = tk.Entry(
             self.left_top, bg="#517684", selectbackground="#4a92ab", bd=7,
-            width=round(self.screen_width / 73), relief=tk.FLAT, fg="#e3e3e3",
-            font=("Century Gothic", round(self.screen_width / 65)))
+            relief=tk.FLAT, fg="#e3e3e3", width=round(self.screen_width / 70),
+            font=("Century Gothic", round(self.screen_width / 52)))
         self.search_entry.insert(0, "Search")
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
@@ -385,12 +385,13 @@ class Birdayber(Birdayber_setUp):
 
         self.title.pack(
             anchor="w", padx=round(self.screen_width * 1.62 / 100),
-            pady=round(self.screen_width * 1.9 / 100))
+            pady=round(self.screen_width * 1.5 / 100))
 
         self.person_icon.pack(anchor="w", side=tk.LEFT, padx=(
             round(self.screen_width * 1.62 / 100), 0))
 
-        self.search_entry.pack(anchor="w", ipady=8, ipadx=10)
+        self.search_entry.pack(
+            anchor="w", ipady=5, padx=(0, self.screen_width * 2 / 100))
 
 
 if __name__ == '__main__':
