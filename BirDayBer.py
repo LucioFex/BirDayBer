@@ -385,8 +385,11 @@ class Birdayber(Birdayber_setUp):
         self.title.pack(
             anchor="w", padx=round(self.screen_width * 1.62 / 100),
             pady=round(self.screen_width * 1.9 / 100))
-        self.person_icon.pack(anchor="w", side=tk.LEFT)
-        self.search_entry.pack(anchor="w", ipady=8)
+
+        self.person_icon.pack(anchor="w", side=tk.LEFT, padx=(
+            round(self.screen_width * 1.62 / 100), 0))
+
+        self.search_entry.pack(anchor="w", ipady=8, ipadx=10)
 
 
 if __name__ == '__main__':
