@@ -386,7 +386,7 @@ class Birdayber(Birdayber_setUp):
 
         self.entry_bottom_border = tk.Label(
             self.left_top, background="#334248",
-            width=round(self.screen_width / 23.5))
+            width=round(self.screen_width * 4.25 / 100))
 
         self.title.pack(
             anchor="w", padx=round(self.screen_width * 1.62 / 100),
@@ -401,7 +401,6 @@ class Birdayber(Birdayber_setUp):
 
         self.search_entry.pack(
             anchor="w", ipady=5, padx=(0, self.screen_width * 2 / 100))
-
 
 
 if __name__ == '__main__':
