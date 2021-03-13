@@ -373,9 +373,11 @@ class Birdayber(Birdayber_setUp):
             self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
             font=("Century Gothic", round(self.screen_width / 38)))
 
+        self.search_border = tk.Frame(
+            self.left_top, background="#334248")
+
         self.search_background = tk.Frame(
-            self.left_top, background="#334248",
-            width=round(self.screen_width * 4.25 / 100))
+            self.left_top, background="#517684")
 
         self.search_entry = tk.Entry(
             self.search_background, bg="#517684", selectbackground="#4a92ab",
