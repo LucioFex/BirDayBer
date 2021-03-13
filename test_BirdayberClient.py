@@ -134,7 +134,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(len(self.interface.title_bar.winfo_children()), 4)
         self.assertEqual(len(self.interface.left_side.winfo_children()), 3)
         self.assertEqual(len(self.interface.right_side.winfo_children()), 3)
-        self.assertEqual(len(self.interface.left_top.winfo_children()), 4)
+        self.assertEqual(len(self.interface.left_top.winfo_children()), 2)
         self.assertEqual(len(self.interface.left_middle.winfo_children()), 4)
         self.assertEqual(len(self.interface.right_top.winfo_children()), 4)
         self.assertEqual(len(self.interface.right_middle.winfo_children()), 2)
