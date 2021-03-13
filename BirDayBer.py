@@ -373,17 +373,16 @@ class Birdayber(Birdayber_setUp):
             self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
             font=("Century Gothic", round(self.screen_width / 38)))
 
-        self.search_border = tk.Frame(
-            self.left_top, background="#334248")
+        self.search_border = tk.Frame(self.left_top, background="#334248")
 
         self.search_background = tk.Frame(
-            self.left_top, background="#517684")
+            self.search_border, background="#517684")
 
         self.search_entry = tk.Entry(
             self.search_background, bg="#517684", selectbackground="#4a92ab",
             relief=tk.FLAT, fg="#e3e3e3", insertbackground="#d7f5ff",
             width=round(self.screen_width / 70),
-            font=("Century Gothic", round(self.screen_width / 52)))
+            font=("Century Gothic", round(self.screen_width / 56)))
         self.search_entry.insert(0, "Search")
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
@@ -391,12 +390,15 @@ class Birdayber(Birdayber_setUp):
             self.search_background, image=self.person_icon_img, bg="#4d717f")
 
         self.title.pack(
-            anchor="w", padx=round(self.screen_width * 1.62 / 100),
+            anchor="w", padx=(round(self.screen_width * 1.62 / 100), 0),
             pady=round(self.screen_width * 1.5 / 100))
 
-        self.search_background.pack(anchor="w")
+        self.search_border.pack(
+            anchor="w", padx=(round(self.screen_width * 1.62 / 100)))
+        self.search_background.pack()
         self.person_icon.pack(side=tk.LEFT)
-        self.search_entry.pack(side=tk.LEFT, fill="y")
+        self.search_entry.pack(
+            side=tk.LEFT, fill="y", padx=(round(self.screen_width / 100), 0))
 
 
 if __name__ == '__main__':
