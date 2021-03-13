@@ -395,7 +395,7 @@ class Birdayber(Birdayber_setUp):
 
         self.search_border.pack(
             anchor="w", padx=(round(self.screen_width * 1.62 / 100)))
-        self.search_background.pack()
+        self.search_background.pack(pady=(0, self.screen_height * 1.4 / 100))
         self.person_icon.pack(side=tk.LEFT)
         self.search_entry.pack(
             side=tk.LEFT, fill="y", padx=(round(self.screen_width / 100), 0))
