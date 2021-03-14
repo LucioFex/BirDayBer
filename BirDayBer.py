@@ -357,17 +357,11 @@ class Birdayber(Birdayber_setUp):
             height=round(self.screen_height * 93 / 100))
         self.right_side.pack(side=tk.RIGHT, fill=tk.BOTH)
 
-        self.left_side_structure()
+        self.left_side_structure_top()
 
-    def left_side_structure(self):
+    def left_side_structure_top(self):
         location = "bin//system_content//visual_content//responsive//"
-
         self.left_top = tk.Frame(self.left_side, bg="#43575f")
-        self.left_middle = tk.Frame(self.left_side, bg="darkgoldenrod3")
-        self.left_bottom = tk.Frame(self.left_side, bg="brown")
-
-        for left_frame in (self.left_top, self.left_middle, self.left_bottom):
-            left_frame.pack()
 
         self.title = tk.Label(
             self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
@@ -389,14 +383,19 @@ class Birdayber(Birdayber_setUp):
         self.person_icon = tk.Label(
             self.search_background, image=self.person_icon_img, bg="#4d717f")
 
+        self.left_top.pack()
+
         self.title.pack(
             anchor="w", padx=(round(self.screen_width * 1.62 / 100), 0),
             pady=round(self.screen_width * 1.5 / 100))
 
         self.search_border.pack(
             anchor="w", padx=(round(self.screen_width * 1.62 / 100)))
+
         self.search_background.pack(pady=(0, self.screen_height * 1.4 / 100))
+
         self.person_icon.pack(side=tk.LEFT)
+
         self.search_entry.pack(
             side=tk.LEFT, fill="y", padx=(round(self.screen_width / 100), 0))
 
