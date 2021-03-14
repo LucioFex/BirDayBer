@@ -403,14 +403,27 @@ class Birdayber(Birdayber_setUp):
     def left_side_structure_middle(self, location):
         self.left_middle = tk.Frame(self.left_side, bg="darkgoldenrod3")
 
-        self.finder_border_bottom = tk.Frame(self.left_middle, bg="#334248")
-        self.finder_border_left = tk.Frame(self.left_middle, bg="#517684")
-        self.finder_background = tk.Frame(self.left_middle, bg="#5d8999")
+        self.finder_border_bottom = tk.Frame(
+            self.left_middle, bg="#334248")
+
+        self.finder_border_left = tk.Frame(
+            self.finder_border_bottom, bg="#517684")
+
+        self.finder_background = tk.Frame(
+            self.finder_border_left, bg="#5d8999")
+
+        self.people_over = tk.Label(
+            self.finder_border_left,
+            width=round(self.screen_width / 54),
+            font=("Century Gothic", round(self.screen_width / 59)),
+            text="People", bg="green")
 
         self.left_middle.pack()
         self.finder_border_bottom.pack()
         self.finder_border_left.pack()
         self.finder_background.pack()
+
+        self.people_over.pack()
 
 
 if __name__ == '__main__':
