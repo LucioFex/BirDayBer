@@ -342,6 +342,8 @@ class Birdayber(Birdayber_setUp):
         This method generates the frames (background) for the
         user interactivity with the GUI.
         """
+        location = "bin//system_content//visual_content//responsive//"
+
         self.root.config(bg="#3b4d54")
         self.frame.config(bg="#3b4d54")
 
@@ -357,10 +359,9 @@ class Birdayber(Birdayber_setUp):
             height=round(self.screen_height * 93 / 100))
         self.right_side.pack(side=tk.RIGHT, fill=tk.BOTH)
 
-        self.left_side_structure_top()
+        self.left_side_structure_top(location)
 
-    def left_side_structure_top(self):
-        location = "bin//system_content//visual_content//responsive//"
+    def left_side_structure_top(self, location):
         self.left_top = tk.Frame(self.left_side, bg="#43575f")
 
         self.title = tk.Label(
