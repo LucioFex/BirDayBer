@@ -360,6 +360,7 @@ class Birdayber(Birdayber_setUp):
         self.right_side.pack(side=tk.RIGHT, fill=tk.BOTH)
 
         self.left_side_structure_top(location)
+        self.left_side_structure_middle(location)
 
     def left_side_structure_top(self, location):
         self.left_top = tk.Frame(self.left_side, bg="#43575f")
@@ -385,7 +386,6 @@ class Birdayber(Birdayber_setUp):
             self.search_background, image=self.person_icon_img, bg="#4d717f")
 
         self.left_top.pack()
-
         self.title.pack(
             anchor="w", padx=(round(self.screen_width * 1.62 / 100), 0),
             pady=round(self.screen_width * 1.5 / 100))
@@ -399,6 +399,10 @@ class Birdayber(Birdayber_setUp):
 
         self.search_entry.pack(
             side=tk.LEFT, fill="y", padx=(round(self.screen_width / 100), 0))
+
+    def left_side_structure_middle(self, location):
+        self.left_middle = tk.Frame(self.left_side, bg="darkgoldenrod3")
+        self.left_middle.pack()
 
 
 if __name__ == '__main__':
