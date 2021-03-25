@@ -414,8 +414,7 @@ class Birdayber(Birdayber_setUp):
 
         self.people_over = tk.Label(
             self.finder_border_left, relief=tk.FLAT, text="People",
-            # width=round(self.screen_width / 30),
-            # font=("Century Gothic", round(self.screen_width / 54)),
+            font=("Century Gothic", round(self.screen_width / 60)),
             bg="#5f99af", fg="#e7e7e7")
 
         self.left_middle.pack()
