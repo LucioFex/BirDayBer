@@ -34,7 +34,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 
 ## Bugs & Errors still active
 
-- Bug found in file 'BirDayBer.py', where the left label of 'People' (the one at the bottom of the 'search' entry) does not work correctly on responsive layout. It works well at a resolution of 1920x1080 px resolution, but it doesn't fit well with others.
+- No bugs/errors found.
 
 ## Credits
 
