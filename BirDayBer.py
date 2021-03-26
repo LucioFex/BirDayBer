@@ -418,7 +418,7 @@ class Birdayber(Birdayber_setUp):
             width=round(self.screen_width / 74),
             bg="#5f99af", fg="#e7e7e7")
 
-        self.left_middle.pack()
+        self.left_middle.pack(pady=(self.screen_height * 1.7 / 100, 0))
         self.finder_border_bottom.pack()
         self.finder_border_left.pack()
         self.finder_background.pack()
