@@ -377,7 +377,7 @@ class Birdayber(Birdayber_setUp):
         self.search_entry = tk.Entry(
             self.search_background, bg="#517684", selectbackground="#4a92ab",
             relief=tk.FLAT, fg="#e3e3e3", insertbackground="#d7f5ff",
-            width=round(self.screen_width / 74),
+            width=round(self.screen_width / 75),
             font=("Century Gothic", round(self.screen_width / 60)))
         self.search_entry.insert(0, "Search")
 
