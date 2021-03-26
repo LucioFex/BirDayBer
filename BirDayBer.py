@@ -225,14 +225,14 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 4 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-            elif img in ("BirDayBerIcon.png"):
+            elif img in ("BirDayBerIcon.png"):  # Title bar section
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 6.5 / 100),
                     round(self.screen_height * 6.5 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-            elif img in ("user_white.png"):
+            elif img in ("user_white.png"):  # Search entry's icon
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 7 / 100),
