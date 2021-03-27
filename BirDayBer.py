@@ -401,23 +401,19 @@ class Birdayber(Birdayber_setUp):
             side=tk.LEFT, fill="y", padx=(round(self.screen_width / 100), 0))
 
     def left_side_structure_middle(self, location):
-        self.left_middle = tk.Frame(self.left_side)
-
-        self.finder_border_bottom = tk.Frame(
-            self.left_middle, bg="#334248")
+        self.left_middle = tk.Frame(self.left_side, bg="#334248")
 
         self.people_over = tk.Label(
-            self.finder_border_bottom, relief=tk.FLAT, text="People",
+            self.left_middle, relief=tk.FLAT, text="People",
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57),
             bg="#5f99af", fg="#e7e7e7")
 
         self.people_finder = tk.Label(
-            self.finder_border_bottom, bg="blue",
+            self.left_middle, bg="blue",
             height=round(self.screen_height / 34))
 
         self.left_middle.pack(pady=(self.screen_height * 1.7 / 100, 0))
-        self.finder_border_bottom.pack()
         self.people_over.pack(side=tk.TOP)
         self.people_finder.pack(fill=tk.X)
 
