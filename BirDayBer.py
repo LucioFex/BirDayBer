@@ -401,7 +401,9 @@ class Birdayber(Birdayber_setUp):
             self.left_middle, bg="#5d8999",
             height=round(self.screen_height / 34))
 
-        self.left_middle.pack(pady=(self.screen_height * 1.7 / 100, 0))
+        self.left_middle.pack(pady=(
+            self.screen_height * 1.7 / 100,
+            self.screen_height * 14.8 / 100 + 27))
         self.people_over.pack(side=tk.TOP)
         self.people_finder.pack(
             fill=tk.X, pady=(0, self.screen_height * 1.3 / 100))
