@@ -403,7 +403,8 @@ class Birdayber(Birdayber_setUp):
 
         self.left_middle.pack(pady=(self.screen_height * 1.7 / 100, 0))
         self.people_over.pack(side=tk.TOP)
-        self.people_finder.pack(fill=tk.X, pady=(0, 10))
+        self.people_finder.pack(
+            fill=tk.X, pady=(0, self.screen_height * 1.3 / 100))
 
 
 if __name__ == '__main__':
