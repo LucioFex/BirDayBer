@@ -316,7 +316,7 @@ class Birdayber(Birdayber_setUp):
 
         self.title_bar = tk.Frame(
             self.frame, bg="#316477", height=round(self.screen_height / 20))
-        self.title_bar.pack(fill="x")
+        self.title_bar.pack(fill=tk.X)
 
         buttons = []
         for index in range(3):  # Generation of buttons
@@ -386,7 +386,7 @@ class Birdayber(Birdayber_setUp):
         self.search_background.pack(pady=(0, self.screen_height * 1.4 / 100))
         self.person_icon.pack(side=tk.LEFT)
         self.search_entry.pack(
-            side=tk.LEFT, fill="y", padx=(round(self.screen_width / 100), 0))
+            side=tk.LEFT, fill=tk.Y, padx=(round(self.screen_width / 100), 0))
 
     def left_side_structure_middle(self, location):
         self.left_middle = tk.Frame(self.left_side, bg="#334248")
