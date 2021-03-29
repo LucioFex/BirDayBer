@@ -394,16 +394,16 @@ class Birdayber(Birdayber_setUp):
         self.person_icon.pack(side=tk.LEFT)
 
         self.title.pack(
-            anchor="w", padx=(round(self.screen_width * 1.62 / 100), 0),
-            pady=round(self.screen_width * 1.5 / 100))
+            anchor="w", padx=(self.screen_width * 1.62 / 100, 0),
+            pady=self.screen_width * 1.5 / 100)
 
         self.search_border.pack(
-            anchor="w", padx=(round(self.screen_width * 1.62 / 100)))
+            anchor="w", padx=(self.screen_width * 1.62 / 100))
 
         self.search_background.pack(pady=(0, self.screen_height * 1.4 / 100))
 
         self.search_entry.pack(
-            side=tk.LEFT, fill=tk.Y, padx=(round(self.screen_width / 100), 0))
+            side=tk.LEFT, fill=tk.Y, padx=(self.screen_width / 100, 0))
 
     def left_side_structure_middle(self, location):
         """
@@ -430,14 +430,16 @@ class Birdayber(Birdayber_setUp):
         """
         Method that generates the base for the bot-left appearance of the GUI.
         """
-        self.left_bottom = tk.Frame(self.left_side, bg="#334248")
-        self.license_img = tk.PhotoImage(file=location + "license.png")
+        self.left_bottom = tk.Frame(self.left_side, bg="#43575f")
 
-        self.license_icon = tk.Label(self.left_bottom, image=self.license_img)
-        self.license_icon.pack()
+        self.license_img = tk.PhotoImage(file=location + "license.png")
+        self.license_icon = tk.Label(
+            self.left_bottom, image=self.license_img, bg="#43575f")
 
         # self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
-        self.left_bottom.pack()
+        self.left_bottom.pack(fill=tk.BOTH)
+        self.license_icon.pack(
+            side=tk.LEFT, pady=(self.screen_height * 1.2 / 100, 0))
 
     def right_side_structure_top(self, location):
         """
