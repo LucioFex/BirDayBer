@@ -239,6 +239,13 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 9 / 100)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
+            elif img in ("license.png"):  # License's icon img
+                responsive_img = Image.open("%s//%s" % (location, img))
+                responsive_img.thumbnail((
+                    round(self.screen_width * 5.6 / 100),
+                    round(self.screen_height * 8.8 / 100)))
+                responsive_img.save("%s//responsive//%s" % (location, img))
+
     def title_bar_minimize(self):
         """
         This method is a manual way to minimize the window
@@ -424,15 +431,19 @@ class Birdayber(Birdayber_setUp):
         Method that generates the base for the bot-left appearance of the GUI.
         """
         self.left_bottom = tk.Frame(self.left_side, bg="#334248")
+        self.license_img = tk.PhotoImage(file=location + "license.png")
 
-        self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
+        self.license_icon = tk.Label(self.left_bottom, image=self.license_img)
+        self.license_icon.pack()
+
+        # self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
+        self.left_bottom.pack()
 
     def right_side_structure_top(self, location):
         """
         Method that generates the base for the top-right appearance of the GUI.
         """
         pass
-
 
     def right_side_structure_middle(self, location):
         """
