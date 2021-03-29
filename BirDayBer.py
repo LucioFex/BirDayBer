@@ -437,9 +437,10 @@ class Birdayber(Birdayber_setUp):
             self.left_bottom, image=self.license_img, bg="#43575f")
 
         # self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
-        self.left_bottom.pack(fill=tk.BOTH)
+        self.left_bottom.pack(fill=tk.BOTH, ipady=50)
         self.license_icon.pack(
-            side=tk.LEFT, pady=(self.screen_height * 1.2 / 100, 0))
+            side=tk.LEFT, pady=(self.screen_height * 1.2 / 100, 0),
+            padx=(self.screen_width * 1.62 / 100, 0))
 
     def right_side_structure_top(self, location):
         """
