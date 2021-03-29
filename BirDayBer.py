@@ -413,16 +413,16 @@ class Birdayber(Birdayber_setUp):
             self.left_middle, bg="#5d8999",
             height=round(self.screen_height / 34))
 
+        self.left_middle.pack(pady=(self.screen_height * 1.7 / 100, 0))
         self.people_over.pack(side=tk.TOP)
-
-        self.left_middle.pack(pady=(
-            self.screen_height * 1.7 / 100, self.screen_height * 25 / 100))
 
         self.people_finder.pack(
             fill=tk.X, pady=(0, self.screen_height * 1.3 / 100))
 
     def left_side_structure_bottom(self, location):
-        pass
+        self.left_bottom = tk.Frame(self.left_side, bg="#334248")
+
+        self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
 
     def right_side_structure_top(self, location):
         pass
