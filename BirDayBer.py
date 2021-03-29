@@ -420,6 +420,9 @@ class Birdayber(Birdayber_setUp):
             fill=tk.X, pady=(0, self.screen_height * 1.3 / 100))
 
     def left_side_structure_bottom(self, location):
+        """
+        Method that generates the base for the bot-left appearance of the GUI.
+        """
         self.left_bottom = tk.Frame(self.left_side, bg="#334248")
 
         self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
