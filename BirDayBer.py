@@ -360,6 +360,9 @@ class Birdayber(Birdayber_setUp):
         self.left_side.pack(side=tk.LEFT, fill=tk.BOTH)
         self.right_side.pack(side=tk.RIGHT, fill=tk.BOTH)
 
+        self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
+        self.license_img = tk.PhotoImage(file=location + "license.png")
+
         self.left_side_structure_top(location)
         self.left_side_structure_middle(location)
         self.left_side_structure_bottom(location)
@@ -375,20 +378,19 @@ class Birdayber(Birdayber_setUp):
         self.search_border = tk.Frame(self.left_top, bg="#334248")
         self.search_background = tk.Frame(self.search_border, bg="#517684")
 
+        self.title = tk.Label(
+            self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
+            font=("Century Gothic", round(self.screen_width / 38)))
+
+        self.person_icon = tk.Label(
+            self.search_background, image=self.person_icon_img, bg="#4d717f")
+
         self.search_entry = tk.Entry(
             self.search_background, bg="#517684", selectbackground="#4a92ab",
             relief=tk.FLAT, fg="#e3e3e3", insertbackground="#d7f5ff",
             width=round(self.screen_width / 75),
             font=("Century Gothic", round(self.screen_width / 60)))
         self.search_entry.insert(0, "Search")  # Remove from here later
-
-        self.title = tk.Label(
-            self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
-            font=("Century Gothic", round(self.screen_width / 38)))
-
-        self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
-        self.person_icon = tk.Label(
-            self.search_background, image=self.person_icon_img, bg="#4d717f")
 
         self.left_top.pack()
         self.person_icon.pack(side=tk.LEFT)
@@ -432,11 +434,9 @@ class Birdayber(Birdayber_setUp):
         """
         self.left_bottom = tk.Frame(self.left_side, bg="#43575f")
 
-        self.license_img = tk.PhotoImage(file=location + "license.png")
         self.license_icon = tk.Label(
             self.left_bottom, image=self.license_img, bg="#43575f")
 
-        # self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
         self.left_bottom.pack(fill=tk.BOTH, ipady=50)
         self.license_icon.pack(
             side=tk.LEFT, pady=(self.screen_height * 1.2 / 100, 0),
