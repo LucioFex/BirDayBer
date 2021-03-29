@@ -361,6 +361,9 @@ class Birdayber(Birdayber_setUp):
         self.right_side_structure_bottom(location)
 
     def left_side_structure_top(self, location):
+        """
+        Method that generates the base for the top-left appearance of the GUI.
+        """
         self.left_top = tk.Frame(self.left_side, bg="#43575f")
         self.search_border = tk.Frame(self.left_top, bg="#334248")
         self.search_background = tk.Frame(self.search_border, bg="#517684")
@@ -396,6 +399,9 @@ class Birdayber(Birdayber_setUp):
             side=tk.LEFT, fill=tk.Y, padx=(round(self.screen_width / 100), 0))
 
     def left_side_structure_middle(self, location):
+        """
+        Method that generates the base for the mid-left appearance of the GUI.
+        """
         self.left_middle = tk.Frame(self.left_side, bg="#334248")
 
         self.people_over = tk.Label(
