@@ -428,12 +428,22 @@ class Birdayber(Birdayber_setUp):
         self.left_bottom.pack(pady=(0, self.screen_height * 25 / 100))
 
     def right_side_structure_top(self, location):
+        """
+        Method that generates the base for the top-right appearance of the GUI.
+        """
         pass
 
+
     def right_side_structure_middle(self, location):
+        """
+        Method that generates the base for the mid-right appearance of the GUI.
+        """
         pass
 
     def right_side_structure_bottom(self, location):
+        """
+        Method that generates the base for the bop-right appearance of the GUI.
+        """
         pass
 
 
