@@ -292,63 +292,16 @@ class Birdayber_setUp(Birdayber_database):
         self.root.quit()
 
 
-class Birdayber(Birdayber_setUp):
+class Body_structure(Birdayber_setUp):
     """
-    This class is prepared to generate all the visual
-    aspect and functionality of the main window (GUI).
+    This class generates the frames (background) and labels
+    for the user interactivity with the GUI.
     """
-    def __init__(self, db_connection, mainloop=False):
+    def __init__(self, db_connection):
         """
-        If the 'mainloop' parameter is 'True' the program will main-loop.
+        Generation of the left and right side in the main body.
         """
         super().__init__(db_connection)
-
-        # Generation of the new title bar
-        self.titlebar_init()
-        # Generation of the left and right side in the main body.
-        self.body_structure()
-
-        self.root.mainloop() if mainloop else None
-
-    def titlebar_init(self):
-        """
-        Generation of the new Title Bar and elimination of the previous one.
-        """
-        location = "bin//system_content//visual_content//responsive//"
-
-        self.titlebar_img = []
-        for img in ("close-button.png", "maximize-button.png",
-                    "minimize-button.png", "BirDayBerIcon.png"):
-            self.titlebar_img.append(tk.PhotoImage(file=location + img))
-
-        self.title_bar = tk.Frame(
-            self.frame, bg="#316477", height=round(self.screen_height / 20))
-        self.title_bar.pack(fill=tk.X)
-
-        buttons = []
-        for index in range(3):  # Generation of buttons
-            buttons.append(tk.Button(
-                self.title_bar, image=self.titlebar_img[index], bg="#2c5c6d",
-                relief=tk.FLAT, bd=0, activebackground="#1e5061"))
-            buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
-
-        buttons[0].config(
-            activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.title_bar_minimize)
-
-        self.icon = tk.Label(
-            self.title_bar, image=self.titlebar_img[3], bg="#316477")
-        self.icon.pack(side=tk.LEFT)
-
-        for label in (self.title_bar, self.icon):
-            label.bind("<ButtonPress-1>", self.cursor_start_move)
-            label.bind("<B1-Motion>", self.window_dragging)
-
-    def body_structure(self):
-        """
-        This method generates the frames (background) for the
-        user interactivity with the GUI.
-        """
         location = "bin//system_content//visual_content//responsive//"
 
         self.root.config(bg="purple3")
@@ -459,6 +412,57 @@ class Birdayber(Birdayber_setUp):
         Method that generates the base for the bop-right appearance of the GUI.
         """
         pass
+
+
+class Birdayber(Body_structure):
+    """
+    This class is prepared to generate all the visual
+    aspect and functionality of the main window (GUI).
+    """
+    def __init__(self, db_connection, mainloop=False):
+        """
+        If the 'mainloop' parameter is 'True' the program will main-loop.
+        """
+        super().__init__(db_connection)
+
+        # Generation of the new title bar
+        self.titlebar_init()
+
+        self.root.mainloop() if mainloop else None
+
+    def titlebar_init(self):
+        """
+        Generation of the new Title Bar and elimination of the previous one.
+        """
+        location = "bin//system_content//visual_content//responsive//"
+
+        self.titlebar_img = []
+        for img in ("close-button.png", "maximize-button.png",
+                    "minimize-button.png", "BirDayBerIcon.png"):
+            self.titlebar_img.append(tk.PhotoImage(file=location + img))
+
+        self.title_bar = tk.Frame(
+            self.frame, bg="#316477", height=round(self.screen_height / 20))
+        self.title_bar.pack(fill=tk.X)
+
+        buttons = []
+        for index in range(3):  # Generation of buttons
+            buttons.append(tk.Button(
+                self.title_bar, image=self.titlebar_img[index], bg="#2c5c6d",
+                relief=tk.FLAT, bd=0, activebackground="#1e5061"))
+            buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
+
+        buttons[0].config(
+            activebackground="#911722", command=self.close_client)
+        buttons[2].config(command=self.title_bar_minimize)
+
+        self.icon = tk.Label(
+            self.title_bar, image=self.titlebar_img[3], bg="#316477")
+        self.icon.pack(side=tk.LEFT)
+
+        for label in (self.title_bar, self.icon):
+            label.bind("<ButtonPress-1>", self.cursor_start_move)
+            label.bind("<B1-Motion>", self.window_dragging)
 
 
 if __name__ == '__main__':
