@@ -315,7 +315,7 @@ class Interface_structure(Birdayber_setUp):
         self.right_side = tk.Frame(self.frame, bg="#3b4d54")
 
         self.left_side.pack(side=tk.LEFT, fill=tk.BOTH)
-        self.right_side.pack(side=tk.RIGHT, fill=tk.BOTH)
+        self.right_side.pack(side=tk.LEFT, fill=tk.BOTH)
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
         self.license_img = tk.PhotoImage(file=location + "license.png")
@@ -434,11 +434,18 @@ class Interface_structure(Birdayber_setUp):
             side=tk.LEFT, pady=(self.screen_height * 1.2 / 100, 0),
             padx=(self.screen_width * 1.62 / 100, 0))
 
-    def right_side_structure_top(self, location):
+    def right_side_structure_top(self, location):  # Keep working here
         """
         Method that generates the base for the top-right appearance of the GUI.
         """
-        pass
+        self.right_top = tk.Frame(self.right_side, bg="#3b4d54")
+
+        self.people_adder_bg = tk.Frame(self.right_top, bg="#367892")
+        self.people_adder = tk.Label(self.people_adder_bg, bg="#66838e")
+
+        self.right_top.pack()
+        self.people_adder.pack()
+        self.people_adder_bg.pack()
 
     def right_side_structure_middle(self, location):
         """
