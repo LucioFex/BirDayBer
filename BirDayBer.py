@@ -441,7 +441,10 @@ class Interface_structure(Birdayber_setUp):
         self.right_top = tk.Frame(self.right_side, bg="#3b4d54")
 
         self.people_adder_bg = tk.Frame(self.right_top, bg="#367892")
-        self.people_adder = tk.Label(self.people_adder_bg, bg="#66838e")
+        self.people_adder = tk.Label(
+            self.people_adder_bg, bg="#66838e",
+            width=round(self.screen_width / 20),
+            height=round(self.screen_height / 105))
 
         self.right_top.pack()
         self.people_adder.pack()
