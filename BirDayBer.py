@@ -447,8 +447,10 @@ class Interface_structure(Birdayber_setUp):
             height=round(self.screen_height / 105))
 
         self.right_top.pack()
+        self.people_adder_bg.pack(
+            padx=(self.screen_width * 5.19 / 100, 0),
+            pady=(self.screen_height * 3 / 100, 0))
         self.people_adder.pack()
-        self.people_adder_bg.pack()
 
     def right_side_structure_middle(self, location):
         """
