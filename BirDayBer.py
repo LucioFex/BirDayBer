@@ -221,29 +221,29 @@ class Birdayber_setUp(Birdayber_database):
                     "maximize-button.png", "maximized-button.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
-                    round(self.screen_width * 4 / 100),
-                    round(self.screen_height * 4 / 100)))
+                    round(self.screen_width * 0.04),
+                    round(self.screen_height * 0.04)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
             elif img in ("BirDayBerIcon.png"):  # Title bar section
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
-                    round(self.screen_width * 6.5 / 100),
-                    round(self.screen_height * 6.5 / 100)))
+                    round(self.screen_width * 0.065),
+                    round(self.screen_height * 0.065)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
             elif img in ("user_white.png"):  # Search entry's icon
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
-                    round(self.screen_width * 7 / 100),
-                    round(self.screen_height * 9 / 100)))
+                    round(self.screen_width * 0.07),
+                    round(self.screen_height * 0.09)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
             elif img in ("license.png"):  # License's icon img
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
-                    round(self.screen_width * 5.6 / 100),
-                    round(self.screen_height * 8.8 / 100)))
+                    round(self.screen_width * 0.056),
+                    round(self.screen_height * 0.088)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def title_bar_minimize(self):
@@ -388,13 +388,13 @@ class Interface_structure(Birdayber_setUp):
         self.person_icon.pack(side=tk.LEFT)
 
         self.title.pack(
-            anchor="w", padx=(self.screen_width * 1.62 / 100, 0),
-            pady=self.screen_width * 1.5 / 100)
+            anchor="w", padx=(self.screen_width * 0.0162, 0),
+            pady=self.screen_width * 0.015)
 
         self.search_border.pack(
-            anchor="w", padx=(self.screen_width * 1.62 / 100))
+            anchor="w", padx=(self.screen_width * 0.0162))
 
-        self.search_background.pack(pady=(0, self.screen_height * 1.4 / 100))
+        self.search_background.pack(pady=(0, self.screen_height * 0.014))
 
         self.search_entry.pack(
             side=tk.LEFT, fill=tk.Y, padx=(self.screen_width / 100, 0))
@@ -414,11 +414,11 @@ class Interface_structure(Birdayber_setUp):
             self.left_middle, bg="#5d8999",
             height=round(self.screen_height / 34))
 
-        self.left_middle.pack(pady=(self.screen_height * 1.7 / 100, 0))
+        self.left_middle.pack(pady=(self.screen_height * 0.017, 0))
         self.people_over.pack(side=tk.TOP)
 
         self.people_finder.pack(
-            fill=tk.X, pady=(0, self.screen_height * 1.3 / 100))
+            fill=tk.X, pady=(0, self.screen_height * 0.013))
 
     def left_side_structure_bottom(self, location):
         """
@@ -431,8 +431,8 @@ class Interface_structure(Birdayber_setUp):
 
         self.left_bottom.pack(fill=tk.BOTH, ipady=50)
         self.license_icon.pack(
-            side=tk.LEFT, pady=(self.screen_height * 1.2 / 100, 0),
-            padx=(self.screen_width * 1.62 / 100, 0))
+            side=tk.LEFT, pady=(self.screen_height * 0.012, 0),
+            padx=(self.screen_width * 0.0162, 0))
 
     def right_side_structure_top(self, location):  # Keep working here
         """
@@ -448,9 +448,9 @@ class Interface_structure(Birdayber_setUp):
 
         self.right_top.pack()
         self.people_adder_bg.pack(
-            padx=(self.screen_width * 5.19 / 100, 0),
-            pady=(self.screen_height * 3 / 100, 0))
-        self.people_adder.pack(padx=self.screen_height * 0.50 / 100)
+            padx=(self.screen_width * 0.0518, 0),
+            pady=(self.screen_height * 0.003, 0))
+        self.people_adder.pack(padx=self.screen_height * 0.005)
 
     def right_side_structure_middle(self, location):
         """
