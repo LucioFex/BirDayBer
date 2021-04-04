@@ -246,6 +246,13 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 0.088)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
+            elif img in ("add_person.png"):  # People adder icon img
+                responsive_img = Image.open("%s//%s" % (location, img))
+                responsive_img.thumbnail((
+                    round(self.screen_width * 0.0325),
+                    round(self.screen_height * 0.063)))
+                responsive_img.save("%s//responsive//%s" % (location, img))
+
     def title_bar_minimize(self):
         """
         This method is a manual way to minimize the window
@@ -319,6 +326,7 @@ class Interface_structure(Birdayber_setUp):
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
         self.license_img = tk.PhotoImage(file=location + "license.png")
+        self.people_adder_img = tk.PhotoImage(file=location + "add_person.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
@@ -434,23 +442,27 @@ class Interface_structure(Birdayber_setUp):
             side=tk.LEFT, pady=(self.screen_height * 0.012, 0),
             padx=(self.screen_width * 0.0162, 0))
 
-    def right_side_structure_top(self, location):  # Keep working here
+    def right_side_structure_top(self, location):
         """
         Method that generates the base for the top-right appearance of the GUI.
         """
         self.right_top = tk.Frame(self.right_side, bg="#3b4d54")
-
         self.people_adder_bg = tk.Frame(self.right_top, bg="#367892")
+
         self.people_adder = tk.Label(
             self.people_adder_bg, bg="#66838e",
             width=round(self.screen_width / 18.5),
             height=round(self.screen_height / 108.5))
 
+        self.people_adder_icon = tk.Label(
+            self.right_top, bg="#3b4d54", image=self.people_adder_img)
+
         self.right_top.pack()
         self.people_adder_bg.pack(
             padx=(self.screen_width * 0.0518, 0),
-            pady=(self.screen_height * 0.03, 0))
+            pady=(self.screen_height * 0.03, 0), side=tk.LEFT)
         self.people_adder.pack(padx=self.screen_height * 0.005)
+        self.people_adder_icon.pack(side=tk.BOTTOM)
 
     def right_side_structure_middle(self, location):
         """
