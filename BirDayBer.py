@@ -249,8 +249,8 @@ class Birdayber_setUp(Birdayber_database):
             elif img in ("add_person.png"):  # People adder icon img
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
-                    round(self.screen_width * 0.0325),
-                    round(self.screen_height * 0.063)))
+                    round(self.screen_width * 0.075),
+                    round(self.screen_height * 0.087)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def title_bar_minimize(self):
