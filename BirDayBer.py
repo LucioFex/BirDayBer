@@ -232,21 +232,23 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 0.065)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-            elif img in ("user_white.png"):  # Search entry's icon
+            elif img in ("user_white.png"):  # Main entry section
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.07),
                     round(self.screen_height * 0.09)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-            elif img in ("license.png"):  # License's icon img
+            elif img in ("license.png"):  # Footer section
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.056),
                     round(self.screen_height * 0.088)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
-            elif img in ("add_person.png"):  # People adder icon img
+            elif img in (  # People adder section
+                "add_person.png", "nut.png", "about.png", "male.png",
+                    "female.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.075),
@@ -326,7 +328,11 @@ class Interface_structure(Birdayber_setUp):
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
         self.license_img = tk.PhotoImage(file=location + "license.png")
+        self.male_img = tk.PhotoImage(file=location + "male.png")
+        self.female_img = tk.PhotoImage(file=location + "female.png")
         self.people_adder_img = tk.PhotoImage(file=location + "add_person.png")
+        self.about_img = tk.PhotoImage(file=location + "nut.png")
+        self.nut_img = tk.PhotoImage(file=location + "about.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
