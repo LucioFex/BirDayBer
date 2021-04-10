@@ -331,8 +331,8 @@ class Interface_structure(Birdayber_setUp):
         self.male_img = tk.PhotoImage(file=location + "male.png")
         self.female_img = tk.PhotoImage(file=location + "female.png")
         self.people_adder_img = tk.PhotoImage(file=location + "add_person.png")
-        self.about_img = tk.PhotoImage(file=location + "nut.png")
-        self.nut_img = tk.PhotoImage(file=location + "about.png")
+        self.about_img = tk.PhotoImage(file=location + "about.png")
+        self.nut_img = tk.PhotoImage(file=location + "nut.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
@@ -462,8 +462,8 @@ class Interface_structure(Birdayber_setUp):
 
         self.people_adder_icon = tk.Label(
             self.right_top, bg="#3b4d54", image=self.people_adder_img)
-        self.about_icon = tk.Label(
-            self.right_top, bg="#3b4d54", image=self.about_img)
+        self.nut_icon = tk.Label(
+            self.right_top, bg="#3b4d54", image=self.nut_img)
 
         self.right_top.pack(side=tk.TOP)
         self.people_adder_bg.pack(
@@ -472,7 +472,7 @@ class Interface_structure(Birdayber_setUp):
         self.people_adder.pack(padx=self.screen_height * 0.005)
         self.people_adder_icon.pack(
             pady=(self.screen_height * 0.090, 0), side=tk.LEFT)
-        self.about_icon.pack(
+        self.nut_icon.pack(
             padx=(self.screen_width * 0.14, self.screen_width * 0.0062),
             pady=(self.screen_height * 0.015, 0), side=tk.TOP)
 
