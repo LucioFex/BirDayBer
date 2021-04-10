@@ -492,4 +492,4 @@ class Birdayber(Interface_structure):
 
 
 if __name__ == '__main__':
-    BirDayBer = Birdayber("bin//BirDayBer.db", True)
+    Birdayber("bin//BirDayBer.db", True)
