@@ -317,8 +317,8 @@ class Interface_structure(Birdayber_setUp):
 
         location = "bin//system_content//visual_content//responsive//"
 
-        self.root.config(bg="purple3")
-        self.frame.config(bg="purple4")
+        self.root.config(bg="#3b4d54")
+        self.frame.config(bg="#3b4d54")
 
         self.left_side = tk.Frame(self.frame, bg="#43575f")
         self.right_side = tk.Frame(self.frame, bg="#3b4d54")
@@ -462,7 +462,6 @@ class Interface_structure(Birdayber_setUp):
 
         self.people_adder_icon = tk.Label(
             self.right_top, bg="#3b4d54", image=self.people_adder_img)
-
         self.about_icon = tk.Label(
             self.right_top, bg="#3b4d54", image=self.about_img)
 
@@ -473,7 +472,9 @@ class Interface_structure(Birdayber_setUp):
         self.people_adder.pack(padx=self.screen_height * 0.005)
         self.people_adder_icon.pack(
             pady=(self.screen_height * 0.090, 0), side=tk.LEFT)
-        self.about_icon.pack(side=tk.TOP)
+        self.about_icon.pack(
+            padx=(self.screen_width * 0.14, self.screen_width * 0.0062),
+            pady=(self.screen_height * 0.015, 0), side=tk.TOP)
 
     def right_side_structure_middle(self, location):
         """
