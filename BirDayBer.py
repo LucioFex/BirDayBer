@@ -482,7 +482,7 @@ class Interface_structure(Birdayber_setUp):
             pady=(self.screen_height * 0.090, 0), side=tk.LEFT)
         for icon in (self.nut_icon, self.about_icon):
             icon.pack(
-                padx=(self.screen_width * 0.14, self.screen_width * 0.0062),
+                padx=(self.screen_width * 0.14, self.screen_width * 0.011),
                 pady=(self.screen_height * 0.015, 0), side=tk.TOP)
 
     def right_side_structure_middle(self, location):
