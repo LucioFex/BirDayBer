@@ -486,6 +486,10 @@ class Interface_structure(Birdayber_setUp):
                 pady=(self.screen_height * 0.015, 0), side=tk.TOP)
 
     def people_adder_structure(self):
+        """
+        Method that generates the structure (no functionality)
+        to the "self.people_adder" widget.
+        """
         self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
         self.second_name_edge = tk.Frame(self.people_adder, bg="#136687")
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
