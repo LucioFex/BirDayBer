@@ -464,6 +464,8 @@ class Interface_structure(Birdayber_setUp):
             self.right_top, bg="#3b4d54", image=self.people_adder_img)
         self.nut_icon = tk.Label(
             self.right_top, bg="#3b4d54", image=self.nut_img)
+        self.about_icon = tk.Label(
+            self.right_top, bg="#3b4d54", image=self.about_img)
 
         self.right_top.pack(side=tk.TOP)
         self.people_adder_bg.pack(
@@ -473,6 +475,9 @@ class Interface_structure(Birdayber_setUp):
         self.people_adder_icon.pack(
             pady=(self.screen_height * 0.090, 0), side=tk.LEFT)
         self.nut_icon.pack(
+            padx=(self.screen_width * 0.14, self.screen_width * 0.0062),
+            pady=(self.screen_height * 0.015, 0), side=tk.TOP)
+        self.about_icon.pack(
             padx=(self.screen_width * 0.14, self.screen_width * 0.0062),
             pady=(self.screen_height * 0.015, 0), side=tk.TOP)
 
