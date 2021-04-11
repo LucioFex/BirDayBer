@@ -387,8 +387,8 @@ class Interface_structure(Birdayber_setUp):
         Method that generates the base for the top-left appearance of the GUI.
         """
         self.left_top = tk.Frame(self.left_side, bg="#43575f")
-        self.search_border = tk.Frame(self.left_top, bg="#334248")
-        self.search_background = tk.Frame(self.search_border, bg="#517684")
+        self.search_edge = tk.Frame(self.left_top, bg="#334248")
+        self.search_background = tk.Frame(self.search_edge, bg="#517684")
 
         self.title = tk.Label(
             self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
@@ -411,7 +411,7 @@ class Interface_structure(Birdayber_setUp):
             anchor="w", padx=(self.screen_width * 0.0162, 0),
             pady=self.screen_width * 0.015)
 
-        self.search_border.pack(
+        self.search_edge.pack(
             anchor="w", padx=(self.screen_width * 0.0162))
 
         self.search_background.pack(pady=(0, self.screen_height * 0.014))
@@ -499,7 +499,6 @@ class Interface_structure(Birdayber_setUp):
         self.second_name_edge.pack()
         self.birth_date_edge.pack()
         self.country_edge.pack()
-
 
     def right_side_structure_middle(self, location):
         """
