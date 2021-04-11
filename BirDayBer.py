@@ -485,6 +485,18 @@ class Interface_structure(Birdayber_setUp):
                 padx=(self.screen_width * 0.14, self.screen_width * 0.011),
                 pady=(self.screen_height * 0.015, 0), side=tk.TOP)
 
+    def people_adder_structure(self):
+        self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.second_name_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.country_edge = tk.Frame(self.people_adder, bg="#136687")
+
+        self.first_name_edge.pack()
+        self.second_name_edge.pack()
+        self.birth_date_edge.pack()
+        self.country_edge.pack()
+
+
     def right_side_structure_middle(self, location):
         """
         Method that generates the base for the mid-right appearance of the GUI.
