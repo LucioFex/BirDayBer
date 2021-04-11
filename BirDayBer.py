@@ -215,8 +215,9 @@ class Birdayber_setUp(Birdayber_database):
         location = "bin//system_content//visual_content"
         files = next(os.walk(location))[2]
 
-        for img in files:  # Refactor when you have all the imgs
-            if img in (  # Title bar section
+        for img in files:  # (Refactor when you have all the imgs)
+            # Title bar section
+            if img in (
                 "close-button.png", "minimize-button.png",
                     "maximize-button.png", "maximized-button.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
@@ -224,35 +225,40 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_width * 0.04),
                     round(self.screen_height * 0.04)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
-
-            elif img in ("BirDayBerIcon.png"):  # Title bar section
+            # Title bar section
+            elif img in ("BirDayBerIcon.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.065),
                     round(self.screen_height * 0.065)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
-
-            elif img in ("user_white.png"):  # Main entry section
+            # Main entry section
+            elif img in ("user_white.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.07),
                     round(self.screen_height * 0.09)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
-
-            elif img in ("license.png"):  # Footer section
+            # Footer section
+            elif img in ("license.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.056),
                     round(self.screen_height * 0.088)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
-
-            elif img in (  # People adder section
-                "add_person.png", "nut.png", "about.png", "male.png",
-                    "female.png"):
+            # People adder's icon
+            elif img in ("add_person.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.075),
                     round(self.screen_height * 0.087)))
+                responsive_img.save("%s//responsive//%s" % (location, img))
+            # People adder's section and extra buttons
+            elif img in ("nut.png", "about.png", "male.png", "female.png"):
+                responsive_img = Image.open("%s//%s" % (location, img))
+                responsive_img.thumbnail((
+                    round(self.screen_width * 0.056),
+                    round(self.screen_height * 0.069)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
 
     def title_bar_minimize(self):
@@ -317,8 +323,8 @@ class Interface_structure(Birdayber_setUp):
 
         location = "bin//system_content//visual_content//responsive//"
 
-        self.root.config(bg="#3b4d54")
-        self.frame.config(bg="#3b4d54")
+        self.root.config(bg="DarkOliveGreen4")
+        self.frame.config(bg="ForestGreen")
 
         self.left_side = tk.Frame(self.frame, bg="#43575f")
         self.right_side = tk.Frame(self.frame, bg="#3b4d54")
