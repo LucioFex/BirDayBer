@@ -497,15 +497,26 @@ class Interface_structure(Birdayber_setUp):
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        self.first_name = tk.Entry(self.first_name_edge, bg="blue")
-        self.second_name = tk.Entry(self.second_name_edge, bg="red")
-        self.birth_date = tk.Entry(self.birth_date_edge, bg="green")
-        self.country = tk.Entry(self.country_edge, bg="purple")
+        self.first_name = tk.Entry(
+            self.first_name_edge, bg="blue", relief=tk.FLAT)
+        self.second_name = tk.Entry(
+            self.second_name_edge, bg="red", relief=tk.FLAT)
+        self.birth_date = tk.Entry(
+            self.birth_date_edge, bg="green", relief=tk.FLAT)
+        self.country = tk.Entry(
+            self.country_edge, bg="purple", relief=tk.FLAT)
 
-        self.first_name_edge.grid(row=0, column=0)
-        self.second_name_edge.grid(row=1, column=0)
-        self.birth_date_edge.grid(row=0, column=1)
-        self.country_edge.grid(row=1, column=1, padx=50)
+        # print(self.screen_height * 0.126)
+        # print(self.screen_height * 0.063)
+
+        self.first_name_edge.grid(
+            row=0, column=0, pady=(self.screen_height * 0.042, 0))
+        self.second_name_edge.grid(
+            row=1, column=0, pady=(0, self.screen_height * 0.042))
+        self.birth_date_edge.grid(
+            row=0, column=1, pady=(self.screen_height * 0.042, 0))
+        self.country_edge.grid(
+            row=1, column=1, pady=(0, self.screen_height * 0.042))
 
         self.first_name.pack()
         self.second_name.pack()
