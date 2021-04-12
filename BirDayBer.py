@@ -485,6 +485,8 @@ class Interface_structure(Birdayber_setUp):
                 padx=(self.screen_width * 0.14, self.screen_width * 0.011),
                 pady=(self.screen_height * 0.015, 0), side=tk.TOP)
 
+        self.people_adder_structure()
+
     def people_adder_structure(self):
         """
         Method that generates the structure (no functionality)
@@ -495,10 +497,20 @@ class Interface_structure(Birdayber_setUp):
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
+        self.first_name = tk.Entry(self.first_name_edge)
+        self.second_name = tk.Entry(self.second_name_edge)
+        self.birth_date = tk.Entry(self.birth_date_edge)
+        self.country = tk.Entry(self.country_edge)
+
         self.first_name_edge.pack()
         self.second_name_edge.pack()
         self.birth_date_edge.pack()
         self.country_edge.pack()
+
+        self.first_name.pack()
+        self.second_name.pack()
+        self.birth_date.pack()
+        self.country.pack()
 
     def right_side_structure_middle(self, location):
         """
