@@ -497,15 +497,15 @@ class Interface_structure(Birdayber_setUp):
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        self.first_name = tk.Entry(self.first_name_edge)
-        self.second_name = tk.Entry(self.second_name_edge)
-        self.birth_date = tk.Entry(self.birth_date_edge)
-        self.country = tk.Entry(self.country_edge)
+        self.first_name = tk.Entry(self.first_name_edge, bg="blue")
+        self.second_name = tk.Entry(self.second_name_edge, bg="red")
+        self.birth_date = tk.Entry(self.birth_date_edge, bg="green")
+        self.country = tk.Entry(self.country_edge, bg="purple")
 
-        self.first_name_edge.pack()
-        self.second_name_edge.pack()
-        self.birth_date_edge.pack()
-        self.country_edge.pack()
+        self.first_name_edge.grid(row=0, column=0)
+        self.second_name_edge.grid(row=1, column=0)
+        self.birth_date_edge.grid(row=0, column=1)
+        self.country_edge.grid(row=1, column=1, padx=50)
 
         self.first_name.pack()
         self.second_name.pack()
