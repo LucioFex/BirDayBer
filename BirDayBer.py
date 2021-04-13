@@ -498,13 +498,21 @@ class Interface_structure(Birdayber_setUp):
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
         self.first_name = tk.Entry(
-            self.first_name_edge, bg="blue", relief=tk.FLAT)
+            self.first_name_edge, bg="blue", relief=tk.FLAT,
+            font=("Century Gothic", round(self.screen_width * 0.007)),
+            width=round(self.screen_width * 0.0115))
         self.second_name = tk.Entry(
-            self.second_name_edge, bg="red", relief=tk.FLAT)
+            self.second_name_edge, bg="red", relief=tk.FLAT,
+            font=("Century Gothic", round(self.screen_width * 0.007)),
+            width=round(self.screen_width * 0.0115))
         self.birth_date = tk.Entry(
-            self.birth_date_edge, bg="green", relief=tk.FLAT)
+            self.birth_date_edge, bg="green", relief=tk.FLAT,
+            font=("Century Gothic", round(self.screen_width * 0.007)),
+            width=round(self.screen_width * 0.0115))
         self.country = tk.Entry(
-            self.country_edge, bg="purple", relief=tk.FLAT)
+            self.country_edge, bg="purple", relief=tk.FLAT,
+            font=("Century Gothic", round(self.screen_width * 0.007)),
+            width=round(self.screen_width * 0.0115))
 
         self.first_name_edge.grid(
             row=0, column=0,
