@@ -497,22 +497,18 @@ class Interface_structure(Birdayber_setUp):
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        self.first_name = tk.Entry(
-            self.first_name_edge, bg="blue", relief=tk.FLAT,
-            font=("Century Gothic", round(self.screen_width * 0.007)),
-            width=round(self.screen_width * 0.0115))
-        self.second_name = tk.Entry(
-            self.second_name_edge, bg="red", relief=tk.FLAT,
-            font=("Century Gothic", round(self.screen_width * 0.007)),
-            width=round(self.screen_width * 0.0115))
-        self.birth_date = tk.Entry(
-            self.birth_date_edge, bg="green", relief=tk.FLAT,
-            font=("Century Gothic", round(self.screen_width * 0.007)),
-            width=round(self.screen_width * 0.0115))
-        self.country = tk.Entry(
-            self.country_edge, bg="purple", relief=tk.FLAT,
-            font=("Century Gothic", round(self.screen_width * 0.007)),
-            width=round(self.screen_width * 0.0115))
+        self.first_name = tk.Entry(self.first_name_edge, bg="blue")
+        self.second_name = tk.Entry(self.second_name_edge, bg="red")
+        self.birth_date = tk.Entry(self.birth_date_edge, bg="green")
+        self.country = tk.Entry(self.country_edge, bg="purple")
+
+        #  Size configuration of the people_adder entries
+        for entry_widget in (
+            self.first_name, self.second_name,
+                self.birth_date, self.country):
+            entry_widget.config(
+                relief=tk.FLAT, width=round(self.screen_width * 0.0115),
+                font=("Century Gothic", round(self.screen_width * 0.007)))
 
         self.first_name_edge.grid(
             row=0, column=0,
