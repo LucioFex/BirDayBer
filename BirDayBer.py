@@ -496,12 +496,16 @@ class Interface_structure(Birdayber_setUp):
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        self.first_name = tk.Entry(self.first_name_edge, bg="blue")
-        self.second_name = tk.Entry(self.second_name_edge, bg="red")
-        self.birth_date = tk.Entry(self.birth_date_edge, bg="green")
-        self.country = tk.Entry(self.country_edge, bg="purple")
+        self.first_name = tk.Entry(
+            self.first_name_edge, bg="#66838e", fg="#e3e3e3")
+        self.second_name = tk.Entry(
+            self.second_name_edge, bg="#66838e", fg="#e3e3e3")
+        self.birth_date = tk.Entry(
+            self.birth_date_edge, bg="#66838e", fg="#e3e3e3")
+        self.country = tk.Entry(
+            self.country_edge, bg="#66838e", fg="#e3e3e3")
 
-        #  Size configuration of the people_adder entries
+        # Size configuration of the people_adder entries
         for entry_widget in (
             self.first_name, self.second_name,
                 self.birth_date, self.country):
