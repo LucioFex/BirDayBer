@@ -512,16 +512,16 @@ class Interface_structure(Birdayber_setUp):
 
         self.first_name_edge.grid(
             row=0, column=0,
-            pady=(self.screen_height * 0.0315, self.screen_height * 0.01575))
+            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
         self.second_name_edge.grid(
             row=1, column=0,
-            pady=(self.screen_height * 0.01575, self.screen_height * 0.0315))
+            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
         self.birth_date_edge.grid(
             row=0, column=1,
-            pady=(self.screen_height * 0.0315, self.screen_height * 0.01575))
+            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
         self.country_edge.grid(
             row=1, column=1,
-            pady=(self.screen_height * 0.01575, self.screen_height * 0.0315))
+            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
 
         self.first_name.pack()
         self.second_name.pack()
