@@ -330,7 +330,7 @@ class Interface_structure(Birdayber_setUp):
         self.right_side = tk.Frame(self.frame, bg="#3b4d54")
 
         self.left_side.pack(side=tk.LEFT, fill=tk.BOTH)
-        self.right_side.pack(side=tk.LEFT, fill=tk.BOTH)
+        self.right_side.pack(side=tk.LEFT, fill=tk.BOTH)  # Expand=True (later)
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
         self.license_img = tk.PhotoImage(file=location + "license.png")
@@ -510,10 +510,10 @@ class Interface_structure(Birdayber_setUp):
             self.first_name, self.second_name,
                 self.birth_date, self.country):
             entry_widget.config(
-                relief=tk.FLAT, width=round(self.screen_width * 0.0115),
-                font=("Century Gothic", round(self.screen_width * 0.007)))
+                relief=tk.FLAT, width=round(self.screen_width * 0.01),
+                font=("Century Gothic", round(self.screen_width * 0.0093)))
 
-        edge_pady = self.screen_height * 0.02
+        edge_pady = self.screen_height * 0.019
         self.first_name_edge.grid(row=0, column=0, pady=edge_pady)
         self.second_name_edge.grid(row=1, column=0, pady=edge_pady)
         self.birth_date_edge.grid(row=0, column=1, pady=edge_pady)
