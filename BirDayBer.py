@@ -359,8 +359,7 @@ class Interface_structure(Birdayber_setUp):
                     "minimize-button.png", "BirDayBerIcon.png"):
             self.titlebar_img.append(tk.PhotoImage(file=location + img))
 
-        self.title_bar = tk.Frame(
-            self.frame, bg="#316477", height=round(self.screen_height / 20))
+        self.title_bar = tk.Frame(self.frame, bg="#316477")
         self.title_bar.pack(fill=tk.X)
 
         buttons = []
@@ -510,18 +509,11 @@ class Interface_structure(Birdayber_setUp):
                 relief=tk.FLAT, width=round(self.screen_width * 0.0115),
                 font=("Century Gothic", round(self.screen_width * 0.007)))
 
-        self.first_name_edge.grid(
-            row=0, column=0,
-            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
-        self.second_name_edge.grid(
-            row=1, column=0,
-            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
-        self.birth_date_edge.grid(
-            row=0, column=1,
-            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
-        self.country_edge.grid(
-            row=1, column=1,
-            pady=(self.screen_height * 0.02, self.screen_height * 0.02))
+        edge_pady = self.screen_height * 0.02
+        self.first_name_edge.grid(row=0, column=0, pady=edge_pady)
+        self.second_name_edge.grid(row=1, column=0, pady=edge_pady)
+        self.birth_date_edge.grid(row=0, column=1, pady=edge_pady)
+        self.country_edge.grid(row=1, column=1, pady=edge_pady)
 
         self.first_name.pack()
         self.second_name.pack()
