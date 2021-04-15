@@ -514,10 +514,18 @@ class Interface_structure(Birdayber_setUp):
                 font=("Century Gothic", round(self.screen_width * 0.0093)))
 
         edge_pady = self.screen_height * 0.019
-        self.first_name_edge.grid(row=0, column=0, pady=edge_pady)
-        self.second_name_edge.grid(row=1, column=0, pady=edge_pady)
-        self.birth_date_edge.grid(row=0, column=1, pady=edge_pady)
-        self.country_edge.grid(row=1, column=1, pady=edge_pady)
+        self.first_name_edge.grid(
+            row=0, column=0, pady=edge_pady,
+            padx=(self.screen_width * 0.0225, 0))
+        self.second_name_edge.grid(
+            row=1, column=0, pady=edge_pady,
+            padx=(self.screen_width * 0.0225, 0))
+        self.birth_date_edge.grid(
+            row=0, column=1, pady=edge_pady,
+            padx=self.screen_width * 0.01375)
+        self.country_edge.grid(
+            row=1, column=1, pady=edge_pady,
+            padx=self.screen_width * 0.01375)
 
         for widget in (
             self.first_name, self.second_name,
