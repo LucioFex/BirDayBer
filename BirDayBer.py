@@ -519,10 +519,10 @@ class Interface_structure(Birdayber_setUp):
         self.birth_date_edge.grid(row=0, column=1, pady=edge_pady)
         self.country_edge.grid(row=1, column=1, pady=edge_pady)
 
-        self.first_name.pack()
-        self.second_name.pack()
-        self.birth_date.pack()
-        self.country.pack()
+        for widget in (
+            self.first_name, self.second_name,
+                self.birth_date, self.country):
+            widget.pack(pady=(0, self.screen_height * 0.004))
 
     def right_side_structure_middle(self, location):
         """
