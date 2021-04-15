@@ -330,7 +330,7 @@ class Interface_structure(Birdayber_setUp):
         self.right_side = tk.Frame(self.frame, bg="#3b4d54")
 
         self.left_side.pack(side=tk.LEFT, fill=tk.BOTH)
-        self.right_side.pack(side=tk.LEFT, fill=tk.BOTH)  # Expand=True (later)
+        self.right_side.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
         self.license_img = tk.PhotoImage(file=location + "license.png")
@@ -472,7 +472,7 @@ class Interface_structure(Birdayber_setUp):
         self.about_icon = tk.Label(
             self.right_top, bg="#3b4d54", image=self.about_img)
 
-        self.right_top.pack(side=tk.TOP)
+        self.right_top.pack(anchor="ne")
         self.people_adder_bg.pack(
             padx=(self.screen_width * 0.0518, 0),
             pady=(self.screen_height * 0.03, 0), side=tk.LEFT)
