@@ -478,7 +478,7 @@ class Interface_structure(Birdayber_setUp):
             pady=(self.screen_height * 0.03, 0), side=tk.LEFT)
         self.people_adder.pack(padx=self.screen_height * 0.005)
         self.people_adder_icon.pack(
-            pady=(self.screen_height * 0.090, 0), side=tk.LEFT)
+            pady=(self.screen_height * 0.1, 0), side=tk.LEFT)
         for icon in (self.nut_icon, self.about_icon):
             icon.pack(
                 padx=(self.screen_width * 0.14, self.screen_width * 0.011),
