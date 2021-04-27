@@ -510,6 +510,11 @@ class Interface_structure(Birdayber_setUp):
                 font=("Century Gothic", round(self.screen_width * 0.0093)),
                 bg="#66838e", fg="#e3e3e3")
 
+        self.male_icon = tk.Label(
+            self.people_adder, image=self.male_img, bg="#5c808c")
+        self.female_icon = tk.Label(
+            self.people_adder, image=self.female_img, bg="#5c808c")
+
         edge_pady = self.screen_height * 0.019
         self.first_name_edge.grid(
             row=0, column=0, pady=edge_pady,
@@ -523,6 +528,8 @@ class Interface_structure(Birdayber_setUp):
         self.country_edge.grid(
             row=1, column=1, pady=edge_pady,
             padx=self.screen_width * 0.01375)
+        self.male_icon.grid(pady=(edge_pady, 0), row=0, column=2)
+        self.female_icon.grid(pady=(edge_pady, 0), row=0, column=3)
 
         for widget in (
             self.first_name, self.second_name,
