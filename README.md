@@ -32,10 +32,6 @@ opening an issue to check that change that you want to make.
 I'll try to be active with this proyect, so I'll be doing what is planificated 
 with this one, but that doesn't mean that I couldn't change some ideas of the concept. 
 
-## Bugs & Errors still active
-
-- No bugs/errors found.
-
 ## Credits
 
 - Skull icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/skull_485605?related_id=485564&origin=search).
