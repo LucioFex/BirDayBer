@@ -213,7 +213,7 @@ class Birdayber_setUp(Birdayber_database):
         The new clones will be saved in the 'responsive' folder.
         """
         location = "bin//system_content//visual_content"
-        files = next(os.walk(location))[2]
+        files = next(os.walk(location))[2]  # All the images names
 
         for img in files:  # (Refactor when you have all the imgs)
             # Title bar section
@@ -515,19 +515,20 @@ class Interface_structure(Birdayber_setUp):
         self.female_icon = tk.Label(
             self.people_adder, image=self.female_img, bg="#5c808c")
 
+        edge_padx = self.screen_width * 0.01375
         edge_pady = self.screen_height * 0.019
+
         self.first_name_edge.grid(
             row=0, column=0, pady=edge_pady,
-            padx=(self.screen_width * 0.0225, 0))
+            padx=(edge_padx + 0.0225, 0))
         self.second_name_edge.grid(
             row=1, column=0, pady=edge_pady,
-            padx=(self.screen_width * 0.0225, 0))
+            padx=(edge_padx + 0.0225, 0))
         self.birth_date_edge.grid(
-            row=0, column=1, pady=edge_pady,
-            padx=self.screen_width * 0.01375)
+            row=0, column=1, pady=edge_pady, padx=edge_padx)
         self.country_edge.grid(
-            row=1, column=1, pady=edge_pady,
-            padx=self.screen_width * 0.01375)
+            row=1, column=1, pady=edge_pady, padx=edge_padx)
+
         self.male_icon.grid(pady=(edge_pady, 0), row=0, column=2)
         self.female_icon.grid(pady=(edge_pady, 0), row=0, column=3)
 
