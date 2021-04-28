@@ -465,30 +465,31 @@ class Interface_structure(Birdayber_setUp):
             width=round(self.screen_width / 20),
             height=round(self.screen_height / 108.5))
 
+        bg = "#3b4d54"
         self.people_adder_icon = tk.Label(
-            self.right_top, bg="#3b4d54", image=self.people_adder_img)
-        self.nut_icon = tk.Label(
-            self.right_top, bg="#3b4d54", image=self.nut_img)
-        self.about_icon = tk.Label(
-            self.right_top, bg="#3b4d54", image=self.about_img)
+            self.right_top, bg=bg, image=self.people_adder_img)
+        self.nut_icon = tk.Label(self.right_top, bg=bg, image=self.nut_img)
+        self.about_icon = tk.Label(self.right_top, bg=bg, image=self.about_img)
 
+        padx = (self.screen_width * 0.0518, 0)
+        pady = (self.screen_height * 0.03, 0)
         self.right_top.pack(anchor="ne")
-        self.people_adder_bg.pack(
-            padx=(self.screen_width * 0.0518, 0),
-            pady=(self.screen_height * 0.03, 0), side=tk.LEFT)
+        self.people_adder_bg.pack(padx=padx, pady=pady, side=tk.LEFT)
         self.people_adder.pack(padx=self.screen_height * 0.005)
-        self.people_adder_icon.pack(
-            pady=(self.screen_height * 0.1, 0), side=tk.LEFT)
-        for icon in (self.nut_icon, self.about_icon):
-            icon.pack(
-                padx=(self.screen_width * 0.14, self.screen_width * 0.011),
-                pady=(self.screen_height * 0.015, 0), side=tk.TOP)
+
+        pady = (self.screen_height * 0.1, 0)
+        self.people_adder_icon.pack(pady=pady, side=tk.LEFT)
+
+        padx = (self.screen_width * 0.14, self.screen_width * 0.011)
+        pady = (self.screen_height * 0.015, 0)
+        self.nut_icon.pack(padx=padx, pady=pady, side=tk.TOP)
+        self.about_icon.pack(padx=padx, pady=pady, side=tk.TOP)
 
         self.people_adder_structure()
 
     def people_adder_structure(self):
         """
-        Method that generates the structure (no functionality)
+        Method that generates the structure (not functionality)
         to the "self.people_adder" widget.
         """
         self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
@@ -525,10 +526,8 @@ class Interface_structure(Birdayber_setUp):
             row=0, column=0, pady=pady, padx=(padx + 0.0225, 0))
         self.second_name_edge.grid(
             row=1, column=0, pady=pady, padx=(padx + 0.0225, 0))
-        self.birth_date_edge.grid(
-            row=0, column=1, pady=pady, padx=padx)
-        self.country_edge.grid(
-            row=1, column=1, pady=pady, padx=padx)
+        self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
+        self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
         pady = (self.screen_height * 0.031, 0)
         self.male_icon.grid(pady=pady, row=0, column=2)
