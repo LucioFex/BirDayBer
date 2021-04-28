@@ -163,7 +163,7 @@ class Birdayber_setUp(Birdayber_database):
         self.responsive_imgs()
         #  Generation of the main frame
         self.frame = tk.Frame(self.root)
-        self.frame.pack(fill=tk.BOTH)
+        self.frame.pack(fill="both")
 
         # Hidden Window - Generation and Configuration:
         self.hidden_window = tk.Toplevel(self.root)
@@ -329,8 +329,8 @@ class Interface_structure(Birdayber_setUp):
         self.left_side = tk.Frame(self.frame, bg="#43575f")
         self.right_side = tk.Frame(self.frame, bg="#3b4d54")
 
-        self.left_side.pack(side=tk.LEFT, fill=tk.BOTH)
-        self.right_side.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        self.left_side.pack(side="left", fill="both")
+        self.right_side.pack(side="left", fill="both", expand=True)
 
         self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
         self.license_img = tk.PhotoImage(file=location + "license.png")
@@ -360,14 +360,14 @@ class Interface_structure(Birdayber_setUp):
             self.titlebar_img.append(tk.PhotoImage(file=location + img))
 
         self.title_bar = tk.Frame(self.frame, bg="#316477")
-        self.title_bar.pack(fill=tk.X)
+        self.title_bar.pack(fill="x")
 
         buttons = []
         for index in range(3):  # Generation of buttons
             buttons.append(tk.Button(
                 self.title_bar, image=self.titlebar_img[index], bg="#2c5c6d",
-                relief=tk.FLAT, bd=0, activebackground="#1e5061"))
-            buttons[index].pack(side=tk.RIGHT, ipadx=14, ipady=7, fill=tk.Y)
+                relief="flat", bd=0, activebackground="#1e5061"))
+            buttons[index].pack(side="right", ipadx=14, ipady=7, fill="y")
 
         buttons[0].config(
             activebackground="#911722", command=self.close_client)
@@ -375,7 +375,7 @@ class Interface_structure(Birdayber_setUp):
 
         self.icon = tk.Label(
             self.title_bar, image=self.titlebar_img[3], bg="#316477")
-        self.icon.pack(side=tk.LEFT)
+        self.icon.pack(side="left")
 
         for label in (self.title_bar, self.icon):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
@@ -398,13 +398,13 @@ class Interface_structure(Birdayber_setUp):
 
         self.search_entry = tk.Entry(
             self.search_background, bg="#517684", selectbackground="#4a92ab",
-            relief=tk.FLAT, fg="#e3e3e3", insertbackground="#d7f5ff",
+            relief="flat", fg="#e3e3e3", insertbackground="#d7f5ff",
             width=round(self.screen_width / 75),
             font=("Century Gothic", round(self.screen_width / 60)))
         self.search_entry.insert(0, "Search")  # Remove from here later
 
         self.left_top.pack()
-        self.person_icon.pack(side=tk.LEFT)
+        self.person_icon.pack(side="left")
 
         self.title.pack(
             anchor="w", padx=(self.screen_width * 0.0162, 0),
@@ -416,7 +416,7 @@ class Interface_structure(Birdayber_setUp):
         self.search_background.pack(pady=(0, self.screen_height * 0.014))
 
         self.search_entry.pack(
-            side=tk.LEFT, fill=tk.Y, padx=(self.screen_width / 100, 0))
+            side="left", fill="y", padx=(self.screen_width / 100, 0))
 
     def left_side_structure_middle(self, location):
         """
@@ -425,7 +425,7 @@ class Interface_structure(Birdayber_setUp):
         self.left_middle = tk.Frame(self.left_side, bg="#334248")
 
         self.people_over = tk.Label(
-            self.left_middle, relief=tk.FLAT, text="People",
+            self.left_middle, relief="flat", text="People",
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
 
@@ -434,10 +434,9 @@ class Interface_structure(Birdayber_setUp):
             height=round(self.screen_height / 34))
 
         self.left_middle.pack(pady=(self.screen_height * 0.017, 0))
-        self.people_over.pack(side=tk.TOP)
+        self.people_over.pack(side="top")
 
-        self.people_finder.pack(
-            fill=tk.X, pady=(0, self.screen_height * 0.013))
+        self.people_finder.pack(fill="x", pady=(0, self.screen_height * 0.013))
 
     def left_side_structure_bottom(self, location):
         """
@@ -448,9 +447,9 @@ class Interface_structure(Birdayber_setUp):
         self.license_icon = tk.Label(
             self.left_bottom, image=self.license_img, bg="#43575f")
 
-        self.left_bottom.pack(fill=tk.BOTH, ipady=50)
+        self.left_bottom.pack(fill="both", ipady=50)
         self.license_icon.pack(
-            side=tk.LEFT, pady=(self.screen_height * 0.012, 0),
+            side="left", pady=(self.screen_height * 0.012, 0),
             padx=(self.screen_width * 0.0162, 0))
 
     def right_side_structure_top(self, location):
@@ -474,16 +473,16 @@ class Interface_structure(Birdayber_setUp):
         padx = (self.screen_width * 0.0518, 0)
         pady = (self.screen_height * 0.03, 0)
         self.right_top.pack(anchor="ne")
-        self.people_adder_bg.pack(padx=padx, pady=pady, side=tk.LEFT)
+        self.people_adder_bg.pack(padx=padx, pady=pady, side="left")
         self.people_adder.pack(padx=self.screen_height * 0.005)
 
         pady = (self.screen_height * 0.1, 0)
-        self.people_adder_icon.pack(pady=pady, side=tk.LEFT)
+        self.people_adder_icon.pack(pady=pady, side="left")
 
         padx = (self.screen_width * 0.14, self.screen_width * 0.011)
         pady = (self.screen_height * 0.015, 0)
-        self.nut_icon.pack(padx=padx, pady=pady, side=tk.TOP)
-        self.about_icon.pack(padx=padx, pady=pady, side=tk.TOP)
+        self.nut_icon.pack(padx=padx, pady=pady, side="top")
+        self.about_icon.pack(padx=padx, pady=pady, side="top")
 
         self.people_adder_structure()
 
@@ -500,19 +499,19 @@ class Interface_structure(Birdayber_setUp):
         font_config = ("Century Gothic", round(self.screen_width * 0.0093))
 
         self.first_name = tk.Entry(
-            self.first_name_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            self.first_name_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.second_name = tk.Entry(
-            self.second_name_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            self.second_name_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.birth_date = tk.Entry(
-            self.birth_date_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            self.birth_date_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.country = tk.Entry(
-            self.country_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            self.country_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.male_icon = tk.Label(
