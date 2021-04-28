@@ -508,29 +508,27 @@ class Interface_structure(Birdayber_setUp):
             entry_widget.config(
                 relief=tk.FLAT, width=round(self.screen_width * 0.01),
                 font=("Century Gothic", round(self.screen_width * 0.0093)),
-                bg="#66838e", fg="#e3e3e3")
+                bg="#66f38e", fg="#e3e3e3")
 
         self.male_icon = tk.Label(
-            self.people_adder, image=self.male_img, bg="#5c808c")
+            self.people_adder, image=self.male_img, bg="#66838e")
         self.female_icon = tk.Label(
-            self.people_adder, image=self.female_img, bg="#5c808c")
+            self.people_adder, image=self.female_img, bg="#66838e")
 
         edge_padx = self.screen_width * 0.01375
         edge_pady = self.screen_height * 0.019
 
         self.first_name_edge.grid(
-            row=0, column=0, pady=edge_pady,
-            padx=(edge_padx + 0.0225, 0))
+            row=0, column=0, pady=edge_pady, padx=(edge_padx + 0.0225, 0))
         self.second_name_edge.grid(
-            row=1, column=0, pady=edge_pady,
-            padx=(edge_padx + 0.0225, 0))
+            row=1, column=0, pady=edge_pady, padx=(edge_padx + 0.0225, 0))
         self.birth_date_edge.grid(
             row=0, column=1, pady=edge_pady, padx=edge_padx)
         self.country_edge.grid(
             row=1, column=1, pady=edge_pady, padx=edge_padx)
 
-        self.male_icon.grid(pady=(edge_pady, 0), row=0, column=2)
-        self.female_icon.grid(pady=(edge_pady, 0), row=0, column=3)
+        self.male_icon.grid(pady=(self.screen_height * 0.031, 0), row=0, column=2)
+        self.female_icon.grid(pady=(self.screen_height * 0.031, 0), row=0, column=3)
 
         for widget in (
             self.first_name, self.second_name,
