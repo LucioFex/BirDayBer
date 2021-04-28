@@ -496,44 +496,44 @@ class Interface_structure(Birdayber_setUp):
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        self.first_name = tk.Entry(self.first_name_edge)
-        self.second_name = tk.Entry(self.second_name_edge)
-        self.birth_date = tk.Entry(self.birth_date_edge)
-        self.country = tk.Entry(self.country_edge)
-
-        # Size configuration of the people_adder entries
-        for entry_widget in (
-            self.first_name, self.second_name,
-                self.birth_date, self.country):
-            entry_widget.config(
-                relief=tk.FLAT, width=round(self.screen_width * 0.01),
-                font=("Century Gothic", round(self.screen_width * 0.0093)),
-                bg="#66f38e", fg="#e3e3e3")
+        font_config = ("Century Gothic", round(self.screen_width * 0.0093))
+        self.first_name = tk.Entry(
+            self.first_name_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            width=round(self.screen_width * 0.01), font=font_config)
+        self.second_name = tk.Entry(
+            self.second_name_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            width=round(self.screen_width * 0.01), font=font_config)
+        self.birth_date = tk.Entry(
+            self.birth_date_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            width=round(self.screen_width * 0.01), font=font_config)
+        self.country = tk.Entry(
+            self.country_edge, relief=tk.FLAT, bg="#66838e", fg="#e3e3e3",
+            width=round(self.screen_width * 0.01), font=font_config)
 
         self.male_icon = tk.Label(
             self.people_adder, image=self.male_img, bg="#66838e")
         self.female_icon = tk.Label(
             self.people_adder, image=self.female_img, bg="#66838e")
 
-        edge_padx = self.screen_width * 0.01375
-        edge_pady = self.screen_height * 0.019
-
+        padx, pady = self.screen_width * 0.01375, self.screen_height * 0.019
         self.first_name_edge.grid(
-            row=0, column=0, pady=edge_pady, padx=(edge_padx + 0.0225, 0))
+            row=0, column=0, pady=pady, padx=(padx + 0.0225, 0))
         self.second_name_edge.grid(
-            row=1, column=0, pady=edge_pady, padx=(edge_padx + 0.0225, 0))
+            row=1, column=0, pady=pady, padx=(padx + 0.0225, 0))
         self.birth_date_edge.grid(
-            row=0, column=1, pady=edge_pady, padx=edge_padx)
+            row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(
-            row=1, column=1, pady=edge_pady, padx=edge_padx)
+            row=1, column=1, pady=pady, padx=padx)
 
-        self.male_icon.grid(pady=(self.screen_height * 0.031, 0), row=0, column=2)
-        self.female_icon.grid(pady=(self.screen_height * 0.031, 0), row=0, column=3)
+        pady = (self.screen_height * 0.031, 0)
+        self.male_icon.grid(pady=pady, row=0, column=2)
+        self.female_icon.grid(pady=pady, row=0, column=3)
 
-        for widget in (
-            self.first_name, self.second_name,
-                self.birth_date, self.country):
-            widget.pack(pady=(0, self.screen_height * 0.004))
+        pady = (0, self.screen_height * 0.004)
+        self.first_name.pack(pady=pady)
+        self.second_name.pack(pady=pady)
+        self.birth_date.pack(pady=pady)
+        self.country.pack(pady=pady)
 
     def right_side_structure_middle(self, location):
         """
