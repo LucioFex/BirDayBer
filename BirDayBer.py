@@ -362,16 +362,23 @@ class Interface_structure(Birdayber_setUp):
         self.title_bar = tk.Frame(self.frame, bg="#316477")
         self.title_bar.pack(fill="x")
 
-        buttons = []
-        for index in range(3):  # Generation of buttons
-            buttons.append(tk.Button(
-                self.title_bar, image=self.titlebar_img[index], bg="#2c5c6d",
-                relief="flat", bd=0, activebackground="#1e5061"))
-            buttons[index].pack(side="right", ipadx=14, ipady=7, fill="y")
+        self.minimize_button = tk.Button(
+            self.title_bar, image=self.titlebar_img[2], bg="#2c5c6d", bd=0,
+            relief="flat", activebackground="#1e5061",
+            command=self.title_bar_minimize)
 
-        buttons[0].config(
-            activebackground="#911722", command=self.close_client)
-        buttons[2].config(command=self.title_bar_minimize)
+        self.maximize_button = tk.Button(
+            self.title_bar, image=self.titlebar_img[1], bg="#2c5c6d",
+            relief="flat", bd=0, activebackground="#1e5061")
+
+        self.close_button = tk.Button(
+            self.title_bar, image=self.titlebar_img[0], bg="#2c5c6d", bd=0,
+            relief="flat", activebackground="#911722",
+            command=self.close_client)
+
+        self.close_button.pack(side="right", ipadx=14, ipady=7, fill="y")
+        self.maximize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
+        self.minimize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
 
         self.icon = tk.Label(
             self.title_bar, image=self.titlebar_img[3], bg="#316477")
