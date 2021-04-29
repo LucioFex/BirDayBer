@@ -16,19 +16,21 @@ def photo_to_binary(photo):
     But if the 'photo' parameter is a binary object already,
     it will return the 'photo' itself.
     """
-    if photo is not None:
-        try:
-            if os.path.exists(photo):
-                with open(photo, 'rb') as binary_photo:
-                    blob = binary_photo.read()
-                return blob
+    if photo is None:
+        return
 
-            elif os.path.exists(photo) is False:
-                return photo
+    try:
+        if os.path.exists(photo):
+            with open(photo, 'rb') as binary_photo:
+                blob = binary_photo.read()
+            return blob
 
-            raise FileExistsError  # If there's no file found
-        except FileNotFoundError:
-            return None
+        elif os.path.exists(photo) is False:
+            return photo
+
+        raise FileExistsError  # If there's no file found
+    except FileNotFoundError:
+        return
 
 
 def binary_to_photo(id_person, binary, folder="bin//rows_content"):

@@ -527,11 +527,12 @@ class Interface_structure(Birdayber_setUp):
         self.female_icon = tk.Label(
             self.people_adder, image=self.female_img, bg="#66838e")
 
-        padx, pady = self.screen_width * 0.01375, self.screen_height * 0.019
-        self.first_name_edge.grid(
-            row=0, column=0, pady=pady, padx=(padx + 0.0225, 0))
-        self.second_name_edge.grid(
-            row=1, column=0, pady=pady, padx=(padx + 0.0225, 0))
+        padx = self.screen_width * 0.01375 + 0.0225
+        pady = self.screen_height * 0.019
+        self.first_name_edge.grid(row=0, column=0, pady=pady, padx=(padx, 0))
+        self.second_name_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
+
+        padx = self.screen_width * 0.01375 - 0.0225
         self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
