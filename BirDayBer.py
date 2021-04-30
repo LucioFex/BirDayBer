@@ -506,26 +506,26 @@ class Interface_structure(Birdayber_setUp):
         font_config = ("Century Gothic", round(self.screen_width * 0.0093))
 
         self.first_name = tk.Entry(
-            self.first_name_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
+            self.first_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.second_name = tk.Entry(
-            self.second_name_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
+            self.second_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.birth_date = tk.Entry(
-            self.birth_date_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
+            self.birth_date_edge, relief="flat", bg="#517684", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.country = tk.Entry(
-            self.country_edge, relief="flat", bg="#66838e", fg="#e3e3e3",
+            self.country_edge, relief="flat", bg="#517684", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
         self.male_icon = tk.Label(
-            self.people_adder, image=self.male_img, bg="#66838e")
+            self.people_adder, image=self.male_img, bg="#517684")
 
         self.female_icon = tk.Label(
-            self.people_adder, image=self.female_img, bg="#66838e")
+            self.people_adder, image=self.female_img, bg="#517684")
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
