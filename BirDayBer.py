@@ -523,9 +523,16 @@ class Interface_structure(Birdayber_setUp):
 
         self.male_icon = tk.Label(
             self.people_adder, image=self.male_img, bg="#517684")
-
         self.female_icon = tk.Label(
             self.people_adder, image=self.female_img, bg="#517684")
+
+        self.gender_selector = tk.IntVar()
+
+        self.male_button = tk.Radiobutton(
+            self.people_adder, variable=self.gender_selector, value=0)
+
+        self.female_button = tk.Radiobutton(
+            self.people_adder, variable=self.gender_selector, value=1)
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
@@ -539,6 +546,8 @@ class Interface_structure(Birdayber_setUp):
         pady = (self.screen_height * 0.031, 0)
         self.male_icon.grid(pady=pady, row=0, column=2)
         self.female_icon.grid(pady=pady, row=0, column=3)
+        self.male_button.grid(row=1, column=2)
+        self.female_button.grid(row=1, column=3)
 
         pady = (0, self.screen_height * 0.004)
         self.first_name.pack(pady=pady)
