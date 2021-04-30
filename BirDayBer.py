@@ -529,10 +529,10 @@ class Interface_structure(Birdayber_setUp):
         self.gender_selector = tk.IntVar()
 
         self.male_button = tk.Radiobutton(
-            self.people_adder, variable=self.gender_selector, value=0)
+            self.people_adder, variable=self.gender_selector, value=1)
 
         self.female_button = tk.Radiobutton(
-            self.people_adder, variable=self.gender_selector, value=1)
+            self.people_adder, variable=self.gender_selector, value=2)
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
