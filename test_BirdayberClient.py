@@ -95,12 +95,13 @@ class BirDayBerClient_testing(unittest.TestCase):
 
     def test_default_images(self):
         for image in (
-            "about.png", "add_person.png", "nut.png", "BirDayBerIcon.png",
-            "cancel_person.png", "close-button.png", "edit.png",
+            "about.png", "add-person.png", "nut.png", "BirDayBerIcon.png",
+            "cancel-person.png", "close-button.png", "edit.png",
             "garbage1.png", "garbage2.png", "twitter.png", "license.png",
             "maximize-button.png", "maximized-button.png",
-            "minimize-button.png", "party_hat_female.png", "github.png",
-                "party_hat_male.png", "party_randolph.png", "randolph.png"):
+            "minimize-button.png", "party-hat-female.png", "github.png",
+            "party-hat-male.png", "party-randolph.png", "randolph.png",
+                "radiobutton-0.png", "radiobutton-1.png"):
 
             self.assertTrue(os.path.exists(
                 "bin//system_content//visual_content//%s" % image))
@@ -108,12 +109,13 @@ class BirDayBerClient_testing(unittest.TestCase):
     def test_responsive_images(self):
         self.interface.responsive_imgs()
         for image in (
-            "about.png", "add_person.png", "nut.png", "BirDayBerIcon.png",
-            "cancel_person.png", "close-button.png", "edit.png",
+            "about.png", "add-person.png", "nut.png", "BirDayBerIcon.png",
+            "cancel-person.png", "close-button.png", "edit.png",
             "garbage1.png", "garbage2.png", "twitter.png", "license.png",
             "maximize-button.png", "maximized-button.png",
-            "minimize-button.png", "party_hat_female.png", "github.png",
-                "party_hat_male.png", "party_randolph.png", "randolph.png"):
+            "minimize-button.png", "party-hat-female.png", "github.png",
+            "party-hat-male.png", "party-randolph.png", "randolph.png",
+                "radiobutton-0.png", "radiobutton-1.png"):
 
             img = "bin//system_content//visual_content//responsive//%s" % image
             self.assertTrue(os.path.exists(img))
