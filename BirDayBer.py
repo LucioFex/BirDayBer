@@ -528,13 +528,22 @@ class Interface_structure(Birdayber_setUp):
 
         self.gender_selector = tk.IntVar()
 
+        self.test1 = tk.PhotoImage(
+            file="bin/system_content/visual_content/radio_button_0.png")
+        self.test2 = tk.PhotoImage(
+            file="bin/system_content/visual_content/radio_button_1.png")
+
         self.male_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=1,
-            bg="#66838e", activebackground="#66838e")
+            bg="#66838e", activebackground="#66838e", image=self.test1,
+            selectimage=self.test2, indicator=False, bd=0,
+            selectcolor="#66838e")
 
         self.female_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=2,
-            bg="#66838e", activebackground="#66838e")
+            bg="#66838e", activebackground="#66838e", image=self.test1,
+            selectimage=self.test2, indicator=False, bd=0,
+            selectcolor="#66838e")
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
