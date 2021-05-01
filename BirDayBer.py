@@ -233,7 +233,7 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 0.065)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
             # Main entry section
-            elif img in ("user_white.png"):
+            elif img in ("user-white.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.07),
@@ -247,7 +247,7 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 0.088)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
             # People adder's icon
-            elif img in ("add_person.png"):
+            elif img in ("add-person.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.075),
@@ -261,7 +261,7 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_height * 0.069)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
             # Gender radio buttons.
-            elif img in ("radio_button_0.png", "radio_button_1.png"):
+            elif img in ("radiobutton-0.png", "radiobutton-1.png"):
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail((
                     round(self.screen_width * 0.01),
@@ -339,17 +339,17 @@ class Interface_structure(Birdayber_setUp):
         self.left_side.pack(side="left", fill="both")
         self.right_side.pack(side="left", fill="both", expand=True)
 
-        self.person_icon_img = tk.PhotoImage(file=location + "user_white.png")
+        self.person_icon_img = tk.PhotoImage(file=location + "user-white.png")
         self.license_img = tk.PhotoImage(file=location + "license.png")
         self.male_img = tk.PhotoImage(file=location + "male.png")
         self.female_img = tk.PhotoImage(file=location + "female.png")
-        self.people_adder_img = tk.PhotoImage(file=location + "add_person.png")
+        self.people_adder_img = tk.PhotoImage(file=location + "add-person.png")
         self.about_img = tk.PhotoImage(file=location + "about.png")
         self.nut_img = tk.PhotoImage(file=location + "nut.png")
         self.radio_button_off_img = tk.PhotoImage(
-            file=location + "radio_button_0.png")
+            file=location + "radiobutton-0.png")
         self.radio_button_on_img = tk.PhotoImage(
-            file=location + "radio_button_1.png")
+            file=location + "radiobutton-1.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
