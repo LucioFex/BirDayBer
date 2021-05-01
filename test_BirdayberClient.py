@@ -104,7 +104,7 @@ class BirDayBerClient_testing(unittest.TestCase):
                 "radiobutton-0.png", "radiobutton-1.png"):
 
             self.assertTrue(os.path.exists(
-                "bin//system_content//visual_content//%s" % image))
+                "bin//system-content//visual-content//%s" % image))
 
     def test_responsive_images(self):
         self.interface.responsive_imgs()
@@ -117,7 +117,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             "party-hat-male.png", "party-randolph.png", "randolph.png",
                 "radiobutton-0.png", "radiobutton-1.png"):
 
-            img = "bin//system_content//visual_content//responsive//%s" % image
+            img = "bin//system-content//visual-content//responsive//%s" % image
             self.assertTrue(os.path.exists(img))
             os.remove(img)
 

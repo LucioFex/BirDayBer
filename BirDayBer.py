@@ -183,7 +183,7 @@ class Birdayber_setUp(Birdayber_database):
         for visual_brand in (self.root, self.hidden_window):
             visual_brand.title("BirDayBer")
             visual_brand.iconbitmap(
-                "bin//system_content//visual_content//BirDayBerIcon.ico")
+                "bin//system-content//visual-content//BirDayBerIcon.ico")
 
     def window_init_resolution(self, width, height):
         """
@@ -212,7 +212,7 @@ class Birdayber_setUp(Birdayber_database):
         BirDayBer's system to something more visible for the user.
         The new clones will be saved in the 'responsive' folder.
         """
-        location = "bin//system_content//visual_content"
+        location = "bin//system-content//visual-content"
         files = next(os.walk(location))[2]  # All the images names
 
         for img in files:  # (Refactor when you have all the imgs)
@@ -328,7 +328,7 @@ class Interface_structure(Birdayber_setUp):
         # Generation of the title bar
         self.titlebar_init()
 
-        location = "bin//system_content//visual_content//responsive//"
+        location = "bin//system-content//visual-content//responsive//"
 
         self.root.config(bg="DarkOliveGreen4")
         self.frame.config(bg="ForestGreen")
@@ -363,7 +363,7 @@ class Interface_structure(Birdayber_setUp):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
-        location = "bin//system_content//visual_content//responsive//"
+        location = "bin//system-content//visual-content//responsive//"
 
         self.titlebar_img = []
         for img in ("close-button.png", "maximize-button.png",

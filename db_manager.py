@@ -4,7 +4,7 @@ import os
 
 def get_dict(key_or_value, position=0):
     """
-    Function to get the key or value from a dictionary in its own data type.
+    Function to get the key or value from a dictionary in it own data type.
     """
     return tuple(key_or_value)[position]
 
@@ -33,10 +33,10 @@ def photo_to_binary(photo):
         return
 
 
-def binary_to_photo(id_person, binary, folder="bin//rows_content"):
+def binary_to_photo(id_person, binary, folder="bin//rows-content"):
     """
     Function that convert the binary data to an image in a X folder.
-    The default folder will be "bin//rows_content"
+    The default folder will be "bin//rows-content"
 
     Every photo will be saved in '.png' type.
     """
