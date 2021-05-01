@@ -260,6 +260,13 @@ class Birdayber_setUp(Birdayber_database):
                     round(self.screen_width * 0.056),
                     round(self.screen_height * 0.069)))
                 responsive_img.save("%s//responsive//%s" % (location, img))
+            # Gender radio buttons.
+            elif img in ("radio_button_0.png", "radio_button_1.png"):
+                responsive_img = Image.open("%s//%s" % (location, img))
+                responsive_img.thumbnail((
+                    round(self.screen_width * 0.01),
+                    round(self.screen_height * 0.017)))
+                responsive_img.save("%s//responsive//%s" % (location, img))
 
     def title_bar_minimize(self):
         """
@@ -339,6 +346,10 @@ class Interface_structure(Birdayber_setUp):
         self.people_adder_img = tk.PhotoImage(file=location + "add_person.png")
         self.about_img = tk.PhotoImage(file=location + "about.png")
         self.nut_img = tk.PhotoImage(file=location + "nut.png")
+        self.radio_button_off_img = tk.PhotoImage(
+            file=location + "radio_button_0.png")
+        self.radio_button_on_img = tk.PhotoImage(
+            file=location + "radio_button_1.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
@@ -528,22 +539,17 @@ class Interface_structure(Birdayber_setUp):
 
         self.gender_selector = tk.IntVar()
 
-        self.test1 = tk.PhotoImage(
-            file="bin/system_content/visual_content/radio_button_0.png")
-        self.test2 = tk.PhotoImage(
-            file="bin/system_content/visual_content/radio_button_1.png")
-
         self.male_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=1,
-            bg="#66838e", activebackground="#66838e", image=self.test1,
-            selectimage=self.test2, indicator=False, bd=0,
-            selectcolor="#66838e")
+            bg="#66838e", activebackground="#66838e", indicator=False,
+            image=self.radio_button_off_img, bd=0, selectcolor="#66838e",
+            selectimage=self.radio_button_on_img)
 
         self.female_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=2,
-            bg="#66838e", activebackground="#66838e", image=self.test1,
-            selectimage=self.test2, indicator=False, bd=0,
-            selectcolor="#66838e")
+            bg="#66838e", activebackground="#66838e", indicator=False,
+            image=self.radio_button_off_img, bd=0, selectcolor="#66838e",
+            selectimage=self.radio_button_on_img)
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
