@@ -561,9 +561,10 @@ class Interface_structure(Birdayber_setUp):
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
         pady = (self.screen_height * 0.031, 0)
+        padx = (0, self.screen_width * 0.01)
         self.male_icon.grid(pady=pady, row=0, column=2)
         self.female_icon.grid(pady=pady, row=0, column=3)
-        self.male_button.grid(row=1, column=2)
+        self.male_button.grid(row=1, column=2, padx=padx)
         self.female_button.grid(row=1, column=3)
 
         pady = (0, self.screen_height * 0.004)
