@@ -502,12 +502,13 @@ class Interface_structure(Birdayber_setUp):
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
         self.about_icon.pack(padx=padx, pady=pady, side="top")
 
-        self.people_adder_structure()
+        self.people_adder_left()
+        self.people_adder_right()
 
-    def people_adder_structure(self):
+    def people_adder_left(self):
         """
-        Method that generates the structure (not functionality)
-        to the "self.people_adder" widget.
+        Method that generates the LEFT structure
+        (not functionality) to the "self.people_adder" widget.
         """
         self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
         self.second_name_edge = tk.Frame(self.people_adder, bg="#136687")
@@ -532,6 +533,16 @@ class Interface_structure(Birdayber_setUp):
             self.country_edge, relief="flat", bg="#517684", fg="#e3e3e3",
             width=round(self.screen_width * 0.01), font=font_config)
 
+        padx = self.screen_width * 0.01375 + 0.0225
+        pady = self.screen_height * 0.019
+        self.first_name_edge.grid(row=0, column=0, pady=pady, padx=(padx, 0))
+        self.second_name_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
+
+        padx = self.screen_width * 0.01375 - 0.0225
+        self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
+        self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
+
+    def people_adder_right(self):
         self.male_icon = tk.Label(
             self.people_adder, image=self.male_img, bg="#66838e")
         self.female_icon = tk.Label(
@@ -550,15 +561,6 @@ class Interface_structure(Birdayber_setUp):
             bg="#66838e", activebackground="#66838e", indicator=False,
             image=self.radio_button_off_img, bd=0, selectcolor="#66838e",
             selectimage=self.radio_button_on_img)
-
-        padx = self.screen_width * 0.01375 + 0.0225
-        pady = self.screen_height * 0.019
-        self.first_name_edge.grid(row=0, column=0, pady=pady, padx=(padx, 0))
-        self.second_name_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
-
-        padx = self.screen_width * 0.01375 - 0.0225
-        self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
-        self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
         pady = (self.screen_height * 0.031, 0)
         padx = (0, self.screen_width * 0.01)
