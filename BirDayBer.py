@@ -543,6 +543,10 @@ class Interface_structure(Birdayber_setUp):
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
     def people_adder_right(self):
+        """
+        Method that generates the RIGHT structure
+        (not functionality) to the "self.people_adder" widget.
+        """
         self.male_icon = tk.Label(
             self.people_adder, image=self.male_img, bg="#66838e")
         self.female_icon = tk.Label(
