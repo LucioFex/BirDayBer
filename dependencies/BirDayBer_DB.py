@@ -23,7 +23,7 @@ class Birdayber_database:
         If the second parameter is 'True' the program will start main-looping.
         """
         #  Db management and generation:
-        if os.path.exists(db_connection) is False:  # If there's not db
+        if not os.path.exists(db_connection):  # If there's not db
             self.generate_database(db_connection)
         self.db = db_manager.Db_manager(db_connection)  # If there's a db
 
@@ -116,7 +116,7 @@ class Birdayber_database:
 
         if binary:
             select = "per_first, per_last, birth, age, photo, country, gender"
-        elif binary is False:
+        elif not binary:
             select = "per_first, per_last, birth, age, country, gender"
 
         people_data = self.db.column_search(

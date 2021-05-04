@@ -25,7 +25,7 @@ def photo_to_binary(photo):
                 blob = binary_photo.read()
             return blob
 
-        elif os.path.exists(photo) is False:
+        elif not os.path.exists(photo):
             return photo
 
         raise FileExistsError  # If there's no file found
