@@ -1,4 +1,4 @@
-import BirDayBer_DB
+import dependencies.BirDayBer_DB as BirDayBer_DB
 from PIL import Image
 import tkinter as tk
 import os

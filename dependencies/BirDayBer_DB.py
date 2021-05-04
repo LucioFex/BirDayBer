@@ -1,4 +1,4 @@
-import db_manager
+import dependencies.db_manager as db_manager
 import os
 
 

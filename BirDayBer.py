@@ -1,4 +1,4 @@
-import BirDayBer_setUp
+import dependencies.BirDayBer_setUp as BirDayBer_setUp
 import tkinter as tk
 
 

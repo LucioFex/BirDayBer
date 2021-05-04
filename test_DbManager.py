@@ -1,5 +1,5 @@
+import dependencies.db_manager as db_manager
 import unittest
-import db_manager
 """
 Testing file of BirDayBer.py.
 """
