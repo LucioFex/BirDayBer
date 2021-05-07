@@ -9,17 +9,23 @@ This program will also remind you with a notification if it is someone's birthda
 ![.](conceptual/interface_design_updated.png)
 
 
-## Official Requeriments:
+## Technologies used in the project:
 
-- Programming Language [Python](https://www.python.org/) (version 3).
+- [Python](https://www.python.org/) programming language.
 - Python [Tkinter (Tcl/Tk)](https://docs.python.org/3/library/tkinter.html) library.
 - Python [Sqlite3](https://docs.python.org/3/library/sqlite3.html) library.
 - Python [Pillow](https://pypi.org/project/Pillow/) library.
 - Python [OS](https://docs.python.org/3/library/os.html) module.
 
-## Posible Future Requeriments:
+## Possible future technologies to be used in the project:
 
 - Python [Pygame](https://www.pygame.org/news) library.
+
+## Requeriments:
+- [Python 3.8](https://www.python.org/downloads/release/python-385/).
+- [Pillow 8.0.1](https://pypi.org/project/Pillow/).
+- The rest of libraries and modules come by default.
+
 
 ## Contributions
 
@@ -27,10 +33,12 @@ Pull requests are welcome.
 So if you've got an idea of how to improve this code, I'll thank you for
 opening an issue to check that change that you want to make.
 
+
 ## Updates
 
 I'll try to be active with this proyect, so I'll be doing what is planificated 
 with this one, but that doesn't mean that I couldn't change some ideas of the concept. 
+
 
 ## Credits
 
@@ -50,6 +58,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&.page=1&position=4&page=1&position=4&related_id=860814&origin=search).
 - User icon from [DinosoftLabs (flaticon)](https://www.flaticon.com/free-icon/user_4018596).
 - Court icon from [Nikita Golubev (flaticon)](https://www.flaticon.com/free-icon/court_1750412?related_id=1750530&origin=search).
+
 
 ## ```Project Status: Incomplete```
 
