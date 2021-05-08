@@ -23,7 +23,7 @@ This program will also remind you with a notification if it is someone's birthda
 
 ## Requeriments:
 - [Python 3.8](https://www.python.org/downloads/release/python-385/).
-- [Pillow 8.0.1](https://pypi.org/project/Pillow/).
+- [Pillow 8.0.1](https://pypi.org/project/Pillow/8.0.1/).
 - The rest of libraries and modules come by default.
 
 
