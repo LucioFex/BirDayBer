@@ -6,7 +6,7 @@ This program will also remind you with a notification if it is someone's birthda
 
 ### Image of the BirDayBer conceptual interface:
 
-![.](conceptual/interface_design_updated.png)
+![.](conceptual/interface-design-updated.png)
 
 
 ## Technologies used in the project:
