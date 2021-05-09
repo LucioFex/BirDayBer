@@ -21,10 +21,18 @@ This program will also remind you with a notification if it is someone's birthda
 
 - Python [Pygame](https://www.pygame.org/news) library.
 
-## Requeriments:
+## Requirements:
+
 - [Python 3.8](https://www.python.org/downloads/release/python-385/).
 - [Pillow 8.0.1](https://pypi.org/project/Pillow/8.0.1/).
 - The rest of libraries and modules come by default.
+
+
+## How to run:
+
+You must have a [Windows operating system](https://www.microsoft.com/es-ar/windows), and then the rest is quite simple:
+
+You just have to execute the `BirDayBer.py` file.
 
 
 ## Contributions
