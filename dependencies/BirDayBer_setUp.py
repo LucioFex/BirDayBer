@@ -76,6 +76,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         location = "bin//system-content//visual-content"
         files = next(os.walk(location))[2]  # All the images names
 
+        def thumbnail_size(width, height):  # Thumbnail size calculation
+            return self.screen_width * width, self.screen_height * height
+
         for img in files:
             responsive_img = Image.open("%s//%s" % (location, img))
 
@@ -83,39 +86,25 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             if img in (
                 "close-button.png", "minimize-button.png",
                     "maximize-button.png", "maximized-button.png"):
-                responsive_img.thumbnail((
-                    round(self.screen_width * 0.04),
-                    round(self.screen_height * 0.04)))
+                responsive_img.thumbnail(thumbnail_size(0.04, 0.04))
             # Title bar section
             elif img in ("BirDayBerIcon.png"):
-                responsive_img.thumbnail((
-                    round(self.screen_width * 0.065),
-                    round(self.screen_height * 0.065)))
+                responsive_img.thumbnail(thumbnail_size(0.065, 0.065))
             # Main entry section
             elif img in ("user-white.png"):
-                responsive_img.thumbnail((
-                    round(self.screen_width * 0.07),
-                    round(self.screen_height * 0.09)))
+                responsive_img.thumbnail(thumbnail_size(0.07, 0.09))
             # Footer section
             elif img in ("license.png"):
-                responsive_img.thumbnail((
-                    round(self.screen_width * 0.056),
-                    round(self.screen_height * 0.088)))
+                responsive_img.thumbnail(thumbnail_size(0.056, 0.088))
             # People adder's icon
             elif img in ("add-person.png"):
-                responsive_img.thumbnail((
-                    round(self.screen_width * 0.075),
-                    round(self.screen_height * 0.087)))
+                responsive_img.thumbnail(thumbnail_size(0.075, 0.087))
             # People adder's section and extra buttons
             elif img in ("nut.png", "about.png", "male.png", "female.png"):
-                responsive_img.thumbnail((
-                    round(self.screen_width * 0.056),
-                    round(self.screen_height * 0.069)))
+                responsive_img.thumbnail(thumbnail_size(0.056, 0.069))
             # Gender radio buttons.
             elif img in ("radiobutton-0.png", "radiobutton-1.png"):
-                responsive_img.thumbnail((
-                    round(self.screen_width * 0.01),
-                    round(self.screen_height * 0.017)))
+                responsive_img.thumbnail(thumbnail_size(0.01, 0.017))
 
             responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
