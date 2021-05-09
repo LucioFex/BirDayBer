@@ -96,12 +96,13 @@ class BirDayBerClient_testing(unittest.TestCase):
     def test_default_images(self):
         for image in (
             "about.png", "add-person.png", "nut.png", "BirDayBerIcon.png",
-            "cancel-person.png", "close-button.png", "edit.png",
+            "cancel-person.png", "close-button.png", "image-not-found.png",
             "garbage1.png", "garbage2.png", "twitter.png", "license.png",
-            "maximize-button.png", "maximized-button.png",
-            "minimize-button.png", "party-hat-female.png", "github.png",
-            "party-hat-male.png", "party-randolph.png", "randolph.png",
-                "radiobutton-0.png", "radiobutton-1.png"):
+            "maximize-button.png", "maximized-button.png", "github.png",
+            "randolph.png", "minimize-button.png", "party-hat-female.png",
+            "party-hat-male.png", "user-black.png", "user-white.png",
+            "party-randolph.png", "edit.png", "radiobutton-0.png",
+                "radiobutton-1.png"):
 
             self.assertTrue(os.path.exists(
                 "bin//system-content//visual-content//%s" % image))
@@ -110,12 +111,13 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.interface.responsive_imgs()
         for image in (
             "about.png", "add-person.png", "nut.png", "BirDayBerIcon.png",
-            "cancel-person.png", "close-button.png", "edit.png",
+            "cancel-person.png", "close-button.png", "image-not-found.png",
             "garbage1.png", "garbage2.png", "twitter.png", "license.png",
-            "maximize-button.png", "maximized-button.png",
-            "minimize-button.png", "party-hat-female.png", "github.png",
-            "party-hat-male.png", "party-randolph.png", "randolph.png",
-                "radiobutton-0.png", "radiobutton-1.png"):
+            "maximize-button.png", "maximized-button.png", "github.png",
+            "randolph.png", "minimize-button.png", "party-hat-female.png",
+            "party-hat-male.png", "user-black.png", "user-white.png",
+            "party-randolph.png", "edit.png", "radiobutton-0.png",
+                "radiobutton-1.png"):
 
             img = "bin//system-content//visual-content//responsive//%s" % image
             self.assertTrue(os.path.exists(img))

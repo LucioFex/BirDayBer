@@ -6,5 +6,7 @@ testing/test.db
 testing/BirDayBer.db
 bin/BirDayBer.db
 bin/system-content/visual-content/BirDayBerIcon.ico
-bin/system-content/visual-content/responsive/
+bin/system-content/visual-content/responsive
+bin/system-content/visual-content/user-black.png
+bin/system-content/visual-content/user-black.png
 dependencies/__pycache__
