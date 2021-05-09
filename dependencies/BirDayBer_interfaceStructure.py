@@ -34,6 +34,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_img = tk.PhotoImage(file=location + "add-person.png")
         self.about_img = tk.PhotoImage(file=location + "about.png")
         self.nut_img = tk.PhotoImage(file=location + "nut.png")
+        self.img_adder_img = tk.PhotoImage(file=location + "user-black.png")
         self.radio_button_off_img = tk.PhotoImage(
             file=location + "radiobutton-0.png")
         self.radio_button_on_img = tk.PhotoImage(
@@ -185,7 +186,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.135, 0)
         self.people_adder_icon.pack(pady=pady, side="left")
 
-        padx = (self.screen_width * 0.14, self.screen_width * 0.011)
+        padx = (self.screen_width * 0.10, self.screen_width * 0.011)
         pady = (self.screen_height * 0.015, 0)
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
         self.about_icon.pack(padx=padx, pady=pady, side="top")
@@ -254,12 +255,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             image=self.radio_button_off_img, bd=0, selectcolor="#66838e",
             selectimage=self.radio_button_on_img)
 
+        self.img_adder = tk.Label(
+            self.people_adder, image=self.img_adder_img, bg="#66838e")
+
         pady = (self.screen_height * 0.031, 0)
         padx = (0, self.screen_width * 0.01)
         self.male_icon.grid(pady=pady, row=0, column=2)
         self.female_icon.grid(pady=pady, row=0, column=3)
         self.male_button.grid(row=1, column=2, padx=padx)
         self.female_button.grid(row=1, column=3)
+        self.img_adder.grid(pady=pady, row=0, column=4)
 
         pady = (0, self.screen_height * 0.004)
         self.first_name.pack(pady=pady)
