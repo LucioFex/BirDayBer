@@ -27,17 +27,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_side.pack(side="left", fill="both")
         self.right_side.pack(side="left", fill="both", expand=True)
 
-        self.person_icon_img = tk.PhotoImage(file=location + "user-white.png")
-        self.license_img = tk.PhotoImage(file=location + "license.png")
-        self.male_img = tk.PhotoImage(file=location + "male.png")
-        self.female_img = tk.PhotoImage(file=location + "female.png")
-        self.people_adder_img = tk.PhotoImage(file=location + "add-person.png")
-        self.about_img = tk.PhotoImage(file=location + "about.png")
-        self.nut_img = tk.PhotoImage(file=location + "nut.png")
-        self.img_adder_img = tk.PhotoImage(file=location + "user-black.png")
-        self.radio_button_off_img = tk.PhotoImage(
+        self.person_icon_src = tk.PhotoImage(file=location + "user-white.png")
+        self.license_src = tk.PhotoImage(file=location + "license.png")
+        self.male_src = tk.PhotoImage(file=location + "male.png")
+        self.female_src = tk.PhotoImage(file=location + "female.png")
+        self.people_adder_src = tk.PhotoImage(file=location + "add-person.png")
+        self.about_src = tk.PhotoImage(file=location + "about.png")
+        self.nut_src = tk.PhotoImage(file=location + "nut.png")
+        self.img_adder_src = tk.PhotoImage(file=location + "user-black.png")
+        self.radio_button_off_src = tk.PhotoImage(
             file=location + "radiobutton-0.png")
-        self.radio_button_on_img = tk.PhotoImage(
+        self.radio_button_on_src = tk.PhotoImage(
             file=location + "radiobutton-1.png")
 
         # Generation of the structure of the body
@@ -101,7 +101,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             font=("Century Gothic", round(self.screen_width / 38)))
 
         self.person_icon = tk.Label(
-            self.search_background, image=self.person_icon_img, bg="#4d717f")
+            self.search_background, image=self.person_icon_src, bg="#4d717f")
 
         self.search_entry = tk.Entry(
             self.search_background, bg="#517684", selectbackground="#4a92ab",
@@ -152,7 +152,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_bottom = tk.Frame(self.left_side, bg="#43575f")
 
         self.license_icon = tk.Label(
-            self.left_bottom, image=self.license_img, bg="#43575f")
+            self.left_bottom, image=self.license_src, bg="#43575f")
 
         self.left_bottom.pack(fill="both", ipady=50)
         self.license_icon.pack(
@@ -173,9 +173,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         bg = "#3b4d54"
         self.people_adder_icon = tk.Label(
-            self.right_top, bg=bg, image=self.people_adder_img)
-        self.nut_icon = tk.Label(self.right_top, bg=bg, image=self.nut_img)
-        self.about_icon = tk.Label(self.right_top, bg=bg, image=self.about_img)
+            self.right_top, bg=bg, image=self.people_adder_src)
+        self.nut_icon = tk.Label(self.right_top, bg=bg, image=self.nut_src)
+        self.about_icon = tk.Label(self.right_top, bg=bg, image=self.about_src)
 
         padx = (self.screen_width * 0.0518, 0)
         pady = (self.screen_height * 0.03, 0)
@@ -237,26 +237,26 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         (not functionality) to the "self.people_adder" widget.
         """
         self.male_icon = tk.Label(
-            self.people_adder, image=self.male_img, bg="#66838e")
+            self.people_adder, image=self.male_src, bg="#66838e")
         self.female_icon = tk.Label(
-            self.people_adder, image=self.female_img, bg="#66838e")
+            self.people_adder, image=self.female_src, bg="#66838e")
 
         self.gender_selector = tk.IntVar()
 
         self.male_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=1,
             bg="#66838e", activebackground="#66838e", indicator=False,
-            image=self.radio_button_off_img, bd=0, selectcolor="#66838e",
-            selectimage=self.radio_button_on_img)
+            image=self.radio_button_off_src, bd=0, selectcolor="#66838e",
+            selectimage=self.radio_button_on_src)
 
         self.female_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=2,
             bg="#66838e", activebackground="#66838e", indicator=False,
-            image=self.radio_button_off_img, bd=0, selectcolor="#66838e",
-            selectimage=self.radio_button_on_img)
+            image=self.radio_button_off_src, bd=0, selectcolor="#66838e",
+            selectimage=self.radio_button_on_src)
 
         self.img_adder = tk.Label(
-            self.people_adder, image=self.img_adder_img, bg="#66838e")
+            self.people_adder, image=self.img_adder_src, bg="#66838e")
 
         pady = (self.screen_height * 0.031, 0)
         padx = (0, self.screen_width * 0.01)
