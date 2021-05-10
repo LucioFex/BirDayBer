@@ -258,6 +258,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.img_adder = tk.Label(
             self.people_adder, image=self.img_adder_src, bg="#66838e")
 
+        self.add_photo = tk.Button(
+            self.people_adder, text="Add photo", fg="#e3e3e3", bg="#43aace",
+            activebackground="#3892b2", relief="flat",
+            activeforeground="#e3e3e3")
+
         pady = (self.screen_height * 0.031, 0)
         padx = (0, self.screen_width * 0.01)
         self.male_icon.grid(pady=pady, row=0, column=2)
@@ -267,6 +272,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (self.screen_height * 0.025, 0)
         self.img_adder.grid(row=0, column=4)
+        self.add_photo.grid(row=1, column=4)
 
         pady = (0, self.screen_height * 0.004)
         self.first_name.pack(pady=pady)
