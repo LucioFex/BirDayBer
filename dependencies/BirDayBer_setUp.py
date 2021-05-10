@@ -104,10 +104,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(thumbnail_size(0.056, 0.069))
             # Gender radio buttons.
             elif img in ("radiobutton-0.png", "radiobutton-1.png"):
-                responsive_img.thumbnail(thumbnail_size(0.01, 0.017))
+                responsive_img.thumbnail(thumbnail_size(0.015, 0.0255))
             # Image adder icon
             elif img in ("user-black.png"):
-                responsive_img.thumbnail(thumbnail_size(0.039, 0.07))
+                responsive_img.thumbnail(thumbnail_size(0.048, 0.08))
 
             responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
