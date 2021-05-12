@@ -1,8 +1,10 @@
 # BirDayBer
-'BirDayBer' is an application made for irresponsible people with friends or family birthdays like me.
-It allows you to add birthdays and other minimal information to a database.
 
-This program will also remind you with a notification if it is someone's birthday.
+### BirDayBer (an abbreviation for "Birthday Reminder") is an application made for people who forget the birthdays of their friends or families like me 😅.
+
+It allows you to add the date of birth and other minimal information to a local database. Then the program will take care of calculating the dates for you.
+
+This project will remind you with a notification for your operating system if it is someone's birthday on the same day or it will notify you if it's soon.
 
 ### Image of the BirDayBer conceptual interface:
 
@@ -59,8 +61,8 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - User icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/user_747376).
 - Male icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/man_2284900?related_id=2284900&origin=search).
 - Female icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/woman_2284897).
-- Minimize button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/minimise-button_74888)
-- Radio Button icon [Freepik (flaticon)](https://www.flaticon.com/free-icon/radio-button_3305917?term=radio%20button&page=1&position=8&page=1&position=8&related_id=3305917&origin=search)
+- Minimize button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/minimise-button_74888).
+- Radio Button icon [Freepik (flaticon)](https://www.flaticon.com/free-icon/radio-button_3305917?term=radio%20button&page=1&position=8&page=1&position=8&related_id=3305917&origin=search).
 - Maximized & Maximize buttons icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/move_2749235?related_id=2749235&origin=search).
 - Close button icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/close_1828778?related_id=1828778&origin=search).
 - Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&.page=1&position=4&page=1&position=4&related_id=860814&origin=search).
@@ -68,7 +70,10 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - Court icon from [Nikita Golubev (flaticon)](https://www.flaticon.com/free-icon/court_1750412?related_id=1750530&origin=search).
 
 
-## ```Project Status: Incomplete```
+## Project Status: 
+
+### `Project process: Incomplete`
+### `Available on Windows`
 
 ## License
 
