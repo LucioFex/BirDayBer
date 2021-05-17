@@ -273,9 +273,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.female_button.grid(row=1, column=3)
 
         padx = (self.screen_width * 0.0019)
-        pady = (self.screen_height * 0.0033)
-        self.img_adder.grid(row=0, column=4)
+        pady = (self.screen_height * 0.015, 0)
+        self.img_adder.grid(pady=pady, row=0, column=4)
         self.add_photo_border.grid(row=1, column=4)
+        pady = (self.screen_height * 0.0033)
         self.add_photo.grid(padx=padx, pady=pady, row=1, column=4)
 
         pady = (0, self.screen_height * 0.004)
