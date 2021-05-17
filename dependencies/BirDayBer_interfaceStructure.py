@@ -264,13 +264,15 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.add_photo = tk.Button(
             self.add_photo_border, text="Add Photo", fg="#e3e3e3",
-            bg="#43aace", activebackground="#3892b2", relief="flat",
-            activeforeground="#e3e3e3")
+            bg="#43aace", activebackground="#2887a8", relief="flat",
+            activeforeground="#e3e3e3", bd=0)
 
         self.accept = tk.Button(
-            self.people_adder, image=self.accept_src, bg="#66838e")
+            self.people_adder, image=self.accept_src, bg="#66838e",
+            relief="flat", activebackground="#66838e", bd=0)
         self.clear = tk.Button(
-            self.people_adder, image=self.clear_src, bg="#66838e")
+            self.people_adder, image=self.clear_src, bg="#66838e",
+            relief="flat", activebackground="#66838e", bd=0)
 
         padx = (0, self.screen_width * 0.01)
         pady = (self.screen_height * 0.031, 0)
@@ -287,8 +289,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.0033)
         self.add_photo.grid(padx=padx, pady=pady, row=1, column=4)
 
-        # pady =
-        # padx =
         self.accept.grid(row=0, column=5)
         self.clear.grid(row=1, column=5)
 
