@@ -39,6 +39,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             file=location + "radiobutton-0.png")
         self.radio_button_on_src = tk.PhotoImage(
             file=location + "radiobutton-1.png")
+        self.accept_src = tk.PhotoImage(file=location + "accept.png")
+        self.clear_src = tk.PhotoImage(file=location + "clear.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
@@ -265,6 +267,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             bg="#43aace", activebackground="#3892b2", relief="flat",
             activeforeground="#e3e3e3")
 
+        self.accept = tk.Button(
+            self.people_adder, image=self.accept_src, bg="#66838e")
+        self.clear = tk.Button(
+            self.people_adder, image=self.clear_src, bg="#66838e")
+
         padx = (0, self.screen_width * 0.01)
         pady = (self.screen_height * 0.031, 0)
         self.male_icon.grid(pady=pady, row=0, column=2)
@@ -276,8 +283,14 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.015, 0)
         self.img_adder.grid(pady=pady, row=0, column=4)
         self.add_photo_border.grid(row=1, column=4)
+
         pady = (self.screen_height * 0.0033)
         self.add_photo.grid(padx=padx, pady=pady, row=1, column=4)
+
+        # pady =
+        # padx =
+        self.accept.grid(row=0, column=5)
+        self.clear.grid(row=1, column=5)
 
         pady = (0, self.screen_height * 0.004)
         self.first_name.pack(pady=pady)
