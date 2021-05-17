@@ -102,7 +102,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black.png", "user-white.png",
             "party-randolph.png", "edit.png", "radiobutton-0.png",
-                "radiobutton-1.png"):
+                "radiobutton-1.png", "accept.png", "clear.png"):
 
             self.assertTrue(os.path.exists(
                 "bin//system-content//visual-content//%s" % image))
@@ -117,7 +117,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black.png", "user-white.png",
             "party-randolph.png", "edit.png", "radiobutton-0.png",
-                "radiobutton-1.png"):
+                "radiobutton-1.png", "accept.png", "clear.png"):
 
             img = "bin//system-content//visual-content//responsive//%s" % image
             self.assertTrue(os.path.exists(img))
