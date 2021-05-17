@@ -63,6 +63,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - Female icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/woman_2284897).
 - Minimize button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/minimise-button_74888).
 - Radio Button icon [Freepik (flaticon)](https://www.flaticon.com/free-icon/radio-button_3305917?term=radio%20button&page=1&position=8&page=1&position=8&related_id=3305917&origin=search).
+- Accept Button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/yes_3572255).
 - Maximized & Maximize buttons icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/move_2749235?related_id=2749235&origin=search).
 - Close button icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/close_1828778?related_id=1828778&origin=search).
 - Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&.page=1&position=4&page=1&position=4&related_id=860814&origin=search).
