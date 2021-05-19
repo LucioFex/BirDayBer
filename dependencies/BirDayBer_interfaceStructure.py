@@ -289,9 +289,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.0033)
         self.add_photo.grid(padx=padx, pady=pady, row=1, column=4)
 
-        padx = (self.screen_height * 0.007)
+        padx = (self.screen_height * 0.02, self.screen_height * 0.005)
         self.accept.grid(padx=padx, row=0, column=5)
-        self.clear.grid(row=1, column=5)
+        self.clear.grid(padx=padx, row=1, column=5)
 
         pady = (0, self.screen_height * 0.004)
         self.first_name.pack(pady=pady)
