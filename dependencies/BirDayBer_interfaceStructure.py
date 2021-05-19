@@ -188,7 +188,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.135, 0)
         self.people_adder_icon.pack(pady=pady, side="left")
 
-        padx = (self.screen_width * 0.10, self.screen_width * 0.0008)
+        padx = (self.screen_width * 0.085, 0)
         pady = (self.screen_height * 0.015, 0)
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
         self.about_icon.pack(padx=padx, pady=pady, side="top")
