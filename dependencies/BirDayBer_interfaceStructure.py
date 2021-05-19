@@ -188,7 +188,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.135, 0)
         self.people_adder_icon.pack(pady=pady, side="left")
 
-        padx = (self.screen_width * 0.10, self.screen_width * 0.011)
+        padx = (self.screen_width * 0.10, self.screen_width * 0.0008)
         pady = (self.screen_height * 0.015, 0)
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
         self.about_icon.pack(padx=padx, pady=pady, side="top")
@@ -289,7 +289,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.0033)
         self.add_photo.grid(padx=padx, pady=pady, row=1, column=4)
 
-        self.accept.grid(row=0, column=5)
+        padx = (self.screen_height * 0.007)
+        self.accept.grid(padx=padx, row=0, column=5)
         self.clear.grid(row=1, column=5)
 
         pady = (0, self.screen_height * 0.004)

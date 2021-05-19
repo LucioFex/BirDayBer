@@ -110,7 +110,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(thumbnail_size(0.048, 0.08))
 
             elif img in ("accept.png", "clear.png"):
-                responsive_img.thumbnail(thumbnail_size(0.025, 0.044))
+                responsive_img.thumbnail(thumbnail_size(0.040, 0.059))
 
             responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
