@@ -123,6 +123,15 @@ class BirDayBerClient_testing(unittest.TestCase):
             self.assertTrue(os.path.exists(img))
             os.remove(img)
 
+    def test_circular_images(self):
+        img = "bin//system-content//visual-content//user-black.png"
+        mask = "bin//system-content//visual-content//mask.png"
+        self.interface.circular_imgs(img, mask)
+
+        img = "bin//system-content//visual-content//user-black2.png"
+        self.assertTrue(os.path.exists(img))
+        os.remove(img)
+
     def test_window_focus(self):
         root = self.interface.root
 
