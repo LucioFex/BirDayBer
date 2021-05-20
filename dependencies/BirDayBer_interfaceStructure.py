@@ -265,7 +265,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.add_photo = tk.Button(
             self.add_photo_border, text="Add Photo", fg="#e3e3e3",
             bg="#43aace", activebackground="#2887a8", relief="flat",
-            activeforeground="#e3e3e3", bd=0)
+            activeforeground="#e3e3e3", bd=0,
+            font=("Century Gothic", round(self.screen_width / 152)))
 
         self.accept = tk.Button(
             self.people_adder, image=self.accept_src, bg="#66838e",
