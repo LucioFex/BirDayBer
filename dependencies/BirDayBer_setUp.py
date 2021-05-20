@@ -105,15 +105,27 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # Gender radio buttons.
             elif img in ("radiobutton-0.png", "radiobutton-1.png"):
                 responsive_img.thumbnail(thumbnail_size(0.015, 0.0255))
+            # Accept and clear buttons of the people_adder widget
+            elif img in ("accept.png", "clear.png"):
+                responsive_img.thumbnail(thumbnail_size(0.040, 0.059))
             # Image adder icon
             elif img in ("user-black.png"):
                 responsive_img.thumbnail(thumbnail_size(0.048, 0.08))
-
-            elif img in ("accept.png", "clear.png"):
-                responsive_img.thumbnail(thumbnail_size(0.040, 0.059))
+            # Image adder & image selected icons (Continue later...)
+            elif img in ("user-black.png", "image-not-found.png"):
+                self.circular_imgs(
+                    "%s//%s" % (location, img),
+                    "%s//%s" % (location, "mask.png"))
 
             responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
+
+    def circular_imgs(self, mask, img):
+        """
+        This method creates a circular image of the given arguments,
+        then it saves the image in the 'visual-content' folder.
+        """
+        pass
 
     def title_bar_minimize(self):
         """
