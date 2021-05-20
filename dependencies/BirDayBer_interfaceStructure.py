@@ -176,8 +176,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         bg = "#3b4d54"
         self.people_adder_icon = tk.Label(
             self.right_top, bg=bg, image=self.people_adder_src)
-        self.nut_icon = tk.Label(self.right_top, bg=bg, image=self.nut_src)
-        self.about_icon = tk.Label(self.right_top, bg=bg, image=self.about_src)
+        self.nut_icon = tk.Button(
+            self.right_top, bg=bg, image=self.nut_src,
+            activebackground=bg, relief="flat", bd=0)
+        self.about_icon = tk.Button(
+            self.right_top, bg=bg, image=self.about_src,
+            activebackground=bg, relief="flat", bd=0)
 
         padx = (self.screen_width * 0.0518, 0)
         pady = (self.screen_height * 0.03, 0)
@@ -189,8 +193,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_icon.pack(pady=pady, side="left")
 
         padx = (self.screen_width * 0.085, 0)
-        pady = (self.screen_height * 0.015, 0)
+        pady = (self.screen_height * 0.032, 0)
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
+        pady = (self.screen_height * 0.046, 0)
         self.about_icon.pack(padx=padx, pady=pady, side="top")
 
         self.people_adder_left()
