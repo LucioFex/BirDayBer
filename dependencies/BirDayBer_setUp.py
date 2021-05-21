@@ -1,5 +1,5 @@
 import dependencies.BirDayBer_DB as BirDayBer_DB
-from PIL import Image
+from PIL import (Image, ImageOps)
 import tkinter as tk
 import os
 
@@ -108,25 +108,39 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # Accept and clear buttons of the people_adder widget
             elif img in ("accept.png", "clear.png"):
                 responsive_img.thumbnail(thumbnail_size(0.040, 0.059))
-            # Image adder icon
+
+            # Image adder icon (circular)  -  Continue here
             elif img in ("user-black.png"):
-                # self.circular_imgs(
-                #     f"{location}//{img}", f"{location}//mask.png")
+                circular_image = self.circular_imgs(
+                    f"{location}//{img}", f"{location}//mask.png")
+
+                responsive_img = Image.open(circular_image)
                 responsive_img.thumbnail(thumbnail_size(0.048, 0.08))
 
-            img_to_save = "%s//responsive//%s" % (location, img)
-            # if img == "user-black.png" or img == "image-not-found.png":
-            #     img_to_save = img_to_save.replace(".png", "2.png")
+                responsive_img.save("%s//responsive//%s" % (location, img))
+                responsive_img.close()
+                continue
 
-            responsive_img.save(img_to_save)
+            responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
 
-    def circular_imgs(self, mask, img):
+    def circular_imgs(self, img, mask):
         """
         This method creates a circular image of the given arguments,
-        then it saves the image in the 'visual-content' folder.
+        then it saves the image in the 'visual-content' folder if it is
+        a system img. If it's a user img, then I saves the img in the DB.
         """
-        pass
+        image = Image.open(img)
+        mask = Image.open(mask).convert("L")
+
+        output_img = ImageOps.fit(image, mask.size, centering=(0.5, 0.5))
+        output_img.putalpha(mask)
+
+        img = img.replace(".png", "2.png")
+        output_img.save(img)
+
+        image.close(), mask.close()
+        return img
 
     def title_bar_minimize(self):
         """
