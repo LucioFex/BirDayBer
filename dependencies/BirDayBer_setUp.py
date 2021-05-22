@@ -109,8 +109,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("accept.png", "clear.png"):
                 responsive_img.thumbnail(thumbnail_size(0.040, 0.059))
 
-            # Image adder icon (circular)  -  Continue here
+            # Image adder icon (circular)
             elif img in ("user-black.png"):
+                responsive_img.close()
+
                 circular_image = self.circular_imgs(
                     f"{location}//{img}", f"{location}//mask.png")
 
