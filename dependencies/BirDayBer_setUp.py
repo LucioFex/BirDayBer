@@ -117,7 +117,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                     f"{location}//{img}", f"{location}//mask.png")
 
                 responsive_img = Image.open(circular_image)
-                responsive_img.thumbnail(thumbnail_size(0.048, 0.08))
+                responsive_img.thumbnail(thumbnail_size(0.055, 0.087))
 
                 responsive_img.save("%s//responsive//%s" % (location, img))
                 responsive_img.close()
