@@ -154,7 +154,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_bottom = tk.Frame(self.left_side, bg="#43575f")
 
         self.license_icon = tk.Label(
-            self.left_bottom, image=self.license_src, bg="#43575f")
+            self.left_bottom, image=self.license_src,
+            bg="#43575f", cursor="hand2")
 
         self.left_bottom.pack(fill="both", ipady=50)
         self.license_icon.pack(
@@ -178,10 +179,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.right_top, bg=bg, image=self.people_adder_src)
         self.nut_icon = tk.Button(
             self.right_top, bg=bg, image=self.nut_src,
-            activebackground=bg, relief="flat", bd=0)
+            activebackground=bg, relief="flat", bd=0, cursor="hand2")
         self.about_icon = tk.Button(
             self.right_top, bg=bg, image=self.about_src,
-            activebackground=bg, relief="flat", bd=0)
+            activebackground=bg, relief="flat", bd=0, cursor="hand2")
 
         padx = (self.screen_width * 0.0518, 0)
         pady = (self.screen_height * 0.03, 0)
@@ -254,24 +255,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.people_adder, variable=self.gender_selector, value=1,
             bg="#66838e", activebackground="#66838e", indicator=False,
             image=self.radio_button_off_src, bd=0, selectcolor="#66838e",
-            selectimage=self.radio_button_on_src)
+            selectimage=self.radio_button_on_src, cursor="hand2")
 
         self.female_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=2,
             bg="#66838e", activebackground="#66838e", indicator=False,
             image=self.radio_button_off_src, bd=0, selectcolor="#66838e",
-            selectimage=self.radio_button_on_src)
+            selectimage=self.radio_button_on_src, cursor="hand2")
 
         self.img_adder = tk.Button(
             self.people_adder, image=self.img_adder_src, bg="#66838e",
-            bd=0, activebackground="#66838e")
+            bd=0, activebackground="#66838e", cursor="hand2")
 
         self.accept = tk.Button(
             self.people_adder, image=self.accept_src,
-            bg="#66838e", activebackground="#66838e", bd=0)
+            bg="#66838e", activebackground="#66838e", bd=0, cursor="hand2")
         self.clear = tk.Button(
             self.people_adder, image=self.clear_src,
-            bg="#66838e", activebackground="#66838e", bd=0)
+            bg="#66838e", activebackground="#66838e", bd=0, cursor="hand2")
 
         padx = (0, self.screen_width * 0.01)
         pady = (self.screen_height * 0.031, 0)
