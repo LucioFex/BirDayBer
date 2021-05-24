@@ -153,9 +153,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         self.left_bottom = tk.Frame(self.left_side, bg="#43575f")
 
-        self.license_icon = tk.Label(
-            self.left_bottom, image=self.license_src,
-            bg="#43575f", cursor="hand2")
+        self.license_icon = tk.Button(
+            self.left_bottom, image=self.license_src, bg="#43575f",
+            cursor="hand2", bd=0, activebackground="#43575f")
 
         self.left_bottom.pack(fill="both", ipady=50)
         self.license_icon.pack(
