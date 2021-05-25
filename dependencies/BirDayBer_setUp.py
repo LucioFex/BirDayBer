@@ -108,9 +108,12 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # Accept and clear buttons of the people_adder widget
             elif img in ("accept.png", "clear.png"):
                 responsive_img.thumbnail(thumbnail_size(0.040, 0.059))
-            # Skull icon of the right-mid section
+            # Skull icon
             elif img in ("randolph.png"):
                 responsive_img.thumbnail(thumbnail_size(0.051, 0.073))
+            # Garbage icons
+            elif img in ("garbage1.png", "garbage2.png"):
+                responsive_img.thumbnail(thumbnail_size(0.033, 0.007))
 
             # Gender icons
             elif img in ("male.png", "female.png"):

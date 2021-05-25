@@ -40,6 +40,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.accept_src = tk.PhotoImage(file=location + "accept.png")
         self.clear_src = tk.PhotoImage(file=location + "clear.png")
         self.skull_src = tk.PhotoImage(file=location + "randolph.png")
+        self.garbage1_src = tk.PhotoImage(file=location + "garbage1.png")
+        self.garbage2_src = tk.PhotoImage(file=location + "garbage2.png")
         self.radio_button_off_src = tk.PhotoImage(
             file=location + "radiobutton-0.png")
         self.radio_button_on_src = tk.PhotoImage(
