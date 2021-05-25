@@ -73,7 +73,6 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 
 ## Project Status: 
 
-### `Project process: Incomplete`
 ### `Available on Windows`
 
 ## License
