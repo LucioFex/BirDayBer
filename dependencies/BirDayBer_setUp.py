@@ -99,8 +99,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # People adder's icon
             elif img in ("add-person.png"):
                 responsive_img.thumbnail(thumbnail_size(0.075, 0.087))
-            # People adder's section and extra buttons
-            elif img in ("nut.png", "about.png", "male.png", "female.png"):
+            # Extra buttons in the right-top section
+            elif img in ("nut.png", "about.png"):
                 responsive_img.thumbnail(thumbnail_size(0.056, 0.069))
             # Gender radio buttons.
             elif img in ("radiobutton-0.png", "radiobutton-1.png"):
@@ -112,6 +112,17 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("randolph.png"):
                 responsive_img.thumbnail(thumbnail_size(0.051, 0.073))
 
+            # Gender icons
+            elif img in ("male.png", "female.png"):
+                # Small icons
+                responsive_img.thumbnail(thumbnail_size(0.021, 0.037))
+                responsive_img.save("%s//responsive//%s" % (
+                    location, img.replace(".png", "2.png")))
+                responsive_img.close()
+
+                # Big icons
+                responsive_img = Image.open("%s//%s" % (location, img))
+                responsive_img.thumbnail(thumbnail_size(0.056, 0.069))
             # Image adder icon (circular)
             elif img in ("user-black.png"):
                 responsive_img.close()

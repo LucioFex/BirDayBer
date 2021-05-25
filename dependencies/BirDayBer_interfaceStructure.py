@@ -31,6 +31,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.license_src = tk.PhotoImage(file=location + "license.png")
         self.male_src = tk.PhotoImage(file=location + "male.png")
         self.female_src = tk.PhotoImage(file=location + "female.png")
+        self.male_small_src = tk.PhotoImage(file=location + "male2.png")
+        self.female_small_src = tk.PhotoImage(file=location + "female2.png")
         self.people_adder_src = tk.PhotoImage(file=location + "add-person.png")
         self.about_src = tk.PhotoImage(file=location + "about.png")
         self.nut_src = tk.PhotoImage(file=location + "nut.png")
@@ -302,12 +304,20 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
         self.skull_icon = tk.Label(
-            self.right_mid, bg="#fdfff5", image=self.skull_src)
+            self.right_bg, bg="#fdfff5", image=self.skull_src)
 
-        self.right_mid.pack(anchor="ne")
+        self.male_small_icon = tk.Label(
+            self.right_bg, bg="#fdfff5", image=self.male_small_src)
+        self.female_small_icon = tk.Label(
+            self.right_bg, bg="#fdfff5", image=self.female_small_src)
+
+        pady = (self.screen_height * 0.028, 0)
+        self.right_mid.pack(side="right", anchor="ne", pady=pady)
         self.right_bg.pack(fill="both")
 
-        self.skull_icon.pack(side="top")
+        self.skull_icon.pack(side="left", anchor="nw")
+        self.male_small_icon.pack(side="right", anchor="ne")
+        # self.female_small_icon.pack(side="right", anchor="ne")
 
     def right_side_structure_bottom(self, location):
         """
