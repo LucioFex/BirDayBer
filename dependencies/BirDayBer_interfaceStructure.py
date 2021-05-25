@@ -304,7 +304,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.skull_icon = tk.Label(
             self.right_mid, bg="#fdfff5", image=self.skull_src)
 
-        self.right_mid.pack(side="right")
+        self.right_mid.pack(anchor="ne")
         self.right_bg.pack(fill="both")
 
         self.skull_icon.pack(side="top")
