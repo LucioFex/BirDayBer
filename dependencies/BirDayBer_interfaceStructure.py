@@ -297,7 +297,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the mid-right appearance of the GUI.
         """
-        pass
+        self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
+        self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
+
+        self.right_mid.pack(side="right")
+        self.right_bg.pack()
 
     def right_side_structure_bottom(self, location):
         """
