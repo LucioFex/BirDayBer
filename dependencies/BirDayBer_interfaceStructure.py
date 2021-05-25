@@ -44,10 +44,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
-        self.left_side_structure_middle(location)
+        self.left_side_structure_mid(location)
         self.left_side_structure_bottom(location)
         self.right_side_structure_top(location)
-        self.right_side_structure_middle(location)
+        self.right_side_structure_mid(location)
         self.right_side_structure_bottom(location)
 
     def titlebar_init(self):
@@ -127,22 +127,22 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.search_entry.pack(
             side="left", fill="y", padx=(self.screen_width / 100, 0))
 
-    def left_side_structure_middle(self, location):
+    def left_side_structure_mid(self, location):
         """
         Method that generates the base for the mid-left appearance of the GUI.
         """
-        self.left_middle = tk.Frame(self.left_side, bg="#334248")
+        self.left_mid = tk.Frame(self.left_side, bg="#334248")
 
         self.people_over = tk.Label(
-            self.left_middle, relief="flat", text="People",
+            self.left_mid, relief="flat", text="People",
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
 
         self.people_finder = tk.Label(
-            self.left_middle, bg="#5d8999",
+            self.left_mid, bg="#5d8999",
             height=round(self.screen_height / 34))
 
-        self.left_middle.pack(pady=(self.screen_height * 0.017, 0))
+        self.left_mid.pack(pady=(self.screen_height * 0.017, 0))
         self.people_over.pack(side="top")
 
         self.people_finder.pack(fill="x", pady=(0, self.screen_height * 0.013))
@@ -293,7 +293,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_date.pack(pady=pady)
         self.country.pack(pady=pady)
 
-    def right_side_structure_middle(self, location):
+    def right_side_structure_mid(self, location):
         """
         Method that generates the base for the mid-right appearance of the GUI.
         """
