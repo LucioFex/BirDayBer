@@ -35,12 +35,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.about_src = tk.PhotoImage(file=location + "about.png")
         self.nut_src = tk.PhotoImage(file=location + "nut.png")
         self.img_adder_src = tk.PhotoImage(file=location + "user-black.png")
+        self.accept_src = tk.PhotoImage(file=location + "accept.png")
+        self.clear_src = tk.PhotoImage(file=location + "clear.png")
+        self.skull_src = tk.PhotoImage(file=location + "randolph.png")
         self.radio_button_off_src = tk.PhotoImage(
             file=location + "radiobutton-0.png")
         self.radio_button_on_src = tk.PhotoImage(
             file=location + "radiobutton-1.png")
-        self.accept_src = tk.PhotoImage(file=location + "accept.png")
-        self.clear_src = tk.PhotoImage(file=location + "clear.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
@@ -300,8 +301,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
+        self.skull_icon = tk.Label(
+            self.right_mid, bg="#fdfff5", image=self.skull_src)
+
         self.right_mid.pack(side="right")
-        self.right_bg.pack()
+        self.right_bg.pack(fill="both")
+
+        self.skull_icon.pack(side="top")
 
     def right_side_structure_bottom(self, location):
         """
