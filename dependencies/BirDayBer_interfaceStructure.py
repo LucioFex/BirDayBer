@@ -305,6 +305,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
+        self.full_name_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.birth_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.age_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.country_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.birthday_bg = tk.Frame(self.right_bg, bg="#9aa881")
+
         self.skull_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.skull_src)
 
@@ -315,31 +321,25 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         font_config = ("Century Gothic", round(self.screen_width * 0.015))
 
-        self.full_name_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.birth_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.age_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.country_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.birthday_bg = tk.Frame(self.right_bg, bg="#9aa881")
-
         self.full_name_big = tk.Entry(
             self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.03), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config)
 
         self.birth_big = tk.Entry(
             self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.03), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config)
 
         self.age_big = tk.Entry(
             self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.03), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config)
 
         self.country_big = tk.Entry(
             self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.03), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config)
 
         self.birthday_big = tk.Entry(
             self.birthday_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.03), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config)
 
         pady = (self.screen_height * 0.028, 0)
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
@@ -348,6 +348,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.skull_icon.pack(side="left", anchor="nw")
         self.male_small_icon.pack(side="right", anchor="ne")
         # self.female_small_icon.pack(side="right", anchor="ne")
+
+        self.full_name_bg.pack()
+        self.birth_bg.pack()
+        self.age_bg.pack()
+        self.country_bg.pack()
+        self.birthday_bg.pack()
+
+        pady = (0, self.screen_height * 0.008)
+        self.full_name_big.pack(pady=pady)
+        self.birth_big.pack(pady=pady)
+        self.age_big.pack(pady=pady)
+        self.country_big.pack(pady=pady)
+        self.birthday_big.pack(pady=pady)
 
     def right_side_structure_bottom(self, location):
         """
