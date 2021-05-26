@@ -313,6 +313,34 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.female_small_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.female_small_src)
 
+        font_config = ("Century Gothic", round(self.screen_width * 0.015))
+
+        self.full_name_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.birth_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.age_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.country_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.birthday_bg = tk.Frame(self.right_bg, bg="#9aa881")
+
+        self.full_name_big = tk.Entry(
+            self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
+            width=round(self.screen_width * 0.03), font=font_config)
+
+        self.birth_big = tk.Entry(
+            self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
+            width=round(self.screen_width * 0.03), font=font_config)
+
+        self.age_big = tk.Entry(
+            self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
+            width=round(self.screen_width * 0.03), font=font_config)
+
+        self.country_big = tk.Entry(
+            self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
+            width=round(self.screen_width * 0.03), font=font_config)
+
+        self.birthday_big = tk.Entry(
+            self.birthday_bg, relief="flat", bg="#fdfff5", fg="#212121",
+            width=round(self.screen_width * 0.03), font=font_config)
+
         pady = (self.screen_height * 0.028, 0)
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
         self.right_bg.pack(fill="both")
