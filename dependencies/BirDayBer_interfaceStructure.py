@@ -323,7 +323,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.full_name_big = tk.Entry(
             self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.012), font=font_config)
 
         self.birth_big = tk.Entry(
             self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
@@ -331,11 +331,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.age_big = tk.Entry(
             self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.004), font=font_config)
 
         self.country_big = tk.Entry(
             self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.006), font=font_config)
 
         self.birthday_big = tk.Entry(
             self.birthday_bg, relief="flat", bg="#fdfff5", fg="#212121",
