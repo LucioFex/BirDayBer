@@ -342,8 +342,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             width=round(self.screen_width * 0.01), font=font_config)
 
         pady = (self.screen_height * 0.028, 0)
+        padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
-        self.right_bg.pack(fill="both")
+        self.right_bg.pack(fill="both", padx=padx)
 
         self.skull_icon.pack(side="left", anchor="nw")
         self.male_small_icon.pack(side="right", anchor="ne")
