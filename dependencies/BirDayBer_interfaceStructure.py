@@ -346,15 +346,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
         self.right_bg.pack(fill="both", padx=padx)
 
-        self.skull_icon.grid(row=0, column=0)
+        padx = (0, self.screen_width * 0.518)
+        self.skull_icon.grid(padx=padx, row=0, column=0)
         self.male_small_icon.grid(row=0, column=4)
         # self.female_small_icon.grid(row=, column=)
 
-        self.full_name_bg.grid(row=1, column=1)
-        self.birth_bg.grid(row=2, column=1)
-        self.age_bg.grid(row=3, column=1)
-        self.country_bg.grid(row=4, column=1)
-        self.birthday_bg.grid(row=5, column=1)
+        padx = (0, self.screen_width * 0.3)
+        self.full_name_bg.grid(padx=padx, row=1, column=0)
+        self.birth_bg.grid(padx=padx, row=2, column=0)
+        self.age_bg.grid(padx=padx, row=3, column=0)
+        self.country_bg.grid(padx=padx, row=4, column=0)
+        self.birthday_bg.grid(padx=padx, row=5, column=0)
 
         pady = (0, self.screen_height * 0.008)
         self.full_name_big.pack(pady=pady)
