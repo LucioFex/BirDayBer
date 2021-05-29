@@ -126,6 +126,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 # Big icons
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail(thumbnail_size(0.056, 0.069))
+
             # Image adder icon (circular)
             elif img in ("user-black.png"):
                 responsive_img.close()
@@ -135,6 +136,20 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
                 responsive_img = Image.open(circular_image)
                 responsive_img.thumbnail(thumbnail_size(0.055, 0.087))
+
+                responsive_img.save("%s//responsive//%s" % (location, img))
+                responsive_img.close()
+                continue
+
+            # Image not found (user base image)
+            elif img in ("image-not-found.png.png"):
+                responsive_img.close()
+
+                circular_image = self.circular_imgs(
+                    f"{location}//{img}", f"{location}//mask.png")
+
+                responsive_img = Image.open(circular_image)
+                responsive_img.thumbnail(thumbnail_size(0.229, 0.408))
 
                 responsive_img.save("%s//responsive//%s" % (location, img))
                 responsive_img.close()
