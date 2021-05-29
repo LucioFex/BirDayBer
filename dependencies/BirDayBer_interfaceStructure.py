@@ -46,6 +46,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             file=location + "radiobutton-0.png")
         self.radio_button_on_src = tk.PhotoImage(
             file=location + "radiobutton-1.png")
+        self.img_not_found_src = tk.PhotoImage(
+            file=location + "image-not-found.png")
 
         # Generation of the structure of the body
         self.left_side_structure_top(location)
@@ -341,6 +343,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.birthday_bg, relief="flat", bg="#fdfff5", fg="#212121",
             width=round(self.screen_width * 0.01), font=font_config)
 
+        self.img_not_found = tk.Label(
+            self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
+
         pady = (self.screen_height * 0.028, 0)
         padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
@@ -368,6 +373,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
+
+        self.img_not_found.grid(rowspan=3, row=3, column=1)
 
     def right_side_structure_bottom(self, location):
         """
