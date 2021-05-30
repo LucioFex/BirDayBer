@@ -116,7 +116,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(thumbnail_size(0.033, 0.007))
             # Image adder icon (circular)
             elif img in ("user-black.png"):
-                responsive_img.thumbnail(thumbnail_size(0.015, 0.0255))
+                responsive_img.thumbnail(thumbnail_size(0.056, 0.24))
             # Image not found (user base image)
             elif img in ("image-not-found.png"):
                 responsive_img.thumbnail(thumbnail_size(0.229, 0.408))
