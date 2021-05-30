@@ -374,7 +374,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        self.img_not_found.grid(rowspan=3, row=3, column=1)
+        self.img_not_found.grid(rowspan=3, row=1, column=1)
 
     def right_side_structure_bottom(self, location):
         """

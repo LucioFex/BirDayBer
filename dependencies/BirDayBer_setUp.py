@@ -118,7 +118,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("user-black.png"):
                 responsive_img.thumbnail(thumbnail_size(0.015, 0.0255))
             # Image not found (user base image)
-            elif img in ("image-not-found.png.png"):
+            elif img in ("image-not-found.png"):
                 responsive_img.thumbnail(thumbnail_size(0.229, 0.408))
 
             # Gender icons
@@ -132,6 +132,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 # Big icons
                 responsive_img = Image.open("%s//%s" % (location, img))
                 responsive_img.thumbnail(thumbnail_size(0.056, 0.069))
+
+            responsive_img.save("%s//responsive//%s" % (location, img))
+            responsive_img.close()
 
     def circular_imgs(self, img, mask):
         """
