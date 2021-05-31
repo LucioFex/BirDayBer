@@ -356,16 +356,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.male_small_icon.grid(row=0, column=4)
         # self.female_small_icon.grid(row=, column=)
 
-        self.full_name_bg.grid(
-            padx=(0, self.screen_width * 0.3), row=1, column=0)
-        self.birth_bg.grid(
-            padx=(0, self.screen_width * 0.333), row=2, column=0)
-        self.age_bg.grid(
-            padx=(0, self.screen_width * 0.423), row=3, column=0)
-        self.country_bg.grid(
-            padx=(0, self.screen_width * 0.39), row=4, column=0)
-        self.birthday_bg.grid(
-            padx=(0, self.screen_width * 0.335), row=5, column=0)
+        self.full_name_bg.grid(sticky="w", row=1, column=0)
+        self.birth_bg.grid(sticky="w", row=2, column=0)
+        self.age_bg.grid(sticky="w", row=3, column=0)
+        self.country_bg.grid(sticky="w", row=4, column=0)
+        self.birthday_bg.grid(sticky="w", row=5, column=0)
+
+        self.img_not_found.grid(sticky="w", rowspan=4, row=1, column=1)
 
         pady = (0, self.screen_height * 0.008)
         self.full_name_big.pack(pady=pady)
@@ -374,10 +371,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        # self.img_not_found.grid(rowspan=3, row=1, column=1)
-
     def right_side_structure_bottom(self, location):
         """
-        Method that generates the base for the bop-right appearance of the GUI.
+        Method that generates the base for the bot-right appearance of the GUI.
         """
         pass
