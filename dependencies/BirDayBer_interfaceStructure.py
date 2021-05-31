@@ -351,7 +351,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.028, 0)
         padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
-        self.right_bg.pack(fill="both", padx=padx)
+        pady = (0, self.screen_height * 0.012)
+        self.right_bg.pack(fill="both", padx=padx, pady=pady)
 
         padx = (0, self.screen_width * 0.518)
         self.skull_icon.grid(sticky="nw", row=0, column=0)
@@ -371,7 +372,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        self.img_not_found.grid(sticky="w", rowspan=4, row=1, column=1)
+        self.img_not_found.grid(sticky="w", rowspan=5, row=1, column=1)
         self.trash.grid(sticky="sw", row=6, column=0)
 
     def trash_declaration(self):
