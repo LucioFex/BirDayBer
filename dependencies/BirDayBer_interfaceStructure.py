@@ -346,8 +346,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
 
-        self.trash = tk.Label(
-            self.right_bg, image=self.garbage1_src, bg="#fdfff5")
+        self.trash_declaration()
 
         pady = (self.screen_height * 0.028, 0)
         padx = (self.screen_width * 0.003, 0)
@@ -374,6 +373,20 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.img_not_found.grid(sticky="w", rowspan=4, row=1, column=1)
         self.trash.grid(sticky="sw", row=6, column=0)
+
+    def trash_declaration(self):
+        def over_button(event):
+            self.trash.config(image=self.garbage2_src)
+
+        def out_button(event):
+            self.trash.config(image=self.garbage1_src)
+
+        self.trash = tk.Button(
+            self.right_bg, image=self.garbage1_src, activebackground="#fdfff5",
+            bg="#fdfff5", relief="flat", bd=0, cursor="hand2")
+
+        self.trash.bind("<Enter>", over_button)
+        self.trash.bind("<Leave>", out_button)
 
     def right_side_structure_bottom(self, location):
         """

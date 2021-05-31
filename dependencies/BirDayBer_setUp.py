@@ -113,7 +113,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(thumbnail_size(0.051, 0.073))
             # Garbage icons
             elif img in ("garbage1.png", "garbage2.png"):
-                responsive_img.thumbnail(thumbnail_size(0.115, 0.115))
+                responsive_img.thumbnail(thumbnail_size(0.1, 0.1))
             # Image adder icon (circular)
             elif img in ("user-black.png"):
                 responsive_img.thumbnail(thumbnail_size(0.056, 0.24))
