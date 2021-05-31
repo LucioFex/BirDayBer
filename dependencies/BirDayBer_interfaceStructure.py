@@ -359,11 +359,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.male_small_icon.grid(sticky="ne", row=0, column=3)
         # self.female_small_icon.grid(row=, column=)
 
-        self.full_name_bg.grid(sticky="w", row=1, column=0)
-        self.birth_bg.grid(sticky="w", row=2, column=0)
-        self.age_bg.grid(sticky="e", row=3, column=1)
+        pady = self.screen_height * 0.015
+        padx = (0, self.screen_width * 0.034)
+        self.full_name_bg.grid(sticky="w", row=1, column=0, pady=pady)
+        self.birth_bg.grid(sticky="w", row=2, column=0, pady=pady)
+        self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
         self.country_bg.grid(sticky="w", row=4, column=0)
-        self.birthday_bg.grid(sticky="ne", row=5, column=2)
+        self.birthday_bg.grid(sticky="ne", row=5, column=2, padx=padx)
 
         pady = (0, self.screen_height * 0.008)
         self.full_name_big.pack(pady=pady)
@@ -372,7 +374,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        self.img_not_found.grid(sticky="ne", rowspan=4, row=0, column=2)
+        self.img_not_found.grid(sticky="ne", rowspan=5, row=0, column=2)
         self.trash.grid(sticky="sw", row=6, column=0)
 
     def trash_declaration(self):
