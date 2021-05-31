@@ -360,11 +360,18 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         # self.female_small_icon.grid(row=, column=)
 
         pady = self.screen_height * 0.015
-        padx = (0, self.screen_width * 0.034)
-        self.full_name_bg.grid(sticky="w", row=1, column=0, pady=pady)
-        self.birth_bg.grid(sticky="w", row=2, column=0, pady=pady)
+        padx = (self.screen_width * 0.047, 0)
+        self.full_name_bg.grid(
+            sticky="w", row=1, column=0, pady=pady, padx=padx)
+        self.birth_bg.grid(sticky="w", row=2, column=0, pady=pady, padx=padx)
         self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
-        self.country_bg.grid(sticky="w", row=4, column=0)
+        self.country_bg.grid(sticky="w", row=4, column=0, padx=padx)
+
+        padx = (self.screen_width * 0.007, 0)
+        self.img_not_found.grid(sticky="ne", rowspan=5, row=0, column=2)
+        self.trash.grid(sticky="sw", row=6, column=0, padx=padx)
+
+        padx = (0, self.screen_width * 0.034)
         self.birthday_bg.grid(sticky="ne", row=5, column=2, padx=padx)
 
         pady = (0, self.screen_height * 0.008)
@@ -373,9 +380,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
-
-        self.img_not_found.grid(sticky="ne", rowspan=5, row=0, column=2)
-        self.trash.grid(sticky="sw", row=6, column=0)
 
     def trash_declaration(self):
         """
