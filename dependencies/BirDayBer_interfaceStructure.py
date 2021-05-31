@@ -346,6 +346,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
 
+        self.trash = tk.Label(
+            self.right_bg, image=self.garbage1_src, bg="#fdfff5")
+
         pady = (self.screen_height * 0.028, 0)
         padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
@@ -362,14 +365,15 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.country_bg.grid(sticky="w", row=4, column=0)
         self.birthday_bg.grid(sticky="w", row=5, column=0)
 
-        self.img_not_found.grid(sticky="w", rowspan=4, row=1, column=1)
-
         pady = (0, self.screen_height * 0.008)
         self.full_name_big.pack(pady=pady)
         self.birth_big.pack(pady=pady)
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
+
+        self.img_not_found.grid(sticky="w", rowspan=4, row=1, column=1)
+        self.trash.grid(sticky="sw", row=6, column=0)
 
     def right_side_structure_bottom(self, location):
         """
