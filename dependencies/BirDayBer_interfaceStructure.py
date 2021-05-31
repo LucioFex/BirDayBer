@@ -375,6 +375,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.trash.grid(sticky="sw", row=6, column=0)
 
     def trash_declaration(self):
+        """
+        Method that defines and configures the 'Trash' button.
+        """
         def over_button(event):
             self.trash.config(image=self.garbage2_src)
 
