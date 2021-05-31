@@ -372,7 +372,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        self.img_not_found.grid(sticky="w", rowspan=5, row=1, column=1)
+        self.img_not_found.grid(sticky="ne", rowspan=4, row=0, column=1)
         self.trash.grid(sticky="sw", row=6, column=0)
 
     def trash_declaration(self):
