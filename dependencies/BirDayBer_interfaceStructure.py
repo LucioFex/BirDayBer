@@ -321,11 +321,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.female_small_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.female_small_src)
 
-        font_config = ("Century Gothic", round(self.screen_width * 0.015))
+        font_config = ("Century Gothic", round(self.screen_width * 0.014))
 
         self.full_name_big = tk.Entry(
             self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.0123), font=font_config)
+            width=round(self.screen_width * 0.012),
+            font=("Century Gothic", round(self.screen_width * 0.018)))
 
         self.birth_big = tk.Entry(
             self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
@@ -333,7 +334,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.age_big = tk.Entry(
             self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.006), font=font_config)
+            width=round(self.screen_width * 0.002),
+            font=("Century Gothic", round(self.screen_width * 0.025)))
 
         self.country_big = tk.Entry(
             self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
@@ -351,16 +353,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.028, 0)
         padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(side="right", anchor="ne", pady=pady)
+
         pady = (0, self.screen_height * 0.012)
         self.right_bg.pack(fill="both", padx=padx, pady=pady)
 
         padx = (0, self.screen_width * 0.518)
         self.skull_icon.grid(sticky="nw", row=0, column=0)
         self.male_small_icon.grid(sticky="ne", row=0, column=3)
-        # self.female_small_icon.grid(row=, column=)
+        # self.female_small_icon.grid(sticky="ne", row=0, column=3)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.015)
-        padx = (self.screen_width * 0.047, self.screen_width * 0.017)
+        padx = (self.screen_width * 0.047, self.screen_width * 0.036)
         self.full_name_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
@@ -369,7 +372,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
         self.country_bg.grid(sticky="w", row=4, column=0, padx=padx)
 
-        padx = (0, self.screen_width * 0.034)
+        padx = (0, self.screen_width * 0.024)
         self.birthday_bg.grid(sticky="ne", row=5, column=2, padx=padx)
         self.img_not_found.grid(sticky="ne", rowspan=5, row=0, column=2)
 
