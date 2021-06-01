@@ -308,10 +308,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
         self.full_name_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.birth_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.age_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.country_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.birthday_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.birth_bg = tk.Frame(self.right_bg, bg="#88966c")
+        self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
+        self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
+        self.birthday_bg = tk.Frame(self.right_bg, bg="#7a8565")
 
         self.skull_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.skull_src)
@@ -325,7 +325,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.full_name_big = tk.Entry(
             self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.012), font=font_config)
+            width=round(self.screen_width * 0.0123), font=font_config)
 
         self.birth_big = tk.Entry(
             self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
@@ -333,7 +333,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.age_big = tk.Entry(
             self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.004), font=font_config)
+            width=round(self.screen_width * 0.006), font=font_config)
 
         self.country_big = tk.Entry(
             self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
@@ -359,20 +359,23 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.male_small_icon.grid(sticky="ne", row=0, column=3)
         # self.female_small_icon.grid(row=, column=)
 
-        pady = self.screen_height * 0.015
-        padx = (self.screen_width * 0.047, 0)
+        pady = (self.screen_height * 0.007, self.screen_height * 0.015)
+        padx = (self.screen_width * 0.047, self.screen_width * 0.017)
         self.full_name_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
+
+        pady = (self.screen_height * 0.015, 0)
         self.birth_bg.grid(sticky="w", row=2, column=0, pady=pady, padx=padx)
         self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
         self.country_bg.grid(sticky="w", row=4, column=0, padx=padx)
 
-        padx = (self.screen_width * 0.007, 0)
-        self.img_not_found.grid(sticky="ne", rowspan=5, row=0, column=2)
-        self.trash.grid(sticky="sw", row=6, column=0, padx=padx)
-
         padx = (0, self.screen_width * 0.034)
         self.birthday_bg.grid(sticky="ne", row=5, column=2, padx=padx)
+        self.img_not_found.grid(sticky="ne", rowspan=5, row=0, column=2)
+
+        padx = (self.screen_width * 0.007)
+        pady = (0, self.screen_height * 0.013)
+        self.trash.grid(sticky="sw", row=6, column=0, padx=padx, pady=pady)
 
         pady = (0, self.screen_height * 0.008)
         self.full_name_big.pack(pady=pady)
