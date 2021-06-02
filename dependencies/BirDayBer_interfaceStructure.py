@@ -369,9 +369,15 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (0, self.screen_height * 0.012)
         self.right_bg.pack(fill="both", padx=padx, pady=pady)
 
-        padx = (0, self.screen_width * 0.518)
-        self.skull_icon.grid(sticky="nw", row=0, column=0)
-        self.male_small_icon.grid(sticky="ne", row=0, column=3)
+        pady = (self.screen_height * 0.008, 0)
+        padx = (self.screen_width * 0.004, 0)
+        self.skull_icon.grid(
+            sticky="nw", row=0, column=0, padx=padx, pady=pady)
+
+        pady = (self.screen_height * 0.004, 0)
+        padx = (0, self.screen_width * 0.002)
+        self.male_small_icon.grid(
+            sticky="ne", row=0, column=3, padx=padx, pady=pady)
         # self.female_small_icon.grid(sticky="ne", row=0, column=3)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.015)
