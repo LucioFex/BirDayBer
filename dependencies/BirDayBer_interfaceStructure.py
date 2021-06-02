@@ -42,6 +42,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.skull_src = tk.PhotoImage(file=location + "randolph.png")
         self.garbage1_src = tk.PhotoImage(file=location + "garbage1.png")
         self.garbage2_src = tk.PhotoImage(file=location + "garbage2.png")
+        self.twitter_src = tk.PhotoImage(file=location + "twitter.png")
+        self.github_src = tk.PhotoImage(file=location + "github.png")
         self.radio_button_off_src = tk.PhotoImage(
             file=location + "radiobutton-0.png")
         self.radio_button_on_src = tk.PhotoImage(
@@ -378,7 +380,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = (0, self.screen_width * 0.002)
         self.male_small_icon.grid(
             sticky="ne", row=0, column=3, padx=padx, pady=pady)
-        # self.female_small_icon.grid(sticky="ne", row=0, column=3)
+        # self.female_small_icon.grid(
+        #     sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.015)
         padx = (self.screen_width * 0.047, self.screen_width * 0.0317)

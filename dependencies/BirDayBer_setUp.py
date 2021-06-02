@@ -120,6 +120,12 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # Image not found (user base image)
             elif img in ("image-not-found.png"):
                 responsive_img.thumbnail(thumbnail_size(0.36, 0.36))
+            # Twitter icon
+            elif img in ("twitter.png"):
+                responsive_img.thumbnail(thumbnail_size(0.041, 0.073))
+            # GitHub icon
+            elif img in ("github.png"):
+                responsive_img.thumbnail(thumbnail_size(0.041, 0.073))
 
             # Gender icons
             elif img in ("male.png", "female.png"):
