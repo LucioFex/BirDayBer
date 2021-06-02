@@ -223,19 +223,23 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.first_name = tk.Entry(
             self.first_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config,
+            selectbackground="#4a92ab", insertbackground="#d7f5ff")
 
         self.second_name = tk.Entry(
             self.second_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config,
+            selectbackground="#4a92ab", insertbackground="#d7f5ff")
 
         self.birth_date = tk.Entry(
             self.birth_date_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config,
+            selectbackground="#4a92ab", insertbackground="#d7f5ff")
 
         self.country = tk.Entry(
             self.country_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config,
+            selectbackground="#4a92ab", insertbackground="#d7f5ff")
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
