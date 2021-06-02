@@ -366,7 +366,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (self.screen_height * 0.028, 0)
         padx = (self.screen_width * 0.003, 0)
-        self.right_mid.pack(side="right", anchor="ne", pady=pady)
+        self.right_mid.pack(anchor="ne", pady=pady)
 
         pady = (0, self.screen_height * 0.012)
         self.right_bg.pack(fill="both", padx=padx, pady=pady)
@@ -384,7 +384,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         #     sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.015)
-        padx = (self.screen_width * 0.047, self.screen_width * 0.0317)
+        padx = (self.screen_width * 0.047, self.screen_width * 0.03)
         self.full_name_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
@@ -435,4 +435,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the bot-right appearance of the GUI.
         """
-        pass
+        self.right_bottom = tk.Frame(self.right_side, bg="#3b4d54")
+
+        self.twitter_icon = tk.Button(
+            self.right_bottom, bg="#3b4d54", image=self.twitter_src, bd=0,
+            activebackground="#3b4d54", relief="flat", cursor="hand2")
+
+        self.github_icon = tk.Button(
+            self.right_bottom, bg="#3b4d54", image=self.github_src, bd=0,
+            activebackground="#3b4d54", relief="flat", cursor="hand2")
+
+        self.right_bottom.pack()
+
+        self.twitter_icon.pack(side="right")
+        self.github_icon.pack(side="right")
