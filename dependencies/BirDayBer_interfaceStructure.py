@@ -191,16 +191,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.right_top, bg=bg, image=self.about_src,
             activebackground=bg, relief="flat", bd=0, cursor="hand2")
 
-        padx = (self.screen_width * 0.0518, 0)
+        # padx = (self.screen_width * 0.0518, 0)
         pady = (self.screen_height * 0.03, 0)
         self.right_top.pack(anchor="ne")
-        self.people_adder_bg.pack(padx=padx, pady=pady, side="left")
+        self.people_adder_bg.pack(pady=pady, side="left")
         self.people_adder.pack(padx=self.screen_height * 0.005)
 
         pady = (self.screen_height * 0.132, 0)
         self.people_adder_icon.pack(pady=pady, side="left")
 
-        padx = (self.screen_width * 0.085, 0)
+        padx = (self.screen_width * 0.075, self.screen_width * 0.006)
         pady = (self.screen_height * 0.032, 0)
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
         pady = (self.screen_height * 0.046, 0)
