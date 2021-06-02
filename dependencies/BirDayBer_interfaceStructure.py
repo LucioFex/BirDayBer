@@ -330,24 +330,29 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.full_name_big = tk.Entry(
             self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
             width=round(self.screen_width * 0.012),
-            font=("Century Gothic", round(self.screen_width * 0.018)))
+            font=("Century Gothic", round(self.screen_width * 0.018)),
+            selectbackground="#778954", insertbackground="#798a5a")
 
         self.birth_big = tk.Entry(
             self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config,
+            selectbackground="#778954", insertbackground="#798a5a")
 
         self.age_big = tk.Entry(
             self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
             width=round(self.screen_width * 0.002),
-            font=("Century Gothic", round(self.screen_width * 0.025)))
+            font=("Century Gothic", round(self.screen_width * 0.025)),
+            selectbackground="#778954", insertbackground="#798a5a")
 
         self.country_big = tk.Entry(
             self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.006), font=font_config)
+            width=round(self.screen_width * 0.006), font=font_config,
+            selectbackground="#778954", insertbackground="#798a5a")
 
         self.birthday_big = tk.Entry(
             self.birthday_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=font_config)
+            width=round(self.screen_width * 0.01), font=font_config,
+            selectbackground="#778954", insertbackground="#798a5a")
 
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
