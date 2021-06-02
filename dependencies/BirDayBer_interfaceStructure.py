@@ -329,30 +329,33 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.full_name_big = tk.Entry(
             self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.012),
+            width=round(self.screen_width * 0.012), justify="center",
             font=("Century Gothic", round(self.screen_width * 0.018)),
             selectbackground="#778954", insertbackground="#798a5a")
 
         self.birth_big = tk.Entry(
             self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
             width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#778954", insertbackground="#798a5a")
+            selectbackground="#778954", insertbackground="#798a5a",
+            justify="center")
 
         self.age_big = tk.Entry(
             self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.002),
-            font=("Century Gothic", round(self.screen_width * 0.025)),
+            width=round(self.screen_width * 0.0025), justify="center",
+            font=("Century Gothic", round(self.screen_width * 0.02)),
             selectbackground="#778954", insertbackground="#798a5a")
 
         self.country_big = tk.Entry(
             self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
             width=round(self.screen_width * 0.006), font=font_config,
-            selectbackground="#778954", insertbackground="#798a5a")
+            selectbackground="#778954", insertbackground="#798a5a",
+            justify="center")
 
         self.birthday_big = tk.Entry(
             self.birthday_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#778954", insertbackground="#798a5a")
+            width=round(self.screen_width * 0.01), font=(*font_config, "bold"),
+            selectbackground="#778954", insertbackground="#798a5a",
+            justify="center")
 
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
@@ -372,7 +375,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         # self.female_small_icon.grid(sticky="ne", row=0, column=3)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.015)
-        padx = (self.screen_width * 0.047, self.screen_width * 0.036)
+        padx = (self.screen_width * 0.047, self.screen_width * 0.0317)
         self.full_name_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
@@ -395,6 +398,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
+
+        self.full_name_big.insert(0, "Name SurName")  # Remove from here later
+        self.birth_big.insert(0, "Birth Date")  # Remove from here later
+        self.age_big.insert(0, "Age")  # Remove from here later
+        self.country_big.insert(0, "Country")  # Remove from here later
+        self.birthday_big.insert(0, "BirthDay")  # Remove from here later
 
     def trash_declaration(self):
         """
