@@ -445,7 +445,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.right_bottom, bg="#3b4d54", image=self.github_src, bd=0,
             activebackground="#3b4d54", relief="flat", cursor="hand2")
 
-        self.right_bottom.pack()
+        self.right_bottom.pack(fill="both")
 
-        self.twitter_icon.pack(side="right")
-        self.github_icon.pack(side="right")
+        padx = (0, self.screen_width * 0.016)
+        pady = (self.screen_height * 0.024, 0)
+        self.github_icon.pack(padx=padx, pady=pady, side="right")
+        self.twitter_icon.pack(padx=padx, pady=pady, side="right")
