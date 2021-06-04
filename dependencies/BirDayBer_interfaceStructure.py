@@ -124,17 +124,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_top.pack()
         self.person_icon.pack(side="left")
 
-        self.title.pack(
-            anchor="w", padx=(self.screen_width * 0.0162, 0),
-            pady=self.screen_width * 0.015)
+        padx = (self.screen_width * 0.0162, 0)
+        pady = self.screen_width * 0.015
+        self.title.pack(anchor="w", padx=padx, pady=pady)
 
-        self.search_edge.pack(
-            anchor="w", padx=(self.screen_width * 0.0162))
+        padx = (self.screen_width * 0.0162)
+        self.search_edge.pack(anchor="w", padx=padx)
 
-        self.search_background.pack(pady=(0, self.screen_height * 0.014))
-
-        self.search_entry.pack(
-            side="left", fill="y", padx=(self.screen_width / 100, 0))
+        pady = (0, self.screen_height * 0.014)
+        padx = (self.screen_width / 100, 0)
+        self.search_background.pack(pady=pady)
+        self.search_entry.pack(side="left", fill="y", padx=padx)
 
     def left_side_structure_mid(self, location):
         """
@@ -166,10 +166,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.left_bottom, image=self.license_src, bg="#43575f",
             cursor="hand2", bd=0, activebackground="#43575f")
 
+        pady = (self.screen_height * 0.004, 0)
+        padx = (self.screen_width * 0.0162, 0)
         self.left_bottom.pack(fill="both", ipady=50)
-        self.license_icon.pack(
-            side="left", pady=(self.screen_height * 0.004, 0),
-            padx=(self.screen_width * 0.0162, 0))
+        self.license_icon.pack(side="left", pady=pady, padx=padx)
 
     def right_side_structure_top(self, location):
         """
