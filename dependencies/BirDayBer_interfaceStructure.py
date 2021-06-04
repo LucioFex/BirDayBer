@@ -438,6 +438,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         Method that generates the base for the bot-right appearance of the GUI.
         """
         self.right_bottom = tk.Frame(self.right_side, bg="#3b4d54")
+        self.today_birthdays_bg = tk.Frame(self.right_bottom, bg="#303c41")
 
         self.twitter_icon = tk.Button(
             self.right_bottom, bg="#3b4d54", image=self.twitter_src, bd=0,
@@ -447,9 +448,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.right_bottom, bg="#3b4d54", image=self.github_src, bd=0,
             activebackground="#3b4d54", relief="flat", cursor="hand2")
 
-        self.right_bottom.pack(fill="both")
+        self.today_birthdays = tk.Label(
+            self.today_birthdays_bg, text="Today is the birthday of x people",
+            fg="#e3e3e3", bg="#303c41", width=round(self.screen_width * 0.018),
+            font=("Century Gothic", round(self.screen_width * 0.016)))
 
+        self.right_bottom.pack(fill="both")
         padx = (0, self.screen_width * 0.016)
-        pady = (self.screen_height * 0.024, 0)
+        pady = (self.screen_height * 0.02, 0)
         self.github_icon.pack(padx=padx, pady=pady, side="right")
         self.twitter_icon.pack(padx=padx, pady=pady, side="right")
+
+        self.today_birthdays_bg.pack(side="left", fill="y")
+        self.today_birthdays.pack()
