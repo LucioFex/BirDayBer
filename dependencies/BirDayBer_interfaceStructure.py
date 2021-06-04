@@ -149,7 +149,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.people_finder = tk.Label(
             self.left_mid, bg="#5d8999",
-            height=round(self.screen_height / 34))
+            height=round(self.screen_height / 32))
 
         self.left_mid.pack(pady=(self.screen_height * 0.017, 0))
         self.people_over.pack(side="top")
@@ -168,7 +168,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.left_bottom.pack(fill="both", ipady=50)
         self.license_icon.pack(
-            side="left", pady=(self.screen_height * 0.012, 0),
+            side="left", pady=(self.screen_height * 0.004, 0),
             padx=(self.screen_width * 0.0162, 0))
 
     def right_side_structure_top(self, location):
