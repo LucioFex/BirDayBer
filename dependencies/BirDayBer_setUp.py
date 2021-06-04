@@ -119,7 +119,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(thumbnail_size(0.056, 0.24))
             # Image not found (user base image)
             elif img in ("image-not-found.png"):
-                responsive_img.thumbnail(thumbnail_size(0.36, 0.36))
+                responsive_img.thumbnail(thumbnail_size(0.37, 0.37))
             # Twitter icon
             elif img in ("twitter.png"):
                 responsive_img.thumbnail(thumbnail_size(0.041, 0.073))

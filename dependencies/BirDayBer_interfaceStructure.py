@@ -195,13 +195,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.right_top.pack(anchor="ne")
 
-        pady = (self.screen_height * 0.009, 0)
+        pady = (self.screen_height * 0.017, 0)
         self.people_adder_bg.pack(pady=pady, side="left")
 
         padx = self.screen_height * 0.005
         self.people_adder.pack(padx=padx)
 
-        pady = (self.screen_height * 0.1105, 0)
+        pady = (self.screen_height * 0.12, 0)
         self.people_adder_icon.pack(pady=pady, side="left")
 
         padx = (self.screen_width * 0.075, self.screen_width * 0.006)
@@ -366,7 +366,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.trash_declaration()
 
-        pady = (self.screen_height * 0.028, 0)
+        pady = (self.screen_height * 0.023, 0)
         padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(anchor="ne", pady=pady)
 
@@ -386,7 +386,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         #     sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.045)
-        padx = (self.screen_width * 0.047, self.screen_width * 0.03)
+        padx = (self.screen_width * 0.047, self.screen_width * 0.0245)
         self.full_name_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
