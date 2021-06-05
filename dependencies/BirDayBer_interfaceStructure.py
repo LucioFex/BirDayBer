@@ -459,5 +459,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.github_icon.pack(padx=padx, pady=pady, side="right")
         self.twitter_icon.pack(padx=padx, pady=pady, side="right")
 
-        self.today_birthdays_bg.pack(side="left", fill="y")
+        padx = (self.screen_width * 0.051, 0)
+        self.today_birthdays_bg.pack(padx=padx, side="left")
         self.today_birthdays.pack()
