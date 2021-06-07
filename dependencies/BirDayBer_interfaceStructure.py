@@ -324,10 +324,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.skull_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.skull_src)
 
-        self.male_small_icon = tk.Label(
+        self.gender_small_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.male_small_src)
-        self.female_small_icon = tk.Label(
-            self.right_bg, bg="#fdfff5", image=self.female_small_src)
 
         font_config = ("Century Gothic", round(self.screen_width * 0.014))
 
@@ -380,10 +378,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (self.screen_height * 0.004, 0)
         padx = (0, self.screen_width * 0.002)
-        self.male_small_icon.grid(
+        self.gender_small_icon.grid(
             sticky="ne", row=0, column=3, padx=padx, pady=pady)
-        # self.female_small_icon.grid(
-        #     sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.045)
         padx = (self.screen_width * 0.047, self.screen_width * 0.0245)
@@ -455,7 +451,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.right_bottom.pack(fill="both")
         padx = (0, self.screen_width * 0.016)
-        # pady = (self.screen_height * 0.02, 0)
         self.github_icon.pack(padx=padx, side="right")
         self.twitter_icon.pack(padx=padx, side="right")
 
