@@ -35,10 +35,6 @@ class BirDayBerClient_testing(unittest.TestCase):
         """
         Finish the process of the GUI and deletes all tested people.
         """
-        # people_id = cls.interface.get_people()
-        # for person in people_id:
-        #     cls.interface.delete_person(person[0])
-
         cls.interface.close_client()
         cls.interface.drop_database()
 
