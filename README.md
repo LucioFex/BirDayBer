@@ -10,6 +10,8 @@ This project will remind you with a notification for your operating system if it
 
 ![.](conceptual/interface-design-updated.png)
 
+![.](conceptual/settings-button-design.png)
+
 
 ## Technologies used in the project:
 
