@@ -2,13 +2,13 @@ import unittest
 import BirDayBer
 import os
 """
-Testing file of BirDayBer.py.
+Testing file for BirDayBer.py's base and structure.
 """
 
 
 class BirDayBerClient_testing(unittest.TestCase):
     """
-    BirDayBer graphical user interface testing.
+    BirDayBer's GUI testing.
     """
     @classmethod
     def setUpClass(cls):
