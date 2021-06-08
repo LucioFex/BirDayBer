@@ -178,12 +178,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_top = tk.Frame(self.right_side, bg="#3b4d54")
         self.people_adder_bg = tk.Frame(self.right_top, bg="#367892")
 
-        self.people_adder = tk.Label(
-            self.people_adder_bg, bg="#66838e",
-            width=round(self.screen_width / 20),
-            height=round(self.screen_height / 108.5))
-
+        self.people_adder = tk.Frame(self.people_adder_bg, bg="#66838e")
         bg = "#3b4d54"
+
         self.people_adder_icon = tk.Label(
             self.right_top, bg=bg, image=self.people_adder_src)
         self.nut_icon = tk.Button(
