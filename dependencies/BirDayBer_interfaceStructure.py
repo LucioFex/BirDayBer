@@ -147,9 +147,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
 
-        self.people_finder = tk.Label(
-            self.left_mid, bg="#5d8999",
-            height=round(self.screen_height / 32))
+        self.people_finder = tk.Frame(
+            self.left_mid, bg="#5d8999", height=self.screen_height * 0.47)
 
         self.left_mid.pack(pady=(self.screen_height * 0.017, 0))
         self.people_over.pack(side="top")
@@ -453,4 +452,4 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         padx = (self.screen_width * 0.051, 0)
         self.today_birthdays_bg.pack(padx=padx, anchor="w")
-        self.today_birthdays.pack(ipady=(self.screen_height * 0.03))
+        self.today_birthdays.pack(ipady=self.screen_height)
