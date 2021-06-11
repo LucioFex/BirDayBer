@@ -31,7 +31,7 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def settings_button(self):
+    def test_settings_button(self):
         self.assertFalse(self.interface.get_settings())
         self.interface.open_settings()
 
@@ -40,3 +40,7 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
 
         self.interface.close_settings()
         self.assertFalse(self.interface.get_settings())
+
+
+if __name__ == "__main__":
+    unittest.main()

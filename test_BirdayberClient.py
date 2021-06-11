@@ -10,6 +10,7 @@ class BirDayBerClient_testing(unittest.TestCase):
     """
     BirDayBer's GUI testing.
     """
+
     @classmethod
     def setUpClass(cls):
         """
