@@ -1,4 +1,5 @@
 import unittest
+import datetime
 import BirDayBer
 """
 Testing file for BirDayBer.py user's interactivity.
@@ -58,6 +59,20 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
         self.interface.remove_person(2)
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 0)
+
+    def test_person_select(self):  # Update this test later...
+        # No person selected
+        self.assertEqual(len(self.interface.right_bg.winfo_children()), 1)
+        self.assertIsNone(self.interface.get_selected_person())
+
+        # Person selected
+        self.interface.select_person(1)
+        self.assertEqual(len(self.interface.right_bg.winfo_children()), 9)
+
+        self.assertEqual(
+            self.interface.get_selected_person(), [
+                "Randolph", "Carter", "23/12/1919", 102,
+                "Male", "United States", "12/1919"])
 
 
 if __name__ == "__main__":

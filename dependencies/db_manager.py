@@ -89,7 +89,7 @@ class Db_manager:
             self.cursor.execute("CREATE TABLE %s (%s)" % (table[0], table[1]))
         self.connection.commit()
 
-    def add_rows(self, *rows):
+    def add_rows(self, rows):
         """ Insertion of rows to the table:
         To insert data, you have to especify the table with his columns
         and data of the row in a dictionary.
@@ -106,7 +106,6 @@ class Db_manager:
                 "country": {"country": "United States"},
                 "person": {"per_first": "Randolph", "per_last": "Carter"}})
         """
-        rows = rows[0]
         columns = []
 
         for index, (k, v) in enumerate(rows.items()):  # k = keys | v = values
@@ -122,7 +121,7 @@ class Db_manager:
                     columns[index][1] = (
                         columns[index][1] + ", " +
                         get_dict(v.keys(), length))
-                    columns[index][2].append(get_dict(v.values(), length))
+                    columns[index][2].append(get_dict(v.values(), length)) 
 
         return self.process_rows(columns)
 
