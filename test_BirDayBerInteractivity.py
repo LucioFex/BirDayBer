@@ -7,6 +7,9 @@ Testing file for BirDayBer.py user's interactivity.
 
 
 def current_age(birth_date):
+    birth_date = birth_date.split("/")
+    birth_date = f"{birth_date[2]}-{birth_date[1]}-{birth_date[0]}"
+
     today = datetime.now()
     birth_date = datetime.strptime(birth_date, "%Y-%m-%d")
 
@@ -72,6 +75,7 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
 
     def test_person_select(self):
         # No person selected
+        age = current_age(self.interface.get_selected_person("birth"))
         self.assertEqual(len(self.interface.right_bg.winfo_children()), 1)
         self.assertIsNone(self.interface.get_selected_person())
 
@@ -81,7 +85,7 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
 
         self.assertEqual(
             self.interface.get_selected_person(), [
-                "Randolph", "Carter", "23/12/1919", 102,
+                "Randolph", "Carter", "23/12/1919", age,
                 "Male", "United States", "12/1919"])
 
 
