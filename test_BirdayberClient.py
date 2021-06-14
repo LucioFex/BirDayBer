@@ -19,17 +19,17 @@ class BirDayBerClient_testing(unittest.TestCase):
         cls.interface = BirDayBer.Birdayber("testing//BirDayBer.db")
 
         cls.interface.add_person({
-            "countries": {"country": "Argentina"},
-            "genders": {"gender": "Male"},
-            "photos": {"photo": 'testing//image_test.png'},
-            "births": {"birth": "2003-07-15"},
-            "people": {"per_first": "Severus", "per_last": "Snape"}})
+            "country": {"country": "Argentina"},
+            "gender": {"gender": "Male"},
+            "photo": {"photo": 'testing//image_test.png'},
+            "birth": {"birth": "2003-07-15"},
+            "person": {"per_first": "Severus", "per_last": "Snape"}})
         cls.interface.add_person({
-            "countries": {"country": "United States"},
-            "genders": {"gender": "Male"},
-            "photos": {"photo": None},
-            "births": {"birth": "1919-12-23"},
-            "people": {"per_first": "Randolph", "per_last": "Carter"}})
+            "country": {"country": "United States"},
+            "gender": {"gender": "Male"},
+            "photo": {"photo": None},
+            "birth": {"birth": "1919-12-23"},
+            "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
     @classmethod
     def tearDownClass(cls):

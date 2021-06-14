@@ -50,21 +50,20 @@ class Birdayber_database:
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
         self.db.create_table({
-            "genders":
+            "gender":
                 f"""id_gender {id_type},
                 gender VARCHAR(6) NOT NULL""",
-            "photos":
+            "photo":
                 f"""id_photo {id_type},
                 photo BLOB""",
-            "countries":
+            "country":
                 f"""id_country {id_type},
                 country VARCHAR(40)""",
-            "births":
+            "birth":
                 f"""id_birth {id_type},
                 birth DATE NOT NULL,
                 age INTEGER""",
-
-            "people":
+            "person":
                 f"""id_person {id_type},
                 per_first VARCHAR(35) NOT NULL,
                 per_last VARCHAR(35),
@@ -120,15 +119,15 @@ class Birdayber_database:
             select = "per_first, per_last, birth, age, country, gender"
 
         people_data = self.db.column_search(
-            "people", select,
+            "person", select,
             """INNER JOIN
-                births on births.id_birth = people.id_birth1_fk
+                birth on birth.id_birth = person.id_birth1_fk
             INNER JOIN
-                photos on photos.id_photo = people.id_photo1_fk
+                photo on photo.id_photo = person.id_photo1_fk
             INNER JOIN
-                countries on countries.id_country = people.id_country1_fk
+                country on country.id_country = person.id_country1_fk
             INNER JOIN
-                genders on genders.id_gender = people.id_gender1_fk""",
+                gender on gender.id_gender = person.id_gender1_fk""",
             id_person)
 
         return people_data
