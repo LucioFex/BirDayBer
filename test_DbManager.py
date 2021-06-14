@@ -90,7 +90,7 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.assertEqual(all_genders, ())
         self.assertEqual(len(all_genders), 0)
 
-    def test_photos(self):  # Bug found in the DB_MANAGER (again) about BLOBS
+    def test_photos(self):
         all_photos = self.birth_db.column_search("photo", "photo_name, photo")
         self.assertNotEqual(all_photos, ((None, None), (None, None)))
         self.assertEqual(len(all_photos), 2)

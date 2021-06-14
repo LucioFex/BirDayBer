@@ -1,9 +1,19 @@
+from datetime import datetime
 import unittest
-import datetime
 import BirDayBer
 """
 Testing file for BirDayBer.py user's interactivity.
 """
+
+
+def current_age(birth_date):
+    today = datetime.now()
+    birth_date = datetime.strptime(birth_date, "%Y-%m-%d")
+
+    age = today.year - birth_date.year - 1
+    if (today.month, today.day) >= (birth_date.month, birth_date.day):
+        age += 1
+    return age
 
 
 class BirDayBerInteractivity_testing(unittest.TestCase):
@@ -60,7 +70,7 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.interface.remove_person(2)
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 0)
 
-    def test_person_select(self):  # Update this test later...
+    def test_person_select(self):
         # No person selected
         self.assertEqual(len(self.interface.right_bg.winfo_children()), 1)
         self.assertIsNone(self.interface.get_selected_person())

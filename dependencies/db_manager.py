@@ -121,7 +121,7 @@ class Db_manager:
                     columns[index][1] = (
                         columns[index][1] + ", " +
                         get_dict(v.keys(), length))
-                    columns[index][2].append(get_dict(v.values(), length)) 
+                    columns[index][2].append(get_dict(v.values(), length))
 
         return self.process_rows(columns)
 
