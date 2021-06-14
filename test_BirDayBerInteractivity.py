@@ -67,11 +67,20 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.assertFalse(self.interface.get_settings())
 
     def test_people_view(self):
-        self.assertTrue(len(self.interface.people_finder.winfo_children()), 2)
+        self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
         self.interface.remove_person(1)
-        self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
+        self.assertTrue(len(self.interface.people_finder.winfo_children()), 2)
         self.interface.remove_person(2)
-        self.assertTrue(len(self.interface.people_finder.winfo_children()), 0)
+        self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
+
+    def test_people_browser(self):
+        self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
+        self.interface.seach_person("ape")
+        self.assertTrue(len(self.interface.people_finder.winfo_children()), 2)
+        self.interface.seach_person("")
+        self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
+        self.interface.seach_person("randolphofenicalado")
+        self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
 
     def test_person_select(self):
         # No person selected
