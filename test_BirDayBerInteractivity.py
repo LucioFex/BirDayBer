@@ -7,6 +7,10 @@ Testing file for BirDayBer.py user's interactivity.
 
 
 def current_age(birth_date):
+    """
+    Function that calculates the inserted birth date (YYYY-MM-DD), and
+    calculates the current age in a INT.
+    """
     birth_date = birth_date.split("/")
     birth_date = f"{birth_date[2]}-{birth_date[1]}-{birth_date[0]}"
 
@@ -41,17 +45,17 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
 
     def setUp(self):
         self.interface.add_person({
-            "countries": {"country": "Argentina"},
-            "genders": {"gender": "Male"},
-            "photos": {"photo": 'testing//image_test.png'},
-            "births": {"birth": "2003-07-15"},
-            "people": {"per_first": "Severus", "per_last": "Snape"}})
+            "country": {"country": "Argentina"},
+            "gender": {"gender": "Male"},
+            "photo": {"photo": 'testing//image_test.png'},
+            "birth": {"birth": "2003-07-15"},
+            "person": {"per_first": "Severus", "per_last": "Snape"}})
         self.interface.add_person({
-            "countries": {"country": "United States"},
-            "genders": {"gender": "Male"},
-            "photos": {"photo": None},
-            "births": {"birth": "1919-12-23"},
-            "people": {"per_first": "Randolph", "per_last": "Carter"}})
+            "country": {"country": "United States"},
+            "gender": {"gender": "Male"},
+            "photo": {"photo": None},
+            "birth": {"birth": "1919-12-23"},
+            "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
     def tearDown(self):
         self.interface.remove_all_people()
@@ -83,8 +87,9 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
 
     def test_person_select(self):
-        # No person selected
         age = current_age(self.interface.get_selected_person("birth"))
+
+        # No person selected
         self.assertEqual(len(self.interface.right_bg.winfo_children()), 1)
         self.assertIsNone(self.interface.get_selected_person())
 
