@@ -1,7 +1,7 @@
-import dependencies.BirDayBer_interfaceStructure as BirDayBer_structure
+import dependencies.BirDayBer_interactivity as BirDayBer_interactivity
 
 
-class Birdayber(BirDayBer_structure.Interface_structure):
+class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
     """
     This class is prepared to generate all the visual
     aspect and functionality of the main window (GUI).
