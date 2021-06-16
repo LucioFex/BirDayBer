@@ -8,8 +8,8 @@ Testing file for BirDayBer.py user's interactivity.
 
 def current_age(birth_date):
     """
-    Function that calculates the inserted birth date (YYYY-MM-DD), and
-    calculates the current age in a INT.
+    Function that calculates the inserted birth date (YYYY-MM-DD),
+    and calculates the current age in a INT.
     """
     birth_date = birth_date.split("/")
     birth_date = f"{birth_date[2]}-{birth_date[1]}-{birth_date[0]}"
@@ -20,6 +20,7 @@ def current_age(birth_date):
     age = today.year - birth_date.year - 1
     if (today.month, today.day) >= (birth_date.month, birth_date.day):
         age += 1
+
     return age
 
 
