@@ -126,6 +126,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # GitHub icon
             elif img in ("github.png"):
                 responsive_img.thumbnail(thumbnail_size(0.041, 0.073))
+            # GitHub icon
+            elif img in ("edit.png"):
+                responsive_img.thumbnail(thumbnail_size(0.014, 0.014))
 
             # Gender icons
             elif img in ("male.png", "female.png"):
