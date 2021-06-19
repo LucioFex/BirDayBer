@@ -2,6 +2,16 @@ import dependencies.BirDayBer_setUp as BirDayBer_setUp
 import tkinter as tk
 
 
+def mid_entry(master, width, font, screen, bold=""):
+    """
+    Function that generates the structure of the right-mid entries.
+    """
+    return tk.Entry(
+        master, relief="flat", width=round(screen * width), fg="#212121",
+        font=("Century Gothic", round(screen * font), bold), justify="center",
+        selectbackground="#778954", insertbackground="#798a5a", bg="#fdfff5")
+
+
 class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     """
     This class generates the frames (background) and labels
@@ -324,13 +334,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.gender_small_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.male_small_src)
 
-        font_config = ("Century Gothic", round(self.screen_width * 0.014))
+        self.full_name_big = mid_entry(
+            self.full_name_bg, 0.012, 0.018, self.screen_width)
 
-        self.full_name_big = tk.Entry(
-            self.full_name_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.012), justify="center",
-            font=("Century Gothic", round(self.screen_width * 0.018)),
-            selectbackground="#778954", insertbackground="#798a5a")
+        font_config = ("Century Gothic", round(self.screen_width * 0.014))
 
         self.birth_big = tk.Entry(
             self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
