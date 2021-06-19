@@ -1,5 +1,4 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
-import tkinter as tk
 
 
 class BirDayBer_interactivity(BirDayber_structure.Interface_structure):

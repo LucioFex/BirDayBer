@@ -71,7 +71,7 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.interface.close_settings()
         self.assertFalse(self.interface.get_settings())
 
-    def test_people_view(self):
+    def test_people_viewer(self):
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
         self.interface.remove_person(1)
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 2)
