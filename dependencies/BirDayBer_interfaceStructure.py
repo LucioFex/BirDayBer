@@ -2,13 +2,13 @@ import dependencies.BirDayBer_setUp as BirDayBer_setUp
 import tkinter as tk
 
 
-def mid_entry(master, width, font, screen, bold=""):
+def mid_entry(master, width, font, screen, style=""):
     """
     Function that generates the structure of the right-mid entries.
     """
     return tk.Entry(
         master, relief="flat", width=round(screen * width), fg="#212121",
-        font=("Century Gothic", round(screen * font), bold), justify="center",
+        font=("Century Gothic", round(screen * font), style), justify="center",
         selectbackground="#778954", insertbackground="#798a5a", bg="#fdfff5")
 
 
@@ -336,36 +336,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.full_name_big = mid_entry(
             self.full_name_bg, 0.012, 0.018, self.screen_width)
-
-        font_config = ("Century Gothic", round(self.screen_width * 0.014))
-
-        self.birth_big = tk.Entry(
-            self.birth_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#778954", insertbackground="#798a5a",
-            justify="center")
-
-        self.age_big = tk.Entry(
-            self.age_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.0025), justify="center",
-            font=("Century Gothic", round(self.screen_width * 0.02)),
-            selectbackground="#778954", insertbackground="#798a5a")
-
-        self.country_big = tk.Entry(
-            self.country_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.006), font=font_config,
-            selectbackground="#778954", insertbackground="#798a5a",
-            justify="center")
-
-        self.birthday_big = tk.Entry(
-            self.birthday_bg, relief="flat", bg="#fdfff5", fg="#212121",
-            width=round(self.screen_width * 0.01), font=(*font_config, "bold"),
-            selectbackground="#778954", insertbackground="#798a5a",
-            justify="center")
+        self.birth_big = mid_entry(
+            self.birth_bg, 0.01, 0.014, self.screen_width)
+        self.age_big = mid_entry(
+            self.age_bg, 0.0025, 0.02, self.screen_width)
+        self.country_big = mid_entry(
+            self.country_bg, 0.006, 0.014, self.screen_width)
+        self.birthday_big = mid_entry(
+            self.birthday_bg, 0.01, 0.014, self.screen_width, "bold")
 
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
-
         self.trash_declaration()
 
         pady = (self.screen_height * 0.023, 0)
@@ -386,7 +367,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.045)
-        padx = (self.screen_width * 0.047, self.screen_width * 0.0245)
+        padx = (self.screen_width * 0.0445, self.screen_width * 0.0245)
         self.full_name_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
