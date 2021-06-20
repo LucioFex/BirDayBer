@@ -132,6 +132,12 @@ class Birdayber_database:
 
         return people_data
 
+    def remove_person(self, person_id):
+        """
+        This method removes one person.
+        """
+        self.remove_rows("person", f"id_person = {person_id}")
+
     def drop_database(self):
         """
         This method deletes the database file.

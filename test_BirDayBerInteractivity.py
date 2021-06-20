@@ -72,10 +72,13 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.assertFalse(self.interface.get_settings())
 
     def test_people_viewer(self):
+        person_id = self.interface.select_person(1)
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
-        self.interface.remove_person(1)
+        self.interface.remove_person(person_id)
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 2)
-        self.interface.remove_person(2)
+
+        person_id = self.interface.select_person(2)
+        self.interface.remove_person(person_id)
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
 
     def test_people_browser(self):
@@ -99,9 +102,10 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.assertEqual(len(self.interface.right_bg.winfo_children()), 9)
 
         self.assertEqual(
-            self.interface.get_selected_person(), [
-                "Randolph", "Carter", "23/12/1919", age,
-                "Male", "United States", "12/1919"])
+            self.interface.get_selected_person(), {
+                "per_first": "Randolph", "per_last": "Carter",
+                "birth": "23/12/1919", "age": age, "gender": "Male",
+                "country": "United States", "birthday": "12/1919"})
 
 
 if __name__ == "__main__":
