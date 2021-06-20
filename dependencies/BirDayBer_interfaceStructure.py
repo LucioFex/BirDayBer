@@ -2,6 +2,12 @@ import dependencies.BirDayBer_setUp as BirDayBer_setUp
 import tkinter as tk
 
 
+def titlebar_button(master, img, command=None, activebackground="#1e5061"):
+    return tk.Button(
+        master, image=img, relief="flat", bd=0, bg="#2c5c6d",
+        activebackground=activebackground, command=command)
+
+
 def mid_entry(master, width, font, screen, style=""):
     """
     Function that generates the structure of the right-mid entries.
@@ -84,19 +90,14 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.title_bar = tk.Frame(self.frame, bg="#316477")
         self.title_bar.pack(fill="x")
 
-        self.minimize_button = tk.Button(
-            self.title_bar, image=self.titlebar_img[2], bg="#2c5c6d", bd=0,
-            relief="flat", activebackground="#1e5061",
-            command=self.title_bar_minimize)
+        self.minimize_button = titlebar_button(
+            self.title_bar, self.titlebar_img[2], self.title_bar_minimize)
 
-        self.maximize_button = tk.Button(
-            self.title_bar, image=self.titlebar_img[1], bg="#2c5c6d",
-            relief="flat", bd=0, activebackground="#1e5061")
+        self.maximize_button = titlebar_button(
+            self.title_bar, self.titlebar_img[1])
 
-        self.close_button = tk.Button(
-            self.title_bar, image=self.titlebar_img[0], bg="#2c5c6d", bd=0,
-            relief="flat", activebackground="#911722",
-            command=self.close_client)
+        self.close_button = titlebar_button(
+            self.title_bar, self.titlebar_img[0], self.close_client, "#911722")
 
         self.close_button.pack(side="right", ipadx=14, ipady=7, fill="y")
         self.maximize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
