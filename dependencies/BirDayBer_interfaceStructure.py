@@ -2,6 +2,11 @@ import dependencies.BirDayBer_setUp as BirDayBer_setUp
 import tkinter as tk
 
 
+def src_image(image):
+    return tk.PhotoImage(
+        file=f"bin//system-content//visual-content//responsive//{image}")
+
+
 def titlebar_button(master, img, command=None, activebackground="#1e5061"):
     return tk.Button(
         master, image=img, relief="flat", bd=0, bg="#2c5c6d",
@@ -29,9 +34,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         super().__init__(db_connection)
 
-        # Generation of the title bar
-        self.titlebar_init()
-
         location = "bin//system-content//visual-content//responsive//"
 
         self.root.config(bg="DarkOliveGreen4")
@@ -40,35 +42,40 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_side = tk.Frame(self.frame, bg="#43575f")
         self.right_side = tk.Frame(self.frame, bg="#3b4d54")
 
+        # Source images generation
+        self.birdayber_src = src_image("BirDayBerIcon.png")
+        self.minimize_src = src_image("minimize-button.png")
+        self.maximize_src = src_image("maximize-button.png")
+        self.close_src = src_image("close-button.png")
+        self.person_icon_src = src_image("user-white.png")
+        self.license_src = src_image("license.png")
+        self.male_src = src_image("male.png")
+        self.female_src = src_image("female.png")
+        self.male_small_src = src_image("male2.png")
+        self.female_small_src = src_image("female2.png")
+        self.people_adder_src = src_image("add-person.png")
+        self.about_src = src_image("about.png")
+        self.nut_src = src_image("nut.png")
+        self.img_adder_src = src_image("user-black.png")
+        self.accept_src = src_image("accept.png")
+        self.clear_src = src_image("clear.png")
+        self.skull_src = src_image("randolph.png")
+        self.garbage1_src = src_image("garbage1.png")
+        self.garbage2_src = src_image("garbage2.png")
+        self.twitter_src = src_image("twitter.png")
+        self.github_src = src_image("github.png")
+        self.edit_src = src_image("edit.png")
+        self.radio_button_off_src = src_image("radiobutton-0.png")
+        self.radio_button_on_src = src_image("radiobutton-1.png")
+        self.img_not_found_src = src_image("image-not-found.png")
+
+        # Generation of the title bar
+        self.titlebar_init()
+
+        # Generation of the structure of the body
         self.left_side.pack(side="left", fill="both")
         self.right_side.pack(side="left", fill="both", expand=True)
 
-        self.person_icon_src = tk.PhotoImage(file=location + "user-white.png")
-        self.license_src = tk.PhotoImage(file=location + "license.png")
-        self.male_src = tk.PhotoImage(file=location + "male.png")
-        self.female_src = tk.PhotoImage(file=location + "female.png")
-        self.male_small_src = tk.PhotoImage(file=location + "male2.png")
-        self.female_small_src = tk.PhotoImage(file=location + "female2.png")
-        self.people_adder_src = tk.PhotoImage(file=location + "add-person.png")
-        self.about_src = tk.PhotoImage(file=location + "about.png")
-        self.nut_src = tk.PhotoImage(file=location + "nut.png")
-        self.img_adder_src = tk.PhotoImage(file=location + "user-black.png")
-        self.accept_src = tk.PhotoImage(file=location + "accept.png")
-        self.clear_src = tk.PhotoImage(file=location + "clear.png")
-        self.skull_src = tk.PhotoImage(file=location + "randolph.png")
-        self.garbage1_src = tk.PhotoImage(file=location + "garbage1.png")
-        self.garbage2_src = tk.PhotoImage(file=location + "garbage2.png")
-        self.twitter_src = tk.PhotoImage(file=location + "twitter.png")
-        self.github_src = tk.PhotoImage(file=location + "github.png")
-        self.edit_src = tk.PhotoImage(file=location + "edit.png")
-        self.radio_button_off_src = tk.PhotoImage(
-            file=location + "radiobutton-0.png")
-        self.radio_button_on_src = tk.PhotoImage(
-            file=location + "radiobutton-1.png")
-        self.img_not_found_src = tk.PhotoImage(
-            file=location + "image-not-found.png")
-
-        # Generation of the structure of the body
         self.left_side_structure_top(location)
         self.left_side_structure_mid(location)
         self.left_side_structure_bottom(location)
@@ -80,31 +87,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Generation of the new Title Bar and elimination of the previous one.
         """
-        location = "bin//system-content//visual-content//responsive//"
-
-        self.titlebar_img = []
-        for img in ("close-button.png", "maximize-button.png",
-                    "minimize-button.png", "BirDayBerIcon.png"):
-            self.titlebar_img.append(tk.PhotoImage(file=location + img))
-
         self.title_bar = tk.Frame(self.frame, bg="#316477")
         self.title_bar.pack(fill="x")
 
         self.minimize_button = titlebar_button(
-            self.title_bar, self.titlebar_img[2], self.title_bar_minimize)
+            self.title_bar, self.minimize_src, self.title_bar_minimize)
 
         self.maximize_button = titlebar_button(
-            self.title_bar, self.titlebar_img[1])
+            self.title_bar, self.maximize_src)
 
         self.close_button = titlebar_button(
-            self.title_bar, self.titlebar_img[0], self.close_client, "#911722")
+            self.title_bar, self.close_src, self.close_client, "#911722")
 
         self.close_button.pack(side="right", ipadx=14, ipady=7, fill="y")
         self.maximize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
         self.minimize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
 
         self.icon = tk.Label(
-            self.title_bar, image=self.titlebar_img[3], bg="#316477")
+            self.title_bar, image=self.birdayber_src, bg="#316477")
         self.icon.pack(side="left")
 
         for label in (self.title_bar, self.icon):
