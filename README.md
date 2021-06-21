@@ -20,6 +20,7 @@ This project will remind you with a notification for your operating system if it
 - Python [Sqlite3](https://docs.python.org/3/library/sqlite3.html) library.
 - Python [Pillow](https://pypi.org/project/Pillow/) library.
 - Python [OS](https://docs.python.org/3/library/os.html) module.
+- Python [WebBrowser](https://rico-schmidt.name/pymotw-3/webbrowser/index.html) module.
 
 ## Possible future technologies to be used in the project:
 
