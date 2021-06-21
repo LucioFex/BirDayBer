@@ -75,8 +75,8 @@ class Birdayber_database:
                 FOREIGN KEY (id_gender1_fk) REFERENCES gender (id_gender),
                 FOREIGN KEY (id_birth1_fk) REFERENCES birth (id_birth),
                 FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)"""})
-
         del id_type
+
         return db_connection
 
     def add_person(self, person):
@@ -136,7 +136,14 @@ class Birdayber_database:
         """
         This method removes one person.
         """
-        self.remove_rows("person", f"id_person = {person_id}")
+        self.db.remove_rows("person", f"id_person = {person_id}")
+
+    def reset_database(self):
+        """
+        Reset of the entire database.
+        """
+        for table in ("country", "gender", "photo", "birth", "person"):
+            self.db.remove_rows(table, "&deleteAll")
 
     def drop_database(self):
         """
