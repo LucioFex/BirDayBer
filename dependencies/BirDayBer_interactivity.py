@@ -1,5 +1,6 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
 import tkinter.messagebox as messagebox
+import webbrowser
 
 
 class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
@@ -17,14 +18,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         # self.refresh_people_viewer()
         # self.refresh_today_birthdays()
 
-    def show_license(self):
-        """
-        This method shows BirDayBer's current license.
-        """
-        return messagebox.showinfo(
-            "BirDayBer License", " " * 22 +
-            f"{self.get_license()[0]}\n{self.get_license()[1]}")
-
     def button_commands(self):
         """
         This method assigns commands to each button of the client.
@@ -33,3 +26,18 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
         self.close_button.config(command=self.close_client)
         self.license_icon.config(command=self.show_license)
+        self.github_icon.config(command=self.open_github)
+        self.twitter_icon.config(command=self.open_twitter)
+
+    def show_license(self):
+        return messagebox.showinfo(
+            "BirDayBer License", " " * 22 +
+            f"{self.get_license()[0]}\n{self.get_license()[1]}")
+
+    def open_github(self):
+        self.github_icon.config(command=self.open_github)
+        webbrowser.open("https://github.com/LucioFex")
+
+    def open_twitter(self):
+        self.twitter_icon.config(command=self.open_twitter)
+        webbrowser.open("https://twitter.com/LucioFex")
