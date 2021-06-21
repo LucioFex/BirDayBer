@@ -7,10 +7,10 @@ def src_image(image):
         file=f"bin//system-content//visual-content//responsive//{image}")
 
 
-def titlebar_button(master, img, command=None, activebackground="#1e5061"):
+def titlebar_button(master, img, activebackground="#1e5061"):
     return tk.Button(
-        master, image=img, relief="flat", bd=0, bg="#2c5c6d",
-        activebackground=activebackground, command=command)
+        master, image=img, relief="flat", bd=0,
+        activebackground=activebackground, bg="#2c5c6d")
 
 
 def mid_entry(master, width, font, screen, style=""):
@@ -91,13 +91,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.title_bar.pack(fill="x")
 
         self.minimize_button = titlebar_button(
-            self.title_bar, self.minimize_src, self.title_bar_minimize)
+            self.title_bar, self.minimize_src)
 
         self.maximize_button = titlebar_button(
             self.title_bar, self.maximize_src)
 
         self.close_button = titlebar_button(
-            self.title_bar, self.close_src, self.close_client, "#911722")
+            self.title_bar, self.close_src, "#911722")
 
         self.close_button.pack(side="right", ipadx=14, ipady=7, fill="y")
         self.maximize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
