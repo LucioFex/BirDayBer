@@ -59,7 +59,7 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
     def tearDown(self):
-        self.interface.remove_all_people()
+        self.interface.reset_database()
 
     def test_settings_button(self):
         self.assertFalse(self.interface.get_settings())

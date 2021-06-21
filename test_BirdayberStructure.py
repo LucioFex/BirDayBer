@@ -74,7 +74,7 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.assertEqual(window_data, "600x450+107+75")
 
     def test_people(self):
-        all_people = self.interface.get_people("&None%", False)
+        all_people = self.interface.get_people(binary=False)
 
         self.assertEqual(all_people, (
             (
