@@ -1,5 +1,6 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
 import tkinter.messagebox as messagebox
+import tkinter as tk
 import webbrowser
 
 
@@ -36,8 +37,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             f"{self.get_license()[0]}\n{self.get_license()[1]}")
 
     def open_about(self):
-        # return messagebox.showinfo("About BirDayBer")
-        pass
+        return messagebox.showinfo("About BirDayBer", self.get_version())
 
     def open_github(self):
         self.github_icon.config(command=self.open_github)
