@@ -40,6 +40,15 @@ class Birdayber_database:
 
         return tuple(license_type)
 
+    def get_version(self):
+        with open("README.md", "r", encoding="utf-8") as readme:
+            def readme_filter(file):
+                if "Version" in file:
+                    return file
+
+            version = filter(readme_filter, readme.readlines())
+            return next(version)[5: -2]
+
     def generate_database(self, db_connection):
         """
         Method that only accepts sqlite3 database locations:
