@@ -14,6 +14,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         people from the database in the 'people_viewer' method.
         """
         super().__init__(db_connection)
+        self.settings_state = False
 
         self.button_commands()
         # self.refresh_people_viewer()
@@ -30,6 +31,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.about_icon.config(command=self.open_about)
         self.github_icon.config(command=self.open_github)
         self.twitter_icon.config(command=self.open_twitter)
+        self.nut_icon.config(command=self.open_settings)
 
     def show_license(self):
         return messagebox.showinfo(
@@ -46,3 +48,17 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def open_twitter(self):
         self.twitter_icon.config(command=self.open_twitter)
         webbrowser.open("https://twitter.com/LucioFex")
+
+    def get_settings(self):
+        """
+        This method checks if the settings window is open.
+        """
+        return self.settings_state
+
+    def open_settings(self):
+        self.settings = tk.Toplevel(bg="#475d66")
+        self.settings_state = True
+
+        self.settings.resizable(False, False)
+        self.settings.iconbitmap(
+            "bin//system-content//visual-content//BirDayBerIcon.ico")

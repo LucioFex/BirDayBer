@@ -17,7 +17,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         #   Deletion of the original Title Bar
         self.root.overrideredirect(1)
         #   Sets the window screen resolution
-        self.window_init_resolution(
+        self.main_window_resolution(
             self.root.winfo_screenwidth(),
             self.root.winfo_screenheight())
         #   Generation of new responsive images
@@ -46,7 +46,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             visual_brand.iconbitmap(
                 "bin//system-content//visual-content//BirDayBerIcon.ico")
 
-    def window_init_resolution(self, width, height):
+    def main_window_resolution(self, width, height):
         """
         This method returns the information of the best
         possible resolution and position for the client's window.
