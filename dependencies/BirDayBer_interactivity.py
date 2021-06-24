@@ -62,3 +62,5 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.settings.resizable(False, False)
         self.settings.iconbitmap(
             "bin//system-content//visual-content//BirDayBerIcon.ico")
+
+        self.settings_window_resolution()

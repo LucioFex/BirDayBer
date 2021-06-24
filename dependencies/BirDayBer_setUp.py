@@ -22,6 +22,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             self.root.winfo_screenheight())
         #   Generation of new responsive images
         self.responsive_imgs()
+
         #  Generation of the main frame
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill="both")
@@ -56,18 +57,27 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
 
-        self.root.geometry("%sx%s+%s+%s" % (
-            self.screen_width, self.screen_height,
-            self.x_position, self.y_position))
+        self.root.geometry(
+            f"{self.screen_width}x{self.screen_height}+" +
+            f"{self.x_position}+{self.y_position}")
 
-        self.root.update()
         return str(self.root.geometry())
 
-    def toplevel_window_resolution(self):
+    def settings_window_resolution(self):
         """
         This method provides the toplevel of a geometry and position.
         """
-        pass
+        self.settings_width = round(self.root.winfo_screenwidth() * 0.352)
+        self.settings_height = round(self.root.winfo_screenheight() * 0.634)
+
+        self.x_settings_position = round(self.root.winfo_screenwidth() / 3)
+        self.y_settings_position = round(self.root.winfo_screenheight() / 5.5)
+
+        self.settings.geometry(
+            f"{self.settings_width}x{self.settings_height}+" +
+            f"{self.x_settings_position}+{self.y_settings_position}")
+
+        return str(self.settings.geometry())
 
     def get_license(self):
         """
