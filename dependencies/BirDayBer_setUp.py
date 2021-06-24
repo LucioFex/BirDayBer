@@ -48,12 +48,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
     def main_window_resolution(self, width, height):
         """
-        This method returns the information of the best
-        possible resolution and position for the client's window.
-        Then it sets the new values in the root.geometry() function.
-        It also calls the 'responsive_imgs' method to resize the system imgs.
+        This method provides the main window of a geometry and position.
         """
-
         self.screen_width = width - round(width / 4)
         self.screen_height = height - round(height / 4)
 
@@ -66,6 +62,12 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         self.root.update()
         return str(self.root.geometry())
+
+    def toplevel_window_resolution(self):
+        """
+        This method provides the toplevel of a geometry and position.
+        """
+        pass
 
     def get_license(self):
         """
