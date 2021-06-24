@@ -27,28 +27,6 @@ class Birdayber_database:
             self.generate_database(db_connection)
         self.db = db_manager.Db_manager(db_connection)  # If there's a db
 
-    def get_license(self):
-        """
-        This method returns the type of BirDayBer project's license,
-        the duration of this one and the name of its creator.
-        """
-        license_type = []
-        with open("LICENSE", "r", encoding="utf-8") as license_data:
-            license_type.append(license_data.readlines()[0][0:-1])
-            license_data.seek(0)
-            license_type.append(license_data.readlines()[2][0:-1])
-
-        return tuple(license_type)
-
-    def get_version(self):
-        with open("README.md", "r", encoding="utf-8") as readme:
-            def readme_filter(file):
-                if "Version" in file:
-                    return file
-
-            version = filter(readme_filter, readme.readlines())
-            return next(version)[5: -2]
-
     def generate_database(self, db_connection):
         """
         Method that only accepts sqlite3 database locations:
