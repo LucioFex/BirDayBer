@@ -81,13 +81,17 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         return tuple(license_type)
 
     def get_version(self):
-        with open("README.md", "r", encoding="utf-8") as readme:
+        try:
             def check_version(file):
                 if "### `Version: " in file:
                     return file
 
-            version = filter(check_version, readme.readlines())
-            return next(version)[5: -2]
+            with open("README.md", "r", encoding="utf-8") as readme:
+                version = filter(check_version, readme.readlines())
+                return next(version)[5: -2]
+
+        except FileNotFoundError:
+            return "Cannot get version without readme file"
 
     def responsive_imgs(self):
         """
