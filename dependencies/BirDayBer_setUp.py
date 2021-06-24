@@ -73,12 +73,17 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         the duration of this one and the name of its creator.
         """
         license_type = []
-        with open("LICENSE", "r", encoding="utf-8") as license_data:
-            license_type.append(license_data.readlines()[0][0:-1])
-            license_data.seek(0)
-            license_type.append(license_data.readlines()[2][0:-1])
+        try:
+            with open("LICENSE", "r", encoding="utf-8") as license_data:
+                license_type.append(license_data.readlines()[0][0:-1])
+                license_data.seek(0)
+                license_type.append(license_data.readlines()[2][0:-1])
+            return (" " * 22 + license_type[0], license_type[1])
 
-        return tuple(license_type)
+        except FileNotFoundError:
+            return (
+                " " * 8 + "License not Found",
+                "Problem trying to find the file")
 
     def get_version(self):
         try:

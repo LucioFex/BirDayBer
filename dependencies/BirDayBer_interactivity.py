@@ -33,7 +33,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def show_license(self):
         return messagebox.showinfo(
-            "BirDayBer License", " " * 22 +
+            "BirDayBer License",
             f"{self.get_license()[0]}\n{self.get_license()[1]}")
 
     def open_about(self):
