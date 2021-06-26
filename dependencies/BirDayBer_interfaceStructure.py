@@ -23,6 +23,15 @@ def mid_entry(master, width, font, screen, style=""):
         selectbackground="#778954", insertbackground="#798a5a", bg="#fdfff5")
 
 
+def settings_label(master, screen_width, text):
+    underscore = tk.Frame(master, bg="#267b9d")
+    underscore.pack()
+
+    return tk.Label(
+        underscore, font=("Century Gothic", round(screen_width / 60)),
+        width=round(screen_width / 75), text=text, bg="#475d66", fg="#e3e3e3")
+
+
 class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     """
     This class generates the frames (background) and labels
@@ -444,7 +453,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.today_birthdays_bg.pack(padx=padx, anchor="w")
         self.today_birthdays.pack(ipady=self.screen_height)
 
-    def settings(self):
+    def open_settings(self):
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
 
@@ -456,13 +465,18 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_widgets()
 
     def settings_widgets(self):
-        self.settings_bg = tk.Frame(bg="#475d66")
+        self.settings_bg = tk.Frame(self.settings, bg="#475d66")
 
-        self.settings_sound = settings_label("Sound")
-        self.settings_dark_theme = settings_label("Dark Theme")
-        self.settings_language = settings_label("Language")
-        self.settings_db_images = settings_label("Images location")
-        self.settings_remove_people = settings_label("Remove all added people")
+        self.settings_sound = settings_label(
+            self.settings_bg, self.screen_width, "Sound")
+        self.settings_dark_theme = settings_label(
+            self.settings_bg, self.screen_width, "Dark Theme")
+        self.settings_language = settings_label(
+            self.settings_bg, self.screen_width, "Language")
+        self.settings_db_images = settings_label(
+            self.settings_bg, self.screen_width, "Images location")
+        self.settings_remove_people = settings_label(
+            self.settings_bg, self.screen_width, "Remove all added people")
 
         self.settings_bg.pack()
         self.settings_sound.grid(row=0, column=0)
