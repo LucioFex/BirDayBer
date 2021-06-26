@@ -441,8 +441,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.today_birthdays = tk.Label(
             self.today_birthdays_bg, text="Today is the birthday of x people",
-            fg="#e3e3e3", bg="#303c41", width=round(self.screen_width * 0.018),
-            font=("Century Gothic", round(self.screen_width * 0.016)))
+            font=("Century Gothic", round(self.screen_width * 0.016)),
+            fg="#e3e3e3", bg="#303c41")
 
         self.right_bottom.pack(fill="both")
         padx = (0, self.screen_width * 0.016)
