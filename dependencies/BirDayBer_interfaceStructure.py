@@ -23,12 +23,14 @@ def mid_entry(master, width, font, screen, style=""):
         selectbackground="#778954", insertbackground="#798a5a", bg="#fdfff5")
 
 
-def settings_label(master, screen_width, text, row):
+def settings_label(master, width, height, text, row):
     underscore = tk.Frame(master, bg="#267b9d")
-    underscore.grid(row=row, column=0)
+    underscore.grid(
+        row=row, column=0, padx=(width * 0.05, 0),
+        pady=(height * 0.02, height * 0.021), sticky="w")
 
     return tk.Label(
-        underscore, font=("Century Gothic", round(screen_width / 60)),
+        underscore, font=("Century Gothic", round(width / 60)),
         text=text, bg="#475d66", fg="#e3e3e3")
 
 
@@ -468,15 +470,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_bg = tk.Frame(self.settings, bg="#475d66")
 
         self.settings_sound = settings_label(
-            self.settings_bg, self.screen_width, "Sound", 0)
+            self.settings_bg, self.screen_width,
+            self.screen_height, "Sound", row=0)
+
         self.settings_dark_theme = settings_label(
-            self.settings_bg, self.screen_width, "Dark Theme", 2)
+            self.settings_bg, self.screen_width,
+            self.screen_height, "Dark Theme", row=2)
+
         self.settings_language = settings_label(
-            self.settings_bg, self.screen_width, "Language", 4)
+            self.settings_bg, self.screen_width,
+            self.screen_height, "Language", row=4)
+
         self.settings_db_images = settings_label(
-            self.settings_bg, self.screen_width, "Images location", 6)
+            self.settings_bg, self.screen_width,
+            self.screen_height, "Images location", row=6)
+
         self.settings_remove_people = settings_label(
-            self.settings_bg, self.screen_width, "Remove all added people", 8)
+            self.settings_bg, self.screen_width,
+            self.screen_height, "Remove all added people", row=8)
 
         self.settings_bg.pack(fill="both")
         self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
