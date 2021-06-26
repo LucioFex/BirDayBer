@@ -23,13 +23,13 @@ def mid_entry(master, width, font, screen, style=""):
         selectbackground="#778954", insertbackground="#798a5a", bg="#fdfff5")
 
 
-def settings_label(master, screen_width, text):
+def settings_label(master, screen_width, text, row):
     underscore = tk.Frame(master, bg="#267b9d")
-    underscore.pack()
+    underscore.grid(row=row, column=0)
 
     return tk.Label(
         underscore, font=("Century Gothic", round(screen_width / 60)),
-        width=round(screen_width / 75), text=text, bg="#475d66", fg="#e3e3e3")
+        text=text, bg="#475d66", fg="#e3e3e3")
 
 
 class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
@@ -468,19 +468,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_bg = tk.Frame(self.settings, bg="#475d66")
 
         self.settings_sound = settings_label(
-            self.settings_bg, self.screen_width, "Sound")
+            self.settings_bg, self.screen_width, "Sound", 0)
         self.settings_dark_theme = settings_label(
-            self.settings_bg, self.screen_width, "Dark Theme")
+            self.settings_bg, self.screen_width, "Dark Theme", 2)
         self.settings_language = settings_label(
-            self.settings_bg, self.screen_width, "Language")
+            self.settings_bg, self.screen_width, "Language", 4)
         self.settings_db_images = settings_label(
-            self.settings_bg, self.screen_width, "Images location")
+            self.settings_bg, self.screen_width, "Images location", 6)
         self.settings_remove_people = settings_label(
-            self.settings_bg, self.screen_width, "Remove all added people")
+            self.settings_bg, self.screen_width, "Remove all added people", 8)
 
-        self.settings_bg.pack()
-        self.settings_sound.grid(row=0, column=0)
-        self.settings_dark_theme.grid(row=2, column=0)
-        self.settings_language.grid(row=4, column=0)
-        self.settings_db_images.grid(row=6, column=0)
-        self.settings_remove_people.grid(row=8, column=0)
+        self.settings_bg.pack(fill="both")
+        self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
+        self.settings_dark_theme.pack(pady=(0, self.screen_height * 0.009))
+        self.settings_language.pack(pady=(0, self.screen_height * 0.009))
+        self.settings_db_images.pack(pady=(0, self.screen_height * 0.009))
+        self.settings_remove_people.pack(pady=(0, self.screen_height * 0.009))
