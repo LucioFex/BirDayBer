@@ -54,13 +54,3 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         This method checks if the settings window is open.
         """
         return self.settings_state
-
-    def open_settings(self):
-        self.settings = tk.Toplevel(bg="#475d66")
-        self.settings_state = True
-
-        self.settings.resizable(False, False)
-        self.settings.iconbitmap(
-            "bin//system-content//visual-content//BirDayBerIcon.ico")
-
-        self.settings_window_resolution()

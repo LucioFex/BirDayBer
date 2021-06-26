@@ -443,3 +443,30 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = (self.screen_width * 0.0545, 0)
         self.today_birthdays_bg.pack(padx=padx, anchor="w")
         self.today_birthdays.pack(ipady=self.screen_height)
+
+    def settings(self):
+        self.settings = tk.Toplevel(bg="#364349")
+        self.settings_state = True
+
+        self.settings.resizable(False, False)
+        self.settings.iconbitmap(
+            "bin//system-content//visual-content//BirDayBerIcon.ico")
+
+        self.settings_window_resolution()
+        self.settings_widgets()
+
+    def settings_widgets(self):
+        self.settings_bg = tk.Frame(bg="#475d66")
+
+        self.settings_sound = settings_label("Sound")
+        self.settings_dark_theme = settings_label("Dark Theme")
+        self.settings_language = settings_label("Language")
+        self.settings_db_images = settings_label("Images location")
+        self.settings_remove_people = settings_label("Remove all added people")
+
+        self.settings_bg.pack()
+        self.settings_sound.grid(row=0, column=0)
+        self.settings_dark_theme.grid(row=2, column=0)
+        self.settings_language.grid(row=4, column=0)
+        self.settings_db_images.grid(row=6, column=0)
+        self.settings_remove_people.grid(row=8, column=0)
