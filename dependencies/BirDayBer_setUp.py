@@ -162,15 +162,15 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # Image not found (user base image)
             elif img in ("image-not-found.png"):
                 responsive_img.thumbnail(thumbnail_size(0.37, 0.37))
-            # Twitter icon
-            elif img in ("twitter.png"):
+            # Twitter & GitHub icon
+            elif img in ("twitter.png", "github.png"):
                 responsive_img.thumbnail(thumbnail_size(0.041, 0.073))
-            # GitHub icon
-            elif img in ("github.png"):
-                responsive_img.thumbnail(thumbnail_size(0.041, 0.073))
-            # GitHub icon
+            # Edit icon
             elif img in ("edit.png"):
                 responsive_img.thumbnail(thumbnail_size(0.014, 0.014))
+            # Settings-checkbutton icons
+            elif img in ("checkButton0.png", "checkButton1.png"):
+                responsive_img.thumbnail(thumbnail_size(0.066, 0.065))
 
             # Gender icons
             elif img in ("male.png", "female.png"):

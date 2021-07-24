@@ -48,9 +48,3 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def open_twitter(self):
         self.twitter_icon.config(command=self.open_twitter)
         webbrowser.open("https://twitter.com/LucioFex")
-
-    def get_settings(self):
-        """
-        This method checks if the settings window is open.
-        """
-        return self.settings_state

@@ -79,6 +79,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.radio_button_off_src = src_image("radiobutton-0.png")
         self.radio_button_on_src = src_image("radiobutton-1.png")
         self.img_not_found_src = src_image("image-not-found.png")
+        self.check_button0 = src_image("checkButton0.png")
+        self.check_button1 = src_image("checkButton1.png")
 
         # Generation of the title bar
         self.titlebar_init()
@@ -467,6 +469,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_widgets()
 
     def settings_widgets(self):
+        """
+        All the widgets inside of the settings window.
+        """
         self.settings_bg = tk.Frame(self.settings, bg="#475d66")
 
         self.settings_sound = settings_label(
@@ -489,9 +494,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.settings_bg, self.screen_width,
             self.screen_height, "Remove all added people", row=8)
 
+        self.settings_check_buttons()
+
         self.settings_bg.pack(fill="both")
         self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
         self.settings_dark_theme.pack(pady=(0, self.screen_height * 0.009))
         self.settings_language.pack(pady=(0, self.screen_height * 0.009))
         self.settings_db_images.pack(pady=(0, self.screen_height * 0.009))
         self.settings_remove_people.pack(pady=(0, self.screen_height * 0.009))
+
+    def settings_check_buttons(self):
+        self.sound_button = tk.Checkbutton(
+            self.settings_bg, image=self.check_button0, indicator=False,
+            selectimage=self.check_button1, bg="#475d66", bd=0,
+            activebackground="#475d66", selectcolor="#475d66")
+        self.dark_theme_button = tk.Checkbutton(
+            self.settings_bg, image=self.check_button0, indicator=False,
+            selectimage=self.check_button1, bg="#475d66", bd=0,
+            activebackground="#475d66", selectcolor="#475d66")
+
+        self.sound_button.grid(row=1, column=0, sticky="w")
+        self.dark_theme_button.grid(row=3, column=0, sticky="w")
