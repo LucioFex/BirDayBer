@@ -62,14 +62,14 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.interface.reset_database()
 
     def test_settings_button(self):
-        self.assertFalse(self.interface.get_settings())
+        self.assertFalse(self.interface.settings_state)
         self.interface.open_settings()
 
-        self.assertTrue(self.interface.get_settings())
+        self.assertTrue(self.interface.settings_state)
         self.assertEqual(len(self.interface.settings.winfo_children()), 5)
 
         self.interface.close_settings()
-        self.assertFalse(self.interface.get_settings())
+        self.assertFalse(self.interface.settings_state)
 
     def test_people_viewer(self):
         person_id = self.interface.select_person(1)

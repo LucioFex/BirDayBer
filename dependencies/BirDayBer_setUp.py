@@ -8,18 +8,18 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
     """
     This class is specialized in the generation of the GUI.
     """
-    def __init__(self, db_connection):
-        super().__init__(db_connection)
-
+    def __init__(self):
+        super().__init__()
         # Root and Frame - Generation and Configuration:
         self.root = tk.Tk()
 
         #   Deletion of the original Title Bar
         self.root.overrideredirect(1)
         #   Sets the window screen resolution
-        self.main_window_resolution(
+        geometry = self.main_window_resolution(
             self.root.winfo_screenwidth(),
             self.root.winfo_screenheight())
+        self.root.geometry(geometry)
         #   Generation of new responsive images
         self.responsive_imgs()
 
@@ -57,11 +57,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
 
-        self.root.geometry(
+        return (
             f"{self.screen_width}x{self.screen_height}+" +
             f"{self.x_position}+{self.y_position}")
-
-        return str(self.root.geometry())
 
     def settings_window_resolution(self):
         """
@@ -76,8 +74,6 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.settings.geometry(
             f"{self.settings_width}x{self.settings_height}+" +
             f"{self.x_settings_position}+{self.y_settings_position}")
-
-        return str(self.settings.geometry())
 
     def get_license(self):
         """
@@ -163,15 +159,15 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             # Image not found (user base image)
             elif img in ("image-not-found.png"):
                 responsive_img.thumbnail(thumbnail_size(0.37, 0.37))
-            # Twitter icon
-            elif img in ("twitter.png"):
+            # Twitter & GitHub icon
+            elif img in ("twitter.png", "github.png"):
                 responsive_img.thumbnail(thumbnail_size(0.041, 0.073))
-            # GitHub icon
-            elif img in ("github.png"):
-                responsive_img.thumbnail(thumbnail_size(0.041, 0.073))
-            # GitHub icon
+            # Edit icon
             elif img in ("edit.png"):
                 responsive_img.thumbnail(thumbnail_size(0.014, 0.014))
+            # Settings-checkbutton icons
+            elif img in ("checkButton0.png", "checkButton1.png"):
+                responsive_img.thumbnail(thumbnail_size(0.066, 0.065))
 
             # Gender icons
             elif img in ("male.png", "female.png"):

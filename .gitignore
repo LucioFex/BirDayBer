@@ -3,10 +3,11 @@ conceptual/entity-relationship-diagram-2.jpg
 conceptual/interface-design-updated.psd
 conceptual/settings-button-design.psd
 testing/test.db
+bin/system-content/visual-content/responsive
 testing/BirDayBer.db
 bin/BirDayBer.db
 bin/system-content/visual-content/BirDayBerIcon.ico
-bin/system-content/visual-content/responsive
 bin/system-content/visual-content/user-black.png
 dependencies/__pycache__
 bin/system-content/visual-content/user-black2.png
+workspace.code-workspace
