@@ -17,9 +17,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         #   Deletion of the original Title Bar
         self.root.overrideredirect(1)
         #   Sets the window screen resolution
-        self.main_window_resolution(
+        geometry = self.main_window_resolution(
             self.root.winfo_screenwidth(),
             self.root.winfo_screenheight())
+        self.root.geometry(geometry)
         #   Generation of new responsive images
         self.responsive_imgs()
 
@@ -57,11 +58,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
 
-        self.root.geometry(
+        return (
             f"{self.screen_width}x{self.screen_height}+" +
             f"{self.x_position}+{self.y_position}")
-
-        return str(self.root.geometry())
 
     def settings_window_resolution(self):
         """

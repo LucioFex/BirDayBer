@@ -84,12 +84,6 @@ class BirDayBerClient_testing(unittest.TestCase):
                 "Randolph", "Carter", "1919-12-23",
                 None, "United States", "Male")))
 
-    def test_license(self):
-        license_data = self.interface.get_license()
-        self.assertEqual(
-            license_data,
-            ("MIT License", "Copyright (c) 2020-2021 Luciano Esteban"))
-
     def test_default_images(self):
         for image in (
             "about.png", "add-person.png", "nut.png", "BirDayBerIcon.png",
