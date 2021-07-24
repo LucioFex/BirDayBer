@@ -8,9 +8,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
     """
     This class is specialized in the generation of the GUI.
     """
-    def __init__(self, db_connection):
-        super().__init__(db_connection)
-
+    def __init__(self):
+        super().__init__()
         # Root and Frame - Generation and Configuration:
         self.root = tk.Tk()
 

@@ -10,7 +10,8 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
         """
         If the 'mainloop' parameter is 'True' the program will main-loop.
         """
-        super().__init__(db_connection)
+        self.db_path = db_connection
+        super().__init__()
         self.root.mainloop() if mainloop else None
 
 

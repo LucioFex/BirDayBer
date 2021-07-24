@@ -28,7 +28,7 @@ def settings_label(master, width, height, text, row):
     underscore = tk.Frame(master, bg="#267b9d")
     underscore.grid(
         row=row, column=0, padx=(width * 0.05, 0),
-        pady=(height * 0.02, height * 0.021), sticky="w")
+        pady=height * 0.03, sticky="w")
 
     return tk.Label(
         underscore, font=("Century Gothic", round(width / 60)),
@@ -37,7 +37,7 @@ def settings_label(master, width, height, text, row):
 
 def check_button(master, image1, image2, width, command=None):
     return tk.Checkbutton(
-        master, image=image1, indicator=False, selectimage=image2,
+        master, image=image1, selectimage=image2, indicator=False,
         bg="#475d66", bd=0, activebackground="#475d66", selectcolor="#475d66")
 
 
@@ -46,12 +46,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     This class generates the frames (background) and labels
     for the user interactivity with the GUI.
     """
-    def __init__(self, db_connection):
+    def __init__(self):
         """
         Generation of the left and right side in the main body.
         """
-        super().__init__(db_connection)
-
+        super().__init__()
         location = "bin//system-content//visual-content//responsive//"
 
         self.root.config(bg="DarkOliveGreen4")
@@ -493,22 +492,18 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.settings_bg, self.screen_width,
             self.screen_height, "Language", row=4)
 
-        self.settings_db_images = settings_label(
-            self.settings_bg, self.screen_width,
-            self.screen_height, "Images location", row=6)
-
         self.settings_remove_people = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, "Remove all added people", row=8)
+            self.screen_height, "Remove all added people", row=6)
 
         self.settings_checkButtons()
         self.settings_language_list()
+        self.delete_added_people()
 
         self.settings_bg.pack(fill="both")
         self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
         self.settings_dark_theme.pack(pady=(0, self.screen_height * 0.009))
         self.settings_language.pack(pady=(0, self.screen_height * 0.009))
-        self.settings_db_images.pack(pady=(0, self.screen_height * 0.009))
         self.settings_remove_people.pack(pady=(0, self.screen_height * 0.009))
 
     def settings_checkButtons(self):
@@ -520,9 +515,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.check_button1, self.screen_width)
 
         self.sound_button.grid(
-            row=1, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))
+            row=1, column=0, padx=(self.screen_width * 0.05, 0),
+            pady=(0, self.screen_height * 0.01), sticky="w")
         self.dark_theme_button.grid(
-            row=3, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))
+            row=3, column=0, padx=(self.screen_width * 0.05, 0),
+            pady=(0, self.screen_height * 0.01), sticky="w")
 
     def settings_language_list(self):
         self.languages = ttk.Combobox(
@@ -532,4 +529,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.languages.set("English")
 
         self.languages.grid(
-            row=5, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))
+            row=5, column=0, padx=(self.screen_width * 0.05, 0),
+            pady=(0, self.screen_height * 0.01), sticky="w")
+
+    def delete_added_people(self):
+        self.delete_button_base = tk.Frame(self.settings_bg, bg="#602020")
+        self.delete_button = tk.Button(
+            self.delete_button_base, bg="#863535",
+            fg="#e3e3e3", relief="flat", text="Delete",
+            font=("Century Gothic", round(self.screen_width / 75)))
+
+        self.delete_button_base.grid(
+            row=7, column=0, padx=(self.screen_width * 0.05, 0),
+            pady=(0, self.screen_height * 0.25), sticky="w")
+        
+        margins = self.screen_width * 0.002
+        self.delete_button.pack(padx=margins, pady=margins)

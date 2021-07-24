@@ -16,24 +16,25 @@ class Birdayber_database:
     This class is specialized in the generation and maintenance
     of the DB and get data of the project's LICENSE.
     """
-    def __init__(self, db_connection):
+    def __init__(self):
         """
         Method that only accepts a sqlite3 database lotaction and Boolean:
         Creation of the database and preparation to generate the interface.
         If the second parameter is 'True' the program will start main-looping.
         """
+        super().__init__()
         #  Db management and generation:
-        if not os.path.exists(db_connection):  # If there's not db
-            self.generate_database(db_connection)
-        self.db = db_manager.Db_manager(db_connection)  # If there's a db
+        if not os.path.exists(self.db_path):  # If there's not db
+            self.generate_database()
+        self.db = db_manager.Db_manager(self.db_path)  # If there's a db
 
-    def generate_database(self, db_connection):
+    def generate_database(self):
         """
         Method that only accepts sqlite3 database locations:
         Generation of the database connection and tables.
         The generation of the tables is pre-created.
         """
-        self.db = db_manager.Db_manager(db_connection)
+        self.db = db_manager.Db_manager(self.db_path)
         id_type = "INTEGER PRIMARY KEY AUTOINCREMENT"
 
         self.db.create_table({
@@ -64,7 +65,7 @@ class Birdayber_database:
                 FOREIGN KEY (id_photo1_fk) REFERENCES photo (id_photo)"""})
         del id_type
 
-        return db_connection
+        return self.db_path
 
     def add_person(self, person):
         """
