@@ -34,6 +34,12 @@ def settings_label(master, width, height, text, row):
         text=text, bg="#475d66", fg="#e3e3e3")
 
 
+def check_button(master, image1, image2, width, command=None):
+    return tk.Checkbutton(
+        master, image=image1, indicator=False, selectimage=image2,
+        bg="#475d66", bd=0, activebackground="#475d66", selectcolor="#475d66")
+
+
 class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     """
     This class generates the frames (background) and labels
@@ -504,14 +510,14 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_remove_people.pack(pady=(0, self.screen_height * 0.009))
 
     def settings_check_buttons(self):
-        self.sound_button = tk.Checkbutton(
-            self.settings_bg, image=self.check_button0, indicator=False,
-            selectimage=self.check_button1, bg="#475d66", bd=0,
-            activebackground="#475d66", selectcolor="#475d66")
-        self.dark_theme_button = tk.Checkbutton(
-            self.settings_bg, image=self.check_button0, indicator=False,
-            selectimage=self.check_button1, bg="#475d66", bd=0,
-            activebackground="#475d66", selectcolor="#475d66")
+        self.sound_button = check_button(
+            self.settings_bg, self.check_button0,
+            self.check_button1, self.screen_width)
+        self.dark_theme_button = check_button(
+            self.settings_bg, self.check_button0,
+            self.check_button1, self.screen_width)
 
-        self.sound_button.grid(row=1, column=0, sticky="w")
-        self.dark_theme_button.grid(row=3, column=0, sticky="w")
+        self.sound_button.grid(
+            row=1, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))
+        self.dark_theme_button.grid(
+            row=3, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))
