@@ -1,4 +1,5 @@
 import dependencies.BirDayBer_setUp as BirDayBer_setUp
+from tkinter import ttk
 import tkinter as tk
 
 
@@ -500,7 +501,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.settings_bg, self.screen_width,
             self.screen_height, "Remove all added people", row=8)
 
-        self.settings_check_buttons()
+        self.settings_checkButtons()
+        self.settings_language_list()
 
         self.settings_bg.pack(fill="both")
         self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
@@ -509,7 +511,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_db_images.pack(pady=(0, self.screen_height * 0.009))
         self.settings_remove_people.pack(pady=(0, self.screen_height * 0.009))
 
-    def settings_check_buttons(self):
+    def settings_checkButtons(self):
         self.sound_button = check_button(
             self.settings_bg, self.check_button0,
             self.check_button1, self.screen_width)
@@ -521,3 +523,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             row=1, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))
         self.dark_theme_button.grid(
             row=3, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))
+
+    def settings_language_list(self):
+        self.languages = ttk.Combobox(
+            self.settings_bg, height=2,
+            font=("Century Gothic", round(self.screen_width / 75)))
+        self.languages["values"] = ["English", "Spanish"]
+        self.languages.set("English")
+
+        self.languages.grid(
+            row=5, column=0, sticky="w", padx=(self.screen_width * 0.05, 0))

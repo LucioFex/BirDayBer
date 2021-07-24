@@ -76,8 +76,6 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             f"{self.settings_width}x{self.settings_height}+" +
             f"{self.x_settings_position}+{self.y_settings_position}")
 
-        return str(self.settings.geometry())
-
     def get_license(self):
         """
         This method returns the type of BirDayBer project's license,
