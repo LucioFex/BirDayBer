@@ -180,14 +180,20 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.people_finder_section()
         self.left_mid.pack(pady=(self.screen_height * 0.017, 0))
-        self.people_over.pack(side="top")
-        self.finder_frame.pack(fill="both", expand="yes", padx=10, pady=10)
-        # self.people_finder.pack(fill="both", expand="yes", padx=10, pady=10)
+        self.people_over.pack(side="top", fill="x")
+        self.finder_frame.pack(
+            fill="both", expand="yes", pady=(0, self.screen_height * 0.013))
 
     def people_finder_section(self):
+        """
+        Method that generates the scroll-able frame.
+        The attribute to add widgets inside of it is: 'self.people_finder'.
+        """
         self.finder_frame = tk.Frame(self.left_mid)
 
-        self.canvas = tk.Canvas(self.finder_frame)
+        self.canvas = tk.Canvas(
+            self.finder_frame, width=self.screen_width * 0.29,
+            height=self.screen_height * 0.47)
         self.canvas.pack(side="left", fill="both")
 
         self.yscrollbar = tk.Scrollbar(
@@ -198,10 +204,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas.bind('<Configure>', lambda x: (
             self.canvas.config(scrollregion=self.canvas.bbox("all"))))
 
-        self.people_finder = tk.Frame(self.canvas, bg="#5d8999")
+        self.people_finder = tk.Frame(self.canvas, bg="#5d8999", height=500)
         self.canvas.create_window(
             (0, 0), window=self.people_finder, anchor="nw")
-        # self.finder_frame.pack(fill="both", expand="yes", padx=10, pady=10)
 
         # --------- Insertion
 
