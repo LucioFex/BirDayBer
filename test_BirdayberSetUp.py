@@ -45,6 +45,16 @@ class BirDayBerClient_testing(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_reset_db(self):
+        data_test = ((
+            ('Severus', 'Snape', '2003-07-15', None, 'Argentina', 'Male'),
+            ('Randolph', 'Carter', '1919-12-23', None, 'United States', 'Male')
+        ))
+
+        self.assertEqual(self.interface.get_people(binary=False), data_test)
+        self.interface.reset_database()
+        self.assertEqual(self.interface.get_people(binary=False), ())
+
     def test_window_resize(self):
         window_data = self.interface.main_window_resolution(1920, 1080)
         self.assertEqual(window_data, "1440x810+256+135")
