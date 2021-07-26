@@ -17,6 +17,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.settings_state = False
         self.button_commands()
+        self.model_people()
         # self.refresh_people_viewer()
         # self.refresh_today_birthdays()
 
@@ -48,3 +49,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def open_twitter(self):
         self.twitter_icon.config(command=self.open_twitter)
         webbrowser.open("https://twitter.com/LucioFex")
+
+    def model_people(self):  # Just a test method (delete later)
+        pass

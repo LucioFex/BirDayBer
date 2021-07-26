@@ -178,13 +178,38 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
 
-        self.people_finder = tk.Frame(
-            self.left_mid, bg="#5d8999", height=self.screen_height * 0.47)
-
+        self.people_finder_section()
         self.left_mid.pack(pady=(self.screen_height * 0.017, 0))
         self.people_over.pack(side="top")
+        self.finder_frame.pack(fill="both", expand="yes", padx=10, pady=10)
+        # self.people_finder.pack(fill="both", expand="yes", padx=10, pady=10)
 
-        self.people_finder.pack(fill="x", pady=(0, self.screen_height * 0.013))
+    def people_finder_section(self):
+        self.finder_frame = tk.Frame(self.left_mid)
+
+        self.canvas = tk.Canvas(self.finder_frame)
+        self.canvas.pack(side="left", fill="both")
+
+        self.yscrollbar = tk.Scrollbar(
+            self.finder_frame, orient="vertical", command=self.canvas.yview)
+        self.yscrollbar.pack(side="right", fill="y")
+
+        self.canvas.config(yscrollcommand=self.yscrollbar.set)
+        self.canvas.bind('<Configure>', lambda x: (
+            self.canvas.config(scrollregion=self.canvas.bbox("all"))))
+
+        self.people_finder = tk.Frame(self.canvas, bg="#5d8999")
+        self.canvas.create_window(
+            (0, 0), window=self.people_finder, anchor="nw")
+        # self.finder_frame.pack(fill="both", expand="yes", padx=10, pady=10)
+
+        # --------- Insertion
+
+        for i in range(25):
+            if i % 2 == 0:
+                tk.Button(self.people_finder, image=self.twitter_src).pack()
+                continue
+            tk.Button(self.people_finder, image=self.github_src).pack()
 
     def left_side_structure_bottom(self, location):
         """
@@ -498,7 +523,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.settings_checkButtons()
         self.settings_language_list()
-        self.delete_added_people()
+        self.button_delete_people()
 
         self.settings_bg.pack(fill="both")
         self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
@@ -532,7 +557,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             row=5, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
 
-    def delete_added_people(self):
+    def button_delete_people(self):
         self.remove_people = tk.Frame(self.settings_bg, bg="#602020")
         self.delete_button = tk.Button(
             self.remove_people, activebackground="#6d2e2e",
