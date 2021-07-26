@@ -189,11 +189,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         Method that generates the scroll-able frame.
         The attribute to add widgets inside of it is: 'self.people_finder'.
         """
-        self.finder_frame = tk.Frame(self.left_mid)
+        self.finder_frame = tk.Frame(self.left_mid, bg="#5d8999")
 
         self.canvas = tk.Canvas(
-            self.finder_frame, width=self.screen_width * 0.29,
-            height=self.screen_height * 0.47)
+            self.finder_frame, bg="#5d8999", width=self.screen_width * 0.29,
+            height=self.screen_height * 0.47, highlightthickness=0)
         self.canvas.pack(side="left", fill="both")
 
         self.yscrollbar = tk.Scrollbar(
@@ -204,17 +204,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas.bind('<Configure>', lambda x: (
             self.canvas.config(scrollregion=self.canvas.bbox("all"))))
 
-        self.people_finder = tk.Frame(self.canvas, bg="#5d8999", height=500)
+        self.people_finder = tk.Frame(self.canvas)
         self.canvas.create_window(
             (0, 0), window=self.people_finder, anchor="nw")
-
-        # --------- Insertion
-
-        for i in range(25):
-            if i % 2 == 0:
-                tk.Button(self.people_finder, image=self.twitter_src).pack()
-                continue
-            tk.Button(self.people_finder, image=self.github_src).pack()
 
     def left_side_structure_bottom(self, location):
         """
