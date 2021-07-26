@@ -523,7 +523,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
     def settings_language_list(self):
         self.languages = ttk.Combobox(
-            self.settings_bg, height=2,
+            self.settings_bg, height=2, state="readonly",
             font=("Century Gothic", round(self.screen_width / 75)))
         self.languages["values"] = ["English", "Spanish"]
         self.languages.set("English")
@@ -533,15 +533,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             pady=(0, self.screen_height * 0.01), sticky="w")
 
     def delete_added_people(self):
-        self.delete_button_base = tk.Frame(self.settings_bg, bg="#602020")
+        self.remove_people = tk.Frame(self.settings_bg, bg="#602020")
         self.delete_button = tk.Button(
-            self.delete_button_base, bg="#863535",
+            self.remove_people, activebackground="#6d2e2e",
+            bg="#863535", activeforeground="#e3e3e3",
             fg="#e3e3e3", relief="flat", text="Delete",
             font=("Century Gothic", round(self.screen_width / 75)))
 
-        self.delete_button_base.grid(
+        self.remove_people.grid(
             row=7, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.25), sticky="w")
-        
+
         margins = self.screen_width * 0.002
         self.delete_button.pack(padx=margins, pady=margins)
