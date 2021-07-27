@@ -45,6 +45,16 @@ class BirDayBerClient_testing(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_reset_db(self):
+        data_test = ((
+            ('Severus', 'Snape', '2003-07-15', None, 'Argentina', 'Male'),
+            ('Randolph', 'Carter', '1919-12-23', None, 'United States', 'Male')
+        ))
+
+        self.assertEqual(self.interface.get_people(binary=False), data_test)
+        self.interface.reset_database()
+        self.assertEqual(self.interface.get_people(binary=False), ())
+
     def test_window_resize(self):
         window_data = self.interface.main_window_resolution(1920, 1080)
         self.assertEqual(window_data, "1440x810+256+135")
@@ -86,13 +96,13 @@ class BirDayBerClient_testing(unittest.TestCase):
 
     def test_default_images(self):
         for image in (
-            "about.png", "add-person.png", "nut.png", "BirDayBerIcon.png",
+            "about.png", "add-person.png", "user-white.png", "github.png",
             "cancel-person.png", "close-button.png", "image-not-found.png",
             "garbage1.png", "garbage2.png", "twitter.png", "license.png",
-            "maximize-button.png", "maximized-button.png", "github.png",
+            "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
-            "party-hat-male.png", "user-black.png", "user-white.png",
-            "party-randolph.png", "edit.png", "radiobutton-0.png",
+            "party-hat-male.png", "user-black-1.png", "user-black-2.png",
+            "nut.png","party-randolph.png", "edit.png", "radiobutton-0.png",
                 "radiobutton-1.png", "accept.png", "clear.png"):
 
             self.assertTrue(os.path.exists(
@@ -101,13 +111,13 @@ class BirDayBerClient_testing(unittest.TestCase):
     def test_responsive_images(self):
         self.interface.responsive_imgs()
         for image in (
-            "about.png", "add-person.png", "nut.png", "BirDayBerIcon.png",
+            "about.png", "add-person.png", "user-white.png", "github.png",
             "cancel-person.png", "close-button.png", "image-not-found.png",
             "garbage1.png", "garbage2.png", "twitter.png", "license.png",
-            "maximize-button.png", "maximized-button.png", "github.png",
+            "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
-            "party-hat-male.png", "user-black.png", "user-white.png",
-            "party-randolph.png", "edit.png", "radiobutton-0.png",
+            "party-hat-male.png", "user-black-1.png", "user-black-2.png",
+            "nut.png","party-randolph.png", "edit.png", "radiobutton-0.png",
                 "radiobutton-1.png", "accept.png", "clear.png"):
 
             img = "bin//system-content//visual-content//responsive//%s" % image
@@ -115,11 +125,11 @@ class BirDayBerClient_testing(unittest.TestCase):
             os.remove(img)
 
     def test_circular_images(self):
-        img = "bin//system-content//visual-content//user-black.png"
+        img = "bin//system-content//visual-content//github.png"
         mask = "bin//system-content//visual-content//mask.png"
         self.interface.circular_imgs(img, mask)
 
-        img = "bin//system-content//visual-content//user-black2.png"
+        img = "bin//system-content//visual-content//github2.png"
         self.assertTrue(os.path.exists(img))
         os.remove(img)
 

@@ -73,7 +73,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_src = src_image("add-person.png")
         self.about_src = src_image("about.png")
         self.nut_src = src_image("nut.png")
-        self.img_adder_src = src_image("user-black.png")
+        self.person_adder_src = src_image("user-black-1.png")
+        self.person_default_src = src_image("user-black-2.png")
         self.accept_src = src_image("accept.png")
         self.clear_src = src_image("clear.png")
         self.skull_src = src_image("randolph.png")
@@ -178,13 +179,35 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
 
-        self.people_finder = tk.Frame(
-            self.left_mid, bg="#5d8999", height=self.screen_height * 0.47)
-
+        self.people_finder_section()
         self.left_mid.pack(pady=(self.screen_height * 0.017, 0))
-        self.people_over.pack(side="top")
+        self.people_over.pack(side="top", fill="x")
+        self.finder_frame.pack(
+            fill="both", expand="yes", pady=(0, self.screen_height * 0.013))
 
-        self.people_finder.pack(fill="x", pady=(0, self.screen_height * 0.013))
+    def people_finder_section(self):
+        """
+        Method that generates the scroll-able frame.
+        The attribute to add widgets inside of it is: 'self.people_finder'.
+        """
+        self.finder_frame = tk.Frame(self.left_mid, bg="#5d8999")
+
+        self.canvas = tk.Canvas(
+            self.finder_frame, bg="#5d8999", width=self.screen_width * 0.29,
+            height=self.screen_height * 0.47, highlightthickness=0)
+        self.canvas.pack(side="left", fill="both")
+
+        self.yscrollbar = tk.Scrollbar(
+            self.finder_frame, orient="vertical", command=self.canvas.yview)
+        self.yscrollbar.pack(side="right", fill="y")
+
+        self.canvas.config(yscrollcommand=self.yscrollbar.set)
+        self.canvas.bind('<Configure>', lambda x: (
+            self.canvas.config(scrollregion=self.canvas.bbox("all"))))
+
+        self.people_finder = tk.Frame(self.canvas)
+        self.canvas.create_window(
+            (0, 0), window=self.people_finder, anchor="nw")
 
     def left_side_structure_bottom(self, location):
         """
@@ -306,7 +329,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             selectimage=self.radio_button_on_src, cursor="hand2")
 
         self.img_adder = tk.Button(
-            self.people_adder, image=self.img_adder_src, bg="#66838e",
+            self.people_adder, image=self.person_adder_src, bg="#66838e",
             bd=0, activebackground="#66838e", cursor="hand2")
 
         self.accept = tk.Button(
@@ -498,7 +521,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.settings_checkButtons()
         self.settings_language_list()
-        self.delete_added_people()
+        self.button_delete_people()
 
         self.settings_bg.pack(fill="both")
         self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
@@ -523,7 +546,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
     def settings_language_list(self):
         self.languages = ttk.Combobox(
-            self.settings_bg, height=2,
+            self.settings_bg, height=2, state="readonly",
             font=("Century Gothic", round(self.screen_width / 75)))
         self.languages["values"] = ["English", "Spanish"]
         self.languages.set("English")
@@ -532,16 +555,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             row=5, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
 
-    def delete_added_people(self):
-        self.delete_button_base = tk.Frame(self.settings_bg, bg="#602020")
+    def button_delete_people(self):
+        self.remove_people = tk.Frame(self.settings_bg, bg="#602020")
         self.delete_button = tk.Button(
-            self.delete_button_base, bg="#863535",
+            self.remove_people, activebackground="#6d2e2e",
+            bg="#863535", activeforeground="#e3e3e3",
             fg="#e3e3e3", relief="flat", text="Delete",
             font=("Century Gothic", round(self.screen_width / 75)))
 
-        self.delete_button_base.grid(
+        self.remove_people.grid(
             row=7, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.25), sticky="w")
-        
+
         margins = self.screen_width * 0.002
         self.delete_button.pack(padx=margins, pady=margins)

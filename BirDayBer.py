@@ -12,6 +12,8 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
         """
         self.db_path = db_connection
         super().__init__()
+
+        self.app_lang = "English"
         self.root.mainloop() if mainloop else None
 
 
