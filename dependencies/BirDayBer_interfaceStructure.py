@@ -73,7 +73,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_src = src_image("add-person.png")
         self.about_src = src_image("about.png")
         self.nut_src = src_image("nut.png")
-        self.img_adder_src = src_image("user-black.png")
+        self.person_adder_src = src_image("user-black-1.png")
+        self.person_default_src = src_image("user-black-2.png")
         self.accept_src = src_image("accept.png")
         self.clear_src = src_image("clear.png")
         self.skull_src = src_image("randolph.png")
@@ -328,7 +329,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             selectimage=self.radio_button_on_src, cursor="hand2")
 
         self.img_adder = tk.Button(
-            self.people_adder, image=self.img_adder_src, bg="#66838e",
+            self.people_adder, image=self.person_adder_src, bg="#66838e",
             bd=0, activebackground="#66838e", cursor="hand2")
 
         self.accept = tk.Button(

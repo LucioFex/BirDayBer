@@ -51,4 +51,11 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         webbrowser.open("https://twitter.com/LucioFex")
 
     def model_people(self):  # Just a test method (delete later)
-        pass
+        self.row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
+        self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
+        self.row_person_img = tk.Button(
+            self.row_person, image=self.person_default_src)
+
+        self.row_person_border.grid(row=0, column=0)
+        self.row_person.pack()
+        self.row_person_img.pack()
