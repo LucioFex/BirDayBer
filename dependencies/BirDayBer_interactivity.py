@@ -72,6 +72,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         webbrowser.open("https://twitter.com/LucioFex")
 
     def refresh_people_viewer(self):
+        """
+        Method to refresh the people_finder depending on the browser's result.
+        """
         pass
 
     def row_person_spawn(self, texts, photo, row):

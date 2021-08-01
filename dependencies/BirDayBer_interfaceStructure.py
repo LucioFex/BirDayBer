@@ -137,22 +137,27 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         self.left_top = tk.Frame(self.left_side, bg="#43575f")
         self.search_edge = tk.Frame(self.left_top, bg="#334248")
-        self.search_background = tk.Frame(self.search_edge, bg="#517684")
+        self.search_bg = tk.Frame(self.search_edge, bg="#517684")
 
         self.title = tk.Label(
             self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
             font=("Century Gothic", round(self.screen_width / 38)))
 
         self.person_icon = tk.Label(
-            self.search_background, image=self.person_icon_src, bg="#4d717f")
+            self.search_bg, image=self.person_icon_src, bg="#4d717f")
 
-        self.search_entry = tk.Entry(
-            self.search_background, bg="#517684", selectbackground="#4a92ab",
+        self.search = tk.StringVar()
+        self.search.set("Search")
+
+        self.browser = tk.Entry(
+            self.search_bg, bg="#517684", selectbackground="#4a92ab",
             relief="flat", fg="#e3e3e3", insertbackground="#d7f5ff",
-            width=round(self.screen_width / 75),
+            width=round(self.screen_width / 75), textvariable=self.search,
             font=("Century Gothic", round(self.screen_width / 60)))
-        self.search_entry.insert(0, "Search")  # Remove from here later
 
+        self.left_side_top_packing()
+
+    def left_side_top_packing(self):
         self.left_top.pack()
         self.person_icon.pack(side="left")
 
@@ -165,8 +170,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (0, self.screen_height * 0.014)
         padx = (self.screen_width / 100, 0)
-        self.search_background.pack(pady=pady)
-        self.search_entry.pack(side="left", fill="y", padx=padx)
+        self.search_bg.pack(pady=pady)
+        self.browser.pack(side="left", fill="y", padx=padx)
 
     def left_side_structure_mid(self, location):
         """
