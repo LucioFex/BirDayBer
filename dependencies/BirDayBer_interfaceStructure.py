@@ -195,7 +195,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas = tk.Canvas(
             self.finder_frame, bg="#5d8999", width=self.screen_width * 0.29,
             height=self.screen_height * 0.47, highlightthickness=0)
-        self.canvas.pack(side="left", fill="both")
+        self.canvas.pack(
+            side="left", fill="both", ipadx=self.screen_width * 0.014 / 2)
 
         self.yscrollbar = tk.Scrollbar(
             self.finder_frame, orient="vertical", command=self.canvas.yview)
