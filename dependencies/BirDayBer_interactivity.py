@@ -4,16 +4,19 @@ import tkinter as tk
 import webbrowser
 
 
-def finder_row_content(master, content, command=None):
+def finder_row_content(master, texts, width, img, command=None):
     """
     Function to automate the finder label content generation.
     The "content" parameter must recieve a tuple or list of 4 elements.
     """
-    array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
+    row_person_img = tk.Button(master, image=img, bg="#8fd0e7", bd=0)
+    row_person_img.grid(row=0, column=0, rowspan=2)
 
-    for text, grid in zip(content, array):
+    array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
+    for text, grid in zip(texts, array):
         row_person = tk.Label(
-            master, text=text, bg="#6bb0c8", fg="#e3e3e3", command=command)
+            master, bg="#6aadc4", fg="#e3e3e3", width=round(width * 0.009),
+            font=("Century Gothic", round(width * 0.0085)), text=text)
 
         row_person.grid(row=grid[0], column=grid[1])
 
@@ -68,12 +71,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.row_person_base = tk.Frame(self.people_finder, bg="#79c1db")
         self.row_person = tk.Frame(self.row_person_base, bg="#8fd0e7")
 
-        self.row_person_img = tk.Button(
-            self.row_person, image=self.person_default_src, bg="#8fd0e7", bd=0)
-
         finder_row_content(
-            self.row_person, ("First name", "Second Name", "Birthday", "Age"))
+            self.row_person, ("First name", "Second Name", "Birthday", "Age"),
+            self.screen_width, self.person_default_src)
 
         self.row_person_base.grid(row=0, column=0)
         self.row_person.pack()
-        self.row_person_img.grid(row=0, column=0, rowspan=2)
