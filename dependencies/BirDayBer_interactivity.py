@@ -37,10 +37,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         super().__init__()
 
-        self.settings_state = False
+        self.settings_state = False  # VAR to don't open more than one window
         self.button_commands()
-        for row in range(15):  # Change later:
-            self.row_person_spawn(row)
         # self.refresh_people_viewer()
         # self.refresh_today_birthdays()
 
@@ -73,13 +71,20 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.twitter_icon.config(command=self.open_twitter)
         webbrowser.open("https://twitter.com/LucioFex")
 
-    def row_person_spawn(self, row):  # Just a test method (delete later)
-        self.row_person_base = tk.Frame(self.people_finder, bg="#79c1db")
-        self.row_person = tk.Frame(self.row_person_base, bg="#8fd0e7")
+    def refresh_people_viewer(self):
+        pass
+
+    def row_person_spawn(self, texts, photo, row):
+        """
+        Method that renders one person row in the 'people finder section'.
+        """
+        self.row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
+        self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
 
         finder_row_content(
-            self.row_person, ("First name", "Second Name", "Birthday", "Age"),
-            self.screen_width, self.person_default_src, self.skull_src)
+            self.row_person, texts, self.screen_width, photo, self.skull_src)
 
-        self.row_person_base.grid(row=row, column=0)
+        self.row_person_border.grid(row=row, column=0)
         self.row_person.pack(pady=(0, self.screen_height * 0.006))
+
+        return self.row_person_border
