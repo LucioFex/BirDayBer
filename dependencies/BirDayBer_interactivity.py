@@ -39,7 +39,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.settings_state = False  # VAR to don't open more than one window
         self.button_commands()
-        self.browser_filter()
         self.refresh_people_viewer()
         # self.refresh_today_birthdays()
 
@@ -72,21 +71,21 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.twitter_icon.config(command=self.open_twitter)
         webbrowser.open("https://twitter.com/LucioFex")
 
-    def browser_filter(self):
+    def browser_filter(self):  # Unfinished
         """
         Method that filters people in the 'people_finder' section.
         """
-        self.people_found = self.get_people(binary=False)
-
-        for index, person in enumerate(self.people_found):
-            self.row_person_spawn(
-                (person[0], person[1], person[2], person[4]), index)
+        return self.get_people(binary=False)
 
     def refresh_people_viewer(self):
         """
         Method to refresh the people_finder depending on the browser's result.
         """
-        pass
+        self.people_found = self.browser_filter()
+
+        for index, person in enumerate(self.people_found):
+            self.row_person_spawn(
+                (person[0], person[1], person[2], person[4]), index)
 
     def row_person_spawn(self, texts, row, photo=None):
         """
