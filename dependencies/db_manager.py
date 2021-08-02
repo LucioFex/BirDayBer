@@ -146,8 +146,9 @@ class Db_manager:
 
             #  Insertion of data
             values = ("?," * len(element[2]))[0:-1]  # Example: [a, b] == "?,?"
-            self.cursor.execute(f"""INSERT INTO {element[0]} ({element[1]})
-                VALUES ({values})""", element[2])
+            self.cursor.execute(
+                f"INSERT INTO {element[0]} ({element[1]}) VALUES ({values})",
+                element[2])
 
         self.connection.commit()
 

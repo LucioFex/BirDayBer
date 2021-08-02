@@ -71,16 +71,6 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.interface.close_settings()
         self.assertFalse(self.interface.settings_state)
 
-    def test_people_viewer(self):
-        person_id = self.interface.select_person(1)
-        self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
-        self.interface.remove_person(person_id)
-        self.assertTrue(len(self.interface.people_finder.winfo_children()), 2)
-
-        person_id = self.interface.select_person(2)
-        self.interface.remove_person(person_id)
-        self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
-
     def test_people_browser(self):
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
         self.interface.seach_person("ape")
@@ -89,23 +79,6 @@ class BirDayBerInteractivity_testing(unittest.TestCase):
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 3)
         self.interface.seach_person("randolphofenicalado")
         self.assertTrue(len(self.interface.people_finder.winfo_children()), 1)
-
-    def test_person_select(self):
-        age = current_age(self.interface.get_selected_person("birth"))
-
-        # No person selected
-        self.assertEqual(len(self.interface.right_bg.winfo_children()), 1)
-        self.assertIsNone(self.interface.get_selected_person())
-
-        # Person selected
-        self.interface.select_person(1)
-        self.assertEqual(len(self.interface.right_bg.winfo_children()), 9)
-
-        self.assertEqual(
-            self.interface.get_selected_person(), {
-                "per_first": "Randolph", "per_last": "Carter",
-                "birth": "23/12/1919", "age": age, "gender": "Male",
-                "country": "United States", "birthday": "12/1919"})
 
 
 if __name__ == "__main__":

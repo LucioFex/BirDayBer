@@ -73,7 +73,7 @@ class Birdayber_database:
         Addition of people to the database.
         Every key in the dictionary must be a String, like in the example.
 
-        For example:
+        Example:
             self.add_person({
                 "country": {"country": "United States"},
                 "gender": {"gender": "Male"},

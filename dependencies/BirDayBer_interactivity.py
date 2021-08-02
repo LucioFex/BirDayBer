@@ -18,9 +18,9 @@ def finder_row_content(master, texts, width, img, skull, command=None):
     for text, grid in zip(texts, array):
         row_person = tk.Label(
             master, bg="#6aaec6", fg="#e3e3e3", width=round(width * .0085),
-            font=("Century Gothic", round(width * 0.0082)), text=text)
+            font=("Century Gothic", round(width * 0.0087), "bold"), text=text)
 
-        row_person.grid(row=grid[0], column=grid[1], padx=width * 0.007)
+        row_person.grid(row=grid[0], column=grid[1], padx=width * 0.0066)
 
     row_person_skull = tk.Label(master, bg="#8fd0e7", image=skull, bd=0)
     row_person_skull.grid(row=0, column=3, rowspan=2)
@@ -39,7 +39,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.settings_state = False  # VAR to don't open more than one window
         self.button_commands()
-        # self.refresh_people_viewer()
+        self.refresh_people_viewer()
         # self.refresh_today_birthdays()
 
     def button_commands(self):
@@ -71,16 +71,29 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.twitter_icon.config(command=self.open_twitter)
         webbrowser.open("https://twitter.com/LucioFex")
 
+    def browser_filter(self):  # Unfinished
+        """
+        Method that filters people in the 'people_finder' section.
+        """
+        return self.get_people(binary=False)
+
     def refresh_people_viewer(self):
         """
         Method to refresh the people_finder depending on the browser's result.
         """
-        pass
+        self.people_found = self.browser_filter()
 
-    def row_person_spawn(self, texts, photo, row):
+        for index, person in enumerate(self.people_found):
+            self.row_person_spawn(
+                (person[0], person[1], person[2], person[4]), index)
+
+    def row_person_spawn(self, texts, row, photo=None):
         """
         Method that renders one person row in the 'people finder section'.
         """
+        if photo is None:
+            photo = self.person_default_src
+
         self.row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
         self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
 
