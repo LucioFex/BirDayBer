@@ -75,7 +75,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that filters people in the 'people_finder' section.
         """
-        return self.get_people(binary=False)
+        return [*self.get_people(binary=False)]
 
     def refresh_people_viewer(self):
         """
@@ -85,7 +85,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         for index, person in enumerate(self.people_found):
             self.row_person_spawn(
-                (person[0], person[1], person[2], person[4]), index)
+                [person[0], person[1], person[2], person[4]], index)
 
     def row_person_spawn(self, texts, row, photo=None):
         """
@@ -93,6 +93,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         if photo is None:
             photo = self.person_default_src
+
+        for index in range(len(texts)):
+            if len(texts[index]) > 12:
+                texts[index] = texts[index][0:12] + "..."
 
         self.row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
         self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
