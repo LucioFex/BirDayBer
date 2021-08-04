@@ -38,7 +38,8 @@ def binary_to_photo(id_person, binary, folder="bin//rows-content"):
     Function that convert the binary data to an image in a X folder.
     The default folder will be "bin//rows-content"
 
-    Every photo will be saved in '.png' type.
+    Every photo will be saved as a '.png' type, with the original
+    file name, including the '_N' prefix at the end (the N is the ID number).
     """
     try:
         with open(f'{folder}//photo_{id_person}.png', 'wb') as photo:

@@ -18,4 +18,4 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
 
 
 if __name__ == '__main__':
-    Birdayber("bin//BirDayBer.db", True)
+    Birdayber(r"bin//BirDayBer.db", True)

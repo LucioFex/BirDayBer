@@ -4,14 +4,15 @@ import tkinter as tk
 import webbrowser
 
 
-def finder_row_content(master, texts, width, img, skull, command=None):
+def finder_row_content(master, texts, width, photo, skull, command=None):
     """
     Function to automate the finder label content generation.
     The "content" parameter must recieve a tuple or list of 4 elements.
     """
+    print(photo)
     row_person_img = tk.Button(
         master, activebackground="#8fd0e7", bd=0,
-        bg="#8fd0e7", image=img, cursor="hand2")
+        bg="#8fd0e7", image=photo, cursor="hand2")
     row_person_img.grid(row=0, column=0, rowspan=2)
 
     array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
@@ -75,7 +76,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that filters people in the 'people_finder' section.
         """
-        return [*self.get_people(binary=False)]
+        return self.get_people()
 
     def refresh_people_viewer(self):
         """
@@ -83,16 +84,17 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.people_found = self.browser_filter()
 
-        for index, person in enumerate(self.people_found):
+        for row, person in enumerate(self.people_found):
             self.row_person_spawn(
-                [person[0], person[1], person[2], person[4]], index)
+                [person[0], person[1], person[2], person[4]], row, person[3])  # Continue with the photo
 
     def row_person_spawn(self, texts, row, photo=None):
         """
         Method that renders one person row in the 'people finder section'.
         """
+        # photo = self.person_default_src if photo is None else None
         if photo is None:
-            photo = self.person_default_src
+            self.person_default_src
 
         for index in range(len(texts)):
             if len(texts[index]) > 12:
@@ -108,3 +110,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.row_person.pack(pady=(0, self.screen_height * 0.006))
 
         return self.row_person_border
+
+    def process_photo(self, photo):
+        pass
