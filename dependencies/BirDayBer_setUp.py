@@ -243,6 +243,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         self.root.geometry("+%s+%s" % (window_position_x, window_position_y))
 
+    def process_base64_photo(self, photo):
+        pass
+
     def close_client(self):
         """
         It makes the program close the database and stop mainlooping.

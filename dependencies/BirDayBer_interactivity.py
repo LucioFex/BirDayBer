@@ -9,7 +9,6 @@ def finder_row_content(master, texts, width, photo, skull, command=None):
     Function to automate the finder label content generation.
     The "content" parameter must recieve a tuple or list of 4 elements.
     """
-    print(photo)
     row_person_img = tk.Button(
         master, activebackground="#8fd0e7", bd=0,
         bg="#8fd0e7", image=photo, cursor="hand2")
@@ -110,6 +109,3 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.row_person.pack(pady=(0, self.screen_height * 0.006))
 
         return self.row_person_border
-
-    def process_photo(self, photo):
-        pass

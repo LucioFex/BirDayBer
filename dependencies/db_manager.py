@@ -1,4 +1,5 @@
 import sqlite3
+import base64
 import os
 
 
@@ -9,7 +10,7 @@ def get_dict(key_or_value, position=0):
     return tuple(key_or_value)[position]
 
 
-def photo_to_binary(photo):
+def photo_to_base64(photo):
     """
     If the str photo parameter exists,
     then it will convert it into a binary type.
@@ -18,7 +19,7 @@ def photo_to_binary(photo):
         return
 
     with open(photo, 'rb') as binary_photo:
-        blob = binary_photo.read()
+        blob = base64.b64encode(binary_photo.read())
     return blob
 
 
@@ -117,7 +118,7 @@ class Db_manager:
 
                 if column[2] == "BLOB":
                     for index in range(len(element[2])):
-                        element[2][index] = photo_to_binary(element[2][index])
+                        element[2][index] = photo_to_base64(element[2][index])
 
             #  Insertion of data
             values = ("?," * len(element[2]))[0:-1]  # Example: [a, b] == "?,?"
