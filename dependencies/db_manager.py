@@ -1,5 +1,5 @@
 import sqlite3
-import base64
+from base64 import b64encode
 import os
 
 
@@ -15,11 +15,14 @@ def photo_to_base64(photo):
     If the str photo parameter exists,
     then it will convert it into a binary type.
     """
-    if photo is None or not os.path.exists(photo):
+    if photo is None or os.path.exists(photo) is False:  # Keep working here
         return
 
-    with open(photo, 'rb') as binary_photo:
-        blob = base64.b64encode(binary_photo.read())
+    blob = b"<plain_txt_msg:img>"
+    with open(photo, "rb") as imageFile:
+        blob = blob + b64encode(imageFile.read())
+
+    blob += b"<!plain_txt_msg>"
     return blob
 
 
