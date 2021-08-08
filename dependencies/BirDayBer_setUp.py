@@ -13,14 +13,14 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         # Root and Frame - Generation and Configuration:
         self.root = tk.Tk()
 
-        #   Deletion of the original Title Bar
+        # Deletion of the original Title Bar
         self.root.overrideredirect(1)
-        #   Sets the window screen resolution
+        # Sets the window screen resolution
         geometry = self.main_window_resolution(
             self.root.winfo_screenwidth(),
             self.root.winfo_screenheight())
         self.root.geometry(geometry)
-        #   Generation of new responsive images
+        # Generation of new responsive images
         self.responsive_imgs()
 
         #  Generation of the main frame
@@ -30,10 +30,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         # Hidden Window - Generation and Configuration:
         self.hidden_window = tk.Toplevel(self.root)
 
-        #   Hide of the top window
+        # Hide of the top window
         self.hidden_window.geometry("0x0+10000+10000")
         self.hidden_window.attributes("-alpha", 0.0)
-        #   Actions for maximizing and minimizing the root from the taskbar
+        # Actions for maximizing and minimizing the root from the taskbar
         self.hidden_window.bind("<Unmap>", self.window_focus)
         self.hidden_window.bind("<FocusIn>", self.window_focus)
 
