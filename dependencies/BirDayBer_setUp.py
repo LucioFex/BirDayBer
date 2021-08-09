@@ -204,23 +204,19 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
 
-    def circular_imgs(self, img, mask):
+    def circular_img(self, img, mask):
         """
         This method creates a circular image of the given arguments,
         then it saves the image in the 'visual-content' folder if it is
         a system img. If it's a user img, then I saves the img in the DB.
         """
-        image = Image.open(img)
         mask = Image.open(mask).convert("L")
 
-        output_img = ImageOps.fit(image, mask.size, centering=(0.5, 0.5))
+        output_img = ImageOps.fit(img, mask.size, centering=(0.5, 0.5))
         output_img.putalpha(mask)
 
-        img = img.replace(".png", "2.png")
-        output_img.save(img)
-
-        image.close(), mask.close()
-        return img
+        img.close(), mask.close()
+        return output_img
 
     def title_bar_minimize(self):
         """
@@ -265,8 +261,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             return default
 
         photo = decode_db_photo(photo)
-        photo.thumbnail(self.thumbnail_size(0.05, 0.2))
+        photo = self.circular_img(
+            photo, "bin/system-content/visual-content/mask.png")
 
+        photo.thumbnail(self.thumbnail_size(0.05, 0.2))
         self.people_photos.append(ImageTk.PhotoImage(photo))
         photo.close()
 
