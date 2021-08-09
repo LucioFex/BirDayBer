@@ -82,6 +82,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to refresh the people_finder depending on the browser's result.
         """
         self.people_found = self.browser_filter()
+        self.people_photos = []
 
         for row, person in enumerate(self.people_found):
             self.row_person_spawn(

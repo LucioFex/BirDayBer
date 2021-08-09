@@ -15,12 +15,12 @@ def file_to_base64(file):
     If the str file parameter exists,
     then it will convert it into a binary type.
     """
-    if file is None or os.path.exists(file) is False:  # Keep working here
+    if file is None or os.path.exists(file) is False:
         return
 
     blob = b"<plain_txt_msg:img>"
     with open(file, "rb") as imageFile:
-        blob = blob + b64encode(imageFile.read())
+        blob += b64encode(imageFile.read())
 
     blob += b"<!plain_txt_msg>"
     return blob

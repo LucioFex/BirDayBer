@@ -29,15 +29,17 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         # Deletion of the original Title Bar
         self.root.overrideredirect(1)
+
         # Sets the window screen resolution
         geometry = self.main_window_resolution(
             self.root.winfo_screenwidth(),
             self.root.winfo_screenheight())
         self.root.geometry(geometry)
+
         # Generation of new responsive images
         self.responsive_imgs()
 
-        #  Generation of the main frame
+        # Generation of the main frame
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill="both")
 
@@ -47,6 +49,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         # Hide of the top window
         self.hidden_window.geometry("0x0+10000+10000")
         self.hidden_window.attributes("-alpha", 0.0)
+
         # Actions for maximizing and minimizing the root from the taskbar
         self.hidden_window.bind("<Unmap>", self.window_focus)
         self.hidden_window.bind("<FocusIn>", self.window_focus)
@@ -263,7 +266,11 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         photo = decode_db_photo(photo)
         photo.thumbnail(self.thumbnail_size(0.05, 0.2))
-        return ImageTk.PhotoImage(photo)
+
+        self.people_photos.append(ImageTk.PhotoImage(photo))
+        photo.close()
+
+        return self.people_photos[-1]
 
     def process_big_photo(self, photo, default):
         return ImageTk.PhotoImage(photo)
