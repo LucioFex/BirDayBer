@@ -49,8 +49,7 @@ class Birdayber_database:
                 country VARCHAR(40)""",
             "birth":
                 f"""id_birth {id_type},
-                birth DATE NOT NULL,
-                age INTEGER""",
+                birth DATE NOT NULL""",
             "person":
                 f"""id_person {id_type},
                 per_first VARCHAR(35) NOT NULL,
@@ -78,7 +77,7 @@ class Birdayber_database:
                 "country": {"country": "United States"},
                 "gender": {"gender": "Male"},
                 "photo": {"photo": None},
-                "birth": {"birth": "1919-12-23", "age": None},
+                "birth": {"birth": "1919-12-23"},
                 "person": {"per_first": "Randolph", "per_last": "Carter"}})
         """
         if type(person) == dict:  # Data type detector
@@ -102,9 +101,9 @@ class Birdayber_database:
             id_person = "id_person = %s" % id_person
 
         if binary:
-            select = "per_first, per_last, birth, age, photo, country, gender"
+            select = "per_first, per_last, birth, photo, country, gender"
         elif not binary:
-            select = "per_first, per_last, birth, age, country, gender"
+            select = "per_first, per_last, birth, country, gender"
 
         people_data = self.db.column_search(
             "person", select,

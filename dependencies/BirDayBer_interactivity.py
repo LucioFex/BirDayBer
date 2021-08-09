@@ -4,14 +4,14 @@ import tkinter as tk
 import webbrowser
 
 
-def finder_row_content(master, texts, width, img, skull, command=None):
+def finder_row_content(master, texts, width, photo, skull, command=None):
     """
     Function to automate the finder label content generation.
     The "content" parameter must recieve a tuple or list of 4 elements.
     """
     row_person_img = tk.Button(
         master, activebackground="#8fd0e7", bd=0,
-        bg="#8fd0e7", image=img, cursor="hand2")
+        bg="#8fd0e7", image=photo, cursor="hand2")
     row_person_img.grid(row=0, column=0, rowspan=2)
 
     array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
@@ -75,26 +75,26 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that filters people in the 'people_finder' section.
         """
-        return [*self.get_people(binary=False)]
+        return self.get_people()
 
     def refresh_people_viewer(self):
         """
         Method to refresh the people_finder depending on the browser's result.
         """
         self.people_found = self.browser_filter()
+        self.people_photos = []
 
-        for index, person in enumerate(self.people_found):
+        for row, person in enumerate(self.people_found):
             self.row_person_spawn(
-                [person[0], person[1], person[2], person[4]], index)
+                [person[0], person[1], person[2], person[4]], row, person[3])
 
     def row_person_spawn(self, texts, row, photo=None):
         """
         Method that renders one person row in the 'people finder section'.
         """
-        if photo is None:
-            photo = self.person_default_src
+        photo = self.process_row_photo(photo, self.person_default_src)
 
-        for index in range(len(texts)):
+        for index in range(len(texts)):  # Data characters visual limit
             if len(texts[index]) > 12:
                 texts[index] = texts[index][0:12] + "..."
 

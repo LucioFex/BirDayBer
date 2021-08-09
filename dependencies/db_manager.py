@@ -1,4 +1,5 @@
 import sqlite3
+from base64 import b64encode
 import os
 
 
@@ -9,42 +10,20 @@ def get_dict(key_or_value, position=0):
     return tuple(key_or_value)[position]
 
 
-def photo_to_binary(photo):
+def file_to_base64(file):
     """
-    Function that gets the binary data of an image and return it.
-    If 'photo' parameter is None, then it returns None.
-    But if the 'photo' parameter is a binary object already,
-    it will return the 'photo' itself.
+    If the str file parameter exists,
+    then it will convert it into a binary type.
     """
-    if photo is None:
+    if file is None or os.path.exists(file) is False:
         return
 
-    try:
-        if os.path.exists(photo):
-            with open(photo, 'rb') as binary_photo:
-                blob = binary_photo.read()
-            return blob
+    blob = b"<plain_txt_msg:img>"
+    with open(file, "rb") as imageFile:
+        blob += b64encode(imageFile.read())
 
-        elif not os.path.exists(photo):
-            return photo
-
-        raise FileExistsError  # If there's no file found
-    except FileNotFoundError:
-        return
-
-
-def binary_to_photo(id_person, binary, folder="bin//rows-content"):
-    """
-    Function that convert the binary data to an image in a X folder.
-    The default folder will be "bin//rows-content"
-
-    Every photo will be saved in '.png' type.
-    """
-    try:
-        with open(f'{folder}//photo_{id_person}.png', 'wb') as photo:
-            photo.write(binary)
-    except FileNotFoundError:
-        return None
+    blob += b"<!plain_txt_msg>"
+    return blob
 
 
 def delete_files(*location):
@@ -142,7 +121,7 @@ class Db_manager:
 
                 if column[2] == "BLOB":
                     for index in range(len(element[2])):
-                        element[2][index] = photo_to_binary(element[2][index])
+                        element[2][index] = file_to_base64(element[2][index])
 
             #  Insertion of data
             values = ("?," * len(element[2]))[0:-1]  # Example: [a, b] == "?,?"

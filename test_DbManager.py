@@ -66,7 +66,7 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.birth_db.add_rows({
             "country": {"country": "United States"},
             "gender": {"gender": "Male"},
-            "photo": {"photo_name": "No photo", "photo": None},
+            "photo": {"photo": None},
             "birth": {"birth": "1919-12-23", "age": None},
             "person": {"per_first": "Randolph", "per_last": "Carter"}})
 
@@ -96,19 +96,13 @@ class BirDayBerDB_testing(unittest.TestCase):
         self.assertEqual(len(all_photos), 2)
 
         all_photos = self.birth_db.column_search("photo", "photo_name")
-        self.assertEqual(all_photos, ((None,), ("No photo",)))
+        self.assertEqual(all_photos, ((None,), (None,)))
 
         deleted = self.birth_db.remove_rows("photo", "photo is Null")
         all_photos = self.birth_db.column_search("photo", "photo")
         self.assertEqual(deleted, "1 rows deleted")
         self.assertNotEqual(all_photos, ((None,), ))
         self.assertEqual(len(all_photos), 1)
-
-        all_photos = self.birth_db.column_search("photo", "id_photo, photo")
-
-        db_manager.binary_to_photo(
-            all_photos[0][0], all_photos[0][1], "testing//")
-        db_manager.delete_files("testing//photo_%s.png" % all_photos[0][0])
 
     def test_countries(self):
         all_countries = self.birth_db.column_search("country", "country")
