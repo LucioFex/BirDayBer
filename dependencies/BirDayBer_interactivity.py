@@ -93,7 +93,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         photo = self.process_row_photo(photo, self.person_default_src)
 
-        for index in range(len(texts)):
+        for index in range(len(texts)):  # Data characters visual limit
             if len(texts[index]) > 12:
                 texts[index] = texts[index][0:12] + "..."
 

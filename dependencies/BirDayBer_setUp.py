@@ -6,7 +6,7 @@ import tkinter as tk
 import os
 
 
-def decode_db_photo(self, img):
+def decode_db_photo(img):
     img = img[
         img.find(b"<plain_txt_msg:img>") + len(b"<plain_txt_msg:img>"):
         img.find(b"<!plain_txt_msg>")]

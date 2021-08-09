@@ -10,16 +10,16 @@ def get_dict(key_or_value, position=0):
     return tuple(key_or_value)[position]
 
 
-def photo_to_base64(photo):
+def file_to_base64(file):
     """
-    If the str photo parameter exists,
+    If the str file parameter exists,
     then it will convert it into a binary type.
     """
-    if photo is None or os.path.exists(photo) is False:  # Keep working here
+    if file is None or os.path.exists(file) is False:  # Keep working here
         return
 
     blob = b"<plain_txt_msg:img>"
-    with open(photo, "rb") as imageFile:
+    with open(file, "rb") as imageFile:
         blob = blob + b64encode(imageFile.read())
 
     blob += b"<!plain_txt_msg>"
@@ -121,7 +121,7 @@ class Db_manager:
 
                 if column[2] == "BLOB":
                     for index in range(len(element[2])):
-                        element[2][index] = photo_to_base64(element[2][index])
+                        element[2][index] = file_to_base64(element[2][index])
 
             #  Insertion of data
             values = ("?," * len(element[2]))[0:-1]  # Example: [a, b] == "?,?"
