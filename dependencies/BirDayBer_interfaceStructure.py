@@ -357,20 +357,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the mid-right appearance of the GUI.
         """
-        self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
-        self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
-
-        self.fullname_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.birth_bg = tk.Frame(self.right_bg, bg="#88966c")
-        self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
-        self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
-        self.birthday_bg = tk.Frame(self.right_bg, bg="#7a8565")
-
-        self.skull_icon = tk.Label(
-            self.right_bg, bg="#fdfff5", image=self.skull_src)
-
-        self.gender_small_icon = tk.Label(
-            self.right_bg, bg="#fdfff5", image=self.male_small_src)
+        self.right_mid_base()
 
         self.fullname_var = tk.StringVar()
         self.birth_var = tk.StringVar()
@@ -394,10 +381,36 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.age_big.config(cursor="arrow", state="disabled")
         self.birthday_big.config(cursor="arrow", state="disabled")
 
+        self.fullname_var.set("Name SurName")  # Remove from here later
+        self.birth_var.set("Birth Date")  # Remove from here later
+        self.country_var.set("Country")  # Remove from here later
+        self.age_var.set("Age")  # Remove from here later
+        self.birthday_var.set("BirthDay")  # Remove from here later
+
+        self.right_mid_packing()
+
+    def right_mid_base(self):
+        self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
+        self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
+
+        self.fullname_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.birth_bg = tk.Frame(self.right_bg, bg="#88966c")
+        self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
+        self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
+        self.birthday_bg = tk.Frame(self.right_bg, bg="#7a8565")
+
+        self.skull_icon = tk.Label(
+            self.right_bg, bg="#fdfff5", image=self.skull_src)
+
+        self.gender_small_icon = tk.Label(
+            self.right_bg, bg="#fdfff5", image=self.male_small_src)
+
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
-        self.trash_declaration()
 
+        self.generate_trash_button()
+
+    def right_mid_packing(self):
         pady = (self.screen_height * 0.023, 0)
         padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(anchor="ne", pady=pady)
@@ -440,13 +453,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        self.fullname_var.set("Name SurName")  # Remove from here later
-        self.birth_var.set("Birth Date")  # Remove from here later
-        self.country_var.set("Country")  # Remove from here later
-        self.age_var.set("Age")  # Remove from here later
-        self.birthday_var.set("BirthDay")  # Remove from here later
-
-    def trash_declaration(self):
+    def generate_trash_button(self):
         """
         Method that defines and configures the 'Trash' button.
         """
