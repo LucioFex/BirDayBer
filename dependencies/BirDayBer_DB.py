@@ -100,10 +100,10 @@ class Birdayber_database:
         if id_person != "&None%":
             id_person = "id_person = %s" % id_person
 
-        if binary:
-            select = "per_first, per_last, birth, photo, country, gender"
-        elif not binary:
-            select = "per_first, per_last, birth, country, gender"
+        select = (
+            "id_person, per_first, per_last, birth, photo, country, gender")
+        if not binary:
+            select = "id_person, per_first, per_last, birth, country, gender"
 
         people_data = self.db.column_search(
             "person", select,
