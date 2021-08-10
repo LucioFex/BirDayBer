@@ -21,14 +21,13 @@ def adder_entry(master, width):
         font=("Century Gothic", round(width * 0.0093)), fg="#e3e3e3")
 
 
-def mid_entry(master, width, font, screen, style=""):
-    """
-    Function that generates the structure of the right-mid entries.
-    """
+def mid_entry(master, width, font, screen, textvar=None, style=""):
     return tk.Entry(
-        master, relief="flat", width=round(screen * width), fg="#212121",
-        font=("Century Gothic", round(screen * font), style), justify="center",
-        selectbackground="#778954", insertbackground="#798a5a", bg="#fdfff5")
+        master, relief="flat", width=round(screen * width), justify="center",
+        font=("Century Gothic", round(screen * font), style), fg="#212121",
+        textvariable=textvar, selectbackground="#778954", bg="#fdfff5",
+        insertbackground="#798a5a", disabledbackground="#fdfff5",
+        disabledforeground="#212121")
 
 
 def settings_label(master, width, height, text, row):
@@ -361,7 +360,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
-        self.full_name_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.fullname_bg = tk.Frame(self.right_bg, bg="#9aa881")
         self.birth_bg = tk.Frame(self.right_bg, bg="#88966c")
         self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
         self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
@@ -373,16 +372,27 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.gender_small_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.male_small_src)
 
-        self.full_name_big = mid_entry(
-            self.full_name_bg, 0.012, 0.018, self.screen_width)
+        self.fullname_var = tk.StringVar()
+        self.birth_var = tk.StringVar()
+        self.country_var = tk.StringVar()
+        self.age_var = tk.StringVar()
+        self.birthday_var = tk.StringVar()
+
+        self.fullname_big = mid_entry(
+            self.fullname_bg, 0.012, 0.018,
+            self.screen_width, self.fullname_var)
         self.birth_big = mid_entry(
-            self.birth_bg, 0.01, 0.014, self.screen_width)
-        self.age_big = mid_entry(
-            self.age_bg, 0.0025, 0.02, self.screen_width)
+            self.birth_bg, 0.01, 0.014, self.screen_width, self.birth_var)
         self.country_big = mid_entry(
-            self.country_bg, 0.006, 0.014, self.screen_width)
+            self.country_bg, 0.006, 0.014, self.screen_width, self.country_var)
+        self.age_big = mid_entry(
+            self.age_bg, 0.0025, 0.02, self.screen_width, self.age_var)
         self.birthday_big = mid_entry(
-            self.birthday_bg, 0.01, 0.014, self.screen_width, "bold")
+            self.birthday_bg, 0.01, 0.014, self.screen_width,
+            self.birthday_var, style="bold")
+
+        self.age_big.config(cursor="arrow", state="disabled")
+        self.birthday_big.config(cursor="arrow", state="disabled")
 
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
@@ -407,7 +417,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.045)
         padx = (self.screen_width * 0.0445, self.screen_width * 0.0245)
-        self.full_name_bg.grid(
+        self.fullname_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
         pady = (self.screen_height * 0.015, 0)
@@ -424,17 +434,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.trash.grid(sticky="sw", row=6, column=0, padx=padx, pady=pady)
 
         pady = (0, self.screen_height * 0.008)
-        self.full_name_big.pack(pady=pady)
+        self.fullname_big.pack(pady=pady)
         self.birth_big.pack(pady=pady)
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        self.full_name_big.insert(0, "Name SurName")  # Remove from here later
-        self.birth_big.insert(0, "Birth Date")  # Remove from here later
-        self.age_big.insert(0, "Age")  # Remove from here later
-        self.country_big.insert(0, "Country")  # Remove from here later
-        self.birthday_big.insert(0, "BirthDay")  # Remove from here later
+        self.fullname_var.set("Name SurName")  # Remove from here later
+        self.birth_var.set("Birth Date")  # Remove from here later
+        self.country_var.set("Country")  # Remove from here later
+        self.age_var.set("Age")  # Remove from here later
+        self.birthday_var.set("BirthDay")  # Remove from here later
 
     def trash_declaration(self):
         """
