@@ -14,6 +14,13 @@ def titlebar_button(master, img, activebackground="#1e5061"):
         activebackground=activebackground, bg="#2c5c6d")
 
 
+def adder_entry(master, width):
+    return tk.Entry(
+        master, relief="flat", bg="#517684", insertbackground="#d7f5ff",
+        width=round(width * 0.01), selectbackground="#4a92ab",
+        font=("Century Gothic", round(width * 0.0093)), fg="#e3e3e3")
+
+
 def mid_entry(master, width, font, screen, style=""):
     """
     Function that generates the structure of the right-mid entries.
@@ -275,36 +282,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         (not functionality) to the "self.people_adder" widget.
         """
         self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
-        self.second_name_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.surname_edge = tk.Frame(self.people_adder, bg="#136687")
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        font_config = ("Century Gothic", round(self.screen_width * 0.0093))
-
-        self.first_name = tk.Entry(
-            self.first_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
-
-        self.second_name = tk.Entry(
-            self.second_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
-
-        self.birth_date = tk.Entry(
-            self.birth_date_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
-
-        self.country = tk.Entry(
-            self.country_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
+        self.first_name = adder_entry(self.first_name_edge, self.screen_width)
+        self.second_name = adder_entry(self.surname_edge, self.screen_width)
+        self.birth_date = adder_entry(self.birth_date_edge, self.screen_width)
+        self.country = adder_entry(self.country_edge, self.screen_width)
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
         self.first_name_edge.grid(row=0, column=0, pady=pady, padx=(padx, 0))
-        self.second_name_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
+        self.surname_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
 
         padx = self.screen_width * 0.01375 - 0.0225
         self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)

@@ -98,7 +98,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black-1.png", "user-black-2.png",
-            "nut.png","party-randolph.png", "edit.png", "radiobutton-0.png",
+            "nut.png", "party-randolph.png", "edit.png", "radiobutton-0.png",
                 "radiobutton-1.png", "accept.png", "clear.png"):
 
             self.assertTrue(os.path.exists(
@@ -113,7 +113,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black-1.png", "user-black-2.png",
-            "nut.png","party-randolph.png", "edit.png", "radiobutton-0.png",
+            "nut.png", "party-randolph.png", "edit.png", "radiobutton-0.png",
                 "radiobutton-1.png", "accept.png", "clear.png"):
 
             img = "bin//system-content//visual-content//responsive//%s" % image
