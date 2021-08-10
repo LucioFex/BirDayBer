@@ -86,13 +86,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         for row, person in enumerate(self.people_found):
             self.row_person_spawn(
-                [person[0], person[1], person[2], person[4]], row, person[3])
+                [person[1], person[2], person[3], person[5]], row, person[4])
 
     def row_person_spawn(self, texts, row, photo=None):
         """
         Method that renders one person row in the 'people finder section'.
         """
-        photo = self.process_row_photo(photo, self.person_default_src)
+        photo = self.process_photo(photo, self.person_default_src, "row")
 
         for index in range(len(texts)):  # Data characters visual limit
             if len(texts[index]) > 12:

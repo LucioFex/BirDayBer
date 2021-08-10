@@ -46,12 +46,12 @@ class BirDayBerClient_testing(unittest.TestCase):
         pass
 
     def test_reset_db(self):
-        data_test = ((
-            ('Severus', 'Snape', '2003-07-15', 'Argentina', 'Male'),
-            ('Randolph', 'Carter', '1919-12-23', 'United States', 'Male')
+        data = ((
+            (1, 'Severus', 'Snape', '2003-07-15', 'Argentina', 'Male'),
+            (2, 'Randolph', 'Carter', '1919-12-23', 'United States', 'Male')
         ))
 
-        self.assertEqual(self.interface.get_people(binary=False), data_test)
+        self.assertEqual(self.interface.get_people(binary=False), data)
         self.interface.reset_database()
         self.assertEqual(self.interface.get_people(binary=False), ())
 
@@ -87,8 +87,8 @@ class BirDayBerClient_testing(unittest.TestCase):
         all_people = self.interface.get_people(binary=False)
 
         self.assertEqual(all_people, (
-            ("Severus", "Snape", "2003-07-15", "Argentina", "Male"),
-            ("Randolph", "Carter", "1919-12-23", "United States", "Male")))
+            (1, "Severus", "Snape", "2003-07-15", "Argentina", "Male"),
+            (2, "Randolph", "Carter", "1919-12-23", "United States", "Male")))
 
     def test_default_images(self):
         for image in (
@@ -98,7 +98,7 @@ class BirDayBerClient_testing(unittest.TestCase):
             "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black-1.png", "user-black-2.png",
-            "nut.png","party-randolph.png", "edit.png", "radiobutton-0.png",
+            "nut.png", "party-randolph.png", "edit.png", "radiobutton-0.png",
                 "radiobutton-1.png", "accept.png", "clear.png"):
 
             self.assertTrue(os.path.exists(
@@ -113,21 +113,12 @@ class BirDayBerClient_testing(unittest.TestCase):
             "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black-1.png", "user-black-2.png",
-            "nut.png","party-randolph.png", "edit.png", "radiobutton-0.png",
+            "nut.png", "party-randolph.png", "edit.png", "radiobutton-0.png",
                 "radiobutton-1.png", "accept.png", "clear.png"):
 
             img = "bin//system-content//visual-content//responsive//%s" % image
             self.assertTrue(os.path.exists(img))
             os.remove(img)
-
-    def test_circular_images(self):
-        img = "bin//system-content//visual-content//github.png"
-        mask = "bin//system-content//visual-content//mask.png"
-        self.interface.circular_imgs(img, mask)
-
-        img = "bin//system-content//visual-content//github2.png"
-        self.assertTrue(os.path.exists(img))
-        os.remove(img)
 
     def test_window_focus(self):
         root = self.interface.root

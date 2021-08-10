@@ -14,14 +14,20 @@ def titlebar_button(master, img, activebackground="#1e5061"):
         activebackground=activebackground, bg="#2c5c6d")
 
 
-def mid_entry(master, width, font, screen, style=""):
-    """
-    Function that generates the structure of the right-mid entries.
-    """
+def adder_entry(master, width):
     return tk.Entry(
-        master, relief="flat", width=round(screen * width), fg="#212121",
-        font=("Century Gothic", round(screen * font), style), justify="center",
-        selectbackground="#778954", insertbackground="#798a5a", bg="#fdfff5")
+        master, relief="flat", bg="#517684", insertbackground="#d7f5ff",
+        width=round(width * 0.01), selectbackground="#4a92ab",
+        font=("Century Gothic", round(width * 0.0093)), fg="#e3e3e3")
+
+
+def mid_entry(master, width, font, screen, textvar=None, style=""):
+    return tk.Entry(
+        master, relief="flat", width=round(screen * width), justify="center",
+        font=("Century Gothic", round(screen * font), style), fg="#212121",
+        textvariable=textvar, selectbackground="#778954", bg="#fdfff5",
+        insertbackground="#798a5a", disabledbackground="#fdfff5",
+        disabledforeground="#212121")
 
 
 def settings_label(master, width, height, text, row):
@@ -275,36 +281,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         (not functionality) to the "self.people_adder" widget.
         """
         self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
-        self.second_name_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.surname_edge = tk.Frame(self.people_adder, bg="#136687")
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        font_config = ("Century Gothic", round(self.screen_width * 0.0093))
-
-        self.first_name = tk.Entry(
-            self.first_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
-
-        self.second_name = tk.Entry(
-            self.second_name_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
-
-        self.birth_date = tk.Entry(
-            self.birth_date_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
-
-        self.country = tk.Entry(
-            self.country_edge, relief="flat", bg="#517684", fg="#e3e3e3",
-            width=round(self.screen_width * 0.01), font=font_config,
-            selectbackground="#4a92ab", insertbackground="#d7f5ff")
+        self.first_name = adder_entry(self.first_name_edge, self.screen_width)
+        self.second_name = adder_entry(self.surname_edge, self.screen_width)
+        self.birth_date = adder_entry(self.birth_date_edge, self.screen_width)
+        self.country = adder_entry(self.country_edge, self.screen_width)
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
         self.first_name_edge.grid(row=0, column=0, pady=pady, padx=(padx, 0))
-        self.second_name_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
+        self.surname_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
 
         padx = self.screen_width * 0.01375 - 0.0225
         self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
@@ -368,10 +357,43 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the mid-right appearance of the GUI.
         """
+        self.right_mid_base()
+
+        self.fullname_var = tk.StringVar()
+        self.birth_var = tk.StringVar()
+        self.country_var = tk.StringVar()
+        self.age_var = tk.StringVar()
+        self.birthday_var = tk.StringVar()
+
+        self.fullname_big = mid_entry(
+            self.fullname_bg, 0.012, 0.018,
+            self.screen_width, self.fullname_var)
+        self.birth_big = mid_entry(
+            self.birth_bg, 0.01, 0.014, self.screen_width, self.birth_var)
+        self.country_big = mid_entry(
+            self.country_bg, 0.006, 0.014, self.screen_width, self.country_var)
+        self.age_big = mid_entry(
+            self.age_bg, 0.0025, 0.02, self.screen_width, self.age_var)
+        self.birthday_big = mid_entry(
+            self.birthday_bg, 0.01, 0.014, self.screen_width,
+            self.birthday_var, style="bold")
+
+        self.age_big.config(cursor="arrow", state="disabled")
+        self.birthday_big.config(cursor="arrow", state="disabled")
+
+        self.fullname_var.set("Name SurName")  # Remove from here later
+        self.birth_var.set("Birth Date")  # Remove from here later
+        self.country_var.set("Country")  # Remove from here later
+        self.age_var.set("Age")  # Remove from here later
+        self.birthday_var.set("BirthDay")  # Remove from here later
+
+        self.right_mid_packing()
+
+    def right_mid_base(self):
         self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
-        self.full_name_bg = tk.Frame(self.right_bg, bg="#9aa881")
+        self.fullname_bg = tk.Frame(self.right_bg, bg="#9aa881")
         self.birth_bg = tk.Frame(self.right_bg, bg="#88966c")
         self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
         self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
@@ -383,21 +405,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.gender_small_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.male_small_src)
 
-        self.full_name_big = mid_entry(
-            self.full_name_bg, 0.012, 0.018, self.screen_width)
-        self.birth_big = mid_entry(
-            self.birth_bg, 0.01, 0.014, self.screen_width)
-        self.age_big = mid_entry(
-            self.age_bg, 0.0025, 0.02, self.screen_width)
-        self.country_big = mid_entry(
-            self.country_bg, 0.006, 0.014, self.screen_width)
-        self.birthday_big = mid_entry(
-            self.birthday_bg, 0.01, 0.014, self.screen_width, "bold")
-
         self.img_not_found = tk.Label(
             self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
-        self.trash_declaration()
 
+        self.generate_trash_button()
+
+    def right_mid_packing(self):
         pady = (self.screen_height * 0.023, 0)
         padx = (self.screen_width * 0.003, 0)
         self.right_mid.pack(anchor="ne", pady=pady)
@@ -417,7 +430,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (self.screen_height * 0.007, self.screen_height * 0.045)
         padx = (self.screen_width * 0.0445, self.screen_width * 0.0245)
-        self.full_name_bg.grid(
+        self.fullname_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
         pady = (self.screen_height * 0.015, 0)
@@ -434,19 +447,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.trash.grid(sticky="sw", row=6, column=0, padx=padx, pady=pady)
 
         pady = (0, self.screen_height * 0.008)
-        self.full_name_big.pack(pady=pady)
+        self.fullname_big.pack(pady=pady)
         self.birth_big.pack(pady=pady)
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
         self.birthday_big.pack(pady=pady)
 
-        self.full_name_big.insert(0, "Name SurName")  # Remove from here later
-        self.birth_big.insert(0, "Birth Date")  # Remove from here later
-        self.age_big.insert(0, "Age")  # Remove from here later
-        self.country_big.insert(0, "Country")  # Remove from here later
-        self.birthday_big.insert(0, "BirthDay")  # Remove from here later
-
-    def trash_declaration(self):
+    def generate_trash_button(self):
         """
         Method that defines and configures the 'Trash' button.
         """

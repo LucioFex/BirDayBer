@@ -256,22 +256,27 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         self.root.geometry("+%s+%s" % (window_position_x, window_position_y))
 
-    def process_row_photo(self, photo, default):
+    def process_photo(self, photo, default, target):
         if photo is None:
             return default
 
         photo = decode_db_photo(photo)
-        photo = self.circular_img(
-            photo, "bin/system-content/visual-content/mask.png")
+        mask = "bin/system-content/visual-content/mask.png"
+        photo = self.circular_img(photo, mask)
 
+        if target == "row":
+            return self.finder_row_photo(photo)
+        elif target == "adder":
+            return self.adder_row_photo(photo)
+        elif target == "big":
+            return self.big_row_photo(photo)
+
+    def finder_row_photo(self, photo):
         photo.thumbnail(self.thumbnail_size(0.05, 0.2))
         self.people_photos.append(ImageTk.PhotoImage(photo))
+
         photo.close()
-
         return self.people_photos[-1]
-
-    def process_big_photo(self, photo, default):
-        return ImageTk.PhotoImage(photo)
 
     def close_client(self):
         """
