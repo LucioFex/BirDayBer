@@ -46,12 +46,12 @@ class BirDayBerClient_testing(unittest.TestCase):
         pass
 
     def test_reset_db(self):
-        data_test = ((
-            ('Severus', 'Snape', '2003-07-15', 'Argentina', 'Male'),
-            ('Randolph', 'Carter', '1919-12-23', 'United States', 'Male')
+        data = ((
+            (1, 'Severus', 'Snape', '2003-07-15', 'Argentina', 'Male'),
+            (2, 'Randolph', 'Carter', '1919-12-23', 'United States', 'Male')
         ))
 
-        self.assertEqual(self.interface.get_people(binary=False), data_test)
+        self.assertEqual(self.interface.get_people(binary=False), data)
         self.interface.reset_database()
         self.assertEqual(self.interface.get_people(binary=False), ())
 
@@ -87,8 +87,8 @@ class BirDayBerClient_testing(unittest.TestCase):
         all_people = self.interface.get_people(binary=False)
 
         self.assertEqual(all_people, (
-            ("Severus", "Snape", "2003-07-15", "Argentina", "Male"),
-            ("Randolph", "Carter", "1919-12-23", "United States", "Male")))
+            (1, "Severus", "Snape", "2003-07-15", "Argentina", "Male"),
+            (2, "Randolph", "Carter", "1919-12-23", "United States", "Male")))
 
     def test_default_images(self):
         for image in (
