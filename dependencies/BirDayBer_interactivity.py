@@ -71,7 +71,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.twitter_icon.config(command=self.open_twitter)
         webbrowser.open("https://twitter.com/LucioFex")
 
-    def browser_filter(self):  # Unfinished
+    def browser_filter(self, search=""):  # Unfinished
         """
         Method that filters people in the 'people_finder' section.
         """
