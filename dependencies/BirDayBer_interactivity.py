@@ -4,14 +4,14 @@ import tkinter as tk
 import webbrowser
 
 
-def finder_row_content(master, texts, width, photo, skull, command=None):
+def finder_row_content(master, texts, width, photo, skull, command):
     """
     Function to automate the finder label content generation.
     The "content" parameter must recieve a tuple or list of 4 elements.
     """
     row_person_img = tk.Button(
-        master, activebackground="#8fd0e7", bd=0,
-        bg="#8fd0e7", image=photo, cursor="hand2")
+        master, activebackground="#8fd0e7", bd=0, bg="#8fd0e7",
+        image=photo, cursor="hand2", command=command)
     row_person_img.grid(row=0, column=0, rowspan=2)
 
     array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
@@ -86,13 +86,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         for row, person in enumerate(self.people_found):
             self.row_person_spawn(
-                [person[1], person[2], person[3], person[5]], row, person[4])
+                person[0], [person[1], person[2], person[3], person[5]],
+                row, person[4])
 
-    def row_person_spawn(self, texts, row, photo=None):
+    def row_person_spawn(self, person_id, texts, row, photo=None):
         """
         Method that renders one person row in the 'people finder section'.
         """
-        photo = self.process_photo(photo, self.person_default_src, "row")
+        new_photo = self.process_photo(photo, self.person_default_src, "row")
 
         for index in range(len(texts)):  # Data characters visual limit
             if len(texts[index]) > 12:
@@ -102,9 +103,21 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
 
         finder_row_content(
-            self.row_person, texts, self.screen_width, photo, self.skull_src)
+            self.row_person, texts, self.screen_width,
+            new_photo, self.skull_src,
+            lambda: self.big_person_spawn(person_id, texts, photo))
 
         self.row_person_border.grid(row=row, column=0)
         self.row_person.pack(pady=(0, self.screen_height * 0.006))
 
-        return self.row_person_border
+    def big_person_spawn(self, person_id, texts, photo=None):
+        self.current_id = person_id
+
+        photo = self.process_photo(photo, self.default_big_img, "big")
+        self.big_photo.config(image=photo)
+
+        self.fullname_var.set(f"{texts[0]} {texts[1]}")
+        self.birth_var.set(texts[2])
+        self.country_var.set(texts[3])
+        # self.age_var.set()
+        self.birthday_var.set(texts[2])
