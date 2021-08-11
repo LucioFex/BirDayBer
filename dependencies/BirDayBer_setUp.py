@@ -266,10 +266,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         if target == "row":
             return self.finder_row_photo(photo)
-        elif target == "adder":
-            return self.adder_row_photo(photo)
         elif target == "big":
             return self.big_row_photo(photo)
+        elif target == "adder":
+            return self.adder_row_photo(photo)
 
     def finder_row_photo(self, photo):
         photo.thumbnail(self.thumbnail_size(0.05, 0.2))
@@ -277,6 +277,16 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         photo.close()
         return self.people_photos[-1]
+
+    def big_row_photo(self, photo):
+        photo.thumbnail(self.thumbnail_size(0.37, 0.37))
+        self.current_big_image = ImageTk.PhotoImage(photo)
+
+        photo.close()
+        return self.current_big_image
+
+    def adder_row_photo(self, photo):
+        pass
 
     def close_client(self):
         """

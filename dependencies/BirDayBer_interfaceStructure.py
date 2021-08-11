@@ -27,7 +27,7 @@ def mid_entry(master, width, font, screen, textvar=None, style=""):
         font=("Century Gothic", round(screen * font), style), fg="#212121",
         textvariable=textvar, selectbackground="#778954", bg="#fdfff5",
         insertbackground="#798a5a", disabledbackground="#fdfff5",
-        disabledforeground="#212121")
+        disabledforeground="#212121", cursor="arrow", state="disabled")
 
 
 def settings_label(master, width, height, text, row):
@@ -91,7 +91,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.edit_src = src_image("edit.png")
         self.radio_button_off_src = src_image("radiobutton-0.png")
         self.radio_button_on_src = src_image("radiobutton-1.png")
-        self.img_not_found_src = src_image("image-not-found.png")
+        self.default_big_img = src_image("image-not-found.png")
         self.check_button0 = src_image("checkButton0.png")
         self.check_button1 = src_image("checkButton1.png")
 
@@ -378,9 +378,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.birthday_bg, 0.01, 0.014, self.screen_width,
             self.birthday_var, style="bold")
 
-        self.age_big.config(cursor="arrow", state="disabled")
-        self.birthday_big.config(cursor="arrow", state="disabled")
-
         self.fullname_var.set("Name SurName")  # Remove from here later
         self.birth_var.set("Birth Date")  # Remove from here later
         self.country_var.set("Country")  # Remove from here later
@@ -405,8 +402,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.gender_small_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.male_small_src)
 
-        self.img_not_found = tk.Label(
-            self.right_bg, image=self.img_not_found_src, bg="#fdfff5")
+        self.big_photo = tk.Label(
+            self.right_bg, image=self.default_big_img, bg="#fdfff5")
 
         self.generate_trash_button()
 
@@ -440,7 +437,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         padx = (0, self.screen_width * 0.024)
         self.birthday_bg.grid(sticky="ne", row=5, column=2, padx=padx)
-        self.img_not_found.grid(sticky="ne", rowspan=5, row=0, column=2)
+        self.big_photo.grid(sticky="ne", rowspan=5, row=0, column=2)
 
         padx = (self.screen_width * 0.007)
         pady = (0, self.screen_height * 0.013)
