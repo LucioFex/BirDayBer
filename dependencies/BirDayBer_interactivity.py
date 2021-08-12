@@ -6,6 +6,10 @@ import webbrowser
 
 
 def current_age(birth_date):
+    """
+    Input example: 'YYYY-MM-DD' (str).
+    Output: Age (int).
+    """
     today = datetime.now()
     birth_date = datetime.strptime(birth_date, "%Y-%m-%d")
 
