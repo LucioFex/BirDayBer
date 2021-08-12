@@ -16,6 +16,21 @@ def current_age(birth_date):
     return age
 
 
+def formatted_birth_date(date, full=True):
+    """
+    This function returns a formatted version of the given date.
+    The input must be in the following format: 'YYYY-MM-DD' (str),
+    and the output will be in 'DD/MM/YYYY (str).
+
+    The 'full' parameter specifies if the output will include the year or not.
+    """
+    date = datetime.strptime(date, "%Y-%m-%d")
+    date = [str(date.day), str(date.month), str(date.year)]
+
+    date.pop() if not full else None
+    return "/".join(date)
+
+
 def finder_row_content(master, texts, width, photo, skull, command):
     """
     Function to automate the finder label content generation.
@@ -111,7 +126,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             if len(texts[index]) > 12:
                 texts[index] = texts[index][0:12] + "..."
 
-        texts.append(current_age(texts[2]))  # Add of the Age data
+        # Add of the Age data
+        texts.append(current_age(texts[2]))
+        # Add of the Birthday data
+        texts.append(formatted_birth_date(texts[2], False))
+        # YYYY-MM-DD -> DD/MM/YYYY
+        texts[2] = formatted_birth_date(texts[2])
 
         self.row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
         self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
@@ -134,4 +154,4 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.birth_var.set(texts[2])
         self.country_var.set(texts[3])
         self.age_var.set(texts[4])
-        self.birthday_var.set(texts[2])
+        self.birthday_var.set(texts[5])
