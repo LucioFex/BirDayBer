@@ -6,7 +6,6 @@ It allows you to add the date of birth and other minimal information to a local 
 
 This project will remind you with a notification for your operating system if it is someone's birthday on the same day or it will notify you if it's soon.
 
-### Image of the BirDayBer conceptual interface:
 
 ![.](conceptual/interface-design-updated.png)
 
@@ -21,23 +20,20 @@ This project will remind you with a notification for your operating system if it
 - Python [Pillow](https://pypi.org/project/Pillow/) library.
 - Python [OS](https://docs.python.org/3/library/os.html) module.
 - Python [WebBrowser](https://rico-schmidt.name/pymotw-3/webbrowser/index.html) module.
+- Python [Base64](https://docs.python.org/3/library/base64.html) module.
+- Python [DateTime](https://docs.python.org/3/library/datetime.html) module.
 
-## Possible future technologies to be used in the project:
-
-- Python [Pygame](https://www.pygame.org/news) library.
 
 ## Requirements:
 
-- [Python 3.8](https://www.python.org/downloads/release/python-385/).
+- [Python 3.9.6](https://www.python.org/downloads/release/python-396/).
 - [Pillow 8.0.1](https://pypi.org/project/Pillow/8.0.1/).
 - The rest of libraries and modules come by default.
 
 
 ## How to run:
 
-You must have a [Windows operating system](https://www.microsoft.com/es-ar/windows), and then the rest is quite simple:
-
-You just have to execute the `BirDayBer.py` file.
+- You just have to execute the `BirDayBer.py` file.
 
 
 ## Contributions
@@ -78,7 +74,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 ## Project Status:
 
 ### `Available on Windows`
-### `Version: 0.8.7`
+### `Version: 0.9.2`
 
 ## License
 
