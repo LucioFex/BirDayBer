@@ -1,7 +1,19 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
 import tkinter.messagebox as messagebox
+from datetime import datetime
 import tkinter as tk
 import webbrowser
+
+
+def current_age(birth_date):
+    today = datetime.now()
+    birth_date = datetime.strptime(birth_date, "%Y-%m-%d")
+
+    age = today.year - birth_date.year - 1
+    if (today.month, today.day) >= (birth_date.month, birth_date.day):
+        age += 1
+
+    return age
 
 
 def finder_row_content(master, texts, width, photo, skull, command):
@@ -99,6 +111,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             if len(texts[index]) > 12:
                 texts[index] = texts[index][0:12] + "..."
 
+        texts.append(current_age(texts[2]))  # Add of the Age data
+
         self.row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
         self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
 
@@ -119,5 +133,5 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.fullname_var.set(f"{texts[0]} {texts[1]}")
         self.birth_var.set(texts[2])
         self.country_var.set(texts[3])
-        # self.age_var.set()
+        self.age_var.set(texts[4])
         self.birthday_var.set(texts[2])
