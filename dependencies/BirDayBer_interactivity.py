@@ -143,19 +143,22 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         finder_row_content(
             self.row_person, texts, self.screen_width,
             new_photo, self.skull_src,
-            lambda: self.big_person_spawn(person_id, texts, photo))
+            lambda: self.big_person_update(person_id, texts, photo))
 
         self.row_person_border.grid(row=row, column=0)
         self.row_person.pack(pady=(0, self.screen_height * 0.006))
 
-    def big_person_spawn(self, person_id, texts, photo=None):
+    def big_person_update(self, person_id, texts, photo=None):  # Need refactor
+        """
+        Updates the big display of the selected person in the interface
+        """
         self.current_id = person_id
 
         photo = self.process_photo(photo, self.default_big_img, "big")
         self.big_photo.config(image=photo)
 
         self.fullname_var.set(f"{texts[0]} {texts[1]}")
-        self.birth_var.set(texts[2])
+        self.birthday_var.set(texts[5])
         self.country_var.set(texts[3])
         self.age_var.set(texts[4])
-        self.birthday_var.set(texts[5])
+        self.birth_var.set(texts[2])

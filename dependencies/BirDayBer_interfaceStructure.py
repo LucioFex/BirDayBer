@@ -282,12 +282,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
         self.surname_edge = tk.Frame(self.people_adder, bg="#136687")
-        self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.birthday_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
         self.first_name = adder_entry(self.first_name_edge, self.screen_width)
         self.second_name = adder_entry(self.surname_edge, self.screen_width)
-        self.birth_date = adder_entry(self.birth_date_edge, self.screen_width)
+        self.birthday_date = adder_entry(self.birthday_date_edge, self.screen_width)
         self.country = adder_entry(self.country_edge, self.screen_width)
 
         padx = self.screen_width * 0.01375 + 0.0225
@@ -296,7 +296,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.surname_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
 
         padx = self.screen_width * 0.01375 - 0.0225
-        self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
+        self.birthday_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
     def people_adder_right(self):
@@ -350,7 +350,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (0, self.screen_height * 0.004)
         self.first_name.pack(pady=pady)
         self.second_name.pack(pady=pady)
-        self.birth_date.pack(pady=pady)
+        self.birthday_date.pack(pady=pady)
         self.country.pack(pady=pady)
 
     def right_side_structure_mid(self, location):
@@ -360,29 +360,29 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_mid_base()
 
         self.fullname_var = tk.StringVar()
-        self.birth_var = tk.StringVar()
+        self.birthday_var = tk.StringVar()
         self.country_var = tk.StringVar()
         self.age_var = tk.StringVar()
-        self.birthday_var = tk.StringVar()
+        self.birth_var = tk.StringVar()
 
         self.fullname_big = mid_entry(
             self.fullname_bg, 0.012, 0.018,
             self.screen_width, self.fullname_var)
-        self.birth_big = mid_entry(
-            self.birth_bg, 0.01, 0.014, self.screen_width, self.birth_var)
+        self.birthday_big = mid_entry(
+            self.birthday_bg, 0.01, 0.014, self.screen_width, self.birthday_var)
         self.country_big = mid_entry(
             self.country_bg, 0.006, 0.014, self.screen_width, self.country_var)
         self.age_big = mid_entry(
             self.age_bg, 0.0025, 0.02, self.screen_width, self.age_var)
-        self.birthday_big = mid_entry(
-            self.birthday_bg, 0.01, 0.014, self.screen_width,
-            self.birthday_var, style="bold")
+        self.birth_big = mid_entry(
+            self.birth_bg, 0.01, 0.014, self.screen_width,
+            self.birth_var, style="bold")
 
         self.fullname_var.set("Name SurName")  # Remove from here later
-        self.birth_var.set("Birth Date")  # Remove from here later
+        self.birthday_var.set("BirthDay")  # Remove from here later
         self.country_var.set("Country")  # Remove from here later
         self.age_var.set("Age")  # Remove from here later
-        self.birthday_var.set("BirthDay")  # Remove from here later
+        self.birth_var.set("Birth Date")  # Remove from here later
 
         self.right_mid_packing()
 
@@ -391,10 +391,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
         self.fullname_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.birth_bg = tk.Frame(self.right_bg, bg="#88966c")
+        self.birthday_bg = tk.Frame(self.right_bg, bg="#88966c")
         self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
         self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
-        self.birthday_bg = tk.Frame(self.right_bg, bg="#7a8565")
+        self.birth_bg = tk.Frame(self.right_bg, bg="#7a8565")
 
         self.skull_icon = tk.Label(
             self.right_bg, bg="#fdfff5", image=self.skull_src)
@@ -431,12 +431,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
         pady = (self.screen_height * 0.015, 0)
-        self.birth_bg.grid(sticky="w", row=2, column=0, pady=pady, padx=padx)
+        self.birthday_bg.grid(sticky="w", row=2, column=0, pady=pady, padx=padx)
         self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
         self.country_bg.grid(sticky="w", row=4, column=0, padx=padx)
 
         padx = (0, self.screen_width * 0.024)
-        self.birthday_bg.grid(sticky="ne", row=5, column=2, padx=padx)
+        self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)
         self.big_photo.grid(sticky="ne", rowspan=5, row=0, column=2)
 
         padx = (self.screen_width * 0.007)
@@ -445,10 +445,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (0, self.screen_height * 0.008)
         self.fullname_big.pack(pady=pady)
-        self.birth_big.pack(pady=pady)
+        self.birthday_big.pack(pady=pady)
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
-        self.birthday_big.pack(pady=pady)
+        self.birth_big.pack(pady=pady)
 
     def generate_trash_button(self):
         """
