@@ -111,6 +111,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 "Problem trying to find the file")
 
     def get_version(self):  # Check later...
+        """
+        Method that returns the current version of the project
+        """
         try:
             def check_version(file):
                 if "### `Version: " in file:
@@ -123,7 +126,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         except FileNotFoundError:
             return "Cannot get version without readme file"
 
-    def thumbnail_size(self, width, height):  # Thumbnail img size calculation
+    def thumbnail_size(self, width, height):
+        """Thumbnail img size calculation"""
         return self.screen_width * width, self.screen_height * height
 
     def responsive_imgs(self):  # Refactor later...
@@ -257,6 +261,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.root.geometry("+%s+%s" % (window_position_x, window_position_y))
 
     def process_photo(self, photo, default, target):
+        """
+        Method that process the input photo, to return a circle version
+        compatible with tkinter (tk.PhotoImage type).
+        """
         if photo is None:
             return default
 
@@ -272,6 +280,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             return self.adder_row_photo(photo)
 
     def finder_row_photo(self, photo):
+        """
+        Images adapted to the finder_people section.
+        """
         photo.thumbnail(self.thumbnail_size(0.05, 0.2))
         self.people_photos.append(ImageTk.PhotoImage(photo))
 
@@ -279,6 +290,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         return self.people_photos[-1]
 
     def big_row_photo(self, photo):
+        """
+        Images adapted to the right-mid section.
+        """
         photo.thumbnail(self.thumbnail_size(0.37, 0.37))
         self.current_big_image = ImageTk.PhotoImage(photo)
 
@@ -286,6 +300,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         return self.current_big_image
 
     def adder_row_photo(self, photo):
+        """
+        Images adapted to the people_adder section.
+        """
         pass
 
     def close_client(self):
