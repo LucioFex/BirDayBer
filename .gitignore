@@ -1,3 +1,6 @@
+./workspace.code-workspace
+./Pipfile
+./Pipfile.lock
 __pycache__/
 conceptual/entity-relationship-diagram-2.jpg
 conceptual/interface-design-updated.psd
@@ -10,6 +13,3 @@ bin/system-content/visual-content/BirDayBerIcon.ico
 bin/system-content/visual-content/user-black.png
 dependencies/__pycache__
 bin/system-content/visual-content/user-black2.png
-workspace.code-workspace
-Pipfile
-Pipfile.lock
