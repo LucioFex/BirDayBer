@@ -120,6 +120,24 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 person[0], [person[1], person[2], person[3], person[5]],
                 row, person[4])
 
+    def people_adder_process(self):  # Continue with this method
+        """
+        Method that adds people to the DataBase
+        """
+        # self.check_people_adder_field(field)  # Regular Expressions
+        name = self.adder_name_var.get()
+        surname = self.adder_surname_var.get()
+        country = self.adder_country_var.get()
+        birth = self.adder_birth_var.get()
+
+        self.refresh_people_viewer()
+
+    def check_people_adder_field(self, field):
+        """
+        Method that checks if the people adder's field input is correct
+        """
+        pass
+
     def row_person_spawn(self, person_id, texts, row, photo=None):
         """
         Method that renders one person row in the 'people finder section'.

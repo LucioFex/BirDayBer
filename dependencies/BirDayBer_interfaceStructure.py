@@ -14,11 +14,12 @@ def titlebar_button(master, img, activebackground="#1e5061"):
         activebackground=activebackground, bg="#2c5c6d")
 
 
-def adder_entry(master, width):
+def adder_entry(master, width, textvariable):
     return tk.Entry(
         master, relief="flat", bg="#517684", insertbackground="#d7f5ff",
         width=round(width * 0.01), selectbackground="#4a92ab",
-        font=("Century Gothic", round(width * 0.0093)), fg="#e3e3e3")
+        textvariable=textvariable, fg="#e3e3e3",
+        font=("Century Gothic", round(width * 0.0093)))
 
 
 def mid_entry(master, width, font, screen, textvar=None, style=""):
@@ -282,13 +283,22 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
         self.surname_edge = tk.Frame(self.people_adder, bg="#136687")
-        self.birthday_date_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
         self.country_edge = tk.Frame(self.people_adder, bg="#136687")
 
-        self.first_name = adder_entry(self.first_name_edge, self.screen_width)
-        self.second_name = adder_entry(self.surname_edge, self.screen_width)
-        self.birthday_date = adder_entry(self.birthday_date_edge, self.screen_width)
-        self.country = adder_entry(self.country_edge, self.screen_width)
+        self.adder_name_var = tk.StringVar()
+        self.adder_surname_var = tk.StringVar()
+        self.adder_country_var = tk.StringVar()
+        self.adder_birth_var = tk.StringVar()
+
+        self.first_name = adder_entry(
+            self.first_name_edge, self.screen_width, self.adder_name_var)
+        self.second_name = adder_entry(
+            self.surname_edge, self.screen_width, self.adder_surname_var)
+        self.country = adder_entry(
+            self.country_edge, self.screen_width, self.adder_country_var)
+        self.birth_date = adder_entry(
+            self.birth_date_edge, self.screen_width, self.adder_birth_var)
 
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
@@ -296,7 +306,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.surname_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
 
         padx = self.screen_width * 0.01375 - 0.0225
-        self.birthday_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
+        self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
     def people_adder_right(self):
@@ -350,7 +360,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (0, self.screen_height * 0.004)
         self.first_name.pack(pady=pady)
         self.second_name.pack(pady=pady)
-        self.birthday_date.pack(pady=pady)
+        self.birth_date.pack(pady=pady)
         self.country.pack(pady=pady)
 
     def right_side_structure_mid(self, location):
@@ -432,9 +442,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
         pady = (self.screen_height * 0.015, 0)
-        self.birthday_bg.grid(sticky="w", row=2, column=0, pady=pady, padx=padx)
         self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
         self.country_bg.grid(sticky="w", row=4, column=0, padx=padx)
+        self.birthday_bg.grid(
+            sticky="w", row=2, column=0, pady=pady, padx=padx)
 
         padx = (0, self.screen_width * 0.024)
         self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)

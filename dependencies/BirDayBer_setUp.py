@@ -68,8 +68,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the main window of a geometry and position.
         """
-        self.screen_width = width - round(width / 4)
-        self.screen_height = height - round(height / 4)
+        self.screen_width = width - round(width / 2) + 480
+        self.screen_height = height - round(height / 2) + 270
 
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
@@ -303,7 +303,11 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         Images adapted to the people_adder section.
         """
-        pass
+        photo.thumbnail(self.thumbnail_size(0.056, 0.24))
+        self.current_adder_image = ImageTk.PhotoImage(photo)
+
+        photo.close()
+        return self.current_adder_image
 
     def close_client(self):
         """
