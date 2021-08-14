@@ -85,6 +85,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.github_icon.config(command=self.open_github)
         self.twitter_icon.config(command=self.open_twitter)
         self.nut_icon.config(command=self.open_settings)
+        self.accept.config(command=self.people_adder_accept)
+        # self.clear.config(command=)
 
     def show_license(self):
         return messagebox.showinfo(
@@ -162,3 +164,28 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.country_var.set(texts[3])
         self.age_var.set(texts[4])
         self.birth_var.set(texts[2])
+
+    def people_adder_accept(self):
+        """
+        Method that adds people to the DataBase
+        """
+        # self.people_adder_check(field)  # Regular Expressions
+        name = self.adder_name_var.get()
+        surname = self.adder_surname_var.get()
+        country = self.adder_country_var.get()
+        birth = self.adder_birth_var.get()
+
+        self.add_person({
+            "country": {"country": country},
+            "gender": {"gender": "Male"},
+            "photo": {"photo": None},
+            "birth": {"birth": birth},
+            "person": {"per_first": name, "per_last": surname}})
+
+        # self.refresh_people_viewer()
+
+    def people_adder_check(self, field):
+        """
+        Method that checks if the people adder's field input is correct
+        """
+        pass

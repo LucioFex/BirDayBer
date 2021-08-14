@@ -10,4 +10,6 @@ bin/system-content/visual-content/BirDayBerIcon.ico
 bin/system-content/visual-content/user-black.png
 dependencies/__pycache__
 bin/system-content/visual-content/user-black2.png
+Pipfile
+Pipfile.lock
 workspace.code-workspace
