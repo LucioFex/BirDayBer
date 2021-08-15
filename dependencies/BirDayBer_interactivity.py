@@ -69,6 +69,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         super().__init__()
 
         self.settings_state = False  # VAR to don't open more than one window
+        self.showed_people = []  # VAR to show the rows on the people finder
         self.button_commands()
         self.refresh_people_viewer()
         # self.refresh_today_birthdays()
@@ -116,11 +117,17 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.people_found = self.browser_filter()
         self.people_photos = []
+        self.reset_showed_people()
 
         for row, person in enumerate(self.people_found):
             self.row_person_spawn(
                 person[0], [person[1], person[2], person[3], person[5]],
                 row, person[4])
+
+    def reset_showed_people(self):
+        if len(self.showed_people) > 0:
+            self.reset_people_finder()
+            self.showed_people = []
 
     def row_person_spawn(self, person_id, texts, row, photo=None):
         """
@@ -139,20 +146,21 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         # YYYY-MM-DD -> DD/MM/YYYY
         texts[2] = formatted_birth_date(texts[2])
 
-        self.row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
-        self.row_person = tk.Frame(self.row_person_border, bg="#8fd0e7")
+        row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
+        row_person = tk.Frame(row_person_border, bg="#8fd0e7")
 
         finder_row_content(
-            self.row_person, texts, self.screen_width,
+            row_person, texts, self.screen_width,
             new_photo, self.skull_src,
-            lambda: self.big_person_update(person_id, texts, photo))
+            lambda: self.big_person_generation(person_id, texts, photo))
 
-        self.row_person_border.grid(row=row, column=0)
-        self.row_person.pack(pady=(0, self.screen_height * 0.006))
+        row_person_border.grid(row=row, column=0)
+        row_person.pack(pady=(0, self.screen_height * 0.006))
+        self.showed_people.append(row_person_border)
 
-    def big_person_update(self, person_id, texts, photo=None):  # Need refactor
+    def big_person_generation(self, person_id, texts, photo=None):
         """
-        Updates the big display of the selected person in the interface
+        Updates the big display of the selected person in the interface.
         """
         self.current_id = person_id
 
@@ -181,8 +189,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             "photo": {"photo": None},
             "birth": {"birth": birth},
             "person": {"per_first": name, "per_last": surname}})
-
-        # self.refresh_people_viewer()
 
     def people_adder_check(self, field):
         """

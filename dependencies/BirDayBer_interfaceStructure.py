@@ -218,9 +218,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas.bind('<Configure>', lambda x: (
             self.canvas.config(scrollregion=self.canvas.bbox("all"))))
 
-        self.people_finder = tk.Frame(self.canvas)
+        self.people_finder = tk.Frame(self.canvas, bg="#5d8999")
         self.canvas.create_window(
             (0, 0), window=self.people_finder, anchor="nw")
+
+    def reset_people_finder(self):
+        self.finder_frame.destroy()
+        self.left_mid.update()
+        self.people_finder_section()
+
+        self.finder_frame.pack(
+            fill="both", expand="yes", pady=(0, self.screen_height * 0.013))
 
     def left_side_structure_bottom(self, location):
         """
@@ -509,6 +517,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.today_birthdays.pack(ipady=self.screen_height)
 
     def open_settings(self):
+        self.showed_people[-1].grid_forget()
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
 
