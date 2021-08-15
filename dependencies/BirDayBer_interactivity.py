@@ -190,6 +190,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             "birth": {"birth": birth},
             "person": {"per_first": name, "per_last": surname}})
 
+        self.refresh_people_viewer()
+
     def people_adder_check(self, field):
         """
         Method that checks if the people adder's field input is correct
