@@ -1,7 +1,8 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
+from tkinter.filedialog import askopenfilename
 import tkinter.messagebox as messagebox
-from datetime import datetime
 import tkinter as tk
+from datetime import datetime
 import webbrowser
 
 
@@ -87,6 +88,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.twitter_icon.config(command=self.open_twitter)
         self.nut_icon.config(command=self.open_settings)
         self.accept.config(command=self.people_adder_accept)
+        self.img_adder.config(command=self.people_adder_file_select)
         # self.clear.config(command=)
 
     def show_license(self):
@@ -173,6 +175,15 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.age_var.set(texts[4])
         self.birth_var.set(texts[2])
 
+    def people_adder_file_select(self):
+        # self.file_selected = ""
+        filename = askopenfilename(
+            initialdir="/", title="Select an image",
+            filetypes=(
+                ("Images", ".jpg .jpeg .png .tiff"), ("all files", "*.")))
+
+        self.file_selected = filename
+
     def people_adder_accept(self):
         """
         Method that adds people to the DataBase
@@ -182,11 +193,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         surname = self.adder_surname_var.get()
         country = self.adder_country_var.get()
         birth = self.adder_birth_var.get()
+        photo = self.file_selected
 
         self.add_person({
             "country": {"country": country},
             "gender": {"gender": "Male"},
-            "photo": {"photo": None},
+            "photo": {"photo": photo},
             "birth": {"birth": birth},
             "person": {"per_first": name, "per_last": surname}})
 

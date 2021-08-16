@@ -224,7 +224,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
     def reset_people_finder(self):
         self.finder_frame.destroy()
-        self.left_mid.update()
         self.people_finder_section()
 
         self.finder_frame.pack(
