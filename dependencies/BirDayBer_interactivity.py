@@ -1,4 +1,5 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
+from dependencies.db_manager import file_to_base64
 from tkinter.filedialog import askopenfilename
 import tkinter.messagebox as messagebox
 import tkinter as tk
@@ -176,13 +177,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.birth_var.set(texts[2])
 
     def people_adder_file_select(self):
-        # self.file_selected = ""
         filename = askopenfilename(
             initialdir="/", title="Select an image",
-            filetypes=(
-                ("Images", ".jpg .jpeg .png .tiff"), ("all files", "*.")))
+            filetypes=(("Images", ".jpg .jpeg .png .tiff"), ))
 
         self.file_selected = filename
+        photo = file_to_base64(filename)
+        photo = self.process_photo(photo, self.person_default_src, "adder")
+        self.img_adder.config(image=photo)
 
     def people_adder_accept(self):
         """
