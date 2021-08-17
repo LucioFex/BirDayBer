@@ -22,6 +22,12 @@ def current_age(birth_date):
     return age
 
 
+def convert_adder_img(filename):
+    if filename == "":
+        filename = "bin//system-content//visual-content//user-black-1.png"
+    return file_to_base64(filename)
+
+
 def formatted_birth_date(date, full=True):
     """
     This function returns a formatted version of the given date.
@@ -179,10 +185,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def people_adder_file_select(self):
         filename = askopenfilename(
             initialdir="/", title="Select an image",
-            filetypes=(("Images", ".jpg .jpeg .png .tiff"), ))
+            filetypes=(("Images", ".jpg .jpeg .png .tiff .jif"), ))
 
         self.file_selected = filename
-        photo = file_to_base64(filename)
+        photo = convert_adder_img(filename)
         photo = self.process_photo(photo, self.person_default_src, "adder")
         self.img_adder.config(image=photo)
 
