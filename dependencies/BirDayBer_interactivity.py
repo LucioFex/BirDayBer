@@ -1,4 +1,5 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
+from dependencies.db_manager import file_to_base64
 from tkinter.filedialog import askopenfilename
 import tkinter.messagebox as messagebox
 import tkinter as tk
@@ -21,7 +22,13 @@ def current_age(birth_date):
     return age
 
 
-def formatted_birth_date(date, full=True):
+def convert_adder_img(filename):
+    if filename == "":
+        filename = "bin//system-content//visual-content//user-black-1.png"
+    return file_to_base64(filename)
+
+
+def formatted_birth_date(date):
     """
     This function returns a formatted version of the given date.
     The input must be in the following format: 'YYYY-MM-DD' (str),
@@ -32,7 +39,6 @@ def formatted_birth_date(date, full=True):
     date = datetime.strptime(date, "%Y-%m-%d")
     date = [str(date.day), str(date.month), str(date.year)]
 
-    date.pop() if not full else None
     return "/".join(date)
 
 
@@ -143,8 +149,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         # Add of the Age data
         texts.append(current_age(texts[2]))
-        # Add of the Birthday data
-        texts.append(formatted_birth_date(texts[2], False))
         # YYYY-MM-DD -> DD/MM/YYYY
         texts[2] = formatted_birth_date(texts[2])
 
@@ -170,19 +174,19 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.big_photo.config(image=photo)
 
         self.fullname_var.set(f"{texts[0]} {texts[1]}")
-        self.birthday_var.set(texts[5])
         self.country_var.set(texts[3])
         self.age_var.set(texts[4])
         self.birth_var.set(texts[2])
 
     def people_adder_file_select(self):
-        # self.file_selected = ""
         filename = askopenfilename(
             initialdir="/", title="Select an image",
-            filetypes=(
-                ("Images", ".jpg .jpeg .png .tiff"), ("all files", "*.")))
+            filetypes=(("Images", ".jpg .jpeg .png .tiff .jif"), ))
 
         self.file_selected = filename
+        photo = convert_adder_img(filename)
+        photo = self.process_photo(photo, self.person_default_src, "adder")
+        self.img_adder.config(image=photo)
 
     def people_adder_accept(self):
         """

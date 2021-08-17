@@ -377,7 +377,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_mid_base()
 
         self.fullname_var = tk.StringVar()
-        self.birthday_var = tk.StringVar()
         self.country_var = tk.StringVar()
         self.age_var = tk.StringVar()
         self.birth_var = tk.StringVar()
@@ -385,9 +384,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.fullname_big = mid_entry(
             self.fullname_bg, 0.012, 0.018,
             self.screen_width, self.fullname_var)
-        self.birthday_big = mid_entry(
-            self.birthday_bg, 0.0045, 0.015,
-            self.screen_width, self.birthday_var)
         self.country_big = mid_entry(
             self.country_bg, 0.006, 0.014, self.screen_width, self.country_var)
         self.age_big = mid_entry(
@@ -397,7 +393,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.birth_var, style="bold")
 
         self.fullname_var.set("Name SurName")  # Remove from here later
-        self.birthday_var.set("BirthDay")  # Remove from here later
         self.country_var.set("Country")  # Remove from here later
         self.age_var.set("Age")  # Remove from here later
         self.birth_var.set("Birth Date")  # Remove from here later
@@ -409,7 +404,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
 
         self.fullname_bg = tk.Frame(self.right_bg, bg="#9aa881")
-        self.birthday_bg = tk.Frame(self.right_bg, bg="#88966c")
         self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
         self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
         self.birth_bg = tk.Frame(self.right_bg, bg="#7a8565")
@@ -451,8 +445,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.015, 0)
         self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
         self.country_bg.grid(sticky="w", row=4, column=0, padx=padx)
-        self.birthday_bg.grid(
-            sticky="w", row=2, column=0, pady=pady, padx=padx)
 
         padx = (0, self.screen_width * 0.024)
         self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)
@@ -464,7 +456,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (0, self.screen_height * 0.008)
         self.fullname_big.pack(pady=pady)
-        self.birthday_big.pack(pady=pady)
         self.age_big.pack(pady=pady)
         self.country_big.pack(pady=pady)
         self.birth_big.pack(pady=pady)
@@ -516,7 +507,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.today_birthdays.pack(ipady=self.screen_height)
 
     def open_settings(self):
-        self.showed_people[-1].grid_forget()
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
 
