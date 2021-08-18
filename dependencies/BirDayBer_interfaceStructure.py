@@ -437,14 +437,15 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.gender_small_icon.grid(
             sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
-        pady = (self.screen_height * 0.007, self.screen_height * 0.045)
-        padx = (self.screen_width * 0.0445, self.screen_width * 0.0245)
+        pady = (self.screen_height * 0.007, 0)
+        padx = (self.screen_width * 0.0445, self.screen_width * 0.088)
         self.fullname_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
-        pady = (self.screen_height * 0.015, 0)
-        self.age_bg.grid(sticky="e", row=3, column=1, pady=pady)
-        self.country_bg.grid(sticky="w", row=4, column=0, padx=padx)
+        pady = (self.screen_height * 0.08, 0)
+        self.country_bg.grid(sticky="w", row=3, column=0, pady=pady, padx=padx)
+        pady = (self.screen_height * 0.025, 0)
+        self.age_bg.grid(sticky="w", row=4, column=0, pady=pady, padx=padx)
 
         padx = (0, self.screen_width * 0.024)
         self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)
@@ -580,7 +581,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.delete_button = tk.Button(
             self.remove_people, activebackground="#6d2e2e",
             bg="#863535", activeforeground="#e3e3e3",
-            fg="#e3e3e3", relief="flat", text="Delete",
+            fg="#e3e3e3", relief="flat", text="Remove",
             font=("Century Gothic", round(self.screen_width / 75)))
 
         self.remove_people.grid(
