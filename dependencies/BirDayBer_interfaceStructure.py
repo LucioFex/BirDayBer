@@ -109,7 +109,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_side_structure_bottom(location)
         self.right_side_structure_top(location)
         self.right_side_structure_mid(location)
-        self.right_side_structure_mid(location, True)  # Default background
+        self.switch_right_mid_widget(self.right_mid_default, self.right_mid)
         self.right_side_structure_bottom(location)
 
     def titlebar_init(self):
@@ -372,14 +372,22 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_date.pack(pady=pady)
         self.country.pack(pady=pady)
 
-    def right_side_structure_mid(self, location, background=False):
+    def switch_right_mid_widget(self, frame1, frame2):
+        """
+        Method to switch the visible right-mid widgets.
+        The 'frame1' is the one to be displayed,
+        while the 'frame2' it will be hide.
+        """
+        frame2.pack_forget()
+        frame1.pack(anchor="ne", pady=(self.screen_height * 0.023, 0))
+
+    def right_side_structure_mid(self, location):
         """
         Method that generates the base for the mid-right appearance of the GUI.
         """
-        if background is True:
-            return self.right_mid_background()
-
         self.right_mid_base()
+        self.right_mid_background()
+
         self.fullname_var = tk.StringVar()
         self.country_var = tk.StringVar()
         self.age_var = tk.StringVar()
@@ -402,15 +410,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         The default right-mid background image.
         """
-        self.right_mid.pack_forget()
-        self.right_mid_default = tk.Frame(self.right_side, bg="#aac17b")
+        self.right_mid_default = tk.Frame(self.right_side, bg="#2f4046")
 
         self.default_bg = tk.Label(
-            self.right_mid_default, image=self.default_right_img, bg="#3b4d54")
+            self.right_mid_default, image=self.default_right_img,
+            bg="#3b4d54", borderwidth=0)
 
-        self.right_mid_default.pack(
-            anchor="ne", pady=(self.screen_height * 0.023, 0))
-        self.default_bg.pack()
+        padx = (self.screen_width * 0.003, 0)
+        pady = (0, self.screen_height * 0.012)
+
+        self.default_bg.pack(fill="both", padx=padx, pady=pady)
 
     def right_mid_base(self):
         self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
@@ -433,10 +442,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.generate_trash_button()
 
     def right_mid_packing(self):
-        pady = (self.screen_height * 0.023, 0)
         padx = (self.screen_width * 0.003, 0)
-        self.right_mid.pack(anchor="ne", pady=pady)
-
         pady = (0, self.screen_height * 0.012)
         self.right_bg.pack(fill="both", padx=padx, pady=pady)
 
