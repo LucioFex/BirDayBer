@@ -142,10 +142,11 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that renders one person row in the 'people finder section'.
         """
         new_photo = self.process_photo(photo, self.person_default_src, "row")
+        preview_texts = [*texts]
 
-        for index in range(len(texts)):  # Data characters visual limit
-            if len(texts[index]) > 12:
-                texts[index] = texts[index][0:12] + "..."
+        for index in range(len(preview_texts)):  # Data characters visual limit
+            if len(preview_texts[index]) > 12:
+                preview_texts[index] = preview_texts[index][0:12] + "..."
 
         # Add of the Age data
         texts.append(current_age(texts[2]))
@@ -156,7 +157,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         row_person = tk.Frame(row_person_border, bg="#8fd0e7")
 
         finder_row_content(
-            row_person, texts, self.screen_width,
+            row_person, preview_texts, self.screen_width,
             new_photo, self.skull_src,
             lambda: self.big_person_generation(person_id, texts, photo))
 
