@@ -22,12 +22,6 @@ def current_age(birth_date):
     return age
 
 
-def convert_adder_img(filename):
-    if filename == "":
-        filename = "bin//system-content//visual-content//user-black-1.png"
-    return file_to_base64(filename)
-
-
 def formatted_birth_date(date):
     """
     This function returns a formatted version of the given date.
@@ -95,7 +89,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.nut_icon.config(command=self.open_settings)
         self.accept.config(command=self.people_adder_accept)
         self.img_adder.config(command=self.people_adder_file_select)
-        # self.clear.config(command=)
+        self.clear.config(command=self.clear_people_adder)
 
     def show_license(self):
         return messagebox.showinfo(
@@ -185,7 +179,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             filetypes=(("Images", ".jpg .jpeg .png .tiff .jif"), ))
 
         self.file_selected = filename
-        photo = convert_adder_img(filename)
+        self.convert_adder_img(filename)
+
+    def convert_adder_img(self, filename):
+        if filename == "":
+            filename = "bin//system-content//visual-content//user-black-1.png"
+
+        photo = file_to_base64(filename)
         photo = self.process_photo(photo, self.person_default_src, "adder")
         self.img_adder.config(image=photo)
 
@@ -208,9 +208,19 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             "person": {"per_first": name, "per_last": surname}})
 
         self.refresh_people_viewer()
+        self.clear_people_adder()
 
     def people_adder_check(self, field):
         """
         Method that checks if the people adder's field input is correct
         """
         pass
+
+    def clear_people_adder(self):
+        self.convert_adder_img("")  # Sets the default adder image
+        self.gender_selector.set(0)
+        self.file_selected = ""
+        self.adder_name_var.set("")
+        self.adder_surname_var.set("")
+        self.adder_country_var.set("")
+        self.adder_birth_var.set("")

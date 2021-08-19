@@ -385,7 +385,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.fullname_bg, 0.012, 0.018,
             self.screen_width, self.fullname_var)
         self.country_big = mid_entry(
-            self.country_bg, 0.009, 0.014, self.screen_width, self.country_var)
+            self.country_bg, 0.011, 0.014, self.screen_width, self.country_var)
         self.age_big = mid_entry(
             self.age_bg, 0.0025, 0.02, self.screen_width, self.age_var)
         self.birth_big = mid_entry(
