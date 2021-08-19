@@ -122,7 +122,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.reset_showed_people()
 
         for row, person in enumerate(self.people_found):
-            self.row_person_spawn(
+            self.person_spawn(
                 person[0], [person[1], person[2], person[3], person[5]],
                 row, person[4])
 
@@ -131,7 +131,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             self.reset_people_finder()
             self.showed_people = []
 
-    def row_person_spawn(self, person_id, texts, row, photo=None):
+    def person_spawn(self, person_id, texts, row, photo=None):
         """
         Method that renders one person row in the 'people finder section'.
         """
@@ -172,6 +172,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.country_var.set(texts[3])
         self.age_var.set(texts[4])
         self.birth_var.set(texts[2])
+        self.trash.config(command=lambda: self.remove_person(person_id))
 
     def people_adder_file_select(self):
         filename = askopenfilename(
@@ -224,3 +225,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.adder_surname_var.set("")
         self.adder_country_var.set("")
         self.adder_birth_var.set("")
+
+    def remove_person(self, person_id):
+        pass

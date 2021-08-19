@@ -95,6 +95,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.default_big_img = src_image("image-not-found.png")
         self.check_button0 = src_image("checkButton0.png")
         self.check_button1 = src_image("checkButton1.png")
+        self.default_right_img = src_image("default-right-img.png")
 
         # Generation of the title bar
         self.titlebar_init()
@@ -108,6 +109,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_side_structure_bottom(location)
         self.right_side_structure_top(location)
         self.right_side_structure_mid(location)
+        self.right_side_structure_mid(location, True)  # Default background
         self.right_side_structure_bottom(location)
 
     def titlebar_init(self):
@@ -370,12 +372,14 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_date.pack(pady=pady)
         self.country.pack(pady=pady)
 
-    def right_side_structure_mid(self, location):
+    def right_side_structure_mid(self, location, background=False):
         """
         Method that generates the base for the mid-right appearance of the GUI.
         """
-        self.right_mid_base()
+        if background is True:
+            return self.right_mid_background()
 
+        self.right_mid_base()
         self.fullname_var = tk.StringVar()
         self.country_var = tk.StringVar()
         self.age_var = tk.StringVar()
@@ -392,12 +396,21 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.birth_bg, 0.01, 0.014, self.screen_width,
             self.birth_var, style="bold")
 
-        self.fullname_var.set("Name SurName")  # Remove from here later
-        self.country_var.set("Country")  # Remove from here later
-        self.age_var.set("Age")  # Remove from here later
-        self.birth_var.set("Birth Date")  # Remove from here later
-
         self.right_mid_packing()
+
+    def right_mid_background(self):
+        """
+        The default right-mid background image.
+        """
+        self.right_mid.pack_forget()
+        self.right_mid_default = tk.Frame(self.right_side, bg="#aac17b")
+
+        self.default_bg = tk.Label(
+            self.right_mid_default, image=self.default_right_img, bg="#3b4d54")
+
+        self.right_mid_default.pack(
+            anchor="ne", pady=(self.screen_height * 0.023, 0))
+        self.default_bg.pack()
 
     def right_mid_base(self):
         self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
