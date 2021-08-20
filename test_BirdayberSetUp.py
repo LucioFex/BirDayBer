@@ -105,19 +105,6 @@ class BirDayBerClient_testing(unittest.TestCase):
         self.interface.root.deiconify()
         self.assertEqual(root.tk.eval(f"wm stackorder {root}"), ".!toplevel .")
 
-    def test_total_children_per_widget(self):
-        self.assertEqual(len(self.interface.root.winfo_children()), 2)
-        self.assertEqual(len(self.interface.frame.winfo_children()), 3)
-        self.assertEqual(len(self.interface.title_bar.winfo_children()), 4)
-        self.assertEqual(len(self.interface.left_side.winfo_children()), 3)
-        self.assertEqual(len(self.interface.right_side.winfo_children()), 3)
-        self.assertEqual(len(self.interface.left_top.winfo_children()), 2)
-        self.assertEqual(len(self.interface.left_mid.winfo_children()), 2)
-        self.assertEqual(len(self.interface.right_top.winfo_children()), 4)
-        self.assertEqual(len(self.interface.right_mid.winfo_children()), 1)
-        self.assertEqual(len(self.interface.people_adder.winfo_children()), 11)
-        self.assertEqual(len(self.interface.right_bottom.winfo_children()), 3)
-
 
 if __name__ == "__main__":
     unittest.main()

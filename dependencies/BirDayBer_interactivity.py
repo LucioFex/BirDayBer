@@ -165,6 +165,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.default_bg.destroy()
         self.right_mid_packing()
+
         self.current_id = person_id
 
         photo = self.process_photo(photo, self.default_big_img, "big")
