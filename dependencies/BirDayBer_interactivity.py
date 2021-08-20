@@ -163,6 +163,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Updates the big display of the selected person in the interface.
         """
+        self.default_bg.destroy()
+        self.right_mid_packing()
         self.current_id = person_id
 
         photo = self.process_photo(photo, self.default_big_img, "big")
