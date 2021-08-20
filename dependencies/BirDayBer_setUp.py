@@ -191,7 +191,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(self.thumbnail_size(0.014, 0.014))
             # Default right-mid background
             elif img in ("default-right-img.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.597, 0.597))
+                responsive_img.thumbnail(self.thumbnail_size(0.596, 0.596))
             # Settings-checkbutton icons
             elif img in ("checkButton0.png", "checkButton1.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.066, 0.065))
