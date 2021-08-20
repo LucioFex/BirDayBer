@@ -429,11 +429,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.generate_trash_button()
 
     def right_mid_bg_packing(self):
+        # try:
+        #     self.default_bg = tk.Label(
+        #         self.right_mid, image=self.default_right_img,
+        #         bg="#ffffff", borderwidth=0)
+        # except tk.TclError:
+        #     pass
+
         pady = (0, self.screen_height * 0.012)
         padx = (self.screen_width * 0.003, 0)
         self.default_bg.pack(fill="both", padx=padx, pady=pady)
 
     def right_mid_packing(self):
+        # try:
+        #     self.default_bg = tk.Label(
+        #         self.right_mid, image=self.default_right_img,
+        #         bg="#ffffff", borderwidth=0)
+        # except tk.TclError:
+        #     pass
         padx = (self.screen_width * 0.003, 0)
         pady = (0, self.screen_height * 0.012)
         self.right_bg.pack(fill="both", padx=padx, pady=pady)

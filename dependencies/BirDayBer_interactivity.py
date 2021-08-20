@@ -163,7 +163,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Updates the big display of the selected person in the interface.
         """
-        self.default_bg.destroy()
+        self.default_bg.pack_forget()
         self.right_mid_packing()
 
         self.current_id = person_id
@@ -230,4 +230,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.adder_birth_var.set("")
 
     def remove_person(self, person_id):
-        pass
+        self.remove_person_db(person_id)
+        self.right_bg.pack_forget()
+
+        self.right_mid_bg_packing()
+        self.refresh_people_viewer()
+

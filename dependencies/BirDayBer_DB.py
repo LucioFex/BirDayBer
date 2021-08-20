@@ -119,7 +119,7 @@ class Birdayber_database:
 
         return people_data
 
-    def remove_person(self, person_id):
+    def remove_person_db(self, person_id):
         """
         This method removes one person.
         """
