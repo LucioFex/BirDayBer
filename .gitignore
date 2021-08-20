@@ -3,7 +3,8 @@ conceptual/entity-relationship-diagram-2.jpg
 conceptual/interface-design-updated.psd
 conceptual/settings-button-design.psd
 testing/test.db
-bin/system-content/visual-content/responsive
+bin/system-content/visual-content/responsive/*.png
+bin/system-content/visual-content/responsive/*.ico
 testing/BirDayBer.db
 bin/BirDayBer.db
 bin/system-content/visual-content/BirDayBerIcon.ico

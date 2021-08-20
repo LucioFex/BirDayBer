@@ -95,6 +95,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.default_big_img = src_image("image-not-found.png")
         self.check_button0 = src_image("checkButton0.png")
         self.check_button1 = src_image("checkButton1.png")
+        self.default_right_img = src_image("default-right-img.png")
 
         # Generation of the title bar
         self.titlebar_init()
@@ -374,7 +375,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the mid-right appearance of the GUI.
         """
+        self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
         self.right_mid_base()
+        self.right_mid_background()
 
         self.fullname_var = tk.StringVar()
         self.country_var = tk.StringVar()
@@ -385,23 +388,29 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.fullname_bg, 0.012, 0.018,
             self.screen_width, self.fullname_var)
         self.country_big = mid_entry(
-            self.country_bg, 0.006, 0.014, self.screen_width, self.country_var)
+            self.country_bg, 0.011, 0.014, self.screen_width, self.country_var)
         self.age_big = mid_entry(
             self.age_bg, 0.0025, 0.02, self.screen_width, self.age_var)
         self.birth_big = mid_entry(
             self.birth_bg, 0.01, 0.014, self.screen_width,
             self.birth_var, style="bold")
 
-        self.fullname_var.set("Name SurName")  # Remove from here later
-        self.country_var.set("Country")  # Remove from here later
-        self.age_var.set("Age")  # Remove from here later
-        self.birth_var.set("Birth Date")  # Remove from here later
+        pady = (self.screen_height * 0.023, 0)
+        self.right_mid.pack(anchor="ne", pady=pady)
 
-        self.right_mid_packing()
+        # self.right_mid_packing()
+        self.right_mid_bg_packing()
+
+    def right_mid_background(self):
+        """
+        The default right-mid background image.
+        """
+        self.default_bg = tk.Label(
+            self.right_mid, image=self.default_right_img,
+            bg="#ffffff", borderwidth=0)
 
     def right_mid_base(self):
-        self.right_mid = tk.Frame(self.right_side, bg="#aac17b")
-        self.right_bg = tk.Frame(self.right_mid, bg="#fdfff5")
+        self.right_bg = tk.Frame(self.right_mid, bg="#ffffff")
 
         self.fullname_bg = tk.Frame(self.right_bg, bg="#9aa881")
         self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
@@ -419,11 +428,26 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.generate_trash_button()
 
-    def right_mid_packing(self):
-        pady = (self.screen_height * 0.023, 0)
-        padx = (self.screen_width * 0.003, 0)
-        self.right_mid.pack(anchor="ne", pady=pady)
+    def right_mid_bg_packing(self):
+        # try:
+        #     self.default_bg = tk.Label(
+        #         self.right_mid, image=self.default_right_img,
+        #         bg="#ffffff", borderwidth=0)
+        # except tk.TclError:
+        #     pass
 
+        pady = (0, self.screen_height * 0.012)
+        padx = (self.screen_width * 0.003, 0)
+        self.default_bg.pack(fill="both", padx=padx, pady=pady)
+
+    def right_mid_packing(self):
+        # try:
+        #     self.default_bg = tk.Label(
+        #         self.right_mid, image=self.default_right_img,
+        #         bg="#ffffff", borderwidth=0)
+        # except tk.TclError:
+        #     pass
+        padx = (self.screen_width * 0.003, 0)
         pady = (0, self.screen_height * 0.012)
         self.right_bg.pack(fill="both", padx=padx, pady=pady)
 
