@@ -77,7 +77,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.female_src = src_image("female.png")
         self.male_small_src = src_image("male2.png")
         self.female_small_src = src_image("female2.png")
-        self.people_adder_src = src_image("add-person.png")
         self.about_src = src_image("about.png")
         self.nut_src = src_image("nut.png")
         self.person_adder_src = src_image("user-black-1.png")
@@ -255,8 +254,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder = tk.Frame(self.people_adder_bg, bg="#66838e")
         bg = "#3b4d54"
 
-        self.people_adder_icon = tk.Label(
-            self.right_top, bg=bg, image=self.people_adder_src)
         self.nut_icon = tk.Button(
             self.right_top, bg=bg, image=self.nut_src,
             activebackground=bg, relief="flat", bd=0, cursor="hand2")
@@ -272,10 +269,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = self.screen_height * 0.005
         self.people_adder.pack(padx=padx)
 
-        pady = (self.screen_height * 0.114, 0)
-        self.people_adder_icon.pack(pady=pady, side="left")
-
-        padx = (self.screen_width * 0.075, self.screen_width * 0.006)
+        padx = (self.screen_width * 0.1215, self.screen_width * 0.006)
         pady = (self.screen_height * 0.02, 0)
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
         pady = (self.screen_height * 0.03, 0)
@@ -429,24 +423,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.generate_trash_button()
 
     def right_mid_bg_packing(self):
-        # try:
-        #     self.default_bg = tk.Label(
-        #         self.right_mid, image=self.default_right_img,
-        #         bg="#ffffff", borderwidth=0)
-        # except tk.TclError:
-        #     pass
-
         pady = (0, self.screen_height * 0.012)
         padx = (self.screen_width * 0.003, 0)
         self.default_bg.pack(fill="both", padx=padx, pady=pady)
 
     def right_mid_packing(self):
-        # try:
-        #     self.default_bg = tk.Label(
-        #         self.right_mid, image=self.default_right_img,
-        #         bg="#ffffff", borderwidth=0)
-        # except tk.TclError:
-        #     pass
         padx = (self.screen_width * 0.003, 0)
         pady = (0, self.screen_height * 0.012)
         self.right_bg.pack(fill="both", padx=padx, pady=pady)

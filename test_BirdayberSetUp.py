@@ -68,10 +68,10 @@ class BirDayBerClient_testing(unittest.TestCase):
 
     def test_default_images(self):
         for image in (
-            "about.png", "add-person.png", "user-white.png", "github.png",
-            "cancel-person.png", "close-button.png", "image-not-found.png",
-            "garbage1.png", "garbage2.png", "twitter.png", "license.png",
-            "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
+            "about.png", "user-white.png", "github.png", "close-button.png",
+            "image-not-found.png", "garbage1.png", "garbage2.png",
+            "twitter.png", "license.png", "maximize-button.png",
+            "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black-1.png", "user-black-2.png",
             "nut.png", "party-randolph.png", "edit.png", "radiobutton-0.png",
@@ -83,10 +83,10 @@ class BirDayBerClient_testing(unittest.TestCase):
     def test_responsive_images(self):
         self.interface.responsive_imgs()
         for image in (
-            "about.png", "add-person.png", "user-white.png", "github.png",
-            "cancel-person.png", "close-button.png", "image-not-found.png",
-            "garbage1.png", "garbage2.png", "twitter.png", "license.png",
-            "maximize-button.png", "maximized-button.png", "BirDayBerIcon.png",
+            "about.png", "user-white.png", "github.png", "close-button.png",
+            "image-not-found.png", "garbage1.png", "garbage2.png",
+            "twitter.png", "license.png", "maximize-button.png",
+            "maximized-button.png", "BirDayBerIcon.png",
             "randolph.png", "minimize-button.png", "party-hat-female.png",
             "party-hat-male.png", "user-black-1.png", "user-black-2.png",
             "nut.png", "party-randolph.png", "edit.png", "radiobutton-0.png",
