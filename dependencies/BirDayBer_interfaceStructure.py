@@ -31,7 +31,7 @@ def mid_entry(master, width, font, screen, textvar=None, style=""):
         disabledforeground="#212121", cursor="arrow", state="disabled")
 
 
-def edit_button(master, img, command):
+def edit_button(master, img, command=None):
     return tk.Button(
         master, image=img, bd=0, bg="#ffffff", cursor="hand2",
         activebackground="#ffffff", command=command)
@@ -385,19 +385,20 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_var = tk.StringVar()
 
         self.fullname_big = mid_entry(
-            self.fullname_bg, 0.012, 0.018,
+            self.inner_fullname, 0.012, 0.018,
             self.screen_width, self.fullname_var)
         self.country_big = mid_entry(
-            self.country_bg, 0.011, 0.014, self.screen_width, self.country_var)
+            self.inner_country, 0.011, 0.014,
+            self.screen_width, self.country_var)
         self.age_big = mid_entry(
             self.age_bg, 0.0025, 0.02, self.screen_width, self.age_var)
         self.birth_big = mid_entry(
-            self.birth_bg, 0.01, 0.014, self.screen_width,
+            self.inner_birth, 0.01, 0.014, self.screen_width,
             self.birth_var, style="bold")
 
-        self.edit_fullname = edit_button(self.right_bg, self.edit_src, None)
-        self.edit_country = edit_button(self.right_bg, self.edit_src, None)
-        self.edit_birth = edit_button(self.right_bg, self.edit_src, None)
+        self.edit_fullname = edit_button(self.inner_fullname, self.edit_src)
+        self.edit_country = edit_button(self.inner_country, self.edit_src)
+        self.edit_birth = edit_button(self.inner_birth, self.edit_src)
 
         pady = (self.screen_height * 0.023, 0)
         self.right_mid.pack(anchor="ne", pady=pady)
@@ -409,8 +410,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         The default right-mid background image.
         """
         self.default_bg = tk.Label(
-            self.right_mid, image=self.default_right_img,
-            bg="#ffffff", borderwidth=0)
+            self.right_mid, image=self.default_right_img, bg="#ffffff", bd=0)
 
     def right_mid_base(self):
         self.right_bg = tk.Frame(self.right_mid, bg="#ffffff")
@@ -419,6 +419,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.age_bg = tk.Frame(self.right_bg, bg="#838f6b")
         self.country_bg = tk.Frame(self.right_bg, bg="#7e8967")
         self.birth_bg = tk.Frame(self.right_bg, bg="#7a8565")
+
+        self.inner_fullname = tk.Frame(self.fullname_bg, bg="#ffffff")
+        self.inner_country = tk.Frame(self.country_bg, bg="#ffffff")
+        self.inner_birth = tk.Frame(self.birth_bg, bg="#ffffff")
 
         self.skull_icon = tk.Label(
             self.right_bg, bg="#ffffff", image=self.skull_src)
@@ -452,7 +456,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
         pady = (self.screen_height * 0.007, 0)
-        padx = (self.screen_width * 0.0445, self.screen_width * 0.088)
+        padx = (self.screen_width * 0.0445, self.screen_width * 0.0718)
         self.fullname_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
@@ -472,10 +476,20 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.trash.grid(sticky="sw", row=6, column=0, padx=padx, pady=pady)
 
         pady = (0, self.screen_height * 0.008)
-        self.fullname_big.pack(pady=pady)
-        self.age_big.pack(pady=pady)
-        self.country_big.pack(pady=pady)
-        self.birth_big.pack(pady=pady)
+
+        self.inner_fullname.pack(pady=pady)
+        self.fullname_big.pack(side="left")
+        self.edit_fullname.pack(side="right")
+
+        self.inner_country.pack(pady=pady)
+        self.edit_country.pack(side="right")
+        self.country_big.pack(side="left")
+
+        self.inner_birth.pack(pady=pady)
+        self.birth_big.pack(side="left")
+        self.edit_birth.pack(side="right")
+
+        self.age_big.grid(row=0, column=0, pady=pady)
 
     def generate_trash_button(self):
         """
