@@ -26,9 +26,15 @@ def mid_entry(master, width, font, screen, textvar=None, style=""):
     return tk.Entry(
         master, relief="flat", width=round(screen * width), justify="center",
         font=("Century Gothic", round(screen * font), style), fg="#212121",
-        textvariable=textvar, selectbackground="#778954", bg="#fdfff5",
-        insertbackground="#798a5a", disabledbackground="#fdfff5",
+        textvariable=textvar, selectbackground="#778954", bg="#ffffff",
+        insertbackground="#798a5a", disabledbackground="#ffffff",
         disabledforeground="#212121", cursor="arrow", state="disabled")
+
+
+def edit_button(master, img, command):
+    return tk.Button(
+        master, image=img, bd=0, bg="#ffffff", cursor="hand2",
+        activebackground="#ffffff", command=command)
 
 
 def settings_label(master, width, height, text, row):
@@ -322,7 +328,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.people_adder, image=self.female_src, bg="#66838e")
 
         self.gender_selector = tk.IntVar()
-
         self.male_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=1,
             bg="#66838e", activebackground="#66838e", indicator=False,
@@ -390,10 +395,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.birth_bg, 0.01, 0.014, self.screen_width,
             self.birth_var, style="bold")
 
+        self.edit_fullname = edit_button(self.right_bg, self.edit_src, None)
+        self.edit_country = edit_button(self.right_bg, self.edit_src, None)
+        self.edit_birth = edit_button(self.right_bg, self.edit_src, None)
+
         pady = (self.screen_height * 0.023, 0)
         self.right_mid.pack(anchor="ne", pady=pady)
 
-        # self.right_mid_packing()
         self.right_mid_bg_packing()
 
     def right_mid_background(self):
@@ -413,13 +421,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_bg = tk.Frame(self.right_bg, bg="#7a8565")
 
         self.skull_icon = tk.Label(
-            self.right_bg, bg="#fdfff5", image=self.skull_src)
+            self.right_bg, bg="#ffffff", image=self.skull_src)
 
         self.gender_small_icon = tk.Label(
-            self.right_bg, bg="#fdfff5", image=self.male_small_src)
+            self.right_bg, bg="#ffffff", image=self.male_small_src)
 
         self.big_photo = tk.Label(
-            self.right_bg, image=self.default_big_img, bg="#fdfff5")
+            self.right_bg, image=self.default_big_img, bg="#ffffff")
 
         self.generate_trash_button()
 
@@ -450,11 +458,13 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         pady = (self.screen_height * 0.08, 0)
         self.country_bg.grid(sticky="w", row=3, column=0, pady=pady, padx=padx)
+
         pady = (self.screen_height * 0.025, 0)
         self.age_bg.grid(sticky="w", row=4, column=0, pady=pady, padx=padx)
 
         padx = (0, self.screen_width * 0.024)
         self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)
+
         self.big_photo.grid(sticky="ne", rowspan=5, row=0, column=2)
 
         padx = (self.screen_width * 0.007)
@@ -478,8 +488,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.trash.config(image=self.garbage1_src)
 
         self.trash = tk.Button(
-            self.right_bg, image=self.garbage1_src, activebackground="#fdfff5",
-            bg="#fdfff5", relief="flat", bd=0, cursor="hand2")
+            self.right_bg, image=self.garbage1_src, activebackground="#ffffff",
+            bg="#ffffff", relief="flat", bd=0, cursor="hand2")
 
         self.trash.bind("<Enter>", over_button)
         self.trash.bind("<Leave>", out_button)

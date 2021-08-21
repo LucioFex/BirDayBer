@@ -175,7 +175,15 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.country_var.set(texts[3])
         self.age_var.set(texts[4])
         self.birth_var.set(texts[2])
+
         self.trash.config(command=lambda: self.remove_person(person_id))
+
+        # self.edit_fullname.config(
+        #     lambda: self.update_person(person_id, "fullname"))
+        # self.edit_country.config(
+        #     lambda: self.update_person(person_id, "country"))
+        # self.edit_birth.config(
+        #     lambda: self.update_person(person_id, "birth"))
 
     def people_adder_file_select(self):
         filename = askopenfilename(
@@ -236,3 +244,5 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.right_mid_bg_packing()
         self.refresh_people_viewer()
 
+    def update_person(self, person_id, modify):
+        pass

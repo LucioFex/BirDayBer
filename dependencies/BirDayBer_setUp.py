@@ -188,7 +188,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(self.thumbnail_size(0.041, 0.073))
             # Edit icon
             elif img in ("edit.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.014, 0.014))
+                responsive_img.thumbnail(self.thumbnail_size(0.028, 0.028))
             # Default right-mid background
             elif img in ("default-right-img.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.596, 0.596))
