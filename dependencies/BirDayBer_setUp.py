@@ -82,8 +82,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the toplevel of a geometry and position.
         """
-        self.settings_width = round(self.root.winfo_screenwidth() * 0.252 + 192)
-        self.settings_height = round(self.root.winfo_screenheight() * 0.434 + 216)
+        self.settings_width = round(
+            self.root.winfo_screenwidth() * 0.252 + 192)
+        self.settings_height = round(
+            self.root.winfo_screenheight() * 0.434 + 216)
 
         self.x_settings_position = round(self.root.winfo_screenwidth() / 3)
         self.y_settings_position = round(self.root.winfo_screenheight() / 5.5)
@@ -188,7 +190,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 responsive_img.thumbnail(self.thumbnail_size(0.041, 0.073))
             # Edit icon
             elif img in ("edit.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.014, 0.014))
+                responsive_img.thumbnail(self.thumbnail_size(0.028, 0.028))
             # Default right-mid background
             elif img in ("default-right-img.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.596, 0.596))
