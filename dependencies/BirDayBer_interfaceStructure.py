@@ -335,6 +335,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             image=self.radio_button_off_src, bd=0, selectcolor="#66838e",
             selectimage=self.radio_button_on_src, cursor="hand2")
 
+        self.file_selected = ""
         self.img_adder = tk.Button(
             self.people_adder, image=self.person_adder_src, bg="#66838e",
             bd=0, activebackground="#66838e", cursor="hand2")
