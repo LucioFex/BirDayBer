@@ -82,8 +82,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the toplevel of a geometry and position.
         """
-        self.settings_width = round(self.root.winfo_screenwidth() * 0.252 + 192)
-        self.settings_height = round(self.root.winfo_screenheight() * 0.434 + 216)
+        self.settings_width = round(
+            self.root.winfo_screenwidth() * 0.252 + 192)
+        self.settings_height = round(
+            self.root.winfo_screenheight() * 0.434 + 216)
 
         self.x_settings_position = round(self.root.winfo_screenwidth() / 3)
         self.y_settings_position = round(self.root.winfo_screenheight() / 5.5)

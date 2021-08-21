@@ -8,10 +8,10 @@ def src_image(image):
         file=f"bin//system-content//visual-content//responsive//{image}")
 
 
-def titlebar_button(master, img, activebackground="#1e5061"):
+def titlebar_button(master, img, background, activebackground="#1e5061"):
     return tk.Button(
         master, image=img, relief="flat", bd=0,
-        activebackground=activebackground, bg="#2c5c6d")
+        activebackground=activebackground, bg=background)
 
 
 def adder_entry(master, width, textvariable):
@@ -124,13 +124,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.title_bar.pack(fill="x")
 
         self.minimize_button = titlebar_button(
-            self.title_bar, self.minimize_src)
+            self.title_bar, self.minimize_src, "#2c5c6d")
 
-        self.maximize_button = titlebar_button(
-            self.title_bar, self.maximize_src)
+        # self.maximize_button = titlebar_button(  # Change later...
+        #     self.title_bar, self.maximize_src, "#295360", "#295360")
+
+        self.maximize_button = tk.Label(
+            self.title_bar, image=self.maximize_src, relief="flat",
+            bd=0, activebackground="#295360", bg="#295360")
 
         self.close_button = titlebar_button(
-            self.title_bar, self.close_src, "#911722")
+            self.title_bar, self.close_src, "#2c5c6d", "#911722")
 
         self.close_button.pack(side="right", ipadx=14, ipady=7, fill="y")
         self.maximize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
