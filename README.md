@@ -70,6 +70,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&.page=1&position=4&page=1&position=4&related_id=860814&origin=search).
 - User icon from [DinosoftLabs (flaticon)](https://www.flaticon.com/free-icon/user_4018596).
 - Court icon from [Nikita Golubev (flaticon)](https://www.flaticon.com/free-icon/court_1750412?related_id=1750530&origin=search).
+- Update button icon from [Google (flaticon)](https://www.flaticon.com/free-icon/tick-inside-circle_61222)
 
 ## Project Status:
 

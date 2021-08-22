@@ -180,10 +180,15 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         # self.edit_fullname.config(
         #     lambda: self.update_person(person_id, "fullname"))
+        # self.fullname_state = "disabled"
+
         # self.edit_country.config(
         #     lambda: self.update_person(person_id, "country"))
+        # self.country_state = "disabled"
+
         # self.edit_birth.config(
         #     lambda: self.update_person(person_id, "birth"))
+        # self.birth_state = "disabled"
 
     def people_adder_file_select(self):
         filename = askopenfilename(
