@@ -95,6 +95,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.twitter_src = src_image("twitter.png")
         self.github_src = src_image("github.png")
         self.edit_src = src_image("edit.png")
+        self.update_src = src_image("update.png")
         self.radio_button_off_src = src_image("radiobutton-0.png")
         self.radio_button_on_src = src_image("radiobutton-1.png")
         self.default_big_img = src_image("image-not-found.png")

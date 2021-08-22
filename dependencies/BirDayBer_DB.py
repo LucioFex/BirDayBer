@@ -125,6 +125,12 @@ class Birdayber_database:
         """
         self.db.remove_rows("person", f"id_person = {person_id}")
 
+    def update_person_db(self, table, column, value, where):
+        """
+        Method to update the entry of a row-person.
+        """
+        self.db.update_row(table, column, value, where)
+
     def reset_database(self):
         """
         Reset of the entire database.

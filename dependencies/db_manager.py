@@ -153,30 +153,7 @@ class Db_manager:
     def column_search(self, table, columns="*", joins="", where="&None%"):
         """
         This is a method that allows you select a table, columns, prepare joins
-        clauses and a where clause to get the values of the table columns/s.
-
-        First Parameter: Table Name:
-        Example --> "country" or "person".
-
-        Second Parameter: Columns Name/s:
-        Example --> "per_last" or "age" or "*" or "per_last, per_first, age".
-
-        Third Parameter: Join Clause:
-        Example --> "inner join gender on gender.id_gender = person.id_person"
-
-        Fourth Parameter: Where condition:
-        Example --> "per_last != 'randolph'" or "age >= 18".
-
-
-        Special Parameters:
-        You can see all columns if in the second parameter
-        you write "*" or nothing in it.
-
-        If you don't want to make use a Join Clause, you can simply avoid it,
-        or write in the third parameter "".
-
-        Also, you can avoid the where clause if in the fourth
-        parameter you write "&None%" or nothing in it.
+        clauses and a where clause to get the values of the table columns.
         """
         sql_query = "SELECT %s FROM %s %s" % (columns, table, joins)
 
@@ -185,6 +162,15 @@ class Db_manager:
         self.cursor.execute(sql_query)
 
         return tuple(self.cursor.fetchall())
+
+    def update_row(self, table, column, value, where):
+        """
+        Method to update the data on the DB.
+        """
+        sql_query = f"UPDATE {table} SET {column} = {value} WHERE {where}"
+
+        self.cursor.execute(sql_query)
+        self.connection.commit()
 
     def drop_database(self):
         """
