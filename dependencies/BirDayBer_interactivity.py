@@ -178,17 +178,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.trash.config(command=lambda: self.remove_person(person_id))
 
-        # self.edit_fullname.config(
-        #     lambda: self.update_person(person_id, "fullname"))
-        # self.fullname_state = "disabled"
-
-        # self.edit_country.config(
-        #     lambda: self.update_person(person_id, "country"))
-        # self.country_state = "disabled"
-
-        # self.edit_birth.config(
-        #     lambda: self.update_person(person_id, "birth"))
-        # self.birth_state = "disabled"
+        self.edit_fullname.config(
+            command=lambda: self.update_entry(person_id, "fullname"))
+        self.edit_country.config(
+            command=lambda: self.update_entry(person_id, "country"))
+        self.edit_birth.config(
+            command=lambda: self.update_entry(person_id, "birth"))
 
     def people_adder_file_select(self):
         filename = askopenfilename(
@@ -249,5 +244,63 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.right_mid_bg_packing()
         self.refresh_people_viewer()
 
-    def update_person(self, person_id, modify):
-        pass
+    def update_entry(self, person_id, section):  # Refactor later...
+        """
+        Method to modify the selected entry, to then updated.
+        """
+        if section == "fullname" and self.fullname_state is False:
+            self.fullname_state = True
+            self.edit_fullname.config(
+                image=self.update_src,
+                command=lambda: self.update_person(person_id, "fullname"))
+
+        elif section == "country" and self.country_state is False:
+            self.country_state = True
+            self.edit_country.config(
+                image=self.update_src,
+                command=lambda: self.update_person(person_id, "country"))
+
+        elif section == "birth" and self.birth_state is False:
+            self.birth_state = True
+            self.edit_birth.config(
+                image=self.update_src,
+                command=lambda: self.update_person(person_id, "birth"))
+
+    def update_person(self, person_id, section):  # Refactor later...
+        """
+        Method to update a row-person value, after changing
+        the entry in the right-mid section.
+        """
+        if section == "fullname" and self.fullname_state:
+            self.fullname_state = False
+            fullname = self.fullname_var.get().split(" ")
+            name, surname = fullname
+
+            self.update_person_db(
+                "person", "per_fist", name, f"person_id = {person_id}")
+            self.update_person_db(
+                "person", "per_last", surname, f"person_id = {person_id}")
+            
+            self.edit_fullname.config(
+                image=self.edit_src,
+                command=lambda: self.update_entry(person_id, "fullname"))
+
+        elif section == "country" and self.country_state:
+            self.country_state = False
+            self.update_person_db(
+                "country", "country", self.country_var.get(),
+                f"country_id = {person_id}")
+
+            self.edit_country.config(
+                image=self.edit_src,
+                command=lambda: self.update_entry(person_id, "country"))
+
+        elif section == "birth" and self.birth_state:
+            self.birth_state = False
+            self.update_person_db(
+                "birth", "birth", self.birth_var.get(),
+                f"birth_id = {person_id}")
+
+            self.edit_birth.config(
+                image=self.edit_src,
+                command=lambda: self.update_entry(person_id, "birth"))
