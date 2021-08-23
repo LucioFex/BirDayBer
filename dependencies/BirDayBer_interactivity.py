@@ -249,12 +249,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def switch_entry_state(self, person_id, entry, button, section, state):
         if state == "disabled":
-            entry.config(state=state)
+            entry.config(state=state, cursor="arrow")
             return button.config(
                 image=self.edit_src, command=lambda: self.switch_entry_state(
                     person_id, entry, button, section, "normal"))
 
-        entry.config(state=state)
+        entry.config(state=state, cursor="hand2")
         return button.config(
             image=self.update_src, command=lambda:
             self.update_person(person_id, section))
@@ -264,7 +264,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         name, surname = fullname
 
         self.update_person_db(
-            "person", "per_fist", name, f"id_person = {person_id}")
+            "person", "per_first", name, f"id_person = {person_id}")
         self.update_person_db(
             "person", "per_last", surname, f"id_person = {person_id}")
 
@@ -301,3 +301,5 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             self.switch_entry_state(
                 person_id, self.birth_big,
                 self.edit_birth, section, "disabled")
+
+        self.refresh_people_viewer()
