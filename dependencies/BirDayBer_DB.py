@@ -129,6 +129,12 @@ class Birdayber_database:
         """
         Method to update the entry of a row-person.
         """
+        print(
+            "table:", table,
+            "\ncolumn:", column,
+            "\nvalue:", value,
+            "\nwhere:", where
+        )
         self.db.update_row(table, column, value, where)
 
     def reset_database(self):
