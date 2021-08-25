@@ -248,19 +248,28 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.refresh_people_viewer()
 
     def switch_entry_state(self, person_id, entry, button, section, state):
+        """
+        Method to prepare or unprepare the selected entry to be updated.
+        """
         if state == "disabled":
             entry.config(state=state, cursor="arrow")
+            entry.unbind("<Return>")
             return button.config(
                 image=self.edit_src, command=lambda: self.switch_entry_state(
                     person_id, entry, button, section, "normal"))
 
-        entry.config(state=state, cursor="hand2")
+        entry.config(state=state, cursor="xterm")
+        entry.focus(), entry.icursor(50)
+
+        entry.bind(
+            "<Return>", lambda x: self.update_person(person_id, section))
         return button.config(
             image=self.update_src, command=lambda:
             self.update_person(person_id, section))
 
     def update_person_fullname_query(self, person_id):
         fullname = self.fullname_var.get().split(" ")
+        fullname.append("") if len(fullname) == 1 else None
         name, surname = fullname
 
         self.update_person_db(
@@ -283,7 +292,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         the entry in the right-mid section.
         """
         # self.check_entry_regex(section)  # Regular expressions
-
         if section == "fullname":
             self.update_person_fullname_query(person_id)
             self.switch_entry_state(
