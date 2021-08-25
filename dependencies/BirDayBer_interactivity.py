@@ -253,14 +253,16 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         if state == "disabled":
             entry.config(state=state, cursor="arrow")
+            entry.unbind("<Return>")
             return button.config(
                 image=self.edit_src, command=lambda: self.switch_entry_state(
                     person_id, entry, button, section, "normal"))
 
         entry.config(state=state, cursor="xterm")
-        entry.focus()
-        entry.icursor(50)
+        entry.focus(), entry.icursor(50)
 
+        entry.bind(
+            "<Return>", lambda x: self.update_person(person_id, section))
         return button.config(
             image=self.update_src, command=lambda:
             self.update_person(person_id, section))
