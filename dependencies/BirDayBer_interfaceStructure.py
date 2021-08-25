@@ -304,6 +304,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.adder_country_var = tk.StringVar()
         self.adder_birth_var = tk.StringVar()
 
+        self.adder_name_var.set("First Name")
+        self.adder_surname_var.set("Second Name")
+        self.adder_country_var.set("Country")
+        self.adder_birth_var.set("Birth Date")
+
         self.first_name = adder_entry(
             self.first_name_edge, self.screen_width, self.adder_name_var)
         self.second_name = adder_entry(
@@ -313,6 +318,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_date = adder_entry(
             self.birth_date_edge, self.screen_width, self.adder_birth_var)
 
+        self.people_adder_placeholders()
+
         padx = self.screen_width * 0.01375 + 0.0225
         pady = self.screen_height * 0.019
         self.first_name_edge.grid(row=0, column=0, pady=pady, padx=(padx, 0))
@@ -321,6 +328,34 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = self.screen_width * 0.01375 - 0.0225
         self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
+
+    def people_adder_placeholders(self):  # Add docs
+        entries = (
+            (self.first_name, "First Name", self.adder_name_var),
+            (self.second_name, "Second Name", self.adder_surname_var),
+            (self.country, "Country", self.adder_country_var),
+            (self.birth_date, "Birth Date", self.adder_birth_var))
+
+        for widget in entries:
+            self.prepare_placeholder(widget[0], widget[1], widget[2])
+
+    def prepare_placeholder(self, entry, text, stringvar):
+        placeholder = (entry, text, stringvar)
+
+        entry.bind(
+            "<FocusOut>", lambda event: self.add_placeholder(*placeholder))
+        entry.bind(
+            "<FocusIn>", lambda event: self.remove_placeholder(*placeholder))
+
+    def add_placeholder(self, entry, text, stringvar):
+        if stringvar.get() == "":
+            entry.config(fg="#c9c9c9")
+            return stringvar.set(text)
+
+    def remove_placeholder(self, entry, text, stringvar):
+        if stringvar.get() == text:
+            entry.config(fg="#e3e3e3")
+            return stringvar.set("")
 
     def people_adder_right(self):
         """
@@ -543,6 +578,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.today_birthdays.pack(ipady=self.screen_height)
 
     def open_settings(self):
+        print(self.adder_name_var.get())
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
 
