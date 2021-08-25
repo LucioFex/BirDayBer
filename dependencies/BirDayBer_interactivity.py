@@ -254,13 +254,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 image=self.edit_src, command=lambda: self.switch_entry_state(
                     person_id, entry, button, section, "normal"))
 
-        entry.config(state=state, cursor="hand2")
+        entry.config(state=state, cursor="xterm")
         return button.config(
             image=self.update_src, command=lambda:
             self.update_person(person_id, section))
 
     def update_person_fullname_query(self, person_id):
         fullname = self.fullname_var.get().split(" ")
+        fullname.append("") if len(fullname) == 1 else None
         name, surname = fullname
 
         self.update_person_db(
