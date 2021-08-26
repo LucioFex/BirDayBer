@@ -149,6 +149,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             label.bind("<ButtonPress-1>", self.cursor_start_move)
             label.bind("<B1-Motion>", self.window_dragging)
 
+    def prepare_placeholder(self, entry, text, stringvar):
+        placeholder = (entry, text, stringvar)
+
+        entry.bind(
+            "<FocusOut>", lambda event: self.add_placeholder(*placeholder))
+        entry.bind(
+            "<FocusIn>", lambda event: self.remove_placeholder(*placeholder))
+
+    def add_placeholder(self, entry, text, stringvar):
+        if stringvar.get() == "":
+            entry.config(fg="#d1d1d1")
+            return stringvar.set(text)
+
+    def remove_placeholder(self, entry, text, stringvar):
+        if stringvar.get() == text:
+            entry.config(fg="#e3e3e3")
+            return stringvar.set("")
+
     def left_side_structure_top(self, location):
         """
         Method that generates the base for the top-left appearance of the GUI.
@@ -169,10 +187,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.browser = tk.Entry(
             self.search_bg, bg="#517684", selectbackground="#4a92ab",
-            relief="flat", fg="#e3e3e3", insertbackground="#d7f5ff",
+            relief="flat", fg="#d1d1d1", insertbackground="#d7f5ff",
             width=round(self.screen_width / 75), textvariable=self.search,
             font=("Century Gothic", round(self.screen_width / 60)))
 
+        self.prepare_placeholder(self.browser, "Search", self.search)
         self.left_side_top_packing()
 
     def left_side_top_packing(self):
@@ -289,6 +308,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_left()
         self.people_adder_right()
 
+    def people_adder_placeholders(self):  # Add docs
+        entries = (
+            (self.first_name, "First Name", self.adder_name_var),
+            (self.second_name, "Second Name", self.adder_surname_var),
+            (self.country, "Country", self.adder_country_var),
+            (self.birth_date, "Birth Date", self.adder_birth_var))
+
+        for widget in entries:
+            self.prepare_placeholder(widget[0], widget[1], widget[2])
+
     def people_adder_left(self):
         """
         Method that generates the LEFT structure
@@ -328,34 +357,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = self.screen_width * 0.01375 - 0.0225
         self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
-
-    def people_adder_placeholders(self):  # Add docs
-        entries = (
-            (self.first_name, "First Name", self.adder_name_var),
-            (self.second_name, "Second Name", self.adder_surname_var),
-            (self.country, "Country", self.adder_country_var),
-            (self.birth_date, "Birth Date", self.adder_birth_var))
-
-        for widget in entries:
-            self.prepare_placeholder(widget[0], widget[1], widget[2])
-
-    def prepare_placeholder(self, entry, text, stringvar):
-        placeholder = (entry, text, stringvar)
-
-        entry.bind(
-            "<FocusOut>", lambda event: self.add_placeholder(*placeholder))
-        entry.bind(
-            "<FocusIn>", lambda event: self.remove_placeholder(*placeholder))
-
-    def add_placeholder(self, entry, text, stringvar):
-        if stringvar.get() == "":
-            entry.config(fg="#c9c9c9")
-            return stringvar.set(text)
-
-    def remove_placeholder(self, entry, text, stringvar):
-        if stringvar.get() == text:
-            entry.config(fg="#e3e3e3")
-            return stringvar.set("")
 
     def people_adder_right(self):
         """
