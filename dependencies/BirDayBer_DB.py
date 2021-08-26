@@ -40,7 +40,7 @@ class Birdayber_database:
         self.db.create_table({
             "gender":
                 f"""id_gender {id_type},
-                gender VARCHAR(6) NOT NULL""",
+                gender BIT NOT NULL""",
             "photo":
                 f"""id_photo {id_type},
                 photo BLOB""",
