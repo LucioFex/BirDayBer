@@ -124,14 +124,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         for row, person in enumerate(self.people_found):
             self.person_spawn(
                 person[0], [person[1], person[2], person[3], person[5]],
-                row, person[4])
+                row, person[6], person[4])
 
     def reset_showed_people(self):
         if len(self.showed_people) > 0:
             self.reset_people_finder()
             self.showed_people = []
 
-    def person_spawn(self, person_id, texts, row, photo=None):
+    def person_spawn(self, person_id, texts, row, gender, photo=None):
         """
         Method that renders one person row in the 'people finder section'.
         """
@@ -152,14 +152,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         finder_row_content(
             row_person, preview_texts, self.screen_width,
-            new_photo, self.skull_src,
-            lambda: self.big_person_generation(person_id, texts, photo))
+            new_photo, self.skull_src, lambda:
+                self.big_person_generation(person_id, texts, gender, photo))
 
         row_person_border.grid(row=row, column=0)
         row_person.pack(pady=(0, self.screen_height * 0.006))
         self.showed_people.append(row_person_border)
 
-    def big_person_generation(self, person_id, texts, photo=None):
+    def big_person_generation(self, person_id, texts, gender, photo=None):
         """
         Updates the big display of the selected person in the interface.
         """
@@ -170,6 +170,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         photo = self.process_photo(photo, self.default_big_img, "big")
         self.big_photo.config(image=photo)
+
+        genders = {1: self.male_small_src, 2: self.female_small_src}
+        gender = genders[gender]
+        self.gender_small_icon.config(image=gender)
 
         self.fullname_var.set(f"{texts[0]} {texts[1]}")
         self.country_var.set(texts[3])
@@ -213,11 +217,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         surname = self.adder_surname_var.get()
         country = self.adder_country_var.get()
         birth = self.adder_birth_var.get()
+        gender = self.gender_selector.get()
         photo = self.file_selected
 
         self.add_person({
             "country": {"country": country},
-            "gender": {"gender": "Male"},
+            "gender": {"gender": gender},
             "photo": {"photo": photo},
             "birth": {"birth": birth},
             "person": {"per_first": name, "per_last": surname}})
