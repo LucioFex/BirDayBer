@@ -7,6 +7,14 @@ from datetime import datetime
 import webbrowser
 
 
+def open_github():
+    webbrowser.open("https://github.com/LucioFex")
+
+
+def open_twitter():
+    webbrowser.open("https://twitter.com/LucioFex")
+
+
 def current_age(birth_date):
     """
     Input example: 'YYYY-MM-DD' (str).
@@ -22,18 +30,19 @@ def current_age(birth_date):
     return age
 
 
-def formatted_birth_date(date):
+def formatted_birth_date(date, formatted):
     """
-    This function returns a formatted version of the given date.
-    The input must be in the following format: 'YYYY-MM-DD' (str),
-    and the output will be in 'DD/MM/YYYY (str).
-
-    The 'full' parameter specifies if the output will include the year or not.
+    This function formats the given date to the selected format.
     """
-    date = datetime.strptime(date, "%Y-%m-%d")
-    date = [str(date.day), str(date.month), str(date.year)]
+    if formatted == "DD/MM/YYYY":  # Input Date: "YYYY-MM-DD"
+        date = datetime.strptime(date, "%Y-%m-%d")
+        date = [str(date.day), str(date.month), str(date.year)]
+        return "/".join(date)
 
-    return "/".join(date)
+    elif formatted == "YYYY-MM-DD":  # Input Date: "DD/MM/YYYY"
+        date = date.split("/")
+        date = [date[2], date[1], date[0]]
+        return "-".join(date)
 
 
 def finder_row_content(master, texts, width, photo, skull, command):
@@ -79,13 +88,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         This method assigns commands to each button of the client.
         """
-        self.minimize_button.config(command=self.title_bar_minimize)
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
+        self.minimize_button.config(command=self.title_bar_minimize)
         self.close_button.config(command=self.close_client)
         self.license_icon.config(command=self.show_license)
         self.about_icon.config(command=self.open_about)
-        self.github_icon.config(command=self.open_github)
-        self.twitter_icon.config(command=self.open_twitter)
+        self.github_icon.config(command=open_github)
+        self.twitter_icon.config(command=open_twitter)
         self.nut_icon.config(command=self.open_settings)
         self.accept.config(command=self.people_adder_accept)
         self.img_adder.config(command=self.people_adder_file_select)
@@ -98,14 +107,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def open_about(self):
         return messagebox.showinfo("About BirDayBer", self.get_version())
-
-    def open_github(self):
-        self.github_icon.config(command=self.open_github)
-        webbrowser.open("https://github.com/LucioFex")
-
-    def open_twitter(self):
-        self.twitter_icon.config(command=self.open_twitter)
-        webbrowser.open("https://twitter.com/LucioFex")
 
     def browser_filter(self, search=""):  # Unfinished
         """
@@ -145,7 +146,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         # Add of the Age data
         texts.append(current_age(texts[2]))
         # YYYY-MM-DD -> DD/MM/YYYY
-        texts[2] = formatted_birth_date(texts[2])
+        texts[2] = formatted_birth_date(texts[2], "DD/MM/YYYY")
+        preview_texts[2] = formatted_birth_date(preview_texts[2], "DD/MM/YYYY")
 
         row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
         row_person = tk.Frame(row_person_border, bg="#8fd0e7")
@@ -215,8 +217,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         # self.people_adder_check(field)  # Regular Expressions
         name = self.adder_name_var.get()
         surname = self.adder_surname_var.get()
+        birth = formatted_birth_date(self.adder_birth_var.get(), "YYYY-MM-DD")
         country = self.adder_country_var.get()
-        birth = self.adder_birth_var.get()
         gender = self.gender_selector.get()
         photo = self.file_selected
 
@@ -288,8 +290,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             f"id_country = {person_id}")
 
     def update_person_birth_query(self, person_id):
+        birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
         self.update_person_db(
-            "birth", "birth", self.birth_var.get(), f"id_birth = {person_id}")
+            "birth", "birth", birth_date, f"id_birth = {person_id}")
 
     def update_person(self, person_id, section):
         """
