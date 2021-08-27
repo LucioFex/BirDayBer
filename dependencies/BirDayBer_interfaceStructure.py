@@ -18,7 +18,7 @@ def adder_entry(master, width, textvariable):
     return tk.Entry(
         master, relief="flat", bg="#517684", insertbackground="#d7f5ff",
         width=round(width * 0.01), selectbackground="#4a92ab",
-        textvariable=textvariable, fg="#e3e3e3",
+        textvariable=textvariable, fg="#d1d1d1",
         font=("Century Gothic", round(width * 0.0093)))
 
 
@@ -164,7 +164,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
     def remove_placeholder(self, entry, text, stringvar):
         if stringvar.get() == text:
-            entry.config(fg="#e3e3e3")
+            entry.config(fg="#dddddd")
             return stringvar.set("")
 
     def left_side_structure_top(self, location):
@@ -579,7 +579,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.today_birthdays.pack(ipady=self.screen_height)
 
     def open_settings(self):
-        print(self.adder_name_var.get())
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
 
