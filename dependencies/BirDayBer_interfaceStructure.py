@@ -579,7 +579,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.today_birthdays.pack(ipady=self.screen_height)
 
     def open_settings(self):
-        print(self.adder_name_var.get())
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
 

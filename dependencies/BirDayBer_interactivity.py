@@ -240,10 +240,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.convert_adder_img("")  # Sets the default adder image
         self.gender_selector.set(0)
         self.file_selected = ""
-        self.adder_name_var.set("")
-        self.adder_surname_var.set("")
-        self.adder_country_var.set("")
-        self.adder_birth_var.set("")
+        self.adder_name_var.set("First Name")
+        self.adder_surname_var.set("Second Name")
+        self.adder_country_var.set("Country")
+        self.adder_birth_var.set("Birth Date")
 
     def remove_person(self, person_id):
         self.remove_person_db(person_id)
