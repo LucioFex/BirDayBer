@@ -134,6 +134,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             frame.destroy()
 
     def add_row_peopleviewer(self):
+        """Method to refresh the people_viewer (row's add)"""
         person = self.get_last_person()
         row = len(self.showed_people) + 1
 
@@ -143,6 +144,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             row, person[6], person[4])
 
     def update_row_peopleviewer(self, person_id):
+        """Method to refresh the people_viewer (row's update)"""
         person = self.get_people(person_id)[0]
         row = self.showed_people[person_id].grid_info()["row"]
 
@@ -154,6 +156,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             row, person[6], person[4])
 
     def remove_row_peopleviewer(self, person_id):
+        """Method to refresh the people_viewer (row's removal)"""
         self.canvas.update_idletasks()
         self.showed_people[person_id].destroy()
         self.showed_people.pop(person_id)
