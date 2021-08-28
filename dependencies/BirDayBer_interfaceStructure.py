@@ -249,6 +249,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.canvas.config(scrollregion=self.canvas.bbox("all"))))
 
         self.people_finder = tk.Frame(self.canvas, bg="#5d8999")
+        self.people_finder.bind('<Configure>', lambda x: (
+            self.canvas.config(scrollregion=self.canvas.bbox("all"))))
+
         self.canvas.create_window(
             (0, 0), window=self.people_finder, anchor="nw")
 

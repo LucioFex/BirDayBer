@@ -121,6 +121,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.people_found = self.browser_filter()
         self.people_photos = []
         self.reset_showed_people()
+        self.showed_people = []
 
         for row, person in enumerate(self.people_found):
             self.person_spawn(
@@ -128,9 +129,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 row, person[6], person[4])
 
     def reset_showed_people(self):
-        if len(self.showed_people) > 0:
-            self.reset_people_finder()
-            self.showed_people = []
+        for frame in self.showed_people:
+            self.canvas.update_idletasks()
+            frame.destroy()
 
     def person_spawn(self, person_id, texts, row, gender, photo=None):
         """
