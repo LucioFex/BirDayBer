@@ -142,6 +142,17 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             person[0], [person[1], person[2], person[3], person[5]],
             row, person[6], person[4])
 
+    def update_row_peopleviewer(self, person_id):
+        person = self.get_people(person_id)[0]
+        row = self.showed_people[person_id].grid_info()["row"]
+
+        self.canvas.update_idletasks()
+        self.showed_people[person_id].destroy()
+
+        self.person_spawn(
+            person[0], [person[1], person[2], person[3], person[5]],
+            row, person[6], person[4])
+
     def remove_row_peopleviewer(self, person_id):
         self.canvas.update_idletasks()
         self.showed_people[person_id].destroy()
@@ -333,4 +344,4 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 person_id, self.birth_big,
                 self.edit_birth, section, "disabled")
 
-        self.generate_people_viewer(person_id)
+        self.update_row_peopleviewer(person_id)
