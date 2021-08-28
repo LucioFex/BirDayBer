@@ -79,9 +79,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         super().__init__()
 
         self.settings_state = False  # VAR to don't open more than one window
-        self.showed_people = []  # VAR to show the rows on the people finder
+        self.showed_people = {}  # VAR to show the rows on the people finder
         self.button_commands()
-        self.refresh_people_viewer()
+        self.generate_people_viewer()
         # self.refresh_today_birthdays()
 
     def button_commands(self):
@@ -114,14 +114,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         return self.get_people()
 
-    def refresh_people_viewer(self):
+    def generate_people_viewer(self):
         """
         Method to refresh the people_finder depending on the browser's result.
         """
         self.people_found = self.browser_filter()
         self.people_photos = []
         self.reset_showed_people()
-        self.showed_people = []
+        self.showed_people = {}
 
         for row, person in enumerate(self.people_found):
             self.person_spawn(
@@ -132,6 +132,20 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         for frame in self.showed_people:
             self.canvas.update_idletasks()
             frame.destroy()
+
+    def add_row_peopleviewer(self):
+        person = self.get_last_person()
+        row = len(self.showed_people) + 1
+
+        self.canvas.update_idletasks()
+        self.person_spawn(
+            person[0], [person[1], person[2], person[3], person[5]],
+            row, person[6], person[4])
+
+    def remove_row_peopleviewer(self, person_id):
+        self.canvas.update_idletasks()
+        self.showed_people[person_id].destroy()
+        self.showed_people.pop(person_id)
 
     def person_spawn(self, person_id, texts, row, gender, photo=None):
         """
@@ -160,7 +174,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         row_person_border.grid(row=row, column=0)
         row_person.pack(pady=(0, self.screen_height * 0.006))
-        self.showed_people.append(row_person_border)
+        self.showed_people[person_id] = row_person_border
 
     def big_person_generation(self, person_id, texts, gender, photo=None):
         """
@@ -230,7 +244,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             "birth": {"birth": birth},
             "person": {"per_first": name, "per_last": surname}})
 
-        self.refresh_people_viewer()
+        self.add_row_peopleviewer()
         self.clear_people_adder()
 
     def people_adder_check(self, field):
@@ -253,7 +267,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.right_bg.pack_forget()
 
         self.right_mid_bg_packing()
-        self.refresh_people_viewer()
+        self.remove_row_peopleviewer(person_id)
 
     def switch_entry_state(self, person_id, entry, button, section, state):
         """
@@ -319,4 +333,4 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 person_id, self.birth_big,
                 self.edit_birth, section, "disabled")
 
-        self.refresh_people_viewer()
+        self.generate_people_viewer(person_id)

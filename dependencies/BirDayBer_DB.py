@@ -116,8 +116,28 @@ class Birdayber_database:
             INNER JOIN
                 gender on gender.id_gender = person.id_gender1_fk""",
             id_person)
-
         return people_data
+
+    def get_last_person(self):
+        """
+        Method that returns the last row in the 'person', including joins.
+        """
+        select = (
+            "id_person, per_first, per_last, birth, photo, country, gender")
+
+        person_data = self.db.column_search(
+            "person", select,
+            """INNER JOIN
+                birth on birth.id_birth = person.id_birth1_fk
+            INNER JOIN
+                photo on photo.id_photo = person.id_photo1_fk
+            INNER JOIN
+                country on country.id_country = person.id_country1_fk
+            INNER JOIN
+                gender on gender.id_gender = person.id_gender1_fk""",
+            where="id_person = (SELECT MAX(id_person) FROM person)")
+
+        return person_data[0]
 
     def remove_person_db(self, person_id):
         """
