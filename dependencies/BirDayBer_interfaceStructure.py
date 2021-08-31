@@ -69,8 +69,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.root.config(bg="DarkOliveGreen4")
         self.frame.config(bg="ForestGreen")
 
-        self.left_side = tk.Frame(self.frame, bg="#43575f")
-        self.right_side = tk.Frame(self.frame, bg="#3b4d54")
+        self.left_side = tk.Frame(self.frame, bg="#436169")
+        self.right_side = tk.Frame(self.frame, bg="#3B5459")
 
         # Source images generation
         self.birdayber_src = src_image("BirDayBerIcon.png")
@@ -171,12 +171,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the top-left appearance of the GUI.
         """
-        self.left_top = tk.Frame(self.left_side, bg="#43575f")
-        self.search_edge = tk.Frame(self.left_top, bg="#334248")
+        self.left_top = tk.Frame(self.left_side, bg="#436169")
+        self.search_edge = tk.Frame(self.left_top, bg="#2A4248")
         self.search_bg = tk.Frame(self.search_edge, bg="#517684")
 
         self.title = tk.Label(
-            self.left_top, bg="#334248", text="BirDayBer", fg="#e3e3e3",
+            self.left_top, bg="#2e4c53", text="BirDayBer", fg="#e3e3e3",
             font=("Century Gothic", round(self.screen_width / 38)))
 
         self.person_icon = tk.Label(
@@ -214,7 +214,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the mid-left appearance of the GUI.
         """
-        self.left_mid = tk.Frame(self.left_side, bg="#334248")
+        self.left_mid = tk.Frame(self.left_side, bg="#2A4248")
 
         self.people_over = tk.Label(
             self.left_mid, relief="flat", text="People",
@@ -266,11 +266,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the bot-left appearance of the GUI.
         """
-        self.left_bottom = tk.Frame(self.left_side, bg="#43575f")
+        self.left_bottom = tk.Frame(self.left_side, bg="#436169")
 
         self.license_icon = tk.Button(
-            self.left_bottom, image=self.license_src, bg="#43575f",
-            cursor="hand2", bd=0, activebackground="#43575f")
+            self.left_bottom, image=self.license_src, bg="#436169",
+            cursor="hand2", bd=0, activebackground="#436169")
 
         pady = (self.screen_height * 0.004, 0)
         padx = (self.screen_width * 0.0162, 0)
@@ -281,11 +281,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the top-right appearance of the GUI.
         """
-        self.right_top = tk.Frame(self.right_side, bg="#3b4d54")
+        self.right_top = tk.Frame(self.right_side, bg="#3B5459")
         self.people_adder_bg = tk.Frame(self.right_top, bg="#367892")
 
-        self.people_adder = tk.Frame(self.people_adder_bg, bg="#66838e")
-        bg = "#3b4d54"
+        self.people_adder = tk.Frame(self.people_adder_bg, bg="#668A97")
+        bg = "#3B5459"
 
         self.nut_icon = tk.Button(
             self.right_top, bg=bg, image=self.nut_src,
@@ -326,10 +326,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         Method that generates the LEFT structure
         (not functionality) to the "self.people_adder" widget.
         """
-        self.first_name_edge = tk.Frame(self.people_adder, bg="#136687")
-        self.surname_edge = tk.Frame(self.people_adder, bg="#136687")
-        self.birth_date_edge = tk.Frame(self.people_adder, bg="#136687")
-        self.country_edge = tk.Frame(self.people_adder, bg="#136687")
+        self.first_name_edge = tk.Frame(self.people_adder, bg="#1D6F87")
+        self.surname_edge = tk.Frame(self.people_adder, bg="#1D6F87")
+        self.birth_date_edge = tk.Frame(self.people_adder, bg="#1D6F87")
+        self.country_edge = tk.Frame(self.people_adder, bg="#1D6F87")
 
         self.adder_name_var = tk.StringVar()
         self.adder_surname_var = tk.StringVar()
@@ -367,34 +367,34 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         (not functionality) to the "self.people_adder" widget.
         """
         self.male_icon = tk.Label(
-            self.people_adder, image=self.male_src, bg="#66838e")
+            self.people_adder, image=self.male_src, bg="#668A97")
         self.female_icon = tk.Label(
-            self.people_adder, image=self.female_src, bg="#66838e")
+            self.people_adder, image=self.female_src, bg="#668A97")
 
         self.gender_selector = tk.IntVar()
         self.male_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=1,
-            bg="#66838e", activebackground="#66838e", indicator=False,
-            image=self.radio_button_off_src, bd=0, selectcolor="#66838e",
+            bg="#668A97", activebackground="#668A97", indicator=False,
+            image=self.radio_button_off_src, bd=0, selectcolor="#668A97",
             selectimage=self.radio_button_on_src, cursor="hand2")
 
         self.female_button = tk.Radiobutton(
             self.people_adder, variable=self.gender_selector, value=2,
-            bg="#66838e", activebackground="#66838e", indicator=False,
-            image=self.radio_button_off_src, bd=0, selectcolor="#66838e",
+            bg="#668A97", activebackground="#668A97", indicator=False,
+            image=self.radio_button_off_src, bd=0, selectcolor="#668A97",
             selectimage=self.radio_button_on_src, cursor="hand2")
 
         self.file_selected = ""
         self.img_adder = tk.Button(
-            self.people_adder, image=self.person_adder_src, bg="#66838e",
-            bd=0, activebackground="#66838e", cursor="hand2")
+            self.people_adder, image=self.person_adder_src, bg="#668A97",
+            bd=0, activebackground="#668A97", cursor="hand2")
 
         self.accept = tk.Button(
             self.people_adder, image=self.accept_src,
-            bg="#66838e", activebackground="#66838e", bd=0, cursor="hand2")
+            bg="#668A97", activebackground="#668A97", bd=0, cursor="hand2")
         self.clear = tk.Button(
             self.people_adder, image=self.clear_src,
-            bg="#66838e", activebackground="#66838e", bd=0, cursor="hand2")
+            bg="#668A97", activebackground="#668A97", bd=0, cursor="hand2")
 
         padx = (0, self.screen_width * 0.01)
         pady = (self.screen_height * 0.031, 0)
@@ -556,16 +556,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         """
         Method that generates the base for the bot-right appearance of the GUI.
         """
-        self.right_bottom = tk.Frame(self.right_side, bg="#3b4d54")
+        self.right_bottom = tk.Frame(self.right_side, bg="#3B5459")
         self.today_birthdays_bg = tk.Frame(self.right_bottom, bg="#303c41")
 
         self.twitter_icon = tk.Button(
-            self.right_bottom, bg="#3b4d54", image=self.twitter_src, bd=0,
-            activebackground="#3b4d54", relief="flat", cursor="hand2")
+            self.right_bottom, bg="#3B5459", image=self.twitter_src, bd=0,
+            activebackground="#3B5459", relief="flat", cursor="hand2")
 
         self.github_icon = tk.Button(
-            self.right_bottom, bg="#3b4d54", image=self.github_src, bd=0,
-            activebackground="#3b4d54", relief="flat", cursor="hand2")
+            self.right_bottom, bg="#3B5459", image=self.github_src, bd=0,
+            activebackground="#3B5459", relief="flat", cursor="hand2")
 
         self.today_birthdays = tk.Label(
             self.today_birthdays_bg, text="Today is the birthday of x people",

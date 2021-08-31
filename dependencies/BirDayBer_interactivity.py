@@ -84,6 +84,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.generate_people_viewer()
         # self.refresh_today_birthdays()
 
+        self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
+
     def button_commands(self):
         """
         This method assigns commands to each button of the client.
@@ -120,31 +122,59 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.people_found = self.browser_filter()
         self.people_photos = []
-        self.reset_showed_people()
         self.showed_people = {}
 
-        for row, person in enumerate(self.people_found):
+        # It shows the first 6 people
+        for row, person in enumerate(self.people_found[0:6]):
             self.person_spawn(
                 person[0], [person[1], person[2], person[3], person[5]],
                 row, person[6], person[4])
 
-    def reset_showed_people(self):
-        for frame in self.showed_people:
-            self.canvas.update_idletasks()
-            frame.destroy()
+    def show_more_people(self):
+        """
+        Method to load another 6 rows in the people_finder.
+        """
+        limit = len(self.showed_people) + 6
+        for row, person in enumerate(self.people_found):
+            if row < limit - 6:
+                continue
+
+            self.person_spawn(
+                person[0], [person[1], person[2], person[3], person[5]],
+                row, person[6], person[4])
+
+            if row == limit:
+                break
+
+    def scrollbar_at_bottom(self, event):
+        """
+        Method to detect if the people_finder scrollbar is at the bottom.
+        If it is, then It will load 6 people more.
+        """
+        if self.yscrollbar.get()[1] > 0.9:
+            self.show_more_people()
 
     def add_row_peopleviewer(self):
-        """Method to refresh the people_viewer (row's add)"""
+        """
+        Method to refresh the people_viewer (row's add).
+        """
         person = self.get_last_person()
         row = len(self.showed_people) + 1
+
+        grid = True
+        if row < len(self.people_found):
+            self.people_found = self.browser_filter()
+            grid = False
 
         self.canvas.update_idletasks()
         self.person_spawn(
             person[0], [person[1], person[2], person[3], person[5]],
-            row, person[6], person[4])
+            row, person[6], person[4], grid=grid)
 
     def update_row_peopleviewer(self, person_id):
-        """Method to refresh the people_viewer (row's update)"""
+        """
+        Method to refresh the people_viewer (row's update).
+        """
         person = self.get_people(person_id)[0]
         row = self.showed_people[person_id].grid_info()["row"]
 
@@ -156,12 +186,15 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             row, person[6], person[4])
 
     def remove_row_peopleviewer(self, person_id):
-        """Method to refresh the people_viewer (row's removal)"""
+        """
+        Method to refresh the people_viewer (row's removal).
+        """
         self.canvas.update_idletasks()
         self.showed_people[person_id].destroy()
         self.showed_people.pop(person_id)
 
-    def person_spawn(self, person_id, texts, row, gender, photo=None):
+    def person_spawn(
+            self, person_id, texts, row, gender, photo=None, grid=True):
         """
         Method that renders one person row in the 'people finder section'.
         """
@@ -186,9 +219,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             new_photo, self.skull_src, lambda:
                 self.big_person_generation(person_id, texts, gender, photo))
 
+        self.showed_people[person_id] = row_person_border
+        if not grid:
+            return
+
         row_person_border.grid(row=row, column=0)
         row_person.pack(pady=(0, self.screen_height * 0.006))
-        self.showed_people[person_id] = row_person_border
 
     def big_person_generation(self, person_id, texts, gender, photo=None):
         """
@@ -226,7 +262,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def people_adder_file_select(self):
         filename = askopenfilename(
             initialdir="/", title="Select an image",
-            filetypes=(("Images", ".jpg .jpeg .png .tiff .jif"), ))
+            filetypes=(("Images", ".jpg .jpeg .png .tiff"), ))
 
         self.file_selected = filename
         self.convert_adder_img(filename)
