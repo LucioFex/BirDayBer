@@ -120,18 +120,31 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.people_found = self.browser_filter()
         self.people_photos = []
-        self.reset_showed_people()
         self.showed_people = {}
 
-        for row, person in enumerate(self.people_found):
+        # It shows the first 6 people
+        for row, person in enumerate(self.people_found[0:6]):
             self.person_spawn(
                 person[0], [person[1], person[2], person[3], person[5]],
                 row, person[6], person[4])
 
-    def reset_showed_people(self):
-        for frame in self.showed_people:
-            self.canvas.update_idletasks()
-            frame.destroy()
+    def show_more_people(self):
+        """
+        Method to load another 6 rows in the people_finder.
+        """
+        for row, person in enumerate(self.people_found):
+            if row < len(self.showed_people):
+                continue
+
+            self.person_spawn(
+                person[0], [person[1], person[2], person[3], person[5]],
+                row, person[6], person[4])
+
+            if row == len(self.showed_people) + 6:
+                break
+
+    def scrollbar_at_bottom(self, event):
+        pass
 
     def add_row_peopleviewer(self):
         """Method to refresh the people_viewer (row's add)"""
@@ -269,6 +282,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def clear_people_adder(self):
         self.convert_adder_img("")  # Sets the default adder image
+        self.show_more_people()
         self.gender_selector.set(0)
         self.file_selected = ""
         self.adder_name_var.set("First Name")
