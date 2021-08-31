@@ -52,7 +52,9 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 ## Credits
 
 - Skull icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/skull_485605?related_id=485564&origin=search).
+- Skull 2 icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/skull_2327206).
 - Party-hat icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/party-hat_3990692).
+- Party-hat 2 icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/party-hat_4593878).
 - Nut icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/nut_3593739).
 - Garbage icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/garbage_3143497?related_id=3143497&origin=search).
 - GitHub icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/github_1051275).
@@ -75,7 +77,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 ## Project Status:
 
 ### `Available on Windows`
-### `Version: 0.13.8`
+### `Version: 0.14.5`
 
 ## License
 
