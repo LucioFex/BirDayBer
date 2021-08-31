@@ -84,6 +84,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.generate_people_viewer()
         # self.refresh_today_birthdays()
 
+        self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
+
     def button_commands(self):
         """
         This method assigns commands to each button of the client.
@@ -132,19 +134,25 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method to load another 6 rows in the people_finder.
         """
+        limit = len(self.showed_people) + 6
         for row, person in enumerate(self.people_found):
-            if row < len(self.showed_people):
+            if row < limit - 6:
                 continue
 
             self.person_spawn(
                 person[0], [person[1], person[2], person[3], person[5]],
                 row, person[6], person[4])
 
-            if row == len(self.showed_people) + 6:
+            if row == limit:
                 break
 
     def scrollbar_at_bottom(self, event):
-        pass
+        """
+        Method to detect if the people_finder scrollbar is at the bottom.
+        If it is, then It will load 6 people more.
+        """
+        if self.yscrollbar.get()[1] > 0.9:
+            self.show_more_people()
 
     def add_row_peopleviewer(self):
         """Method to refresh the people_viewer (row's add)"""
