@@ -48,10 +48,11 @@ def settings_label(master, width, height, text, row):
         text=text, bg="#475d66", fg="#e3e3e3")
 
 
-def check_button(master, image1, image2, width, command=None):
+def check_button(master, image1, image2, width, boolean, command=None):
     return tk.Checkbutton(
         master, image=image1, selectimage=image2, indicator=False,
-        bg="#475d66", bd=0, activebackground="#475d66", selectcolor="#475d66")
+        bd=0, variable=boolean, bg="#475d66",
+        activebackground="#475d66", selectcolor="#475d66")
 
 
 class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
@@ -109,6 +110,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         # Generation of the structure of the body
         self.left_side.pack(side="left", fill="both")
         self.right_side.pack(side="left", fill="both", expand=True)
+
+        # Generation of settings BooleanVars
+        self.sound_var = tk.BooleanVar()
+        self.ask_before_del_var = tk.BooleanVar(value=True)
 
         self.left_side_structure_top(location)
         self.left_side_structure_mid(location)
@@ -265,6 +270,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.yscrollbar.unbind_all("<MouseWheel>")
 
     def mousewheel_scroll(self, event):
+        """
+        Method to move the scrollbar depending on the Mouse Wheel.
+        """
         distance = round(-1 * (event.delta / 120))
         self.canvas.yview_scroll(distance, "units")
         self.scrollbar_at_bottom(event)
@@ -616,9 +624,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.settings_bg, self.screen_width,
             self.screen_height, "Sound", row=0)
 
-        self.settings_dark_theme = settings_label(
+        self.settings_ask_before_del = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, "Dark Theme", row=2)
+            self.screen_height, "Ask before deleting a person", row=2)
 
         self.settings_language = settings_label(
             self.settings_bg, self.screen_width,
@@ -634,22 +642,22 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.settings_bg.pack(fill="both")
         self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
-        self.settings_dark_theme.pack(pady=(0, self.screen_height * 0.009))
+        self.settings_ask_before_del.pack(pady=(0, self.screen_height * 0.009))
         self.settings_language.pack(pady=(0, self.screen_height * 0.009))
         self.settings_remove_people.pack(pady=(0, self.screen_height * 0.009))
 
     def settings_checkButtons(self):
         self.sound_button = check_button(
-            self.settings_bg, self.check_button0,
-            self.check_button1, self.screen_width)
-        self.dark_theme_button = check_button(
-            self.settings_bg, self.check_button0,
-            self.check_button1, self.screen_width)
+            self.settings_bg, self.check_button0, self.check_button1,
+            self.screen_width, self.sound_var)
+        self.ask_before_del_button = check_button(
+            self.settings_bg, self.check_button0, self.check_button1,
+            self.screen_width, self.ask_before_del_var)
 
         self.sound_button.grid(
             row=1, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
-        self.dark_theme_button.grid(
+        self.ask_before_del_button.grid(
             row=3, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
 
