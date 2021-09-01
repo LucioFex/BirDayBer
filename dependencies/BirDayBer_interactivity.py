@@ -313,6 +313,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.adder_birth_var.set("Birth Date")
 
     def remove_person(self, person_id):
+        """
+        This method removes a person from the DB.
+        """
+        if self.ask_before_del_var.get() and self.ask_before_delete() == "no":
+            return
+
         self.remove_person_db(person_id)
         self.right_bg.pack_forget()
 
@@ -384,3 +390,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
+
+    def ask_before_delete(self):
+        if self.ask_before_del_var.get():
+            answer = messagebox.askquestion(
+                "Delete", "Are you sure you want to delete this person?")
+            return answer
+        return "no"
