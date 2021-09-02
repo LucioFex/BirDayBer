@@ -372,6 +372,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_date = adder_entry(
             self.birth_date_edge, self.screen_width, self.adder_birth_var)
 
+        self.root.bind_all(
+            "<Button-1>", lambda click: click.widget.focus_set())
+
         self.people_adder_placeholders()
 
         padx = self.screen_width * 0.01375 + 0.0225

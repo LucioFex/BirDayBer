@@ -400,7 +400,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to generate a messagebox asking to delete a person from the DB.
         """
         if self.ask_before_del_var.get() is False:
-            return "no"
+            return "yes"
 
         answer = messagebox.askquestion(
             "Delete", "Are you sure you want to delete this person?")
