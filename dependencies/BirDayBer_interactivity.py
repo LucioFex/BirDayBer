@@ -134,6 +134,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method to load another 6 rows in the people_finder.
         """
+        if len(self.showed_people) == len(self.people_found):
+            return
+
         limit = len(self.showed_people) + 6
         for row, person in enumerate(self.people_found):
             if row < limit - 6:
@@ -192,6 +195,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.canvas.update_idletasks()
         self.showed_people[person_id].destroy()
         self.showed_people.pop(person_id)
+        self.people_found = self.get_people()
 
     def person_spawn(
             self, person_id, texts, row, gender, photo=None, grid=True):
@@ -316,7 +320,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         This method removes a person from the DB.
         """
-        if self.ask_before_del_var.get() and self.ask_before_delete() == "no":
+        if self.ask_before_delete() == "no":
             return
 
         self.remove_person_db(person_id)
@@ -392,8 +396,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.update_row_peopleviewer(person_id)
 
     def ask_before_delete(self):
-        if self.ask_before_del_var.get():
-            answer = messagebox.askquestion(
-                "Delete", "Are you sure you want to delete this person?")
-            return answer
-        return "no"
+        """
+        Method to generate a messagebox asking to delete a person from the DB.
+        """
+        if self.ask_before_del_var.get() is False:
+            return "no"
+
+        answer = messagebox.askquestion(
+            "Delete", "Are you sure you want to delete this person?")
+        return answer
