@@ -283,11 +283,11 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that adds people to the DataBase
         """
-        # self.people_adder_check(field)  # Regular Expressions
-        name = self.adder_name_var.get()
-        surname = self.adder_surname_var.get()
-        birth = formatted_birth_date(self.adder_birth_var.get(), "YYYY-MM-DD")
-        country = self.adder_country_var.get()
+        self.people_adder_regex()
+        name = self.add_name_var.get()
+        surname = self.add_surname_var.get()
+        birth = formatted_birth_date(self.add_birth_var.get(), "YYYY-MM-DD")
+        country = self.add_country_var.get()
         gender = self.gender_selector.get()
         photo = self.file_selected
 
@@ -301,20 +301,28 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_row_peopleviewer()
         self.clear_people_adder()
 
-    def people_adder_check(self, field):
+    def people_adder_regex(self):
         """
-        Method that checks if the people adder's field input is correct
+        Method that checks if the people adder's fields input are correct
         """
-        pass
+        self.remove_adder_placeholders()
+
+    def remove_adder_placeholders(self):
+        placeholders = ("First Name", "Second Name", "Country")
+        entries = (
+            self.add_name_var, self.add_surname_var, self.add_country_var)
+
+        for entry in entries:
+            entry.set("") if entry.get() in placeholders else None
 
     def clear_people_adder(self):
         self.convert_adder_img("")  # Sets the default adder image
         self.gender_selector.set(0)
         self.file_selected = ""
-        self.adder_name_var.set("First Name")
-        self.adder_surname_var.set("Second Name")
-        self.adder_country_var.set("Country")
-        self.adder_birth_var.set("Birth Date")
+        self.add_name_var.set("First Name")
+        self.add_surname_var.set("Second Name")
+        self.add_country_var.set("Country")
+        self.add_birth_var.set("Birth Date")
 
     def remove_person(self, person_id):
         """
@@ -374,7 +382,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to update a row-person value, after changing
         the entry in the right-mid section.
         """
-        # self.check_entry_regex(section)  # Regular expressions
+        # self.update_entry_regex(section)  # Regular expressions
         if section == "fullname":
             self.update_person_fullname_query(person_id)
             self.switch_entry_state(

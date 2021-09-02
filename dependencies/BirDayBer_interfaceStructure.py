@@ -335,10 +335,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
     def people_adder_placeholders(self):  # Add docs
         entries = (
-            (self.first_name, "First Name", self.adder_name_var),
-            (self.second_name, "Second Name", self.adder_surname_var),
-            (self.country, "Country", self.adder_country_var),
-            (self.birth_date, "Birth Date", self.adder_birth_var))
+            (self.first_name, "First Name", self.add_name_var),
+            (self.second_name, "Second Name", self.add_surname_var),
+            (self.country, "Country", self.add_country_var),
+            (self.birth_date, "Birth Date", self.add_birth_var))
 
         for widget in entries:
             self.prepare_placeholder(widget[0], widget[1], widget[2])
@@ -353,24 +353,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_date_edge = tk.Frame(self.people_adder, bg="#1D6F87")
         self.country_edge = tk.Frame(self.people_adder, bg="#1D6F87")
 
-        self.adder_name_var = tk.StringVar()
-        self.adder_surname_var = tk.StringVar()
-        self.adder_country_var = tk.StringVar()
-        self.adder_birth_var = tk.StringVar()
+        self.add_name_var = tk.StringVar()
+        self.add_surname_var = tk.StringVar()
+        self.add_country_var = tk.StringVar()
+        self.add_birth_var = tk.StringVar()
 
-        self.adder_name_var.set("First Name")
-        self.adder_surname_var.set("Second Name")
-        self.adder_country_var.set("Country")
-        self.adder_birth_var.set("Birth Date")
+        self.add_name_var.set("First Name")
+        self.add_surname_var.set("Second Name")
+        self.add_country_var.set("Country")
+        self.add_birth_var.set("Birth Date")
 
         self.first_name = adder_entry(
-            self.first_name_edge, self.screen_width, self.adder_name_var)
+            self.first_name_edge, self.screen_width, self.add_name_var)
         self.second_name = adder_entry(
-            self.surname_edge, self.screen_width, self.adder_surname_var)
+            self.surname_edge, self.screen_width, self.add_surname_var)
         self.country = adder_entry(
-            self.country_edge, self.screen_width, self.adder_country_var)
+            self.country_edge, self.screen_width, self.add_country_var)
         self.birth_date = adder_entry(
-            self.birth_date_edge, self.screen_width, self.adder_birth_var)
+            self.birth_date_edge, self.screen_width, self.add_birth_var)
 
         self.root.bind_all(
             "<Button-1>", lambda click: click.widget.focus_set())
