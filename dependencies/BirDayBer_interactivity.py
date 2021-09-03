@@ -3,8 +3,9 @@ from dependencies.db_manager import file_to_base64
 from tkinter.filedialog import askopenfilename
 import tkinter.messagebox as messagebox
 import tkinter as tk
-from datetime import datetime
 import webbrowser
+import re
+from datetime import datetime
 
 
 def open_github():
@@ -134,6 +135,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method to load another 6 rows in the people_finder.
         """
+        if len(self.showed_people) == len(self.people_found):
+            return
+
         limit = len(self.showed_people) + 6
         for row, person in enumerate(self.people_found):
             if row < limit - 6:
@@ -192,6 +196,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.canvas.update_idletasks()
         self.showed_people[person_id].destroy()
         self.showed_people.pop(person_id)
+        self.people_found = self.get_people()
 
     def person_spawn(
             self, person_id, texts, row, gender, photo=None, grid=True):
@@ -279,11 +284,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that adds people to the DataBase
         """
-        # self.people_adder_check(field)  # Regular Expressions
-        name = self.adder_name_var.get()
-        surname = self.adder_surname_var.get()
-        birth = formatted_birth_date(self.adder_birth_var.get(), "YYYY-MM-DD")
-        country = self.adder_country_var.get()
+        self.adder_problem_detected = False
+        if self.people_adder_check() is False:
+            return
+
+        name = self.add_name_var.get()
+        surname = self.add_surname_var.get()
+        birth = formatted_birth_date(self.add_birth_var.get(), "YYYY-MM-DD")
+        country = self.add_country_var.get()
         gender = self.gender_selector.get()
         photo = self.file_selected
 
@@ -297,26 +305,82 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_row_peopleviewer()
         self.clear_people_adder()
 
-    def people_adder_check(self, field):
+    def people_adder_check(self):
         """
-        Method that checks if the people adder's field input is correct
+        Method that checks if the people adder's fields input are correct.
+        If any of these are, then It will throw an error message.
         """
-        pass
+        self.check_name_field()
+        if self.adder_problem_detected:
+            return False
+
+        self.check_birthdate_field()
+        if self.adder_problem_detected:
+            return False
+
+        self.check_gender_field()
+        if self.adder_problem_detected:
+            return False
+
+        self.remove_adder_placeholders()
+
+    def check_name_field(self):
+        if self.add_name_var.get() == "First Name":
+            self.adder_problem_detected = True
+            return messagebox.showerror(
+                "Field incomplete",
+                "Filling in the First Name field is mandatory.")
+
+    def check_gender_field(self):
+        if self.gender_selector.get() == 0:
+            self.adder_problem_detected = True
+            return messagebox.showerror(
+                "Field incomplete",
+                "Filling in the Gender field is mandatory.")
+
+    def check_birthdate_field(self):
+        pattern = re.compile(r'([0-3]*[0-9])+/([0-1]*[0-9])+/(\d{4})+')
+        match = pattern.findall(self.add_birth_var.get())
+
+        if match == []:
+            self.adder_problem_detected = True
+            return messagebox.showerror(
+                "Field format problem",
+                "There was a problem with the Date of Birth field." +
+                '\nTry adding a date of birth with this format: "DD/MM/YYYY.')
+
+        try:
+            datetime.strptime(self.add_birth_var.get(), "%d/%m/%Y")
+        except ValueError:
+            self.adder_problem_detected = True
+            return messagebox.showerror(
+                "Field data problem",
+                "There was a problem with the input numbers of the Date of " +
+                "Birth field. \nCheck if the inserted digits are correct.")
+
+    def remove_adder_placeholders(self):
+        matches = (
+            (self.add_surname_var, "Second Name"),
+            (self.add_country_var, "Country"))
+
+        for entry in matches:
+            if re.match(entry[0].get(), entry[1]) is not None:
+                entry[0].set("")
 
     def clear_people_adder(self):
         self.convert_adder_img("")  # Sets the default adder image
         self.gender_selector.set(0)
         self.file_selected = ""
-        self.adder_name_var.set("First Name")
-        self.adder_surname_var.set("Second Name")
-        self.adder_country_var.set("Country")
-        self.adder_birth_var.set("Birth Date")
+        self.add_name_var.set("First Name")
+        self.add_surname_var.set("Second Name")
+        self.add_country_var.set("Country")
+        self.add_birth_var.set("Birth Date")
 
     def remove_person(self, person_id):
         """
         This method removes a person from the DB.
         """
-        if self.ask_before_del_var.get() and self.ask_before_delete() == "no":
+        if self.ask_before_delete() == "no":
             return
 
         self.remove_person_db(person_id)
@@ -370,7 +434,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to update a row-person value, after changing
         the entry in the right-mid section.
         """
-        # self.check_entry_regex(section)  # Regular expressions
+        # self.update_entry_regex(section)  # Regular expressions
         if section == "fullname":
             self.update_person_fullname_query(person_id)
             self.switch_entry_state(
@@ -392,8 +456,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.update_row_peopleviewer(person_id)
 
     def ask_before_delete(self):
-        if self.ask_before_del_var.get():
-            answer = messagebox.askquestion(
-                "Delete", "Are you sure you want to delete this person?")
-            return answer
-        return "no"
+        """
+        Method to generate a messagebox asking to delete a person from the DB.
+        """
+        if self.ask_before_del_var.get() is False:
+            return "yes"
+
+        answer = messagebox.askquestion(
+            "Delete", "Are you sure you want to delete this person?")
+        return answer
