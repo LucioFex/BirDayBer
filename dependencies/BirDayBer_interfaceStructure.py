@@ -338,7 +338,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             (self.first_name, "First Name", self.add_name_var),
             (self.second_name, "Second Name", self.add_surname_var),
             (self.country, "Country", self.add_country_var),
-            (self.birth_date, "Birth Date", self.add_birth_var))
+            (self.birth_date, "Date of Birth", self.add_birth_var))
 
         for widget in entries:
             self.prepare_placeholder(widget[0], widget[1], widget[2])
@@ -361,7 +361,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.add_name_var.set("First Name")
         self.add_surname_var.set("Second Name")
         self.add_country_var.set("Country")
-        self.add_birth_var.set("Birth Date")
+        self.add_birth_var.set("Date of Birth")
 
         self.first_name = adder_entry(
             self.first_name_edge, self.screen_width, self.add_name_var)

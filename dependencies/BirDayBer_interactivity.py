@@ -284,7 +284,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that adds people to the DataBase
         """
-        self.adder_problem = False
+        self.adder_problem_detected = False
         if self.people_adder_check() is False:
             return
 
@@ -307,28 +307,48 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def people_adder_check(self):
         """
-        Method that checks if the people adder's fields input are correct
+        Method that checks if the people adder's fields input are correct.
+        If any of these are, then It will throw an error message.
         """
         self.check_gender_buttons()
-        self.check_birthdate_field()
+        if self.adder_problem_detected:
+            return False
 
-        if self.adder_problem:
+        self.check_birthdate_field()
+        if self.adder_problem_detected:
             return False
 
         self.remove_adder_placeholders()
 
     def check_gender_buttons(self):
         if self.gender_selector.get() == 0:
-            self.adder_problem = True
+            self.adder_problem_detected = True
             return messagebox.showerror(
-                "Field incomplete", "Filling in the Gender field is mandatory")
+                "Field incomplete",
+                "Filling in the Gender field is mandatory.")
 
     def check_birthdate_field(self):
-        pass
+        pattern = re.compile(r'([0-3]*[0-9])+/([0-1]*[0-9])+/(\d{4})+')
+        match = pattern.findall(self.add_birth_var.get())
+
+        if match == []:
+            self.adder_problem_detected = True
+            return messagebox.showerror(
+                "Field format problem",
+                "There was a problem with the Date of Birth field." +
+                '\nTry adding a date of birth with this format: "DD/MM/YYYY.')
+
+        try:
+            datetime.strptime(self.add_birth_var.get(), "%d/%m/%Y")
+        except ValueError:
+            self.adder_problem_detected = True
+            return messagebox.showerror(
+                "Field data problem",
+                "There was a problem with the input numbers of the Date of " +
+                "Birth field. \nCheck if the inserted digits are correct.")
 
     def remove_adder_placeholders(self):
         matches = (
-            (self.add_name_var, "First Name"),
             (self.add_surname_var, "Second Name"),
             (self.add_country_var, "Country"))
 
