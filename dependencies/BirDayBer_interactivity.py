@@ -310,7 +310,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that checks if the people adder's fields input are correct.
         If any of these are, then It will throw an error message.
         """
-        self.check_gender_buttons()
+        self.check_name_field()
         if self.adder_problem_detected:
             return False
 
@@ -318,9 +318,20 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         if self.adder_problem_detected:
             return False
 
+        self.check_gender_field()
+        if self.adder_problem_detected:
+            return False
+
         self.remove_adder_placeholders()
 
-    def check_gender_buttons(self):
+    def check_name_field(self):
+        if self.add_name_var.get() == "First Name":
+            self.adder_problem_detected = True
+            return messagebox.showerror(
+                "Field incomplete",
+                "Filling in the First Name field is mandatory.")
+
+    def check_gender_field(self):
         if self.gender_selector.get() == 0:
             self.adder_problem_detected = True
             return messagebox.showerror(
