@@ -3,8 +3,9 @@ from dependencies.db_manager import file_to_base64
 from tkinter.filedialog import askopenfilename
 import tkinter.messagebox as messagebox
 import tkinter as tk
-from datetime import datetime
 import webbrowser
+import re
+from datetime import datetime
 
 
 def open_github():
@@ -308,12 +309,14 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.remove_adder_placeholders()
 
     def remove_adder_placeholders(self):
-        placeholders = ("First Name", "Second Name", "Country")
-        entries = (
-            self.add_name_var, self.add_surname_var, self.add_country_var)
+        matches = (
+            (self.add_name_var, "First Name"),
+            (self.add_surname_var, "Second Name"),
+            (self.add_country_var, "Country"))
 
-        for entry in entries:
-            entry.set("") if entry.get() in placeholders else None
+        for entry in matches:
+            if re.match(entry[0].get(), entry[1]) is not None:
+                entry[0].set("")
 
     def clear_people_adder(self):
         self.convert_adder_img("")  # Sets the default adder image
