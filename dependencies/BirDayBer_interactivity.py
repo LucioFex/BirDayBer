@@ -284,7 +284,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that adds people to the DataBase
         """
-        self.people_adder_regex()
+        self.adder_problem = False
+        if self.people_adder_check() is False:
+            return
+
         name = self.add_name_var.get()
         surname = self.add_surname_var.get()
         birth = formatted_birth_date(self.add_birth_var.get(), "YYYY-MM-DD")
@@ -302,11 +305,26 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_row_peopleviewer()
         self.clear_people_adder()
 
-    def people_adder_regex(self):
+    def people_adder_check(self):
         """
         Method that checks if the people adder's fields input are correct
         """
+        self.check_gender_buttons()
+        self.check_birthdate_field()
+
+        if self.adder_problem:
+            return False
+
         self.remove_adder_placeholders()
+
+    def check_gender_buttons(self):
+        if self.gender_selector.get() == 0:
+            self.adder_problem = True
+            return messagebox.showerror(
+                "Field incomplete", "Filling in the Gender field is mandatory")
+
+    def check_birthdate_field(self):
+        pass
 
     def remove_adder_placeholders(self):
         matches = (
