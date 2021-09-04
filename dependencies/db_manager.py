@@ -167,9 +167,9 @@ class Db_manager:
         """
         Method to update the data on the DB.
         """
-        sql_query = f"UPDATE {table} SET {column}='{value}' WHERE {where}"
+        sql_query = f"UPDATE {table} SET {column}=? WHERE {where}"
 
-        self.cursor.execute(sql_query)
+        self.cursor.execute(sql_query, (value, ))
         self.connection.commit()
 
     def drop_database(self):
