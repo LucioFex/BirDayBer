@@ -239,9 +239,11 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.right_mid_packing()
 
         self.current_id = person_id
+        self.current_big_image = self.default_big_img
 
         photo = self.process_photo(photo, self.default_big_img, "big")
-        self.big_photo.config(image=photo)
+        self.big_photo.config(
+            image=photo, command=lambda: self.update_row_photo(person_id))
 
         genders = {1: self.male_small_src, 2: self.female_small_src}
         gender = genders[gender]
@@ -284,7 +286,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that adds people to the DataBase
         """
-        self.adder_problem_detected = False
         if self.people_adder_check() is False:
             return
 
@@ -310,53 +311,50 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that checks if the people adder's fields input are correct.
         If any of these are, then It will throw an error message.
         """
-        self.check_name_field()
-        if self.adder_problem_detected:
-            return False
+        checks = (
+            self.check_name_field(),
+            self.check_birthdate_field(self.add_birth_var),
+            self.check_gender_field())
 
-        self.check_birthdate_field()
-        if self.adder_problem_detected:
-            return False
-
-        self.check_gender_field()
-        if self.adder_problem_detected:
-            return False
+        for check in checks:
+            if check:
+                return
 
         self.remove_adder_placeholders()
 
     def check_name_field(self):
         if self.add_name_var.get() == "First Name":
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field incomplete",
                 "Filling in the First Name field is mandatory.")
+            return True
 
     def check_gender_field(self):
         if self.gender_selector.get() == 0:
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field incomplete",
                 "Filling in the Gender field is mandatory.")
+            return True
 
-    def check_birthdate_field(self):
+    def check_birthdate_field(self, date_of_birth):
         pattern = re.compile(r'([0-3]*[0-9])+/([0-1]*[0-9])+/(\d{4})+')
-        match = pattern.findall(self.add_birth_var.get())
+        match = pattern.findall(date_of_birth.get())
 
         if match == []:
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field format problem",
                 "There was a problem with the Date of Birth field." +
                 '\nTry adding a date of birth with this format: "DD/MM/YYYY.')
+            return True
 
         try:
-            datetime.strptime(self.add_birth_var.get(), "%d/%m/%Y")
+            datetime.strptime(date_of_birth.get(), "%d/%m/%Y")
         except ValueError:
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field data problem",
                 "There was a problem with the input numbers of the Date of " +
-                "Birth field. \nCheck if the inserted digits are correct.")
+                "Birth field. Check if the inserted digits are correct.")
+            return True
 
     def remove_adder_placeholders(self):
         matches = (
@@ -429,12 +427,50 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.update_person_db(
             "birth", "birth", birth_date, f"id_birth = {person_id}")
 
+    def update_row_photo(self, person_id):
+        """
+        Method that displays a preview of the new selected image
+        and asks the user to save it.
+        """
+        old_photo = self.current_big_image
+        photo = self.select_new_photo()
+
+        new_photo = self.process_photo(photo[0], self.current_big_image, "big")
+        self.big_photo.config(image=new_photo)
+
+        if self.ask_before_update_photo(photo[1]) == "no":
+            self.current_big_image = old_photo
+            return self.big_photo.config(image=self.current_big_image)
+
+        self.update_person_db(
+            "photo", "photo", photo[0], f"id_photo = {person_id}")
+
+        self.update_row_peopleviewer(person_id)
+
+    def select_new_photo(self):
+        filename = askopenfilename(
+            initialdir="/", title="Select an image",
+            filetypes=(("Images", ".jpg .jpeg .png .tiff"), ))
+
+        photo = file_to_base64(filename)
+        return (photo, filename)
+
+    def ask_before_update_photo(self, filename):
+        if filename == "":
+            return "no"
+
+        answer = messagebox.askquestion(
+            "Update Photo", "Are you sure you want to save this photo?")
+        return answer
+
     def update_person(self, person_id, section):
         """
         Method to update a row-person value, after changing
         the entry in the right-mid section.
         """
-        # self.update_entry_regex(section)  # Regular expressions
+        if self.check_updated_mid_entries() is False:
+            return
+
         if section == "fullname":
             self.update_person_fullname_query(person_id)
             self.switch_entry_state(
@@ -449,11 +485,48 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         elif section == "birth":
             self.update_person_birth_query(person_id)
+            self.update_age_visor()
             self.switch_entry_state(
                 person_id, self.birth_big,
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
+
+    def update_age_visor(self):
+        birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
+        self.age_var.set(current_age(birth_date))
+
+    def check_updated_mid_entries(self):
+        if self.check_updated_fullname():
+            return False
+        if self.check_birthdate_field(self.birth_var):
+            return False
+
+    def check_updated_fullname(self):
+        """
+        Method that checks if the Full Name field is correct,
+        checking if it has more than 1 space or if it is empty.
+        """
+        error_detected = False
+        spaces = 0
+
+        for char in self.fullname_var.get():
+            spaces += 1 if char == " " else 0
+            if spaces == 2:
+                error_detected = True
+                break
+
+        if self.fullname_var.get() in ("", " "):
+            messagebox.showerror(
+                "Field incomplete",
+                "Filling in the Full Name field is mandatory.")
+            return True
+
+        elif error_detected:
+            messagebox.showerror(
+                "Problem detected",
+                "You cannot add more than one space in the Full Name field.")
+            return True
 
     def ask_before_delete(self):
         """
