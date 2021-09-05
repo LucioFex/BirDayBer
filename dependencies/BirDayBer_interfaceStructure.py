@@ -499,8 +499,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.gender_small_icon = tk.Label(
             self.right_bg, bg="#ffffff", image=self.male_small_src)
 
-        self.big_photo = tk.Label(
-            self.right_bg, image=self.default_big_img, bg="#ffffff")
+        self.big_photo = tk.Button(
+            self.right_bg, image=self.default_big_img,
+            bg="#ffffff", bd=0, activebackground="#ffffff", cursor="hand2")
 
         self.generate_trash_button()
 

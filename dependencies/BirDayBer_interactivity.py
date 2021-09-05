@@ -239,9 +239,11 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.right_mid_packing()
 
         self.current_id = person_id
+        self.current_big_image = self.default_big_img
 
         photo = self.process_photo(photo, self.default_big_img, "big")
-        self.big_photo.config(image=photo)
+        self.big_photo.config(
+            image=photo, command=lambda: self.update_row_photo(person_id))
 
         genders = {1: self.male_small_src, 2: self.female_small_src}
         gender = genders[gender]
@@ -428,6 +430,42 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
         self.update_person_db(
             "birth", "birth", birth_date, f"id_birth = {person_id}")
+
+    def update_row_photo(self, person_id):
+        """
+        Method that displays a preview of the new selected image
+        and asks the user to save it.
+        """
+        old_photo = self.current_big_image
+        photo = self.select_new_photo()
+
+        new_photo = self.process_photo(photo[0], self.current_big_image, "big")
+        self.big_photo.config(image=new_photo)
+
+        if self.ask_before_update_photo(photo[1]) == "no":
+            self.current_big_image = old_photo
+            return self.big_photo.config(image=self.current_big_image)
+
+        self.update_person_db(
+            "photo", "photo", photo[0], f"id_photo = {person_id}")
+
+        self.update_row_peopleviewer(person_id)
+
+    def select_new_photo(self):
+        filename = askopenfilename(
+            initialdir="/", title="Select an image",
+            filetypes=(("Images", ".jpg .jpeg .png .tiff"), ))
+
+        photo = file_to_base64(filename)
+        return (photo, filename)
+
+    def ask_before_update_photo(self, filename):
+        if filename == "":
+            return "no"
+
+        answer = messagebox.askquestion(
+            "Update Photo", "Are you sure you want to save this photo?")
+        return answer
 
     def update_person(self, person_id, section):
         """
