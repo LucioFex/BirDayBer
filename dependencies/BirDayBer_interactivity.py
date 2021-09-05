@@ -286,7 +286,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method that adds people to the DataBase
         """
-        self.adder_problem_detected = False
         if self.people_adder_check() is False:
             return
 
@@ -312,53 +311,50 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that checks if the people adder's fields input are correct.
         If any of these are, then It will throw an error message.
         """
-        self.check_name_field()
-        if self.adder_problem_detected:
-            return False
+        checks = (
+            self.check_name_field(),
+            self.check_birthdate_field(self.add_birth_var),
+            self.check_gender_field())
 
-        self.check_birthdate_field()
-        if self.adder_problem_detected:
-            return False
-
-        self.check_gender_field()
-        if self.adder_problem_detected:
-            return False
+        for check in checks:
+            if check:
+                return
 
         self.remove_adder_placeholders()
 
     def check_name_field(self):
         if self.add_name_var.get() == "First Name":
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field incomplete",
                 "Filling in the First Name field is mandatory.")
+            return True
 
     def check_gender_field(self):
         if self.gender_selector.get() == 0:
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field incomplete",
                 "Filling in the Gender field is mandatory.")
+            return True
 
-    def check_birthdate_field(self):
+    def check_birthdate_field(self, date_of_birth):
         pattern = re.compile(r'([0-3]*[0-9])+/([0-1]*[0-9])+/(\d{4})+')
-        match = pattern.findall(self.add_birth_var.get())
+        match = pattern.findall(date_of_birth.get())
 
         if match == []:
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field format problem",
                 "There was a problem with the Date of Birth field." +
                 '\nTry adding a date of birth with this format: "DD/MM/YYYY.')
+            return True
 
         try:
-            datetime.strptime(self.add_birth_var.get(), "%d/%m/%Y")
+            datetime.strptime(date_of_birth.get(), "%d/%m/%Y")
         except ValueError:
-            self.adder_problem_detected = True
-            return messagebox.showerror(
+            messagebox.showerror(
                 "Field data problem",
                 "There was a problem with the input numbers of the Date of " +
-                "Birth field. \nCheck if the inserted digits are correct.")
+                "Birth field. Check if the inserted digits are correct.")
+            return True
 
     def remove_adder_placeholders(self):
         matches = (
@@ -472,7 +468,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to update a row-person value, after changing
         the entry in the right-mid section.
         """
-        # self.update_entry_regex(section)  # Regular expressions
+        if self.check_updated_mid_entries() is False:
+            return
+
         if section == "fullname":
             self.update_person_fullname_query(person_id)
             self.switch_entry_state(
@@ -492,6 +490,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
+
+    def check_updated_mid_entries(self):
+        if self.check_birthdate_field(self.birth_big):
+            return False
 
     def ask_before_delete(self):
         """
