@@ -485,11 +485,16 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         elif section == "birth":
             self.update_person_birth_query(person_id)
+            self.update_age_visor()
             self.switch_entry_state(
                 person_id, self.birth_big,
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
+
+    def update_age_visor(self):
+        birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
+        self.age_var.set(current_age(birth_date))
 
     def check_updated_mid_entries(self):
         if self.check_updated_fullname():
