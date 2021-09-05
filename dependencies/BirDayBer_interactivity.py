@@ -492,8 +492,36 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.update_row_peopleviewer(person_id)
 
     def check_updated_mid_entries(self):
-        if self.check_birthdate_field(self.birth_big):
+        if self.check_updated_fullname():
             return False
+        if self.check_birthdate_field(self.birth_var):
+            return False
+
+    def check_updated_fullname(self):
+        """
+        Method that checks if the Full Name field is correct,
+        checking if it has more than 1 space or if it is empty.
+        """
+        error_detected = False
+        spaces = 0
+
+        for char in self.fullname_var.get():
+            spaces += 1 if char == " " else 0
+            if spaces == 2:
+                error_detected = True
+                break
+
+        if self.fullname_var.get() in ("", " "):
+            messagebox.showerror(
+                "Field incomplete",
+                "Filling in the Full Name field is mandatory.")
+            return True
+
+        elif error_detected:
+            messagebox.showerror(
+                "Problem detected",
+                "You cannot add more than one space in the Full Name field.")
+            return True
 
     def ask_before_delete(self):
         """
