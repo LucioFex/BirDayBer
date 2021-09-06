@@ -372,9 +372,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_date = adder_entry(
             self.birth_date_edge, self.screen_width, self.add_birth_var)
 
-        self.root.bind_all(
-            "<Button-1>", lambda click: click.widget.focus_set())
-
+        self.root.bind_all("<Button-1>", self.remove_entry_focus)
         self.people_adder_placeholders()
 
         padx = self.screen_width * 0.01375 + 0.0225
@@ -385,6 +383,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = self.screen_width * 0.01375 - 0.0225
         self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
+
+    def remove_entry_focus(self, click):
+        try:
+            return click.widget.focus_set()
+        except AttributeError:
+            pass
 
     def people_adder_right(self):
         """
