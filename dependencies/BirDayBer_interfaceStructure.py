@@ -264,7 +264,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas.bind("<Leave>", self.unbind_mousewheel)
 
     def bind_mousewheel(self, event):
-        self.yscrollbar.bind_all("<MouseWheel>", self.mousewheel_scroll)
+        if len(self.showed_people) >= 6:
+            self.yscrollbar.bind_all("<MouseWheel>", self.mousewheel_scroll)
 
     def unbind_mousewheel(self, event):
         self.yscrollbar.unbind_all("<MouseWheel>")
@@ -277,12 +278,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas.yview_scroll(distance, "units")
         self.scrollbar_at_bottom(event)
 
-    def reset_people_finder(self):
-        self.finder_frame.destroy()
-        self.people_finder_section()
+    # def reset_people_finder(self):
+    #     self.finder_frame.destroy()
+    #     self.people_finder_section()
 
-        self.finder_frame.pack(
-            fill="both", expand="yes", pady=(0, self.screen_height * 0.013))
+    #     self.finder_frame.pack(
+    #         fill="both", expand="yes", pady=(0, self.screen_height * 0.013))
 
     def left_side_structure_bottom(self, location):
         """

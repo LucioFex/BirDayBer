@@ -82,7 +82,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.settings_state = False  # VAR to don't open more than one window
         self.showed_people = {}  # VAR to show the rows on the people finder
         self.button_commands()
-        self.generate_people_viewer()
+        self.generate_people_viewer(False)
         # self.refresh_today_birthdays()
 
         self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
@@ -111,17 +111,30 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def open_about(self):
         return messagebox.showinfo("About BirDayBer", self.get_version())
 
-    def browser_filter(self, search=""):  # Unfinished
+    def browser_filter(self, filter=True):
         """
         Method that filters people in the 'people_finder' section.
         """
-        return self.get_people()
+        if not filter:
+            return self.get_people()
 
-    def generate_people_viewer(self):
+        obtained_people = self.get_people()
+        filtered_people = []
+
+        for person in obtained_people:
+            fullname = person[1] + " " + person[2]
+            search = re.search(self.search.get(), fullname, re.IGNORECASE)
+            if search is None:
+                continue
+            filtered_people.append(person)
+
+        return filtered_people
+
+    def generate_people_viewer(self, filters=True):
         """
         Method to refresh the people_finder depending on the browser's result.
         """
-        self.people_found = self.browser_filter()
+        self.people_found = self.browser_filter(filters)
         self.people_photos = []
         self.showed_people = {}
 
@@ -373,6 +386,16 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_surname_var.set("Second Name")
         self.add_country_var.set("Country")
         self.add_birth_var.set("Birth Date")
+
+        self.reset_people_finder()
+        self.generate_people_viewer()
+
+    def reset_people_finder(self):
+        for person_id in self.people_found:
+            try:
+                self.remove_row_peopleviewer(person_id[0])
+            except KeyError:  # To don't exceed the self.showed_people length
+                break
 
     def remove_person(self, person_id):
         """
