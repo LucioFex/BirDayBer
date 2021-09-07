@@ -16,6 +16,18 @@ def open_twitter():
     webbrowser.open("https://twitter.com/LucioFex")
 
 
+def check_birthday(birthday):
+    """
+    Function to check if today is someone's birthday.
+    """
+    birthday = birthday.split("/")[0:2]
+    today = datetime.strftime(datetime.now(), "%d/%m").split("/")
+
+    if int(birthday[0]) == int(today[0]) and int(birthday[1]) == int(today[1]):
+        return True
+    return False
+
+
 def current_age(birth_date):
     """
     Input example: 'YYYY-MM-DD' (str).
@@ -46,25 +58,25 @@ def formatted_birth_date(date, formatted):
         return "-".join(date)
 
 
-def finder_row_content(master, texts, width, photo, skull, command):
+def finder_row_content(master, texts, width, bg1, bg2, photo, skull, command):
     """
     Function to automate the finder label content generation.
     The "content" parameter must recieve a tuple or list of 4 elements.
     """
     row_person_img = tk.Button(
-        master, activebackground="#8fd0e7", bd=0, bg="#8fd0e7",
+        master, activebackground=bg1, bd=0, bg=bg1,
         image=photo, cursor="hand2", command=command)
     row_person_img.grid(row=0, column=0, rowspan=2)
 
     array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
     for text, grid in zip(texts, array):
         row_person = tk.Label(
-            master, bg="#6aaec6", fg="#e3e3e3", width=round(width * .0085),
+            master, bg=bg2, fg="#e3e3e3", width=round(width * .0085),
             font=("Century Gothic", round(width * 0.0087), "bold"), text=text)
 
         row_person.grid(row=grid[0], column=grid[1], padx=width * 0.0066)
 
-    row_person_skull = tk.Label(master, bg="#8fd0e7", image=skull, bd=0)
+    row_person_skull = tk.Label(master, bg=bg1, image=skull, bd=0)
     row_person_skull.grid(row=0, column=3, rowspan=2)
 
 
@@ -237,13 +249,26 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         texts[2] = formatted_birth_date(texts[2], "DD/MM/YYYY")
         preview_texts[2] = formatted_birth_date(preview_texts[2], "DD/MM/YYYY")
 
-        row_person_border = tk.Frame(self.people_finder, bg="#79c1db")
-        row_person = tk.Frame(row_person_border, bg="#8fd0e7")
+        bg_1, bg_2, bg_3 = "#79c1db", "#8fd0e7", "#6aaec6"
 
-        finder_row_content(
-            row_person, preview_texts, self.screen_width,
+        birthday = False
+        if check_birthday(texts[2]):
+            birthday = True
+
+        if birthday:
+            bg_2 = "#99d99a"
+
+        row_person_border = tk.Frame(self.people_finder, bg=bg_1)
+        row_person = tk.Frame(row_person_border, bg=bg_2)
+
+        data = [
+            row_person, preview_texts, self.screen_width, bg_2, bg_3,
             new_photo, self.skull_src, lambda:
-                self.big_person_generation(person_id, texts, gender, photo))
+            self.big_person_generation(person_id, texts, gender, photo)]
+
+        if birthday:
+            data[6] = self.skull_party_src
+        finder_row_content(*data)
 
         self.showed_people[person_id] = row_person_border
         if not grid:

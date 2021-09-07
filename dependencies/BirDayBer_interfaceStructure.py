@@ -91,6 +91,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.accept_src = src_image("accept.png")
         self.clear_src = src_image("clear.png")
         self.skull_src = src_image("randolph.png")
+        self.skull_party_src = src_image("party-randolph.png")
         self.garbage1_src = src_image("garbage1.png")
         self.garbage2_src = src_image("garbage2.png")
         self.twitter_src = src_image("twitter.png")
@@ -541,7 +542,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.025, 0)
         self.age_bg.grid(sticky="w", row=4, column=0, pady=pady, padx=padx)
 
-        padx = (0, self.screen_width * 0.024)
+        padx = (0, self.screen_width * 0.045)
         self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)
 
         self.big_photo.grid(sticky="ne", rowspan=5, row=0, column=2)
