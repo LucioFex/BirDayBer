@@ -143,7 +143,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         return filtered_people
 
-    def search_in_browser(self):
+    def search_in_browser(self, event):
         """
         Method to search for a person in people_finder through the browser.
         """
@@ -418,7 +418,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_name_var.set("First Name")
         self.add_surname_var.set("Second Name")
         self.add_country_var.set("Country")
-        self.add_birth_var.set("Birth Date")
+        self.add_birth_var.set("Date of Birth")
 
     def reset_people_finder(self):
         for person_id in self.people_found:
