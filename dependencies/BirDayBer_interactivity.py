@@ -102,6 +102,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.accept.config(command=self.people_adder_accept)
         self.img_adder.config(command=self.people_adder_file_select)
         self.clear.config(command=self.clear_people_adder)
+        self.browser.bind("<Return>", self.search_in_browser)
 
     def show_license(self):
         return messagebox.showinfo(
@@ -129,6 +130,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             filtered_people.append(person)
 
         return filtered_people
+
+    def search_in_browser(self):
+        """
+        Method to search for a person in people_finder through the browser.
+        """
+        self.reset_people_finder()
+        self.generate_people_viewer()
 
     def generate_people_viewer(self, filters=True):
         """
@@ -386,9 +394,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_surname_var.set("Second Name")
         self.add_country_var.set("Country")
         self.add_birth_var.set("Birth Date")
-
-        self.reset_people_finder()
-        self.generate_people_viewer()
 
     def reset_people_finder(self):
         for person_id in self.people_found:
