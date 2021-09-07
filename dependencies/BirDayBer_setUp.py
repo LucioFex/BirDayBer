@@ -171,7 +171,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("accept.png", "clear.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.040, 0.059))
             # Skull icon
-            elif img in ("randolph.png"):
+            elif img in ("randolph.png", "party-randolph.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.051, 0.073))
             # Garbage icons
             elif img in ("garbage1.png", "garbage2.png"):
