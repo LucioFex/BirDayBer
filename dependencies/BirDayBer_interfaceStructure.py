@@ -532,7 +532,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
         pady = (self.screen_height * 0.007, 0)
-        padx = (self.screen_width * 0.0445, self.screen_width * 0.0718)
+        padx = (self.screen_width * 0.0445, self.screen_width * 0.0732)
         self.fullname_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
@@ -542,7 +542,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         pady = (self.screen_height * 0.025, 0)
         self.age_bg.grid(sticky="w", row=4, column=0, pady=pady, padx=padx)
 
-        padx = (0, self.screen_width * 0.045)
+        padx = (0, self.screen_width * 0.025)
         self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)
 
         self.big_photo.grid(sticky="ne", rowspan=5, row=0, column=2)
