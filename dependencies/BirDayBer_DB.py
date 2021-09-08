@@ -116,7 +116,7 @@ class Birdayber_database:
             INNER JOIN
                 gender on gender.id_gender = person.id_gender1_fk""",
             id_person)
-        return people_data
+        return list(people_data)
 
     def get_last_person(self):
         """

@@ -227,7 +227,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         grid = True
         if row < len(self.people_found):
-            self.people_found = self.browser_filter()
+            self.people_found.append(person)
             grid = False
 
         self.canvas.update_idletasks()
