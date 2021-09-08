@@ -28,6 +28,33 @@ def check_birthday(birthday):
     return False
 
 
+def check_realistic_birth_date(date):
+    """
+    Function to check if the inserted date of birth is not futurist.
+    """
+    date = date.split("/")
+    today = datetime.strftime(datetime.now(), "%d/%m/%Y").split("/")
+
+    logic_1 = (
+        int(date[0]) > int(today[0]) and  # Day
+        int(date[1]) >= int(today[1]) and  # Month
+        int(date[2]) >= int(today[2]))  # Year
+
+    logic_2 = (
+        int(date[0]) >= int(today[0]) and  # Day
+        int(date[1]) > int(today[1]) and  # Month
+        int(date[2]) >= int(today[2]))  # Year
+
+    logic_3 = (
+        int(date[0]) >= int(today[0]) and  # Day
+        int(date[1]) >= int(today[1]) and  # Month
+        int(date[2]) > int(today[2]))  # Year
+
+    if logic_1 or logic_2 or logic_3:
+        return False
+    return True
+
+
 def current_age(birth_date):
     """
     Input example: 'YYYY-MM-DD' (str).
@@ -93,9 +120,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.settings_state = False  # VAR to don't open more than one window
         self.showed_people = {}  # VAR to show the rows on the people finder
+        self.total_birthdays = 0
+
         self.button_commands()
         self.generate_people_viewer(False)
-        # self.refresh_today_birthdays()
+
+        self.check_all_birthdays()
+        self.refresh_today_birthdays()
 
         self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
 
@@ -124,6 +155,19 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def open_about(self):
         return messagebox.showinfo("About BirDayBer", self.get_version())
 
+    def refresh_today_birthdays(self):
+        """
+        Method to update the "Birthday Counter" label.
+        """
+        total = f"Today is the birthday of {self.total_birthdays} people"
+        return self.birthday_counter.config(text=total)
+
+    def check_all_birthdays(self):  # Improve performance later...
+        for person in self.people_found:
+            date = formatted_birth_date(person[3], "DD/MM/YYYY")
+            if check_birthday(date):
+                self.total_birthdays += 1
+
     def browser_filter(self, filter=True):
         """
         Method that filters people in the 'people_finder' section.
@@ -143,7 +187,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         return filtered_people
 
-    def search_in_browser(self):
+    def search_in_browser(self, event):
         """
         Method to search for a person in people_finder through the browser.
         """
@@ -200,7 +244,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         grid = True
         if row < len(self.people_found):
-            self.people_found = self.browser_filter()
+            self.people_found.append(person)
             grid = False
 
         self.canvas.update_idletasks()
@@ -268,8 +312,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         if birthday:
             data[6] = self.skull_party_src
-        finder_row_content(*data)
 
+        finder_row_content(*data)
         self.showed_people[person_id] = row_person_border
         if not grid:
             return
@@ -283,6 +327,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.default_bg.pack_forget()
         self.right_mid_packing()
+
+        if check_birthday(texts[2]):
+            self.skull_icon.config(image=self.skull_party_src)
 
         self.current_id = person_id
         self.current_big_image = self.default_big_img
@@ -357,14 +404,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that checks if the people adder's fields input are correct.
         If any of these are, then It will throw an error message.
         """
-        checks = (
-            self.check_name_field(),
-            self.check_birthdate_field(self.add_birth_var),
-            self.check_gender_field())
-
-        for check in checks:
-            if check:
-                return
+        if self.check_name_field():
+            return False
+        elif self.check_birthdate_field(self.add_birth_var):
+            return False
+        elif self.check_gender_field():
+            return False
 
         self.remove_adder_placeholders()
 
@@ -395,6 +440,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         try:
             datetime.strptime(date_of_birth.get(), "%d/%m/%Y")
+            if check_realistic_birth_date(date_of_birth.get()) is False:
+                raise ValueError
         except ValueError:
             messagebox.showerror(
                 "Field data problem",
@@ -418,7 +465,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_name_var.set("First Name")
         self.add_surname_var.set("Second Name")
         self.add_country_var.set("Country")
-        self.add_birth_var.set("Birth Date")
+        self.add_birth_var.set("Date of Birth")
 
     def reset_people_finder(self):
         for person_id in self.people_found:
@@ -538,16 +585,21 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         elif section == "birth":
             self.update_person_birth_query(person_id)
-            self.update_age_visor()
+            self.update_right_mid_birth_data()
             self.switch_entry_state(
                 person_id, self.birth_big,
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
 
-    def update_age_visor(self):
+    def update_right_mid_birth_data(self):
         birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
         self.age_var.set(current_age(birth_date))
+
+        if check_birthday(self.birth_var.get()):
+            self.refresh_today_birthdays()
+            return self.skull_icon.config(image=self.skull_party_src)
+        return self.skull_icon.config(image=self.skull_src)
 
     def check_updated_mid_entries(self):
         if self.check_updated_fullname():
