@@ -295,8 +295,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         if birthday:
             data[6] = self.skull_party_src
-        finder_row_content(*data)
 
+        finder_row_content(*data)
         self.showed_people[person_id] = row_person_border
         if not grid:
             return
@@ -310,6 +310,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.default_bg.pack_forget()
         self.right_mid_packing()
+
+        if check_birthday(texts[2]):
+            self.skull_icon.config(image=self.skull_party_src)
 
         self.current_id = person_id
         self.current_big_image = self.default_big_img
@@ -565,16 +568,20 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         elif section == "birth":
             self.update_person_birth_query(person_id)
-            self.update_age_visor()
+            self.update_right_mid_birth_data()
             self.switch_entry_state(
                 person_id, self.birth_big,
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
 
-    def update_age_visor(self):
+    def update_right_mid_birth_data(self):
         birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
         self.age_var.set(current_age(birth_date))
+
+        if check_birthday(self.birth_var.get()):
+            return self.skull_icon.config(image=self.skull_party_src)
+        return self.skull_icon.config(image=self.skull_src)
 
     def check_updated_mid_entries(self):
         if self.check_updated_fullname():
