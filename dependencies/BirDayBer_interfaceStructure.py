@@ -74,6 +74,27 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.right_side = tk.Frame(self.frame, bg="#3B5459")
 
         # Source images generation
+        self.load_images()
+
+        # Generation of the title bar
+        self.titlebar_init()
+
+        # Generation of the structure of the body
+        self.left_side.pack(side="left", fill="both")
+        self.right_side.pack(side="left", fill="both", expand=True)
+
+        # Generation of settings BooleanVars
+        self.sound_var = tk.BooleanVar()
+        self.ask_before_del_var = tk.BooleanVar(value=True)
+
+        self.left_side_structure_top(location)
+        self.left_side_structure_mid(location)
+        self.left_side_structure_bottom(location)
+        self.right_side_structure_top(location)
+        self.right_side_structure_mid(location)
+        self.right_side_structure_bottom(location)
+
+    def load_images(self):
         self.birdayber_src = src_image("BirDayBerIcon.png")
         self.minimize_src = src_image("minimize-button.png")
         self.maximize_src = src_image("maximize-button.png")
@@ -104,24 +125,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.check_button0 = src_image("checkButton0.png")
         self.check_button1 = src_image("checkButton1.png")
         self.default_right_img = src_image("default-right-img.png")
-
-        # Generation of the title bar
-        self.titlebar_init()
-
-        # Generation of the structure of the body
-        self.left_side.pack(side="left", fill="both")
-        self.right_side.pack(side="left", fill="both", expand=True)
-
-        # Generation of settings BooleanVars
-        self.sound_var = tk.BooleanVar()
-        self.ask_before_del_var = tk.BooleanVar(value=True)
-
-        self.left_side_structure_top(location)
-        self.left_side_structure_mid(location)
-        self.left_side_structure_bottom(location)
-        self.right_side_structure_top(location)
-        self.right_side_structure_mid(location)
-        self.right_side_structure_bottom(location)
 
     def titlebar_init(self):
         """
@@ -589,7 +592,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         Method that generates the base for the bot-right appearance of the GUI.
         """
         self.right_bottom = tk.Frame(self.right_side, bg="#3B5459")
-        self.today_birthdays_bg = tk.Frame(self.right_bottom, bg="#303c41")
+        self.birthday_counter_bg = tk.Frame(self.right_bottom, bg="#303c41")
 
         self.twitter_icon = tk.Button(
             self.right_bottom, bg="#3B5459", image=self.twitter_src, bd=0,
@@ -599,8 +602,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.right_bottom, bg="#3B5459", image=self.github_src, bd=0,
             activebackground="#3B5459", relief="flat", cursor="hand2")
 
-        self.today_birthdays = tk.Label(
-            self.today_birthdays_bg, text="Today is the birthday of x people",
+        self.birthday_counter = tk.Label(
+            self.birthday_counter_bg, text="Today is the birthday of x people",
             font=("Century Gothic", round(self.screen_width * 0.016)),
             fg="#e3e3e3", bg="#303c41")
 
@@ -610,8 +613,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.twitter_icon.pack(padx=padx, side="right")
 
         padx = (self.screen_width * 0.0545, 0)
-        self.today_birthdays_bg.pack(padx=padx, anchor="w")
-        self.today_birthdays.pack(ipady=self.screen_height)
+        self.birthday_counter_bg.pack(padx=padx, anchor="w")
+        self.birthday_counter.pack(ipady=self.screen_height)
 
     def open_settings(self):
         self.settings = tk.Toplevel(bg="#364349")

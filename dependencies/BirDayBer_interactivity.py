@@ -50,7 +50,7 @@ def check_realistic_birth_date(date):
         int(date[1]) >= int(today[1]) and  # Month
         int(date[2]) > int(today[2]))  # Year
 
-    if (logic_1 or logic_2 or logic_3):
+    if logic_1 or logic_2 or logic_3:
         return False
     return True
 
@@ -120,9 +120,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.settings_state = False  # VAR to don't open more than one window
         self.showed_people = {}  # VAR to show the rows on the people finder
+        self.total_birthdays = 0
+
         self.button_commands()
         self.generate_people_viewer(False)
-        # self.refresh_today_birthdays()
+
+        self.check_all_birthdays()
+        self.refresh_today_birthdays()
 
         self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
 
@@ -150,6 +154,19 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def open_about(self):
         return messagebox.showinfo("About BirDayBer", self.get_version())
+
+    def refresh_today_birthdays(self):
+        """
+        Method to update the "Birthday Counter" label.
+        """
+        total = f"Today is the birthday of {self.total_birthdays} people"
+        return self.birthday_counter.config(text=total)
+
+    def check_all_birthdays(self):  # Improve performance later...
+        for person in self.people_found:
+            date = formatted_birth_date(person[3], "DD/MM/YYYY")
+            if check_birthday(date):
+                self.total_birthdays += 1
 
     def browser_filter(self, filter=True):
         """
@@ -580,6 +597,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.age_var.set(current_age(birth_date))
 
         if check_birthday(self.birth_var.get()):
+            self.refresh_today_birthdays()
             return self.skull_icon.config(image=self.skull_party_src)
         return self.skull_icon.config(image=self.skull_src)
 
