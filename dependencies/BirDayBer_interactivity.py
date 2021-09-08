@@ -133,7 +133,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
         self.minimize_button.config(command=self.title_bar_minimize)
-        self.close_button.config(command=self.close_client)
+        self.close_button.config(command=self.turn_strayicon_on)
         self.license_icon.config(command=self.show_license)
         self.about_icon.config(command=self.open_about)
         self.github_icon.config(command=open_github)

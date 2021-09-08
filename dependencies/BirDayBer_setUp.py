@@ -1,8 +1,10 @@
 import dependencies.BirDayBer_DB as BirDayBer_DB
 from PIL import (Image, ImageOps, ImageTk)
+from pystray import MenuItem as item
 from base64 import b64decode
 from io import BytesIO
 import tkinter as tk
+import pystray
 import os
 
 
@@ -246,9 +248,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         is focused or not. Then it will minimize or re-open the window.
         """
         self.root.update()
-        if event.type == tk.EventType.FocusIn:
+        if event.type == tk.EventType.FocusIn:  # Show the window
             self.root.deiconify()
-        elif event.type == tk.EventType.Unmap:
+
+        elif event.type == tk.EventType.Unmap:  # Hide the window
             self.root.withdraw()
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
@@ -317,9 +320,30 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         photo.close()
         return self.current_adder_image
 
+    def turn_strayicon_on(self):
+        self.title_bar_minimize()
+
+        app_icon = "bin//system-content//visual-content//BirDayBerIcon.ico"
+        stray_image = Image.open(app_icon)
+
+        stray_menu = (
+            item('Show', self.open_client), item('Quit', self.close_client))
+
+        self.stray_icon = pystray.Icon(
+            "name", stray_image, "BirDayBer", stray_menu)
+        self.stray_icon.run()
+
+    def open_client(self):
+        """
+        Method to open the client from the Stray Icon in the TaskBar.
+        """
+        self.stray_icon.stop()
+        self.root.after(0, self.root.deiconify())
+
     def close_client(self):
         """
         It makes the program close the database and stop mainlooping.
         """
+        self.stray_icon.stop()
         self.db.close_database()
         self.root.quit()

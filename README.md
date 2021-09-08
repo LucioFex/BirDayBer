@@ -18,16 +18,19 @@ This project will remind you with a notification for your operating system if it
 - Python [Tkinter (Tcl/Tk)](https://docs.python.org/3/library/tkinter.html) library.
 - Python [Sqlite3](https://docs.python.org/3/library/sqlite3.html) library.
 - Python [Pillow](https://pypi.org/project/Pillow/) library.
+- Python [PyStray](https://pypi.org/project/pystray/) library.
 - Python [OS](https://docs.python.org/3/library/os.html) module.
 - Python [WebBrowser](https://rico-schmidt.name/pymotw-3/webbrowser/index.html) module.
 - Python [Base64](https://docs.python.org/3/library/base64.html) module.
 - Python [DateTime](https://docs.python.org/3/library/datetime.html) module.
+- Python [Re](https://docs.python.org/3/library/re.html) module.
 
 
 ## Requirements:
 
 - [Python 3.9.6](https://www.python.org/downloads/release/python-396/).
 - [Pillow 8.0.1](https://pypi.org/project/Pillow/8.0.1/).
+- [PyStray 0.17.3](https://pypi.org/project/pystray/).
 - The rest of libraries and modules come by default.
 
 
