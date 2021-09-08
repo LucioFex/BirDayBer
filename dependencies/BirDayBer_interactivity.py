@@ -28,6 +28,33 @@ def check_birthday(birthday):
     return False
 
 
+def check_realistic_birth_date(date):
+    """
+    Function to check if the inserted date of birth is not futurist.
+    """
+    date = date.split("/")
+    today = datetime.strftime(datetime.now(), "%d/%m/%Y").split("/")
+
+    logic_1 = (
+        int(date[0]) > int(today[0]) and  # Day
+        int(date[1]) >= int(today[1]) and  # Month
+        int(date[2]) >= int(today[2]))  # Year
+
+    logic_2 = (
+        int(date[0]) >= int(today[0]) and  # Day
+        int(date[1]) > int(today[1]) and  # Month
+        int(date[2]) >= int(today[2]))  # Year
+
+    logic_3 = (
+        int(date[0]) >= int(today[0]) and  # Day
+        int(date[1]) >= int(today[1]) and  # Month
+        int(date[2]) > int(today[2]))  # Year
+
+    if (logic_1 or logic_2 or logic_3):
+        return False
+    return True
+
+
 def current_age(birth_date):
     """
     Input example: 'YYYY-MM-DD' (str).
@@ -357,14 +384,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that checks if the people adder's fields input are correct.
         If any of these are, then It will throw an error message.
         """
-        checks = (
-            self.check_name_field(),
-            self.check_birthdate_field(self.add_birth_var),
-            self.check_gender_field())
-
-        for check in checks:
-            if check:
-                return
+        if self.check_name_field():
+            return False
+        elif self.check_birthdate_field(self.add_birth_var):
+            return False
+        elif self.check_gender_field():
+            return False
 
         self.remove_adder_placeholders()
 
@@ -395,6 +420,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         try:
             datetime.strptime(date_of_birth.get(), "%d/%m/%Y")
+            if check_realistic_birth_date(date_of_birth.get()) is False:
+                raise ValueError
         except ValueError:
             messagebox.showerror(
                 "Field data problem",
