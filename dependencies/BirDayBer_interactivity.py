@@ -120,12 +120,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.settings_state = False  # VAR to don't open more than one window
         self.showed_people = {}  # VAR to show the rows on the people finder
-        self.total_birthdays = 0
-
         self.button_commands()
         self.generate_people_viewer(False)
 
-        self.check_all_birthdays()
         self.refresh_today_birthdays()
 
         self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
@@ -136,7 +133,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
         self.minimize_button.config(command=self.title_bar_minimize)
-        self.close_button.config(command=self.close_client)
+        self.close_button.config(command=self.turn_strayicon_on)
         self.license_icon.config(command=self.show_license)
         self.about_icon.config(command=self.open_about)
         self.github_icon.config(command=open_github)
@@ -159,10 +156,17 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method to update the "Birthday Counter" label.
         """
-        total = f"Today is the birthday of {self.total_birthdays} people"
-        return self.birthday_counter.config(text=total)
+        self.people_found = self.browser_filter(False)
+        self.check_all_birthdays()
 
-    def check_all_birthdays(self):  # Improve performance later...
+        label_txt = f"Today is the birthday of {self.total_birthdays} people"
+        return self.birthday_counter.config(text=label_txt)
+
+    def check_all_birthdays(self):
+        """
+        Get the total number of birthdays.
+        """
+        self.total_birthdays = 0
         for person in self.people_found:
             date = formatted_birth_date(person[3], "DD/MM/YYYY")
             if check_birthday(date):
@@ -396,6 +400,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             "birth": {"birth": birth},
             "person": {"per_first": name, "per_last": surname}})
 
+        self.refresh_today_birthdays()
         self.add_row_peopleviewer()
         self.clear_people_adder()
 
