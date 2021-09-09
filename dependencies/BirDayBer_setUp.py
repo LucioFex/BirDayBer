@@ -56,6 +56,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.hidden_window.bind("<Unmap>", self.window_focus)
         self.hidden_window.bind("<FocusIn>", self.window_focus)
 
+        # Attribute to check if the app is a Stray icon or not
+        self.stray_icon_state = False
+
         # Implementation of actions for when the window is closed
         for widget in (self.root, self.hidden_window):
             widget.protocol("WM_DELETE_WINDOW", self.close_client)
@@ -321,24 +324,31 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         return self.current_adder_image
 
     def turn_strayicon_on(self):
-        self.title_bar_minimize()
+        """
+        Method to convert the app into a Stray Icon.
+        """
+        self.stray_icon_state = True
+        self.prepare_birthday_notification()
+        self.hidden_window.withdraw()
 
         app_icon = "bin//system-content//visual-content//BirDayBerIcon.ico"
         stray_image = Image.open(app_icon)
 
-        stray_menu = (
+        stray_menu = pystray.Menu(
             item('Show', self.open_client), item('Quit', self.close_client))
 
         self.stray_icon = pystray.Icon(
             "name", stray_image, "BirDayBer", stray_menu)
+
         self.stray_icon.run()
 
     def open_client(self):
         """
         Method to open the client from the Stray Icon in the TaskBar.
         """
+        self.stray_icon_state = False
         self.stray_icon.stop()
-        self.root.after(0, self.root.deiconify())
+        self.root.after(0, self.hidden_window.deiconify())
 
     def close_client(self):
         """
