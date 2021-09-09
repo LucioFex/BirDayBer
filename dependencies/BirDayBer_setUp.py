@@ -326,11 +326,12 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         app_icon = "bin//system-content//visual-content//BirDayBerIcon.ico"
         stray_image = Image.open(app_icon)
 
-        stray_menu = (
+        stray_menu = pystray.Menu(
             item('Show', self.open_client), item('Quit', self.close_client))
 
         self.stray_icon = pystray.Icon(
             "name", stray_image, "BirDayBer", stray_menu)
+
         self.stray_icon.run()
 
     def open_client(self):
