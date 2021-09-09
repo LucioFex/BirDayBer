@@ -1,11 +1,12 @@
 import dependencies.BirDayBer_interfaceStructure as BirDayber_structure
 from dependencies.db_manager import file_to_base64
 from tkinter.filedialog import askopenfilename
+from plyer import notification
+from datetime import datetime
 import tkinter.messagebox as messagebox
 import tkinter as tk
 import webbrowser
 import re
-from datetime import datetime
 
 
 def open_github():
@@ -26,6 +27,19 @@ def check_birthday(birthday):
     if int(birthday[0]) == int(today[0]) and int(birthday[1]) == int(today[1]):
         return True
     return False
+
+
+def birthday_notify(data):
+    """
+    Function to notify the user of someone's birthday.
+    """
+    message = {
+        str: f"Today is {data}'s birthday!",
+        int: f"Today is the birthday of {data} people!"}
+
+    notification.notify(
+        title="BirDayBer", message=message[type(data)], timeout=5,
+        app_icon="bin//system-content//visual-content//BirDayBerIcon.ico")
 
 
 def check_realistic_birth_date(date):
@@ -159,18 +173,19 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.people_found = self.browser_filter(False)
         self.check_all_birthdays()
 
-        label_txt = f"Today is the birthday of {self.total_birthdays} people"
+        birthdays_count = len(self.total_birthdays)
+        label_txt = f"Today is the birthday of {birthdays_count} people"
         return self.birthday_counter.config(text=label_txt)
 
     def check_all_birthdays(self):
         """
-        Get the total number of birthdays.
+        Get the total number of birthdays and refreshes the total birthdays var
         """
-        self.total_birthdays = 0
+        self.total_birthdays = []
         for person in self.people_found:
             date = formatted_birth_date(person[3], "DD/MM/YYYY")
             if check_birthday(date):
-                self.total_birthdays += 1
+                self.total_birthdays.append(f"{person[1]} {person[2]}")
 
     def browser_filter(self, filter=True):
         """
@@ -648,3 +663,17 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         answer = messagebox.askquestion(
             "Delete", "Are you sure you want to delete this person?")
         return answer
+
+    def prepare_birthday_notification(self):  # Fix the timeout later
+        """
+        Method to prepare the OS notifications about the Birthdays.
+        """
+        if self.stray_icon_state is False:
+            return
+
+        if len(self.total_birthdays) < 2:
+            for person in self.total_birthdays:
+                birthday_notify(person)
+
+        elif len(self.total_birthdays) >= 2:
+            birthday_notify(len(self.total_birthdays))

@@ -19,6 +19,7 @@ This project will remind you with a notification for your operating system if it
 - Python [Sqlite3](https://docs.python.org/3/library/sqlite3.html) library.
 - Python [Pillow](https://pypi.org/project/Pillow/) library.
 - Python [PyStray](https://pypi.org/project/pystray/) library.
+- Python [Plyer](https://pypi.org/project/plyer/) library.
 - Python [OS](https://docs.python.org/3/library/os.html) module.
 - Python [WebBrowser](https://rico-schmidt.name/pymotw-3/webbrowser/index.html) module.
 - Python [Base64](https://docs.python.org/3/library/base64.html) module.
@@ -31,6 +32,7 @@ This project will remind you with a notification for your operating system if it
 - [Python 3.9.6](https://www.python.org/downloads/release/python-396/).
 - [Pillow 8.0.1](https://pypi.org/project/Pillow/8.0.1/).
 - [PyStray 0.17.3](https://pypi.org/project/pystray/).
+- [Plyer 2.0.0](https://pypi.org/project/plyer/).
 - The rest of libraries and modules come by default.
 
 
