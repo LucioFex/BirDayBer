@@ -321,7 +321,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         return self.current_adder_image
 
     def turn_strayicon_on(self):
-        self.title_bar_minimize()
+        self.hidden_window.withdraw()
 
         app_icon = "bin//system-content//visual-content//BirDayBerIcon.ico"
         stray_image = Image.open(app_icon)
@@ -338,7 +338,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         Method to open the client from the Stray Icon in the TaskBar.
         """
         self.stray_icon.stop()
-        self.root.after(0, self.root.deiconify())
+        self.root.after(0, self.hidden_window.deiconify())
 
     def close_client(self):
         """
