@@ -3,9 +3,11 @@ from dependencies.db_manager import file_to_base64
 from tkinter.filedialog import askopenfilename
 from plyer import notification
 from datetime import datetime
+from threading import Thread
 import tkinter.messagebox as messagebox
 import tkinter as tk
 import webbrowser
+import time
 import re
 
 
@@ -27,19 +29,6 @@ def check_birthday(birthday):
     if int(birthday[0]) == int(today[0]) and int(birthday[1]) == int(today[1]):
         return True
     return False
-
-
-def birthday_notify(data):
-    """
-    Function to notify the user of someone's birthday.
-    """
-    message = {
-        str: f"Today is {data}'s birthday!",
-        int: f"Today is the birthday of {data} people!"}
-
-    notification.notify(
-        title="BirDayBer", message=message[type(data)], timeout=5,
-        app_icon="bin//system-content//visual-content//BirDayBerIcon.ico")
 
 
 def check_realistic_birth_date(date):
@@ -671,9 +660,28 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         if self.stray_icon_state is False:
             return
 
-        if len(self.total_birthdays) < 2:
-            for person in self.total_birthdays:
-                birthday_notify(person)
+        if len(self.total_birthdays) == 1:
+            self.notification = Thread(
+                target=self.birthday_notify, args=[self.total_birthdays[0]])
 
-        elif len(self.total_birthdays) >= 2:
-            birthday_notify(len(self.total_birthdays))
+        elif len(self.total_birthdays) > 1:
+            self.notification = Thread(
+                target=self.birthday_notify, args=[len(self.total_birthdays)])
+
+        self.notification.start()
+
+    def birthday_notify(self, data):
+        """
+        Function to notify the user of someone's birthday.
+        """
+        time.sleep(5)
+        if self.stray_icon_state is False:
+            return
+
+        message = {
+            str: f"Today is {data}'s birthday!",
+            int: f"Today is the birthday of {data} people!"}
+
+        notification.notify(
+            title="BirDayBer", message=message[type(data)], timeout=5,
+            app_icon="bin//system-content//visual-content//BirDayBerIcon.ico")
