@@ -125,7 +125,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.showed_people = {}  # VAR to show the rows on the people finder
         self.button_commands()
         self.generate_people_viewer(False)
-
         self.refresh_today_birthdays()
 
         self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
@@ -338,6 +337,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         if check_birthday(texts[2]):
             self.skull_icon.config(image=self.skull_party_src)
+        elif not check_birthday(texts[2]):
+            self.skull_icon.config(image=self.skull_src)
 
         self.current_id = person_id
         self.current_big_image = self.default_big_img
@@ -604,9 +605,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
     def update_right_mid_birth_data(self):
         birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
         self.age_var.set(current_age(birth_date))
+        self.refresh_today_birthdays()
 
         if check_birthday(self.birth_var.get()):
-            self.refresh_today_birthdays()
             return self.skull_icon.config(image=self.skull_party_src)
         return self.skull_icon.config(image=self.skull_src)
 
@@ -676,7 +677,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Function to notify the user of someone's birthday.
         """
-        time.sleep(5)
+        time.sleep(10800)  # 3 hours of time to show the notification
         if self.stray_icon_state is False:
             return
 
