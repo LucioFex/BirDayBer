@@ -4,6 +4,7 @@ from pystray import MenuItem as item
 from base64 import b64decode
 from io import BytesIO
 import tkinter as tk
+import threading
 import pystray
 import os
 
@@ -354,6 +355,15 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         It makes the program close the database and stop mainlooping.
         """
-        self.stray_icon.stop()
+        if self.stray_icon_state:
+            self.stray_icon.stop()
+
         self.db.close_database()
         self.root.quit()
+
+        try:
+            # This will not affect the flow of the program,
+            # because it already has its own cleaning actions performed.
+            raise KeyboardInterrupt("Kill the Notification Thread")
+        except KeyboardInterrupt:
+            return

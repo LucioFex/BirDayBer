@@ -653,12 +653,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             "Delete", "Are you sure you want to delete this person?")
         return answer
 
-    def prepare_birthday_notification(self):  # Fix the timeout later
+    def prepare_birthday_notification(self):
         """
         Method to prepare the OS notifications about the Birthdays.
         """
         if self.stray_icon_state is False:
             return
+        self.refresh_today_birthdays()
 
         if len(self.total_birthdays) == 1:
             self.notification = Thread(
@@ -668,6 +669,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             self.notification = Thread(
                 target=self.birthday_notify, args=[len(self.total_birthdays)])
 
+        self.notification.daemon = True
         self.notification.start()
 
     def birthday_notify(self, data):
