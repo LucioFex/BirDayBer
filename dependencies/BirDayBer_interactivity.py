@@ -659,6 +659,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         if self.stray_icon_state is False:
             return
+        self.refresh_today_birthdays()
 
         if len(self.total_birthdays) == 1:
             self.notification = Thread(
