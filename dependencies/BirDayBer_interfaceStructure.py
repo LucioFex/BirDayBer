@@ -192,7 +192,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.search_bg, image=self.person_icon_src, bg="#4d717f")
 
         self.search = tk.StringVar()
-        self.search.set("Search")
+        self.search.set(self.lang["data_text"][4])
 
         self.browser = tk.Entry(
             self.search_bg, bg="#517684", selectbackground="#4a92ab",
@@ -200,7 +200,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             width=round(self.screen_width / 75), textvariable=self.search,
             font=("Century Gothic", round(self.screen_width / 60)))
 
-        self.prepare_placeholder(self.browser, "Search", self.search)
+        self.prepare_placeholder(
+            self.browser, self.lang["data_text"][4], self.search)
         self.left_side_top_packing()
 
     def left_side_top_packing(self):
@@ -226,7 +227,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_mid = tk.Frame(self.left_side, bg="#2A4248")
 
         self.people_over = tk.Label(
-            self.left_mid, relief="flat", text="People",
+            self.left_mid, relief="flat", text=self.lang["data_text"][5],
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
 
@@ -333,10 +334,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
     def people_adder_placeholders(self):  # Add docs
         entries = (
-            (self.first_name, "First Name", self.add_name_var),
-            (self.second_name, "Second Name", self.add_surname_var),
-            (self.country, "Country", self.add_country_var),
-            (self.birth_date, "Date of Birth", self.add_birth_var))
+            (self.first_name, self.lang["data_text"][0], self.add_name_var),
+            (self.second_name, self.lang["data_text"][1], self.add_surname_var),
+            (self.country, self.lang["data_text"][2], self.add_country_var),
+            (self.birth_date, self.lang["data_text"][3], self.add_birth_var))
 
         for widget in entries:
             self.prepare_placeholder(widget[0], widget[1], widget[2])
@@ -356,10 +357,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.add_country_var = tk.StringVar()
         self.add_birth_var = tk.StringVar()
 
-        self.add_name_var.set("First Name")
-        self.add_surname_var.set("Second Name")
-        self.add_country_var.set("Country")
-        self.add_birth_var.set("Date of Birth")
+        self.add_name_var.set(self.lang["data_text"][0])
+        self.add_surname_var.set(self.lang["data_text"][1])
+        self.add_country_var.set(self.lang["data_text"][2])
+        self.add_birth_var.set(self.lang["data_text"][3])
 
         self.first_name = adder_entry(
             self.first_name_edge, self.screen_width, self.add_name_var)
@@ -636,19 +637,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.settings_sound = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, "Sound", row=0)
+            self.screen_height, self.lang["settings_text"][0], row=0)
 
         self.settings_ask_before_del = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, "Ask before deleting a person", row=2)
+            self.screen_height, self.lang["settings_text"][1], row=2)
 
         self.settings_language = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, "Language", row=4)
+            self.screen_height, self.lang["settings_text"][2], row=4)
 
         self.settings_remove_people = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, "Remove all added people", row=6)
+            self.screen_height, self.lang["settings_text"][3], row=6)
 
         self.settings_checkButtons()
         self.settings_language_list()
@@ -691,7 +692,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.delete_button = tk.Button(
             self.remove_people, activebackground="#6d2e2e",
             bg="#863535", activeforeground="#e3e3e3",
-            fg="#e3e3e3", relief="flat", text="Remove",
+            fg="#e3e3e3", relief="flat", text=self.lang["settings_text"][4],
             font=("Century Gothic", round(self.screen_width / 75)))
 
         self.remove_people.grid(

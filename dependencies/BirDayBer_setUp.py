@@ -113,11 +113,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             return (" " * 22 + license_type[0], license_type[1])
 
         except FileNotFoundError:
-            return (
-                " " * 8 + "License not Found",
-                "Problem trying to find the file")
+            return self.lang["license"][0], self.lang["license"][1]
 
-    def get_version(self):  # Check later...
+    def get_version(self):
         """
         Method that returns the current version of the project
         """
@@ -131,7 +129,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 return next(version)[5: -2]
 
         except FileNotFoundError:
-            return "Cannot get version without readme file"
+            return self.lang["version"]
 
     def thumbnail_size(self, width, height):
         """Thumbnail img size calculation"""

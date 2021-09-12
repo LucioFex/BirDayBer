@@ -13,11 +13,11 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
         """
         self.db_path = db_connection
 
-        # self.load_preview_configuration()
+        # self.load_previews_configurations()
         self.lang = "English"  # Refactor later...
 
         with open("bin//languages.json", "r", encoding="utf-8") as texts:
-            self.lang = json.load(texts)
+            self.lang = json.load(texts)[self.lang]
 
         super().__init__()
         self.root.mainloop() if mainloop else None
