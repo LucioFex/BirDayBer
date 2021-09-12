@@ -662,7 +662,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             return
         self.refresh_today_birthdays()
 
-        if len(self.total_birthdays) == 1:
+        if len(self.total_birthdays) == 0:
+            return
+
+        elif len(self.total_birthdays) == 1:
             self.notification = Thread(
                 target=self.birthday_notify, args=[self.total_birthdays[0]])
 
@@ -671,7 +674,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 target=self.birthday_notify, args=[len(self.total_birthdays)])
 
         self.notification.daemon = True
-        self.notification.start()
+        return self.notification.start()
 
     def birthday_notify(self, data):
         """

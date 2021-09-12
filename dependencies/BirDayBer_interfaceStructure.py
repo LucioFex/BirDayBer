@@ -617,6 +617,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birthday_counter.pack(ipady=self.screen_height)
 
     def open_settings(self):
+        if self.settings_state:
+            return
+
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
 
@@ -626,6 +629,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.settings_window_resolution()
         self.settings_widgets()
+        self.settings.protocol("WM_DELETE_WINDOW", self.close_settings)
+
+    def close_settings(self):
+        self.settings_state = False
+        self.settings.destroy()
 
     def settings_widgets(self):
         """

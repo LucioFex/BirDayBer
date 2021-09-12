@@ -330,7 +330,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         self.stray_icon_state = True
         self.prepare_birthday_notification()
+
         self.hidden_window.withdraw()
+        if self.settings_state:
+            self.close_settings()
 
         app_icon = "bin//system-content//visual-content//BirDayBerIcon.ico"
         stray_image = Image.open(app_icon)
