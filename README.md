@@ -27,6 +27,7 @@ This project will remind you with a notification for your operating system if it
 - Python [Threading](https://docs.python.org/3/library/threading.html) module.
 - Python [Time](https://docs.python.org/3/library/time.html) module.
 - Python [Re](https://docs.python.org/3/library/re.html) module.
+- Python [Json](https://docs.python.org/3/library/json.html) module.
 
 
 ## Requirements:
@@ -84,7 +85,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 ## Project Status:
 
 ### `Available on Windows`
-### `Version: 0.19.4`
+### `Version: 0.19.7`
 
 ## License
 

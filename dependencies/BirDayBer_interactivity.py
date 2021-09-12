@@ -301,8 +301,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         preview_texts[2] = formatted_birth_date(preview_texts[2], "DD/MM/YYYY")
 
         bg_1, bg_2, bg_3 = "#79c1db", "#8fd0e7", "#6aaec6"
-
         birthday = False
+
         if check_birthday(texts[2]):
             birthday = True
 
@@ -445,7 +445,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             messagebox.showerror(
                 "Field format problem",
                 "There was a problem with the Date of Birth field." +
-                '\nTry adding a date of birth with this format: "DD/MM/YYYY.')
+                '\nTry adding a date of birth with this format: "DD/MM/YYYY".')
             return True
 
         try:
@@ -639,7 +639,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         elif error_detected:
             messagebox.showerror(
-                "Problem detected",
+                "Field data problem",
                 "You cannot add more than one space in the Full Name field.")
             return True
 

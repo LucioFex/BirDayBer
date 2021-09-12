@@ -4,7 +4,6 @@ from pystray import MenuItem as item
 from base64 import b64decode
 from io import BytesIO
 import tkinter as tk
-import threading
 import pystray
 import os
 

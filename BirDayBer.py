@@ -1,4 +1,5 @@
 import dependencies.BirDayBer_interactivity as BirDayBer_interactivity
+import json
 
 
 class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
@@ -11,9 +12,14 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
         If the 'mainloop' parameter is 'True' the program will main-loop.
         """
         self.db_path = db_connection
-        super().__init__()
 
-        self.app_lang = "English"
+        # self.load_preview_configuration()
+        self.lang = "English"  # Refactor later...
+
+        with open("bin//languages.json", "r", encoding="utf-8") as texts:
+            self.lang = json.load(texts)
+
+        super().__init__()
         self.root.mainloop() if mainloop else None
 
 

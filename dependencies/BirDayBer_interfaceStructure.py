@@ -282,13 +282,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas.yview_scroll(distance, "units")
         self.scrollbar_at_bottom(event)
 
-    # def reset_people_finder(self):
-    #     self.finder_frame.destroy()
-    #     self.people_finder_section()
-
-    #     self.finder_frame.pack(
-    #         fill="both", expand="yes", pady=(0, self.screen_height * 0.013))
-
     def left_side_structure_bottom(self, location):
         """
         Method that generates the base for the bot-left appearance of the GUI.
