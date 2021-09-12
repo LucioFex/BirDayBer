@@ -4,7 +4,6 @@ from pystray import MenuItem as item
 from base64 import b64decode
 from io import BytesIO
 import tkinter as tk
-import threading
 import pystray
 import os
 
@@ -114,11 +113,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             return (" " * 22 + license_type[0], license_type[1])
 
         except FileNotFoundError:
-            return (
-                " " * 8 + "License not Found",
-                "Problem trying to find the file")
+            return self.lang["license"][0], self.lang["license"][1]
 
-    def get_version(self):  # Check later...
+    def get_version(self):
         """
         Method that returns the current version of the project
         """
@@ -132,7 +129,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                 return next(version)[5: -2]
 
         except FileNotFoundError:
-            return "Cannot get version without readme file"
+            return self.lang["version"]
 
     def thumbnail_size(self, width, height):
         """Thumbnail img size calculation"""
@@ -330,7 +327,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         self.stray_icon_state = True
         self.prepare_birthday_notification()
+
         self.hidden_window.withdraw()
+        if self.settings_state:
+            self.close_settings()
 
         app_icon = "bin//system-content//visual-content//BirDayBerIcon.ico"
         stray_image = Image.open(app_icon)

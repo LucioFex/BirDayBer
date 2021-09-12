@@ -162,7 +162,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.check_all_birthdays()
 
         birthdays_count = len(self.total_birthdays)
-        label_txt = f"Today is the birthday of {birthdays_count} people"
+        label_txt = (
+            f"{self.lang['birthdays_counter'][0][0]} {birthdays_count} " +
+            f"{self.lang['birthdays_counter'][0][1]}")
+
         return self.birthday_counter.config(text=label_txt)
 
     def check_all_birthdays(self):
@@ -301,8 +304,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         preview_texts[2] = formatted_birth_date(preview_texts[2], "DD/MM/YYYY")
 
         bg_1, bg_2, bg_3 = "#79c1db", "#8fd0e7", "#6aaec6"
-
         birthday = False
+
         if check_birthday(texts[2]):
             birthday = True
 
@@ -370,8 +373,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def people_adder_file_select(self):
         filename = askopenfilename(
-            initialdir="/", title="Select an image",
-            filetypes=(("Images", ".jpg .jpeg .png .tiff"), ))
+            initialdir="/", title=self.lang["file_selection"][0],
+            filetypes=(
+                (self.lang["file_selection"][1], ".jpg .jpeg .png .tiff"),))
 
         self.file_selected = filename
         self.convert_adder_img(filename)
@@ -424,17 +428,15 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.remove_adder_placeholders()
 
     def check_name_field(self):
-        if self.add_name_var.get() == "First Name":
+        if self.add_name_var.get() == self.lang["data_text"][0]:
             messagebox.showerror(
-                "Field incomplete",
-                "Filling in the First Name field is mandatory.")
+                self.lang["check_field"][0], self.lang["check_field"][1])
             return True
 
     def check_gender_field(self):
         if self.gender_selector.get() == 0:
             messagebox.showerror(
-                "Field incomplete",
-                "Filling in the Gender field is mandatory.")
+                self.lang["check_field"][0], self.lang["check_field"][4])
             return True
 
     def check_birthdate_field(self, date_of_birth):
@@ -443,9 +445,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         if match == []:
             messagebox.showerror(
-                "Field format problem",
-                "There was a problem with the Date of Birth field." +
-                '\nTry adding a date of birth with this format: "DD/MM/YYYY.')
+                self.lang["check_field"][3], self.lang["check_field"][5])
             return True
 
         try:
@@ -454,15 +454,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 raise ValueError
         except ValueError:
             messagebox.showerror(
-                "Field data problem",
-                "There was a problem with the input numbers of the Date of " +
-                "Birth field. Check if the inserted digits are correct.")
+                self.lang["check_field"][6], self.lang["check_field"][7])
             return True
 
     def remove_adder_placeholders(self):
         matches = (
-            (self.add_surname_var, "Second Name"),
-            (self.add_country_var, "Country"))
+            (self.add_surname_var, self.lang["data_text"][1]),
+            (self.add_country_var, self.lang["data_text"][2]))
 
         for entry in matches:
             if re.match(entry[0].get(), entry[1]) is not None:
@@ -472,10 +470,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.convert_adder_img("")  # Sets the default adder image
         self.gender_selector.set(0)
         self.file_selected = ""
-        self.add_name_var.set("First Name")
-        self.add_surname_var.set("Second Name")
-        self.add_country_var.set("Country")
-        self.add_birth_var.set("Date of Birth")
+        self.add_name_var.set(self.lang["data_text"][0])
+        self.add_surname_var.set(self.lang["data_text"][1])
+        self.add_country_var.set(self.lang["data_text"][2])
+        self.add_birth_var.set(self.lang["data_text"][3])
 
     def reset_people_finder(self):
         for person_id in self.people_found:
@@ -559,8 +557,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def select_new_photo(self):
         filename = askopenfilename(
-            initialdir="/", title="Select an image",
-            filetypes=(("Images", ".jpg .jpeg .png .tiff"), ))
+            initialdir="/", title=self.lang["file_selection"][0],
+            filetypes=(
+                (self.lang["file_selection"][1], ".jpg .jpeg .png .tiff"), ))
 
         photo = file_to_base64(filename)
         return (photo, filename)
@@ -570,7 +569,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             return "no"
 
         answer = messagebox.askquestion(
-            "Update Photo", "Are you sure you want to save this photo?")
+            self.lang["update_row"][0], self.lang["update_row"][1])
         return answer
 
     def update_person(self, person_id, section):
@@ -633,14 +632,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         if self.fullname_var.get() in ("", " "):
             messagebox.showerror(
-                "Field incomplete",
-                "Filling in the Full Name field is mandatory.")
+                self.lang["check_field"][0], self.lang["check_field"][2])
             return True
 
         elif error_detected:
             messagebox.showerror(
-                "Problem detected",
-                "You cannot add more than one space in the Full Name field.")
+                self.lang["check_field"][5], self.lang["check_field"][8])
             return True
 
     def ask_before_delete(self):
@@ -651,7 +648,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             return "yes"
 
         answer = messagebox.askquestion(
-            "Delete", "Are you sure you want to delete this person?")
+            self.lang["delete_row"][0], self.lang["delete_row"][1])
         return answer
 
     def prepare_birthday_notification(self):
@@ -662,7 +659,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             return
         self.refresh_today_birthdays()
 
-        if len(self.total_birthdays) == 1:
+        if len(self.total_birthdays) == 0:
+            return
+
+        elif len(self.total_birthdays) == 1:
             self.notification = Thread(
                 target=self.birthday_notify, args=[self.total_birthdays[0]])
 
@@ -671,7 +671,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 target=self.birthday_notify, args=[len(self.total_birthdays)])
 
         self.notification.daemon = True
-        self.notification.start()
+        return self.notification.start()
 
     def birthday_notify(self, data):
         """
@@ -682,8 +682,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             return
 
         message = {
-            str: f"Today is {data}'s birthday!",
-            int: f"Today is the birthday of {data} people!"}
+            str: (
+                f"{self.lang['notification'][0][0]} {data}" +
+                f"{self.lang['notification'][0][1]}"),
+            int: (
+                f"{self.lang['notification'][1][0]} {data}" +
+                f"{self.lang['notification'][1][1]}")
+        }
 
         notification.notify(
             title="BirDayBer", message=message[type(data)], timeout=5,
