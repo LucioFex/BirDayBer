@@ -5,8 +5,10 @@ from plyer import notification
 from datetime import datetime
 from threading import Thread
 import tkinter.messagebox as messagebox
+from pygame import mixer
 import tkinter as tk
 import webbrowser
+import json
 import time
 import re
 
@@ -126,6 +128,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.button_commands()
         self.generate_people_viewer(False)
         self.refresh_today_birthdays()
+        self.load_sounds()
 
         self.yscrollbar.bind("<Button-1>", self.scrollbar_at_bottom)
 
@@ -153,6 +156,19 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def open_about(self):
         return messagebox.showinfo("About BirDayBer", self.get_version())
+
+    def load_sounds(self):
+        """
+        Method to load the app sounds
+        """
+        mixer.init(channels=1)
+        location = "bin//system-content//auditory-content//"
+
+        self.settings_se = mixer.Sound(location + "Options.mp3")
+        self.accept_se = mixer.Sound(location + "Accept.mp3")
+        self.delete_se = mixer.Sound(location + "Delete.mp3")
+        self.save_se = mixer.Sound(location + "Save-it.mp3")
+        self.ask_se = mixer.Sound(location + "ask-if-sure.mp3")
 
     def refresh_today_birthdays(self):
         """
@@ -474,6 +490,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_surname_var.set(self.lang["data_text"][1])
         self.add_country_var.set(self.lang["data_text"][2])
         self.add_birth_var.set(self.lang["data_text"][3])
+        mixer.Sound.play(self.accept_se)
 
     def reset_people_finder(self):
         for person_id in self.people_found:
@@ -494,6 +511,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.right_mid_bg_packing()
         self.remove_row_peopleviewer(person_id)
+        mixer.Sound.play(self.delete_se)
 
     def switch_entry_state(self, person_id, entry, button, section, state):
         """
@@ -600,6 +618,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
+        mixer.Sound.play(self.save_se)
 
     def update_right_mid_birth_data(self):
         birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
@@ -647,9 +666,63 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         if self.ask_before_del_var.get() is False:
             return "yes"
 
+        mixer.Sound.play(self.ask_se)
         answer = messagebox.askquestion(
             self.lang["delete_row"][0], self.lang["delete_row"][1])
         return answer
+
+    def change_language(self, event):
+        """
+        Method to change the application language
+        """
+        if self.current_lang == self.languages.get():
+            return
+        mixer.Sound.play(self.accept_se)
+
+        if self.languages.get() in ("English", "Spanish"):
+            self.current_lang = self.languages.get()
+
+        elif self.languages.get() in ("Inglés", "Español"):
+            in_spanish = {"Inglés": "English", "Español": "Spanish"}
+            self.current_lang = in_spanish[self.languages.get()]
+
+        with open("bin//languages.json", "r", encoding="utf-8") as texts:
+            self.lang = json.load(texts)[self.current_lang]
+
+        self.update_app_texts()
+
+    def update_app_texts(self):
+        self.search.set(self.lang["data_text"][4])
+
+        self.add_name_var.set(self.lang["data_text"][0])
+        self.add_surname_var.set(self.lang["data_text"][1])
+        self.add_country_var.set(self.lang["data_text"][2])
+        self.add_birth_var.set(self.lang["data_text"][3])
+
+        self.add_name_var.set(self.lang["data_text"][0])
+        self.add_surname_var.set(self.lang["data_text"][1])
+        self.add_country_var.set(self.lang["data_text"][2])
+        self.add_birth_var.set(self.lang["data_text"][3])
+
+        self.settings_sound.config(text=self.lang["settings"][0])
+        self.settings_ask_before_del.config(text=self.lang["settings"][1])
+        self.settings_language.config(text=self.lang["settings"][2])
+        self.settings_remove_people .config(text=self.lang["settings"][3])
+        self.delete_button.config(text=self.lang["settings"][4])
+
+        self.prepare_placeholder(
+            self.browser, self.lang["data_text"][4], self.search)
+        self.people_adder_placeholders()
+
+        self.people_over.config(text=self.lang["data_text"][5])
+
+        self.languages.destroy()
+        self.settings_language_list()
+
+        birthdays_count = len(self.total_birthdays)
+        self.birthday_counter.config(
+            text=f"{self.lang['birthdays_counter'][0][0]} {birthdays_count} " +
+            f"{self.lang['birthdays_counter'][0][1]}")
 
     def prepare_birthday_notification(self):
         """

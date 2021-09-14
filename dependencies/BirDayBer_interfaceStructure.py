@@ -1,5 +1,6 @@
 import dependencies.BirDayBer_setUp as BirDayBer_setUp
 from tkinter import ttk
+from pygame import mixer
 import tkinter as tk
 
 
@@ -51,7 +52,7 @@ def settings_label(master, width, height, text, row):
 def check_button(master, image1, image2, width, boolean, command=None):
     return tk.Checkbutton(
         master, image=image1, selectimage=image2, indicator=False,
-        bd=0, variable=boolean, bg="#475d66",
+        bd=0, variable=boolean, bg="#475d66", command=command,
         activebackground="#475d66", selectcolor="#475d66")
 
 
@@ -82,10 +83,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         # Generation of the structure of the body
         self.left_side.pack(side="left", fill="both")
         self.right_side.pack(side="left", fill="both", expand=True)
-
-        # Generation of settings BooleanVars
-        self.sound_var = tk.BooleanVar()
-        self.ask_before_del_var = tk.BooleanVar(value=True)
 
         self.left_side_structure_top(location)
         self.left_side_structure_mid(location)
@@ -332,12 +329,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_left()
         self.people_adder_right()
 
-    def people_adder_placeholders(self):  # Add docs
+    def people_adder_placeholders(self):  # Add docs later...
         entries = (
-            (self.first_name, self.lang["data_text"][0], self.add_name_var),
-            (self.second_name, self.lang["data_text"][1], self.add_surname_var),
-            (self.country, self.lang["data_text"][2], self.add_country_var),
-            (self.birth_date, self.lang["data_text"][3], self.add_birth_var))
+            (
+                self.first_name, self.lang["data_text"][0],
+                self.add_name_var
+                ),
+            (
+                self.second_name, self.lang["data_text"][1],
+                self.add_surname_var
+                ),
+            (
+                self.country, self.lang["data_text"][2],
+                self.add_country_var
+                ),
+            (
+                self.birth_date, self.lang["data_text"][3],
+                self.add_birth_var
+                ))
 
         for widget in entries:
             self.prepare_placeholder(widget[0], widget[1], widget[2])
@@ -613,6 +622,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     def open_settings(self):
         if self.settings_state:
             return
+        mixer.Sound.play(self.settings_se)
 
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
@@ -637,19 +647,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.settings_sound = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][0], row=0)
+            self.screen_height, self.lang["settings"][0], row=0)
 
         self.settings_ask_before_del = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][1], row=2)
+            self.screen_height, self.lang["settings"][1], row=2)
 
         self.settings_language = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][2], row=4)
+            self.screen_height, self.lang["settings"][2], row=4)
 
         self.settings_remove_people = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][3], row=6)
+            self.screen_height, self.lang["settings"][3], row=6)
 
         self.settings_checkButtons()
         self.settings_language_list()
@@ -664,10 +674,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     def settings_checkButtons(self):
         self.sound_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.sound_var)
+            self.screen_width, self.sound_var, self.accept_sound)
         self.ask_before_del_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.ask_before_del_var)
+            self.screen_width, self.ask_before_del_var, self.accept_sound)
 
         self.sound_button.grid(
             row=1, column=0, padx=(self.screen_width * 0.05, 0),
@@ -676,13 +686,18 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             row=3, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
 
+    def accept_sound(self):
+        mixer.Sound.play(self.accept_se)
+
     def settings_language_list(self):
         self.languages = ttk.Combobox(
             self.settings_bg, height=2, state="readonly",
             font=("Century Gothic", round(self.screen_width / 75)))
-        self.languages["values"] = ["English", "Spanish"]
-        self.languages.set("English")
+        self.languages["values"] = [
+            self.lang["languages"][0], self.lang["languages"][1]]
+        self.languages.set(self.lang["current_lang"])
 
+        self.languages.bind("<<ComboboxSelected>>", self.change_language)
         self.languages.grid(
             row=5, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
@@ -692,7 +707,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.delete_button = tk.Button(
             self.remove_people, activebackground="#6d2e2e",
             bg="#863535", activeforeground="#e3e3e3",
-            fg="#e3e3e3", relief="flat", text=self.lang["settings_text"][4],
+            fg="#e3e3e3", relief="flat", text=self.lang["settings"][4],
             font=("Century Gothic", round(self.screen_width / 75)))
 
         self.remove_people.grid(

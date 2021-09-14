@@ -27,7 +27,6 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
     def __init__(self):
         super().__init__()
         # Root and Frame - Generation and Configuration:
-        self.root = tk.Tk()
 
         # Deletion of the original Title Bar
         self.root.overrideredirect(1)
@@ -358,6 +357,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         if self.stray_icon_state:
             self.stray_icon.stop()
 
+        self.update_new_configurations()
         self.db.close_database()
         self.root.quit()
 
