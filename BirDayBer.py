@@ -24,6 +24,9 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
         self.root.mainloop() if mainloop else None
 
     def load_previews_configurations(self):
+        """
+        Method to load the previews configurations made in the settings widget
+        """
         with open("bin//config.json", "w+", encoding="utf-8") as json_file:
             config = json.load(json_file)
 
@@ -32,6 +35,9 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
             self.current_lang = config["language"]
 
     def update_new_configurations(self):
+        """
+        Method to update the new configurations made in the settings widget
+        """
         with open("bin//config.json", "r", encoding="utf-8") as json_file:
             config = json.load(json_file)
 
