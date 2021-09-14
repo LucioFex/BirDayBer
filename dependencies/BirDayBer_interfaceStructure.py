@@ -1,5 +1,6 @@
 import dependencies.BirDayBer_setUp as BirDayBer_setUp
 from tkinter import ttk
+from pygame import mixer
 import tkinter as tk
 
 
@@ -51,7 +52,7 @@ def settings_label(master, width, height, text, row):
 def check_button(master, image1, image2, width, boolean, command=None):
     return tk.Checkbutton(
         master, image=image1, selectimage=image2, indicator=False,
-        bd=0, variable=boolean, bg="#475d66",
+        bd=0, variable=boolean, bg="#475d66", command=command,
         activebackground="#475d66", selectcolor="#475d66")
 
 
@@ -621,6 +622,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     def open_settings(self):
         if self.settings_state:
             return
+        mixer.Sound.play(self.settings_se)
 
         self.settings = tk.Toplevel(bg="#364349")
         self.settings_state = True
@@ -672,10 +674,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     def settings_checkButtons(self):
         self.sound_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.sound_var)
+            self.screen_width, self.sound_var, self.accept_sound)
         self.ask_before_del_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.ask_before_del_var)
+            self.screen_width, self.ask_before_del_var, self.accept_sound)
 
         self.sound_button.grid(
             row=1, column=0, padx=(self.screen_width * 0.05, 0),
@@ -683,6 +685,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.ask_before_del_button.grid(
             row=3, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
+
+    def accept_sound(self):
+        mixer.Sound.play(self.accept_se)
 
     def settings_language_list(self):
         self.languages = ttk.Combobox(
