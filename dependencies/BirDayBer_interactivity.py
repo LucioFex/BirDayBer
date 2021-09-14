@@ -685,7 +685,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_birth_var.set(self.lang["data_text"][3])
 
         self.settings_sound.config(text=self.lang["settings"][0])
-        self.settings_ask_before_del .config(text=self.lang["settings"][1])
+        self.settings_ask_before_del.config(text=self.lang["settings"][1])
         self.settings_language.config(text=self.lang["settings"][2])
         self.settings_remove_people .config(text=self.lang["settings"][3])
         self.delete_button.config(text=self.lang["settings"][4])

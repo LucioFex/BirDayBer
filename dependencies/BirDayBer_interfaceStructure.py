@@ -83,10 +83,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_side.pack(side="left", fill="both")
         self.right_side.pack(side="left", fill="both", expand=True)
 
-        # Generation of settings BooleanVars
-        self.sound_var = tk.BooleanVar()
-        self.ask_before_del_var = tk.BooleanVar(value=True)
-
         self.left_side_structure_top(location)
         self.left_side_structure_mid(location)
         self.left_side_structure_bottom(location)
@@ -334,10 +330,22 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
     def people_adder_placeholders(self):  # Add docs later...
         entries = (
-            (self.first_name, self.lang["data_text"][0], self.add_name_var),
-            (self.second_name, self.lang["data_text"][1], self.add_surname_var),
-            (self.country, self.lang["data_text"][2], self.add_country_var),
-            (self.birth_date, self.lang["data_text"][3], self.add_birth_var))
+            (
+                self.first_name, self.lang["data_text"][0],
+                self.add_name_var
+                ),
+            (
+                self.second_name, self.lang["data_text"][1],
+                self.add_surname_var
+                ),
+            (
+                self.country, self.lang["data_text"][2],
+                self.add_country_var
+                ),
+            (
+                self.birth_date, self.lang["data_text"][3],
+                self.add_birth_var
+                ))
 
         for widget in entries:
             self.prepare_placeholder(widget[0], widget[1], widget[2])
