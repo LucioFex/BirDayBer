@@ -15,7 +15,7 @@
             "Search",
             "People"
         ],
-        "settings_text": [
+        "settings": [
             "Sound",
             "Ask before deleting a person",
             "Language",
@@ -53,7 +53,12 @@
         "notification": [
             ["Today is", "'s birthday!"],
             ["Today is the birthday of", " people!"]
-        ]
+        ],
+        "languages": [
+            "English",
+            "Spanish"
+        ],
+        "current_lang": "English"
 	},
 
 	"Spanish": {
@@ -76,7 +81,7 @@
             "Buscar",
             "Personas"
         ],
-        "settings_text": [
+        "settings": [
             "Sonido",
             "Preguntar antes de eliminar",
             "Lenguaje",
@@ -114,6 +119,11 @@
         "notification": [
             ["¡Hoy es el cumpleaños de", "!"],
             ["¡Hoy es el cumpleaños de", " personas!"]
-        ]
+        ],
+        "languages": [
+            "Inglés",
+            "Español"
+        ],
+        "current_lang": "Español"
 	}
 }

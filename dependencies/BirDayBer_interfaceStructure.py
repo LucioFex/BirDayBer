@@ -332,7 +332,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_left()
         self.people_adder_right()
 
-    def people_adder_placeholders(self):  # Add docs
+    def people_adder_placeholders(self):  # Add docs later...
         entries = (
             (self.first_name, self.lang["data_text"][0], self.add_name_var),
             (self.second_name, self.lang["data_text"][1], self.add_surname_var),
@@ -637,19 +637,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.settings_sound = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][0], row=0)
+            self.screen_height, self.lang["settings"][0], row=0)
 
         self.settings_ask_before_del = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][1], row=2)
+            self.screen_height, self.lang["settings"][1], row=2)
 
         self.settings_language = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][2], row=4)
+            self.screen_height, self.lang["settings"][2], row=4)
 
         self.settings_remove_people = settings_label(
             self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings_text"][3], row=6)
+            self.screen_height, self.lang["settings"][3], row=6)
 
         self.settings_checkButtons()
         self.settings_language_list()
@@ -680,9 +680,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.languages = ttk.Combobox(
             self.settings_bg, height=2, state="readonly",
             font=("Century Gothic", round(self.screen_width / 75)))
-        self.languages["values"] = ["English", "Spanish"]
-        self.languages.set("English")
+        self.languages["values"] = [
+            self.lang["languages"][0], self.lang["languages"][1]]
+        self.languages.set(self.lang["current_lang"])
 
+        self.languages.bind("<<ComboboxSelected>>", self.change_language)
         self.languages.grid(
             row=5, column=0, padx=(self.screen_width * 0.05, 0),
             pady=(0, self.screen_height * 0.01), sticky="w")
@@ -692,7 +694,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.delete_button = tk.Button(
             self.remove_people, activebackground="#6d2e2e",
             bg="#863535", activeforeground="#e3e3e3",
-            fg="#e3e3e3", relief="flat", text=self.lang["settings_text"][4],
+            fg="#e3e3e3", relief="flat", text=self.lang["settings"][4],
             font=("Century Gothic", round(self.screen_width / 75)))
 
         self.remove_people.grid(

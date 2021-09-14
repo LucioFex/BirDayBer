@@ -7,6 +7,7 @@ from threading import Thread
 import tkinter.messagebox as messagebox
 import tkinter as tk
 import webbrowser
+import json
 import time
 import re
 
@@ -650,6 +651,58 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         answer = messagebox.askquestion(
             self.lang["delete_row"][0], self.lang["delete_row"][1])
         return answer
+
+    def change_language(self, event):
+        """
+        Method to change the application language
+        """
+        if self.current_lang == self.languages.get():
+            return
+
+        if self.languages.get() in ("English", "Spanish"):
+            self.current_lang = self.languages.get()
+
+        elif self.languages.get() in ("Inglés", "Español"):
+            in_spanish = {"Inglés": "English", "Español": "Spanish"}
+            self.current_lang = in_spanish[self.languages.get()]
+
+        with open("bin//languages.json", "r", encoding="utf-8") as texts:
+            self.lang = json.load(texts)[self.current_lang]
+
+        self.update_app_texts()
+
+    def update_app_texts(self):
+        self.search.set(self.lang["data_text"][4])
+
+        self.add_name_var.set(self.lang["data_text"][0])
+        self.add_surname_var.set(self.lang["data_text"][1])
+        self.add_country_var.set(self.lang["data_text"][2])
+        self.add_birth_var.set(self.lang["data_text"][3])
+
+        self.add_name_var.set(self.lang["data_text"][0])
+        self.add_surname_var.set(self.lang["data_text"][1])
+        self.add_country_var.set(self.lang["data_text"][2])
+        self.add_birth_var.set(self.lang["data_text"][3])
+
+        self.settings_sound.config(text=self.lang["settings"][0])
+        self.settings_ask_before_del .config(text=self.lang["settings"][1])
+        self.settings_language.config(text=self.lang["settings"][2])
+        self.settings_remove_people .config(text=self.lang["settings"][3])
+        self.delete_button.config(text=self.lang["settings"][4])
+
+        self.prepare_placeholder(
+            self.browser, self.lang["data_text"][4], self.search)
+        self.people_adder_placeholders()
+
+        self.people_over.config(text=self.lang["data_text"][5])
+
+        self.languages.destroy()
+        self.settings_language_list()
+
+        birthdays_count = len(self.total_birthdays)
+        self.birthday_counter.config(
+            text=f"{self.lang['birthdays_counter'][0][0]} {birthdays_count} " +
+            f"{self.lang['birthdays_counter'][0][1]}")
 
     def prepare_birthday_notification(self):
         """
