@@ -27,7 +27,7 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
         """
         Method to load the previews configurations made in the settings widget
         """
-        with open("bin//config.json", "w+", encoding="utf-8") as json_file:
+        with open("bin//config.json", "r", encoding="utf-8") as json_file:
             config = json.load(json_file)
 
             self.sound_var = tk.BooleanVar(value=config["sound"])
