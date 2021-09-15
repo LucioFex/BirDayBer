@@ -164,11 +164,11 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         mixer.init(channels=1)
         location = "bin//system-content//auditory-content//"
 
-        self.settings_se = mixer.Sound(location + "Options.mp3")
+        self.settings_se = mixer.Sound(location + "Options.wav")
         self.accept_se = mixer.Sound(location + "Accept.mp3")
-        self.delete_se = mixer.Sound(location + "Delete.mp3")
-        self.save_se = mixer.Sound(location + "Save-it.mp3")
-        self.ask_se = mixer.Sound(location + "ask-if-sure.mp3")
+        self.delete_se = mixer.Sound(location + "Delete.wav")
+        self.save_se = mixer.Sound(location + "Save-it.wav")
+        self.ask_se = mixer.Sound(location + "ask-if-sure.wav")
 
     def refresh_today_birthdays(self):
         """

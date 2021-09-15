@@ -266,7 +266,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.canvas.bind("<Leave>", self.unbind_mousewheel)
 
     def bind_mousewheel(self, event):
-        if len(self.showed_people) >= 6:
+        if len(self.showed_people) >= 5:
             self.yscrollbar.bind_all("<MouseWheel>", self.mousewheel_scroll)
 
     def unbind_mousewheel(self, event):
