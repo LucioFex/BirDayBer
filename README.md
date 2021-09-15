@@ -83,6 +83,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - User icon from [DinosoftLabs (flaticon)](https://www.flaticon.com/free-icon/user_4018596).
 - Court icon from [Nikita Golubev (flaticon)](https://www.flaticon.com/free-icon/court_1750412?related_id=1750530&origin=search).
 - Update button icon from [Google (flaticon)](https://www.flaticon.com/free-icon/tick-inside-circle_61222)
+- Sound effects from [Zapsplat](https://www.zapsplat.com/) and [mixkit](https://mixkit.co/).
 
 ## Project Status:
 

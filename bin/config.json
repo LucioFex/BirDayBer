@@ -1,5 +1,5 @@
 {
-    "sound": false,
-    "row_delete": false,
-    "language": "Spanish"
+    "sound": true,
+    "row_delete": true,
+    "language": "English"
 }
