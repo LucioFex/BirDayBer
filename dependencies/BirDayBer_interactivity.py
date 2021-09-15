@@ -137,16 +137,16 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         This method assigns commands to each button of the client.
         """
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
+        self.img_adder.config(command=self.people_adder_file_select)
         self.minimize_button.config(command=self.title_bar_minimize)
         self.close_button.config(command=self.turn_strayicon_on)
-        self.license_icon.config(command=self.show_license)
-        self.about_icon.config(command=self.open_about)
-        self.github_icon.config(command=open_github)
-        self.twitter_icon.config(command=open_twitter)
-        self.nut_icon.config(command=self.open_settings)
         self.accept.config(command=self.people_adder_accept)
-        self.img_adder.config(command=self.people_adder_file_select)
+        self.license_icon.config(command=self.show_license)
         self.clear.config(command=self.clear_people_adder)
+        self.nut_icon.config(command=self.open_settings)
+        self.about_icon.config(command=self.open_about)
+        self.twitter_icon.config(command=open_twitter)
+        self.github_icon.config(command=open_github)
         self.browser.bind("<Return>", self.search_in_browser)
 
     def show_license(self):
@@ -292,7 +292,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         person = self.get_people(person_id)[0]
         try:
             row = self.showed_people[person_id].grid_info()["row"]
-        except KeyError:  # Still now showed in the people viewer
+        except KeyError:  # The following rows aren't displayed yet
             return
 
         self.canvas.update_idletasks()
@@ -307,9 +307,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to refresh the people_viewer (row's removal).
         """
         self.canvas.update_idletasks()
-        self.showed_people[person_id].destroy()
-        self.showed_people.pop(person_id)
-        self.people_found = self.get_people()
+        try:
+            self.showed_people[person_id].destroy()
+            self.showed_people.pop(person_id)
+        except KeyError:  # The selected row is not yet displayed
+            pass
+        finally:
+            self.people_found = self.get_people()
 
     def person_spawn(
             self, person_id, texts, row, gender, photo=None, grid=True):
@@ -523,6 +527,20 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.remove_row_peopleviewer(person_id)
         self.play_sound(self.delete_se)
 
+    def delete_all_people(self):
+        """
+        Method to reset the DB rows
+        """
+        if self.ask_before_reset() == "no":
+            return
+
+        self.reset_database()
+        self.reset_people_finder()
+        self.play_sound(self.delete_se)
+
+        self.right_bg.pack_forget()
+        self.right_mid_bg_packing()
+
     def switch_entry_state(self, person_id, entry, button, section, state):
         """
         Method to prepare or unprepare the selected entry to be updated.
@@ -679,6 +697,15 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.play_sound(self.ask_se)
         answer = messagebox.askquestion(
             self.lang["delete_row"][0], self.lang["delete_row"][1])
+        return answer
+
+    def ask_before_reset(self):
+        """
+        Method to generate a messagebox asking to reset the DB.
+        """
+        self.play_sound(self.ask_se)
+        answer = messagebox.askquestion(
+            self.lang["reset_db"][0], self.lang["reset_db"][1])
         return answer
 
     def change_language(self, event):

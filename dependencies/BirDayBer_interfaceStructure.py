@@ -708,7 +708,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.remove_people, activebackground="#6d2e2e",
             bg="#863535", activeforeground="#e3e3e3",
             fg="#e3e3e3", relief="flat", text=self.lang["settings"][4],
-            font=("Century Gothic", round(self.screen_width / 75)))
+            font=("Century Gothic", round(self.screen_width / 75)),
+            command=self.delete_all_people)
 
         self.remove_people.grid(
             row=7, column=0, padx=(self.screen_width * 0.05, 0),
