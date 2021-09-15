@@ -137,16 +137,16 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         This method assigns commands to each button of the client.
         """
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
+        self.img_adder.config(command=self.people_adder_file_select)
         self.minimize_button.config(command=self.title_bar_minimize)
         self.close_button.config(command=self.turn_strayicon_on)
-        self.license_icon.config(command=self.show_license)
-        self.about_icon.config(command=self.open_about)
-        self.github_icon.config(command=open_github)
-        self.twitter_icon.config(command=open_twitter)
-        self.nut_icon.config(command=self.open_settings)
         self.accept.config(command=self.people_adder_accept)
-        self.img_adder.config(command=self.people_adder_file_select)
+        self.license_icon.config(command=self.show_license)
         self.clear.config(command=self.clear_people_adder)
+        self.nut_icon.config(command=self.open_settings)
+        self.about_icon.config(command=self.open_about)
+        self.twitter_icon.config(command=open_twitter)
+        self.github_icon.config(command=open_github)
         self.browser.bind("<Return>", self.search_in_browser)
 
     def show_license(self):
@@ -164,15 +164,22 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         mixer.init(channels=1)
         location = "bin//system-content//auditory-content//"
 
-        self.settings_se = mixer.Sound(location + "Options.mp3")
+        self.settings_se = mixer.Sound(location + "Options.wav")
         self.accept_se = mixer.Sound(location + "Accept.mp3")
-        self.delete_se = mixer.Sound(location + "Delete.mp3")
-        self.save_se = mixer.Sound(location + "Save-it.mp3")
-        self.ask_se = mixer.Sound(location + "ask-if-sure.mp3")
+        self.delete_se = mixer.Sound(location + "Delete.wav")
+        self.save_se = mixer.Sound(location + "Save-it.wav")
+        self.ask_se = mixer.Sound(location + "ask-if-sure.wav")
+
+    def play_sound(self, sound):
+        """
+        Method to reproduce sound effects
+        """
+        if self.sound_var.get():
+            return mixer.Sound.play(sound)
 
     def refresh_today_birthdays(self):
         """
-        Method to update the "Birthday Counter" label.
+        Method to update the "Birthday Counter" label
         """
         self.people_found = self.browser_filter(False)
         self.check_all_birthdays()
@@ -283,7 +290,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to refresh the people_viewer (row's update).
         """
         person = self.get_people(person_id)[0]
-        row = self.showed_people[person_id].grid_info()["row"]
+        try:
+            row = self.showed_people[person_id].grid_info()["row"]
+        except KeyError:  # The following rows aren't displayed yet
+            return
 
         self.canvas.update_idletasks()
         self.showed_people[person_id].destroy()
@@ -297,9 +307,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method to refresh the people_viewer (row's removal).
         """
         self.canvas.update_idletasks()
-        self.showed_people[person_id].destroy()
-        self.showed_people.pop(person_id)
-        self.people_found = self.get_people()
+        try:
+            self.showed_people[person_id].destroy()
+            self.showed_people.pop(person_id)
+        except KeyError:  # The selected row is not yet displayed
+            pass
+        finally:
+            self.people_found = self.get_people()
 
     def person_spawn(
             self, person_id, texts, row, gender, photo=None, grid=True):
@@ -490,7 +504,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.add_surname_var.set(self.lang["data_text"][1])
         self.add_country_var.set(self.lang["data_text"][2])
         self.add_birth_var.set(self.lang["data_text"][3])
-        mixer.Sound.play(self.accept_se)
+        self.play_sound(self.accept_se)
 
     def reset_people_finder(self):
         for person_id in self.people_found:
@@ -511,7 +525,21 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.right_mid_bg_packing()
         self.remove_row_peopleviewer(person_id)
-        mixer.Sound.play(self.delete_se)
+        self.play_sound(self.delete_se)
+
+    def delete_all_people(self):
+        """
+        Method to reset the DB rows
+        """
+        if self.ask_before_reset() == "no":
+            return
+
+        self.reset_database()
+        self.reset_people_finder()
+        self.play_sound(self.delete_se)
+
+        self.right_bg.pack_forget()
+        self.right_mid_bg_packing()
 
     def switch_entry_state(self, person_id, entry, button, section, state):
         """
@@ -618,7 +646,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 self.edit_birth, section, "disabled")
 
         self.update_row_peopleviewer(person_id)
-        mixer.Sound.play(self.save_se)
+        self.play_sound(self.save_se)
 
     def update_right_mid_birth_data(self):
         birth_date = formatted_birth_date(self.birth_var.get(), "YYYY-MM-DD")
@@ -666,9 +694,18 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         if self.ask_before_del_var.get() is False:
             return "yes"
 
-        mixer.Sound.play(self.ask_se)
+        self.play_sound(self.ask_se)
         answer = messagebox.askquestion(
             self.lang["delete_row"][0], self.lang["delete_row"][1])
+        return answer
+
+    def ask_before_reset(self):
+        """
+        Method to generate a messagebox asking to reset the DB.
+        """
+        self.play_sound(self.ask_se)
+        answer = messagebox.askquestion(
+            self.lang["reset_db"][0], self.lang["reset_db"][1])
         return answer
 
     def change_language(self, event):
@@ -677,7 +714,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         if self.current_lang == self.languages.get():
             return
-        mixer.Sound.play(self.accept_se)
+        self.play_sound(self.accept_se)
 
         if self.languages.get() in ("English", "Spanish"):
             self.current_lang = self.languages.get()
