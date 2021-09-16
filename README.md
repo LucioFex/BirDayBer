@@ -69,6 +69,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - Garbage icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/garbage_3143497?related_id=3143497&origin=search).
 - GitHub icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/github_1051275).
 - Twitter icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/twitter_185961).
+- Linkedin icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/linkedin_185964).
 - User icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/user_747376).
 - Male icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/man_2284900?related_id=2284900&origin=search).
 - Female icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/woman_2284897).
@@ -77,6 +78,8 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - Accept button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/yes_3572255).
 - Clear button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/loading_1177586).
 - Check button icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/square_594577?related_id=594577&origin=search).
+- Privacy Policy icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/compliant_4252354?related_id=4252365&origin=search).
+- Terms and Conditions icon from [monklk (flaticon)](https://www.flaticon.com/free-icon/terms-and-conditions_2234784?related_id=2234821&origin=search).
 - Maximized & Maximize buttons icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/move_2749235?related_id=2749235&origin=search).
 - Close button icon from [Pixel Perfect (flaticon)](https://www.flaticon.com/free-icon/close_1828778?related_id=1828778&origin=search).
 - Edit icon from [Becris (flaticon)](https://www.flaticon.com/free-icon/edit_860814?term=edit&.page=1&position=4&page=1&position=4&related_id=860814&origin=search).
@@ -88,7 +91,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 ## Project Status:
 
 ### `Available on Windows`
-### `Version: 0.20.1`
+### `Version: 0.20.6`
 
 ## License
 

@@ -13,14 +13,6 @@ import time
 import re
 
 
-def open_github():
-    webbrowser.open("https://github.com/LucioFex")
-
-
-def open_twitter():
-    webbrowser.open("https://twitter.com/LucioFex")
-
-
 def check_birthday(birthday):
     """
     Function to check if today is someone's birthday.
@@ -137,6 +129,11 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         This method assigns commands to each button of the client.
         """
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
+        self.twitter_icon.config(command=lambda: self.open_website("twitter"))
+        self.privacy_icon.config(command=lambda: self.open_website("privacy"))
+        self.github_icon.config(command=lambda: self.open_website("github"))
+        self.linkedin_icon.config(
+            command=lambda: self.open_website("linkedin"))
         self.img_adder.config(command=self.people_adder_file_select)
         self.minimize_button.config(command=self.title_bar_minimize)
         self.close_button.config(command=self.turn_strayicon_on)
@@ -145,8 +142,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.clear.config(command=self.clear_people_adder)
         self.nut_icon.config(command=self.open_settings)
         self.about_icon.config(command=self.open_about)
-        self.twitter_icon.config(command=open_twitter)
-        self.github_icon.config(command=open_github)
         self.browser.bind("<Return>", self.search_in_browser)
 
     def show_license(self):
@@ -176,6 +171,20 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         if self.sound_var.get():
             return mixer.Sound.play(sound)
+
+    def open_website(self, page):
+        website = {
+            "github": "https://github.com/LucioFex/BirDayBer",
+            "twitter": "https://twitter.com/LucioFex",
+            "linkedin": "https://www.linkedin.com/in/luciano-esteban/",
+            "privacy": (
+                "https://www.termsfeed.com/live/f99850a7" +
+                "-58ec-4880-babe-6247686dd534")
+            }
+
+        self.play_sound(self.accept_se)
+        load_page = Thread(target=webbrowser.open, args=[website[page]])
+        load_page.start()
 
     def refresh_today_birthdays(self):
         """
@@ -224,6 +233,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method to search for a person in people_finder through the browser.
         """
+        self.play_sound(self.accept_se)
         self.reset_people_finder()
         self.generate_people_viewer()
 
@@ -787,7 +797,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Function to notify the user of someone's birthday.
         """
-        time.sleep(10800)  # 3 hours of time to show the notification
+        time.sleep(9250)  # 2 hours and 57 minutes to show the notification
         if self.stray_icon_state is False:
             return
 

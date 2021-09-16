@@ -98,6 +98,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.close_src = src_image("close-button.png")
         self.person_icon_src = src_image("user-white.png")
         self.license_src = src_image("license.png")
+        self.privacy_src = src_image("privacy-policy.png")
         self.male_src = src_image("male.png")
         self.female_src = src_image("female.png")
         self.male_small_src = src_image("male2.png")
@@ -114,6 +115,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.garbage2_src = src_image("garbage2.png")
         self.twitter_src = src_image("twitter.png")
         self.github_src = src_image("github.png")
+        self.linkedin_src = src_image("linkedin.png")
         self.edit_src = src_image("edit.png")
         self.update_src = src_image("update.png")
         self.radio_button_off_src = src_image("radiobutton-0.png")
@@ -290,10 +292,15 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.left_bottom, image=self.license_src, bg="#436169",
             cursor="hand2", bd=0, activebackground="#436169")
 
+        self.privacy_icon = tk.Button(
+            self.left_bottom, image=self.privacy_src, bg="#436169",
+            cursor="hand2", bd=0, activebackground="#436169")
+
         pady = (self.screen_height * 0.004, 0)
-        padx = (self.screen_width * 0.0162, 0)
+        padx = (self.screen_width * 0.0162, self.screen_width * 0.005)
         self.left_bottom.pack(fill="both", ipady=50)
         self.license_icon.pack(side="left", pady=pady, padx=padx)
+        self.privacy_icon.pack(side="left", pady=pady, padx=padx)
 
     def right_side_structure_top(self, location):
         """
@@ -601,6 +608,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.right_bottom, bg="#3B5459", image=self.twitter_src, bd=0,
             activebackground="#3B5459", relief="flat", cursor="hand2")
 
+        self.linkedin_icon = tk.Button(
+            self.right_bottom, bg="#3B5459", image=self.linkedin_src, bd=0,
+            activebackground="#3B5459", relief="flat", cursor="hand2")
+
         self.github_icon = tk.Button(
             self.right_bottom, bg="#3B5459", image=self.github_src, bd=0,
             activebackground="#3B5459", relief="flat", cursor="hand2")
@@ -614,6 +625,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = (0, self.screen_width * 0.016)
         self.github_icon.pack(padx=padx, side="right")
         self.twitter_icon.pack(padx=padx, side="right")
+        self.linkedin_icon.pack(padx=padx, side="right")
 
         padx = (self.screen_width * 0.0545, 0)
         self.birthday_counter_bg.pack(padx=padx, anchor="w")

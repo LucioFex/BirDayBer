@@ -158,8 +158,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("user-white.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.07, 0.09))
             # Footer section
-            elif img in ("license.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.056, 0.088))
+            elif img in ("license.png", "privacy-policy.png"):
+                responsive_img.thumbnail(self.thumbnail_size(0.07, 0.08))
             # People adder's icon
             elif img in ("add-person.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.075, 0.087))
@@ -188,7 +188,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("image-not-found.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.37, 0.37))
             # Twitter & GitHub icon
-            elif img in ("twitter.png", "github.png"):
+            elif img in ("twitter.png", "github.png", "linkedin.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.041, 0.073))
             # Edit icon
             elif img in ("edit.png"):

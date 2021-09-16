@@ -67,13 +67,11 @@
 
 	"Spanish": {
         "license": [
-            "        Licencia no Encontrada",
+            "              Licencia no Encontrada",
             "Problemas tratando de encontrar el archivo",
             "Licencia de BirDayBer"
         ],
-        "version": [
-            "No se pudo conseguir el archivo ReadMe"
-        ],
+        "version": "No se pudo conseguir el archivo ReadMe",
         "about": [
             "Sobre BirDayBer"
         ],
