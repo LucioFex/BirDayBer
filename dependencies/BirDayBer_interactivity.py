@@ -179,7 +179,6 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             }
 
         self.play_sound(self.accept_se)
-
         load_page = Thread(target=webbrowser.open, args=[website[page]])
         load_page.start()
 
