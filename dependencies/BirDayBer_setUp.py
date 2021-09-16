@@ -188,7 +188,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("image-not-found.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.37, 0.37))
             # Twitter & GitHub icon
-            elif img in ("twitter.png", "github.png"):
+            elif img in ("twitter.png", "github.png", "linkedin.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.041, 0.073))
             # Edit icon
             elif img in ("edit.png"):

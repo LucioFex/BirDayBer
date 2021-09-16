@@ -69,6 +69,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 - Garbage icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/garbage_3143497?related_id=3143497&origin=search).
 - GitHub icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/github_1051275).
 - Twitter icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/twitter_185961).
+- Linkedin icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/linkedin_185964).
 - User icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/user_747376).
 - Male icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/man_2284900?related_id=2284900&origin=search).
 - Female icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/woman_2284897).

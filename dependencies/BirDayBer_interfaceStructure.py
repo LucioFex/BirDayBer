@@ -114,6 +114,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.garbage2_src = src_image("garbage2.png")
         self.twitter_src = src_image("twitter.png")
         self.github_src = src_image("github.png")
+        self.linkedin_src = src_image("linkedin.png")
         self.edit_src = src_image("edit.png")
         self.update_src = src_image("update.png")
         self.radio_button_off_src = src_image("radiobutton-0.png")
@@ -601,6 +602,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.right_bottom, bg="#3B5459", image=self.twitter_src, bd=0,
             activebackground="#3B5459", relief="flat", cursor="hand2")
 
+        self.linkedin_icon = tk.Button(
+            self.right_bottom, bg="#3B5459", image=self.linkedin_src, bd=0,
+            activebackground="#3B5459", relief="flat", cursor="hand2")
+
         self.github_icon = tk.Button(
             self.right_bottom, bg="#3B5459", image=self.github_src, bd=0,
             activebackground="#3B5459", relief="flat", cursor="hand2")
@@ -614,6 +619,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         padx = (0, self.screen_width * 0.016)
         self.github_icon.pack(padx=padx, side="right")
         self.twitter_icon.pack(padx=padx, side="right")
+        self.linkedin_icon.pack(padx=padx, side="right")
 
         padx = (self.screen_width * 0.0545, 0)
         self.birthday_counter_bg.pack(padx=padx, anchor="w")
