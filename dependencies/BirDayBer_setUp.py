@@ -158,8 +158,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             elif img in ("user-white.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.07, 0.09))
             # Footer section
-            elif img in ("license.png", "terms.png", "privacy-policy.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.06, 0.07))
+            elif img in ("license.png", "privacy-policy.png"):
+                responsive_img.thumbnail(self.thumbnail_size(0.07, 0.08))
             # People adder's icon
             elif img in ("add-person.png"):
                 responsive_img.thumbnail(self.thumbnail_size(0.075, 0.087))

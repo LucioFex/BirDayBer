@@ -98,7 +98,6 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.close_src = src_image("close-button.png")
         self.person_icon_src = src_image("user-white.png")
         self.license_src = src_image("license.png")
-        self.terms_src = src_image("terms.png")
         self.privacy_src = src_image("privacy-policy.png")
         self.male_src = src_image("male.png")
         self.female_src = src_image("female.png")
@@ -297,16 +296,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.left_bottom, image=self.privacy_src, bg="#436169",
             cursor="hand2", bd=0, activebackground="#436169")
 
-        self.terms_icon = tk.Button(
-            self.left_bottom, image=self.terms_src, bg="#436169",
-            cursor="hand2", bd=0, activebackground="#436169")
-
         pady = (self.screen_height * 0.004, 0)
         padx = (self.screen_width * 0.0162, self.screen_width * 0.005)
         self.left_bottom.pack(fill="both", ipady=50)
         self.license_icon.pack(side="left", pady=pady, padx=padx)
         self.privacy_icon.pack(side="left", pady=pady, padx=padx)
-        self.terms_icon.pack(side="left", pady=pady, padx=padx)
 
     def right_side_structure_top(self, location):
         """

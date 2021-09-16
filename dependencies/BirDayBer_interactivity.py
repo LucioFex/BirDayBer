@@ -130,6 +130,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         # self.maximize_button.config(command=self.title_bar_maximize) Later...
         self.twitter_icon.config(command=lambda: self.open_website("twitter"))
+        self.privacy_icon.config(command=lambda: self.open_website("privacy"))
         self.github_icon.config(command=lambda: self.open_website("github"))
         self.linkedin_icon.config(
             command=lambda: self.open_website("linkedin"))
@@ -175,7 +176,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         website = {
             "github": "https://github.com/LucioFex/BirDayBer",
             "twitter": "https://twitter.com/LucioFex",
-            "linkedin": "https://www.linkedin.com/in/luciano-esteban/"
+            "linkedin": "https://www.linkedin.com/in/luciano-esteban/",
+            "privacy": (
+                "https://www.termsfeed.com/live/f99850a7" +
+                "-58ec-4880-babe-6247686dd534")
             }
 
         self.play_sound(self.accept_se)
