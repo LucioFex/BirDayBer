@@ -233,6 +233,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         Method to search for a person in people_finder through the browser.
         """
+        self.play_sound(self.accept_se)
         self.reset_people_finder()
         self.generate_people_viewer()
 
