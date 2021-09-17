@@ -191,7 +191,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.search_bg, image=self.person_icon_src, bg="#4d717f")
 
         self.search = tk.StringVar()
-        self.search.set(self.lang["data_text"][4])
+        self.search.set(self.lang["data-text"][4])
 
         self.browser = tk.Entry(
             self.search_bg, bg="#517684", selectbackground="#4a92ab",
@@ -200,7 +200,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             font=("Century Gothic", round(self.screen_width / 60)))
 
         self.prepare_placeholder(
-            self.browser, self.lang["data_text"][4], self.search)
+            self.browser, self.lang["data-text"][4], self.search)
         self.left_side_top_packing()
 
     def left_side_top_packing(self):
@@ -226,7 +226,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_mid = tk.Frame(self.left_side, bg="#2A4248")
 
         self.people_over = tk.Label(
-            self.left_mid, relief="flat", text=self.lang["data_text"][5],
+            self.left_mid, relief="flat", text=self.lang["data-text"][5],
             font=("Century Gothic", round(self.screen_width / 64)),
             width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
 
@@ -339,19 +339,19 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     def people_adder_placeholders(self):  # Add docs later...
         entries = (
             (
-                self.first_name, self.lang["data_text"][0],
+                self.first_name, self.lang["data-text"][0],
                 self.add_name_var
                 ),
             (
-                self.second_name, self.lang["data_text"][1],
+                self.second_name, self.lang["data-text"][1],
                 self.add_surname_var
                 ),
             (
-                self.country, self.lang["data_text"][2],
+                self.country, self.lang["data-text"][2],
                 self.add_country_var
                 ),
             (
-                self.birth_date, self.lang["data_text"][3],
+                self.birth_date, self.lang["data-text"][3],
                 self.add_birth_var
                 ))
 
@@ -373,10 +373,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.add_country_var = tk.StringVar()
         self.add_birth_var = tk.StringVar()
 
-        self.add_name_var.set(self.lang["data_text"][0])
-        self.add_surname_var.set(self.lang["data_text"][1])
-        self.add_country_var.set(self.lang["data_text"][2])
-        self.add_birth_var.set(self.lang["data_text"][3])
+        self.add_name_var.set(self.lang["data-text"][0])
+        self.add_surname_var.set(self.lang["data-text"][1])
+        self.add_country_var.set(self.lang["data-text"][2])
+        self.add_birth_var.set(self.lang["data-text"][3])
 
         self.first_name = adder_entry(
             self.first_name_edge, self.screen_width, self.add_name_var)
@@ -707,7 +707,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             font=("Century Gothic", round(self.screen_width / 75)))
         self.languages["values"] = [
             self.lang["languages"][0], self.lang["languages"][1]]
-        self.languages.set(self.lang["current_lang"])
+        self.languages.set(self.lang["current-lang"])
 
         self.languages.bind("<<ComboboxSelected>>", self.change_language)
         self.languages.grid(
