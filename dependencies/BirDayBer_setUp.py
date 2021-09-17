@@ -2,6 +2,7 @@ import dependencies.BirDayBer_DB as BirDayBer_DB
 from PIL import (Image, ImageOps, ImageTk)
 from pystray import MenuItem as item
 from base64 import b64decode
+from ctypes import windll
 from io import BytesIO
 import tkinter as tk
 import pystray
@@ -26,8 +27,6 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
     """
     def __init__(self):
         super().__init__()
-        # Root and Frame - Generation and Configuration:
-
         # Deletion of the original Title Bar
         self.root.overrideredirect(1)
 
@@ -44,6 +43,18 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill="both")
 
+        # Attribute to check if the app is a Stray icon or not
+        self.stray_icon_state = False
+
+        # Implementation of actions for when the window is closed
+        self.root.protocol("WM_DELETE_WINDOW", self.close_client)
+
+        # Visual brand modifications
+        self.root.title("BirDayBer")
+        self.root.iconbitmap(
+            "bin//system-content//visual-content//BirDayBerIcon.ico")
+
+    def generate_hidden_window(self):
         # Hidden Window - Generation and Configuration:
         self.hidden_window = tk.Toplevel(self.root)
 
@@ -55,18 +66,28 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.hidden_window.bind("<Unmap>", self.window_focus)
         self.hidden_window.bind("<FocusIn>", self.window_focus)
 
-        # Attribute to check if the app is a Stray icon or not
-        self.stray_icon_state = False
-
         # Implementation of actions for when the window is closed
-        for widget in (self.root, self.hidden_window):
-            widget.protocol("WM_DELETE_WINDOW", self.close_client)
+        self.hidden_window.protocol("WM_DELETE_WINDOW", self.close_client)
 
         # Visual brand modifications
-        for visual_brand in (self.root, self.hidden_window):
-            visual_brand.title("BirDayBer")
-            visual_brand.iconbitmap(
-                "bin//system-content//visual-content//BirDayBerIcon.ico")
+        self.hidden_window.title("BirDayBer")
+        self.hidden_window.iconbitmap(
+            "bin//system-content//visual-content//BirDayBerIcon.ico")
+
+    def set_appwindow(self):
+        GWL_EXSTYLE = -20
+        WS_EX_APPWINDOW = 0x00040000
+        WS_EX_TOOLWINDOW = 0x00000080
+
+        hwnd = windll.user32.GetParent(self.root.winfo_id())
+        style = windll.user32.GetWindowLongW(hwnd, GWL_EXSTYLE)
+        style = style & ~WS_EX_TOOLWINDOW
+        style = style | WS_EX_APPWINDOW
+        windll.user32.SetWindowLongW(hwnd, GWL_EXSTYLE, style)
+
+        # re-assert the new window style
+        self.root.wm_withdraw()
+        self.root.after(10, lambda: self.root.wm_deiconify())
 
     def main_window_resolution(self, width, height):
         """
@@ -237,6 +258,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         This method is a manual way to minimize the window
         with the 'minimize' button of the title bar.
         """
+        self.generate_hidden_window()
         self.hidden_window.unbind("<FocusIn>")
         self.root.withdraw()
         self.root.update()
@@ -250,8 +272,10 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.root.update()
         if event.type == tk.EventType.FocusIn:  # Show the window
             self.root.deiconify()
+            self.hidden_window.destroy()
 
         elif event.type == tk.EventType.Unmap:  # Hide the window
+            self.generate_hidden_window()
             self.root.withdraw()
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
@@ -324,10 +348,11 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         Method to convert the app into a Stray Icon.
         """
+        # self.generate_hidden_window()
         self.stray_icon_state = True
         self.prepare_birthday_notification()
 
-        self.hidden_window.withdraw()
+        self.root.withdraw()
         if self.settings_state:
             self.close_settings()
 
@@ -349,7 +374,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         self.stray_icon_state = False
         self.stray_icon.stop()
-        self.root.after(0, self.hidden_window.deiconify())
+        self.root.after(0, lambda: self.root.deiconify())
 
     def close_client(self):
         """
