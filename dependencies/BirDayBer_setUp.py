@@ -55,6 +55,9 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             "bin//system-content//visual-content//BirDayBerIcon.ico")
 
     def set_appwindow(self):
+        """
+        Method to make the window discoverable by the task manager.
+        """
         GWL_EXSTYLE = -20
         WS_EX_APPWINDOW = 0x00040000
         WS_EX_TOOLWINDOW = 0x00000080
@@ -255,7 +258,7 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         self.root.overrideredirect(1)
         self.root.deiconify()
-        self.root.after(10, self.set_appwindow())
+        self.root.after(10, self.set_appwindow)
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 

@@ -336,7 +336,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.people_adder_left()
         self.people_adder_right()
 
-    def people_adder_placeholders(self):  # Add docs later...
+    def people_adder_placeholders(self):
+        """
+        Method to update the people-adder placeholders
+        """
         entries = (
             (
                 self.first_name, self.lang["data-text"][0],
