@@ -91,7 +91,7 @@ with this one, but that doesn't mean that I couldn't change some ideas of the co
 ## Project Status:
 
 ### `Available on Windows`
-### `Version: 1.0.1`
+### `Version: 1.1.2`
 
 ## License
 
