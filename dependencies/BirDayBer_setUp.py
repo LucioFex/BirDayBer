@@ -54,25 +54,25 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.root.iconbitmap(
             "bin//system-content//visual-content//BirDayBerIcon.ico")
 
-    def generate_hidden_window(self):
-        # Hidden Window - Generation and Configuration:
-        self.hidden_window = tk.Toplevel(self.root)
+    # def generate_hidden_window(self):
+    #     # Hidden Window - Generation and Configuration:
+    #     self.hidden_window = tk.Toplevel(self.root)
 
-        # Hide of the top window
-        self.hidden_window.geometry("0x0+10000+10000")
-        self.hidden_window.attributes("-alpha", 0.0)
+    #     # Hide of the top window
+    #     self.hidden_window.geometry("0x0+10000+10000")
+    #     self.hidden_window.attributes("-alpha", 0.0)
 
-        # Actions for maximizing and minimizing the root from the taskbar
-        self.hidden_window.bind("<Unmap>", self.window_focus)
-        self.hidden_window.bind("<FocusIn>", self.window_focus)
+    #     # Actions for maximizing and minimizing the root from the taskbar
+    #     self.hidden_window.bind("<Unmap>", self.window_focus)
+    #     self.hidden_window.bind("<FocusIn>", self.window_focus)
 
-        # Implementation of actions for when the window is closed
-        self.hidden_window.protocol("WM_DELETE_WINDOW", self.close_client)
+    #     # Implementation of actions for when the window is closed
+    #     self.hidden_window.protocol("WM_DELETE_WINDOW", self.close_client)
 
-        # Visual brand modifications
-        self.hidden_window.title("BirDayBer")
-        self.hidden_window.iconbitmap(
-            "bin//system-content//visual-content//BirDayBerIcon.ico")
+    #     # Visual brand modifications
+    #     self.hidden_window.title("BirDayBer")
+    #     self.hidden_window.iconbitmap(
+    #         "bin//system-content//visual-content//BirDayBerIcon.ico")
 
     def set_appwindow(self):
         GWL_EXSTYLE = -20
@@ -258,25 +258,24 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         This method is a manual way to minimize the window
         with the 'minimize' button of the title bar.
         """
-        self.generate_hidden_window()
-        self.hidden_window.unbind("<FocusIn>")
         self.root.withdraw()
+        self.root.overrideredirect(0)
+        self.root.iconify()
         self.root.update()
-        self.hidden_window.bind("<FocusIn>", self.window_focus)
+        self.root.bind("<FocusIn>", self.window_focus)
 
     def window_focus(self, event):
         """
         Method that declares if the program (recognized by the task manager)
         is focused or not. Then it will minimize or re-open the window.
         """
+        self.root.unbind("<FocusIn>")
+        self.root.withdraw()
         self.root.update()
-        if event.type == tk.EventType.FocusIn:  # Show the window
-            self.root.deiconify()
-            self.hidden_window.destroy()
 
-        elif event.type == tk.EventType.Unmap:  # Hide the window
-            self.generate_hidden_window()
-            self.root.withdraw()
+        self.root.overrideredirect(1)
+        self.root.deiconify()
+        self.root.after(10, self.set_appwindow())
 
     def cursor_start_move(self, event): self.x, self.y = event.x, event.y
 
@@ -348,7 +347,6 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         Method to convert the app into a Stray Icon.
         """
-        # self.generate_hidden_window()
         self.stray_icon_state = True
         self.prepare_birthday_notification()
 
