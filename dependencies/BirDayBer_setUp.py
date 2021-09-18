@@ -54,26 +54,6 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.root.iconbitmap(
             "bin//system-content//visual-content//BirDayBerIcon.ico")
 
-    # def generate_hidden_window(self):
-    #     # Hidden Window - Generation and Configuration:
-    #     self.hidden_window = tk.Toplevel(self.root)
-
-    #     # Hide of the top window
-    #     self.hidden_window.geometry("0x0+10000+10000")
-    #     self.hidden_window.attributes("-alpha", 0.0)
-
-    #     # Actions for maximizing and minimizing the root from the taskbar
-    #     self.hidden_window.bind("<Unmap>", self.window_focus)
-    #     self.hidden_window.bind("<FocusIn>", self.window_focus)
-
-    #     # Implementation of actions for when the window is closed
-    #     self.hidden_window.protocol("WM_DELETE_WINDOW", self.close_client)
-
-    #     # Visual brand modifications
-    #     self.hidden_window.title("BirDayBer")
-    #     self.hidden_window.iconbitmap(
-    #         "bin//system-content//visual-content//BirDayBerIcon.ico")
-
     def set_appwindow(self):
         GWL_EXSTYLE = -20
         WS_EX_APPWINDOW = 0x00040000
