@@ -21,6 +21,7 @@ class Birdayber(BirDayBer_interactivity.BirDayBer_interactivity):
             self.lang = json.load(texts)[self.current_lang]
 
         super().__init__()
+        self.root.after(10, self.set_appwindow)
         self.root.mainloop() if mainloop else None
 
     def load_previews_configurations(self):

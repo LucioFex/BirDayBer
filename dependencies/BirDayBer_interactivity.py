@@ -195,8 +195,8 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         birthdays_count = len(self.total_birthdays)
         label_txt = (
-            f"{self.lang['birthdays_counter'][0][0]} {birthdays_count} " +
-            f"{self.lang['birthdays_counter'][0][1]}")
+            f"{self.lang['birthdays-counter'][0][0]} {birthdays_count} " +
+            f"{self.lang['birthdays-counter'][0][1]}")
 
         return self.birthday_counter.config(text=label_txt)
 
@@ -413,9 +413,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def people_adder_file_select(self):
         filename = askopenfilename(
-            initialdir="/", title=self.lang["file_selection"][0],
+            initialdir="/", title=self.lang["file-selection"][0],
             filetypes=(
-                (self.lang["file_selection"][1], ".jpg .jpeg .png .tiff"),))
+                (self.lang["file-selection"][1], ".jpg .jpeg .png .tiff"),))
 
         self.file_selected = filename
         self.convert_adder_img(filename)
@@ -468,15 +468,15 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.remove_adder_placeholders()
 
     def check_name_field(self):
-        if self.add_name_var.get() == self.lang["data_text"][0]:
+        if self.add_name_var.get() == self.lang["data-text"][0]:
             messagebox.showerror(
-                self.lang["check_field"][0], self.lang["check_field"][1])
+                self.lang["check-field"][0], self.lang["check-field"][1])
             return True
 
     def check_gender_field(self):
         if self.gender_selector.get() == 0:
             messagebox.showerror(
-                self.lang["check_field"][0], self.lang["check_field"][4])
+                self.lang["check-field"][0], self.lang["check-field"][4])
             return True
 
     def check_birthdate_field(self, date_of_birth):
@@ -485,7 +485,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         if match == []:
             messagebox.showerror(
-                self.lang["check_field"][3], self.lang["check_field"][5])
+                self.lang["check-field"][3], self.lang["check-field"][5])
             return True
 
         try:
@@ -494,13 +494,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 raise ValueError
         except ValueError:
             messagebox.showerror(
-                self.lang["check_field"][6], self.lang["check_field"][7])
+                self.lang["check-field"][6], self.lang["check-field"][7])
             return True
 
     def remove_adder_placeholders(self):
         matches = (
-            (self.add_surname_var, self.lang["data_text"][1]),
-            (self.add_country_var, self.lang["data_text"][2]))
+            (self.add_surname_var, self.lang["data-text"][1]),
+            (self.add_country_var, self.lang["data-text"][2]))
 
         for entry in matches:
             if re.match(entry[0].get(), entry[1]) is not None:
@@ -510,10 +510,10 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.convert_adder_img("")  # Sets the default adder image
         self.gender_selector.set(0)
         self.file_selected = ""
-        self.add_name_var.set(self.lang["data_text"][0])
-        self.add_surname_var.set(self.lang["data_text"][1])
-        self.add_country_var.set(self.lang["data_text"][2])
-        self.add_birth_var.set(self.lang["data_text"][3])
+        self.add_name_var.set(self.lang["data-text"][0])
+        self.add_surname_var.set(self.lang["data-text"][1])
+        self.add_country_var.set(self.lang["data-text"][2])
+        self.add_birth_var.set(self.lang["data-text"][3])
         self.play_sound(self.accept_se)
 
     def reset_people_finder(self):
@@ -613,9 +613,9 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
     def select_new_photo(self):
         filename = askopenfilename(
-            initialdir="/", title=self.lang["file_selection"][0],
+            initialdir="/", title=self.lang["file-selection"][0],
             filetypes=(
-                (self.lang["file_selection"][1], ".jpg .jpeg .png .tiff"), ))
+                (self.lang["file-selection"][1], ".jpg .jpeg .png .tiff"), ))
 
         photo = file_to_base64(filename)
         return (photo, filename)
@@ -625,7 +625,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             return "no"
 
         answer = messagebox.askquestion(
-            self.lang["update_row"][0], self.lang["update_row"][1])
+            self.lang["update-row"][0], self.lang["update-row"][1])
         return answer
 
     def update_person(self, person_id, section):
@@ -689,12 +689,12 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         if self.fullname_var.get() in ("", " "):
             messagebox.showerror(
-                self.lang["check_field"][0], self.lang["check_field"][2])
+                self.lang["check-field"][0], self.lang["check-field"][2])
             return True
 
         elif error_detected:
             messagebox.showerror(
-                self.lang["check_field"][5], self.lang["check_field"][8])
+                self.lang["check-field"][5], self.lang["check-field"][8])
             return True
 
     def ask_before_delete(self):
@@ -706,7 +706,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.play_sound(self.ask_se)
         answer = messagebox.askquestion(
-            self.lang["delete_row"][0], self.lang["delete_row"][1])
+            self.lang["delete-row"][0], self.lang["delete-row"][1])
         return answer
 
     def ask_before_reset(self):
@@ -715,7 +715,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         """
         self.play_sound(self.ask_se)
         answer = messagebox.askquestion(
-            self.lang["reset_db"][0], self.lang["reset_db"][1])
+            self.lang["reset-db"][0], self.lang["reset-db"][1])
         return answer
 
     def change_language(self, event):
@@ -739,17 +739,17 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.update_app_texts()
 
     def update_app_texts(self):
-        self.search.set(self.lang["data_text"][4])
+        self.search.set(self.lang["data-text"][4])
 
-        self.add_name_var.set(self.lang["data_text"][0])
-        self.add_surname_var.set(self.lang["data_text"][1])
-        self.add_country_var.set(self.lang["data_text"][2])
-        self.add_birth_var.set(self.lang["data_text"][3])
+        self.add_name_var.set(self.lang["data-text"][0])
+        self.add_surname_var.set(self.lang["data-text"][1])
+        self.add_country_var.set(self.lang["data-text"][2])
+        self.add_birth_var.set(self.lang["data-text"][3])
 
-        self.add_name_var.set(self.lang["data_text"][0])
-        self.add_surname_var.set(self.lang["data_text"][1])
-        self.add_country_var.set(self.lang["data_text"][2])
-        self.add_birth_var.set(self.lang["data_text"][3])
+        self.add_name_var.set(self.lang["data-text"][0])
+        self.add_surname_var.set(self.lang["data-text"][1])
+        self.add_country_var.set(self.lang["data-text"][2])
+        self.add_birth_var.set(self.lang["data-text"][3])
 
         self.settings_sound.config(text=self.lang["settings"][0])
         self.settings_ask_before_del.config(text=self.lang["settings"][1])
@@ -758,18 +758,18 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         self.delete_button.config(text=self.lang["settings"][4])
 
         self.prepare_placeholder(
-            self.browser, self.lang["data_text"][4], self.search)
+            self.browser, self.lang["data-text"][4], self.search)
         self.people_adder_placeholders()
 
-        self.people_over.config(text=self.lang["data_text"][5])
+        self.people_over.config(text=self.lang["data-text"][5])
 
         self.languages.destroy()
         self.settings_language_list()
 
         birthdays_count = len(self.total_birthdays)
         self.birthday_counter.config(
-            text=f"{self.lang['birthdays_counter'][0][0]} {birthdays_count} " +
-            f"{self.lang['birthdays_counter'][0][1]}")
+            text=f"{self.lang['birthdays-counter'][0][0]} {birthdays_count} " +
+            f"{self.lang['birthdays-counter'][0][1]}")
 
     def prepare_birthday_notification(self):
         """
