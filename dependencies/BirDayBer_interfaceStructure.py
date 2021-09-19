@@ -15,18 +15,17 @@ def titlebar_button(master, img, background, activebackground="#1e5061"):
         activebackground=activebackground, bg=background)
 
 
-def adder_entry(master, width, textvariable):
+def adder_entry(master, width, textvariable, font_size):
     return tk.Entry(
         master, relief="flat", bg="#517684", insertbackground="#d7f5ff",
-        width=round(width * 0.01), selectbackground="#4a92ab",
-        textvariable=textvariable, fg="#d1d1d1",
-        font=("Century Gothic", round(width * 0.0093)))
+        width=width, selectbackground="#4a92ab", textvariable=textvariable,
+        fg="#d1d1d1", font=("Century Gothic", font_size))
 
 
-def mid_entry(master, width, font, screen, textvar=None, style=""):
+def mid_entry(master, width, font_size, textvar=None, style=""):
     return tk.Entry(
-        master, relief="flat", width=round(screen * width), justify="center",
-        font=("Century Gothic", round(screen * font), style), fg="#212121",
+        master, relief="flat", width=width, justify="center",
+        font=("Century Gothic", font_size, style), fg="#212121",
         textvariable=textvar, selectbackground="#778954", bg="#ffffff",
         insertbackground="#798a5a", disabledbackground="#ffffff",
         disabledforeground="#212121", cursor="arrow", state="disabled")
@@ -38,15 +37,14 @@ def edit_button(master, img, command=None):
         activebackground="#ffffff", command=command)
 
 
-def settings_label(master, width, height, text, row):
+def settings_label(master, width, height, font, text, row):
     underscore = tk.Frame(master, bg="#267b9d")
     underscore.grid(
-        row=row, column=0, padx=(width * 0.05, 0),
-        pady=height * 0.03, sticky="w")
+        row=row, column=0, padx=(width, 0), pady=height, sticky="w")
 
     return tk.Label(
-        underscore, font=("Century Gothic", round(width / 60)),
-        text=text, bg="#475d66", fg="#e3e3e3")
+        underscore, text=text, bg="#475d66", fg="#e3e3e3",
+        font=("Century Gothic", font))
 
 
 def check_button(master, image1, image2, width, boolean, command=None):
@@ -382,13 +380,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.add_birth_var.set(self.lang["data-text"][3])
 
         self.first_name = adder_entry(
-            self.first_name_edge, self.screen_width, self.add_name_var)
+            self.first_name_edge, self.sizes["adder-entry"][0],
+            self.add_name_var, self.sizes["adder-entry"][1])
         self.second_name = adder_entry(
-            self.surname_edge, self.screen_width, self.add_surname_var)
+            self.surname_edge, self.sizes["adder-entry"][0],
+            self.add_surname_var, self.sizes["adder-entry"][1])
         self.country = adder_entry(
-            self.country_edge, self.screen_width, self.add_country_var)
+            self.country_edge, self.sizes["adder-entry"][0],
+            self.add_country_var, self.sizes["adder-entry"][1])
         self.birth_date = adder_entry(
-            self.birth_date_edge, self.screen_width, self.add_birth_var)
+            self.birth_date_edge, self.sizes["adder-entry"][0],
+            self.add_birth_var, self.sizes["adder-entry"][1])
 
         self.root.bind_all("<Button-1>", self.remove_entry_focus)
         self.people_adder_placeholders()
@@ -476,16 +478,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.birth_var = tk.StringVar()
 
         self.fullname_big = mid_entry(
-            self.inner_fullname, 0.012, 0.018,
-            self.screen_width, self.fullname_var)
+            self.inner_fullname, self.sizes["mid-entry"][0][0],
+            self.sizes["mid-entry"][0][1], self.fullname_var)
         self.country_big = mid_entry(
-            self.inner_country, 0.011, 0.014,
-            self.screen_width, self.country_var)
+            self.inner_country, self.sizes["mid-entry"][1][0],
+            self.sizes["mid-entry"][1][1], self.country_var)
         self.age_big = mid_entry(
-            self.age_bg, 0.0035, 0.02, self.screen_width, self.age_var)
+            self.age_bg, self.sizes["mid-entry"][2][0],
+            self.sizes["mid-entry"][2][1], self.age_var)
         self.birth_big = mid_entry(
-            self.inner_birth, 0.01, 0.014, self.screen_width,
-            self.birth_var, style="bold")
+            self.inner_birth, self.sizes["mid-entry"][3][0],
+            self.sizes["mid-entry"][3][1], self.birth_var, style="bold")
 
         self.edit_fullname = edit_button(self.inner_fullname, self.edit_src)
         self.edit_country = edit_button(self.inner_country, self.edit_src)
@@ -661,20 +664,24 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_bg = tk.Frame(self.settings, bg="#475d66")
 
         self.settings_sound = settings_label(
-            self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings"][0], row=0)
+            self.settings_bg, self.sizes["settings-label"][0],
+            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
+            self.lang["settings"][0], row=0)
 
         self.settings_ask_before_del = settings_label(
-            self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings"][1], row=2)
+            self.settings_bg, self.sizes["settings-label"][0],
+            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
+            self.lang["settings"][1], row=2)
 
         self.settings_language = settings_label(
-            self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings"][2], row=4)
+            self.settings_bg, self.sizes["settings-label"][0],
+            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
+            self.lang["settings"][2], row=4)
 
         self.settings_remove_people = settings_label(
-            self.settings_bg, self.screen_width,
-            self.screen_height, self.lang["settings"][3], row=6)
+            self.settings_bg, self.sizes["settings-label"][0],
+            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
+            self.lang["settings"][3], row=6)
 
         self.settings_checkButtons()
         self.settings_language_list()
