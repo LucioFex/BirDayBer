@@ -76,12 +76,13 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the main window of a geometry and position.
         """
-        self.screen_width = width - round(width / 2) + 480
-        self.screen_height = height - round(height / 2) + 270
+        self.screen_width = 1440
+        self.screen_height = 810
 
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
 
+        self.prepare_resized_widgets_dict()
         return (
             f"{self.screen_width}x{self.screen_height}+" +
             f"{self.x_position}+{self.y_position}")
@@ -101,6 +102,20 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         self.settings.geometry(
             f"{self.settings_width}x{self.settings_height}+" +
             f"{self.x_settings_position}+{self.y_settings_position}")
+
+    def prepare_resized_widgets_dict(self):
+        """
+        Method to improve the widgets resizement depending on the screen size
+        """
+        width = self.root.winfo_screenwidth()
+        height = self.root.winfo_screenheight()
+
+        if width >= 1600 and height >= 900:
+            self.sizes = {
+                "adder-entry": (14, 13),
+                "mid-entry": ((17, 26), (16, 20), (5, 29), (14, 20)),
+                "settings-label": (72, 24, 24)
+            }
 
     def get_license(self):
         """
