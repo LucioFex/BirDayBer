@@ -112,9 +112,13 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
 
         if width >= 1600 and height >= 900:
             self.sizes = {
-                "adder-entry": (14, 13),
-                "mid-entry": ((17, 26), (16, 20), (5, 29), (14, 20)),
-                "settings-label": (72, 24, 24)
+                "title-bar": (14, 7),
+                "left-top": (38, 19, 24, 233.328, 21.6, 11.34, 14.4),
+                "adder-entry": (14, 13, 19.8225, 15.39, 19.777),
+                "mid-entry": ((17, 26), (16, 20), (5, 29), (14, 20), 6.48),
+                "settings-label": (72, 24, 24),
+                "right-mid": (4.32, 9.72, 6.48, 5.76, 3.24, 2.88),
+                "mid-border": (5.67, 64.08, 105.408, 20.25, 36, 10.08, 10.53)
             }
 
     def get_license(self):
