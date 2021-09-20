@@ -110,14 +110,20 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         width = self.root.winfo_screenwidth()
         height = self.root.winfo_screenheight()
 
-        if width >= 1600 and height >= 900:
+        if (width, height) >= (1600, 900):
             self.sizes = {
                 "title-bar": (14, 7),
-                "left-top": (38, 19, 24, 233.328, 21.6, 11.34, 14.4),
+                "left-top": (38, 19, 24, 23.328, 21.6, 11.34, 14.4),
+                "left-mid": (22, 25, 13.77, 10.53, 417.6, 380.7, 10.08),
+                "left-bot": (3.24, 23.328, 7.2, 50),
+                "right-top": (
+                    13.77, 4.05, 174.96, 8.64, 16.2,
+                    24.3, 14.4, 25.11, 8.1, 3.24),
+                "right-mid": (4.32, 9.72, 6.48, 5.76, 3.24, 2.88, 18.63),
+                "right-bot": (23, 78.48, 810),
                 "adder-entry": (14, 13, 19.8225, 15.39, 19.777),
                 "mid-entry": ((17, 26), (16, 20), (5, 29), (14, 20), 6.48),
-                "settings-label": (72, 24, 24),
-                "right-mid": (4.32, 9.72, 6.48, 5.76, 3.24, 2.88),
+                "settings": (72, 24, 7.29, 8.1, 19, 202.5, 2.88),
                 "mid-border": (5.67, 64.08, 105.408, 20.25, 36, 10.08, 10.53)
             }
 
