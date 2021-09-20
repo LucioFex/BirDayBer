@@ -143,9 +143,15 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.close_button = titlebar_button(
             self.title_bar, self.close_src, "#2c5c6d", "#911722")
 
-        self.close_button.pack(side="right", ipadx=14, ipady=7, fill="y")
-        self.maximize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
-        self.minimize_button.pack(side="right", ipadx=14, ipady=7, fill="y")
+        self.close_button.pack(
+            side="right", ipadx=self.sizes["title-bar"][0],
+            ipady=self.sizes["title-bar"][1], fill="y")
+        self.maximize_button.pack(
+            side="right", ipadx=self.sizes["title-bar"][0],
+            ipady=self.sizes["title-bar"][1], fill="y")
+        self.minimize_button.pack(
+            side="right", ipadx=self.sizes["title-bar"][0],
+            ipady=self.sizes["title-bar"][1], fill="y")
 
         self.icon = tk.Label(
             self.title_bar, image=self.birdayber_src, bg="#316477")
@@ -183,7 +189,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.title = tk.Label(
             self.left_top, bg="#2e4c53", text="BirDayBer", fg="#e3e3e3",
-            font=("Century Gothic", round(self.screen_width / 38)))
+            font=("Century Gothic", self.sizes["left-top"][0]))
 
         self.person_icon = tk.Label(
             self.search_bg, image=self.person_icon_src, bg="#4d717f")
@@ -194,8 +200,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.browser = tk.Entry(
             self.search_bg, bg="#517684", selectbackground="#4a92ab",
             relief="flat", fg="#d1d1d1", insertbackground="#d7f5ff",
-            width=round(self.screen_width / 75), textvariable=self.search,
-            font=("Century Gothic", round(self.screen_width / 60)))
+            width=self.sizes["left-top"][1], textvariable=self.search,
+            font=("Century Gothic", self.sizes["left-top"][2]))
 
         self.prepare_placeholder(
             self.browser, self.lang["data-text"][4], self.search)
@@ -205,15 +211,15 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.left_top.pack()
         self.person_icon.pack(side="left")
 
-        padx = (self.screen_width * 0.0162, 0)
-        pady = self.screen_width * 0.015
+        padx = (self.sizes["left-top"][3], 0)
+        pady = self.sizes["left-top"][4]
         self.title.pack(anchor="w", padx=padx, pady=pady)
 
-        padx = (self.screen_width * 0.0162)
+        padx = self.sizes["left-top"][3]
         self.search_edge.pack(anchor="w", padx=padx)
 
-        pady = (0, self.screen_height * 0.014)
-        padx = (self.screen_width / 100, 0)
+        pady = (0, self.sizes["left-top"][5])
+        padx = (self.sizes["left-top"][6], 0)
         self.search_bg.pack(pady=pady)
         self.browser.pack(side="left", fill="y", padx=padx)
 
@@ -395,12 +401,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.root.bind_all("<Button-1>", self.remove_entry_focus)
         self.people_adder_placeholders()
 
-        padx = self.screen_width * 0.01375 + 0.0225
-        pady = self.screen_height * 0.019
+        padx = self.sizes["adder-entry"][2]
+        pady = self.sizes["adder-entry"][3]
         self.first_name_edge.grid(row=0, column=0, pady=pady, padx=(padx, 0))
         self.surname_edge.grid(row=1, column=0, pady=pady, padx=(padx, 0))
 
-        padx = self.screen_width * 0.01375 - 0.0225
+        padx = self.sizes["adder-entry"][4]
         self.birth_date_edge.grid(row=0, column=1, pady=pady, padx=padx)
         self.country_edge.grid(row=1, column=1, pady=pady, padx=padx)
 
@@ -531,46 +537,46 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.generate_trash_button()
 
     def right_mid_bg_packing(self):
-        pady = (0, self.screen_height * 0.012)
-        padx = (self.screen_width * 0.003, 0)
+        padx = (self.sizes["right-mid"][0], 0)
+        pady = (0, self.sizes["right-mid"][1])
         self.default_bg.pack(fill="both", padx=padx, pady=pady)
 
     def right_mid_packing(self):
-        padx = (self.screen_width * 0.003, 0)
-        pady = (0, self.screen_height * 0.012)
+        padx = (self.sizes["right-mid"][0], 0)
+        pady = (0, self.sizes["right-mid"][1])
         self.right_bg.pack(fill="both", padx=padx, pady=pady)
 
-        pady = (self.screen_height * 0.008, 0)
-        padx = (self.screen_width * 0.004, 0)
+        pady = (self.sizes["right-mid"][2], 0)
+        padx = (self.sizes["right-mid"][3], 0)
         self.skull_icon.grid(
             sticky="nw", row=0, column=0, padx=padx, pady=pady)
 
-        pady = (self.screen_height * 0.004, 0)
-        padx = (0, self.screen_width * 0.002)
+        pady = (self.sizes["right-mid"][4], 0)
+        padx = (0, self.sizes["right-mid"][5])
         self.gender_small_icon.grid(
             sticky="ne", row=0, column=3, padx=padx, pady=pady)
 
-        pady = (self.screen_height * 0.007, 0)
-        padx = (self.screen_width * 0.0445, self.screen_width * 0.0732)
+        pady = (self.sizes["mid-border"][0], 0)
+        padx = (self.sizes["mid-border"][1], self.sizes["mid-border"][2])
         self.fullname_bg.grid(
             sticky="w", row=1, column=0, pady=pady, padx=padx)
 
-        pady = (self.screen_height * 0.08, 0)
+        pady = (self.sizes["mid-border"][1], 0)
         self.country_bg.grid(sticky="w", row=3, column=0, pady=pady, padx=padx)
 
-        pady = (self.screen_height * 0.025, 0)
+        pady = (self.sizes["mid-border"][3], 0)
         self.age_bg.grid(sticky="w", row=4, column=0, pady=pady, padx=padx)
 
-        padx = (0, self.screen_width * 0.025)
+        padx = (0, self.sizes["mid-border"][4])
         self.birth_bg.grid(sticky="ne", row=5, column=2, padx=padx)
 
         self.big_photo.grid(sticky="ne", rowspan=5, row=0, column=2)
 
-        padx = (self.screen_width * 0.007)
-        pady = (0, self.screen_height * 0.013)
+        padx = (self.sizes["mid-border"][5])
+        pady = (0, self.sizes["mid-border"][6])
         self.trash.grid(sticky="sw", row=6, column=0, padx=padx, pady=pady)
 
-        pady = (0, self.screen_height * 0.008)
+        pady = (0, self.sizes["mid-entry"][4])
 
         self.inner_fullname.pack(pady=pady)
         self.fullname_big.pack(side="left")
