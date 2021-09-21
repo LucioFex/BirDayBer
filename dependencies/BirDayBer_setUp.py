@@ -6,6 +6,7 @@ from ctypes import windll
 from io import BytesIO
 import tkinter as tk
 import pystray
+import json
 import os
 
 
@@ -76,13 +77,14 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the main window of a geometry and position.
         """
-        self.screen_width = 1440
-        self.screen_height = 810
+        self.prepare_resized_widgets_dict()
+
+        self.screen_width = self.sizes["window-size"][0]
+        self.screen_height = self.sizes["window-size"][1]
 
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
 
-        self.prepare_resized_widgets_dict()
         return (
             f"{self.screen_width}x{self.screen_height}+" +
             f"{self.x_position}+{self.y_position}")
@@ -91,10 +93,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the toplevel of a geometry and position.
         """
-        self.settings_width = round(
-            self.root.winfo_screenwidth() * 0.252 + 192)
-        self.settings_height = round(
-            self.root.winfo_screenheight() * 0.434 + 216)
+        self.settings_width = self.sizes["window-size"][2]
+        self.settings_height = self.sizes["window-size"][3]
 
         self.x_settings_position = round(self.root.winfo_screenwidth() / 3)
         self.y_settings_position = round(self.root.winfo_screenheight() / 5.5)
@@ -110,22 +110,15 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         width = self.root.winfo_screenwidth()
         height = self.root.winfo_screenheight()
 
-        if (width, height) >= (1600, 900):
-            self.sizes = {
-                "title-bar": (14, 7),
-                "left-top": (38, 19, 24, 23.328, 21.6, 11.34, 14.4),
-                "left-mid": (22, 25, 13.77, 10.53, 417.6, 380.7, 10.08),
-                "left-bot": (3.24, 23.328, 7.2, 50),
-                "right-top": (
-                    13.77, 4.05, 174.96, 8.64, 16.2,
-                    24.3, 14.4, 25.11, 8.1, 3.24),
-                "right-mid": (4.32, 9.72, 6.48, 5.76, 3.24, 2.88, 18.63),
-                "right-bot": (23, 78.48, 810),
-                "adder-entry": (14, 13, 19.8225, 15.39, 19.777),
-                "mid-entry": ((17, 26), (16, 20), (5, 29), (14, 20), 6.48),
-                "settings": (72, 24, 7.29, 8.1, 19, 202.5, 2.88),
-                "mid-border": (5.67, 64.08, 105.408, 20.25, 36, 10.08, 10.53)
-            }
+        with open("bin//resolution.json", "r", encoding="utf-8") as json_file:
+            self.sizes = json.load(json_file)
+
+        if (width, height) >= (1680, 1050):
+            self.sizes = self.sizes[">=1680x1050"]
+        elif (width, height) >= (1440, 900):
+            self.sizes = self.sizes[">=1440x900"]
+        elif (width, height) < (1440, 900):
+            self.sizes = self.sizes["<1440x900"]
 
     def get_license(self):
         """

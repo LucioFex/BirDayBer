@@ -82,7 +82,8 @@ def formatted_birth_date(date, formatted):
         return "-".join(date)
 
 
-def finder_row_content(master, texts, width, bg1, bg2, photo, skull, command):
+def finder_row_content(
+        master, texts, w1, w2, w3, bg1, bg2, photo, skull, command):
     """
     Function to automate the finder label content generation.
     The "content" parameter must recieve a tuple or list of 4 elements.
@@ -95,10 +96,10 @@ def finder_row_content(master, texts, width, bg1, bg2, photo, skull, command):
     array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
     for text, grid in zip(texts, array):
         row_person = tk.Label(
-            master, bg=bg2, fg="#e3e3e3", width=round(width * .0085),
-            font=("Century Gothic", round(width * 0.0087), "bold"), text=text)
+            master, bg=bg2, fg="#e3e3e3", width=w1,
+            font=("Century Gothic", w2, "bold"), text=text)
 
-        row_person.grid(row=grid[0], column=grid[1], padx=width * 0.0066)
+        row_person.grid(row=grid[0], column=grid[1], padx=w3)
 
     row_person_skull = tk.Label(master, bg=bg1, image=skull, bd=0)
     row_person_skull.grid(row=0, column=3, rowspan=2)
@@ -356,9 +357,13 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         row_person = tk.Frame(row_person_border, bg=bg_2)
 
         data = [
-            row_person, preview_texts, self.screen_width, bg_2, bg_3,
-            new_photo, self.skull_src, lambda:
-            self.big_person_generation(person_id, texts, gender, photo)]
+            row_person, preview_texts,
+            self.sizes["left-top"][7],
+            self.sizes["left-top"][8],
+            self.sizes["left-top"][9],
+            bg_2, bg_3, new_photo, self.skull_src, lambda:
+                self.big_person_generation(person_id, texts, gender, photo)
+                ]
 
         if birthday:
             data[6] = self.skull_party_src
@@ -369,7 +374,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
             return
 
         row_person_border.grid(row=row, column=0)
-        row_person.pack(pady=(0, self.screen_height * 0.006))
+        row_person.pack(pady=(0, self.sizes["left-top"][10]))
 
     def big_person_generation(self, person_id, texts, gender, photo=None):
         """

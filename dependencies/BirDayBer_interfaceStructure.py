@@ -47,7 +47,7 @@ def settings_label(master, width, height, font, text, row):
         font=("Century Gothic", font))
 
 
-def check_button(master, image1, image2, width, boolean, command=None):
+def check_button(master, image1, image2, boolean, command=None):
     return tk.Checkbutton(
         master, image=image1, selectimage=image2, indicator=False,
         bd=0, variable=boolean, bg="#475d66", command=command,
@@ -706,13 +706,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     def settings_checkButtons(self):
         self.sound_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.sound_var,
-            lambda: mixer.Sound.play(self.accept_se))
+            self.sound_var, lambda: mixer.Sound.play(self.accept_se))
 
         self.ask_before_del_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.ask_before_del_var,
-            lambda: self.play_sound(self.accept_se))
+            self.ask_before_del_var, lambda: self.play_sound(self.accept_se))
 
         self.sound_button.grid(
             row=1, column=0, padx=(self.sizes["settings"][0], 0),
