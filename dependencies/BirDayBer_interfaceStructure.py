@@ -47,7 +47,7 @@ def settings_label(master, width, height, font, text, row):
         font=("Century Gothic", font))
 
 
-def check_button(master, image1, image2, width, boolean, command=None):
+def check_button(master, image1, image2, boolean, command=None):
     return tk.Checkbutton(
         master, image=image1, selectimage=image2, indicator=False,
         bd=0, variable=boolean, bg="#475d66", command=command,
@@ -231,14 +231,14 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.people_over = tk.Label(
             self.left_mid, relief="flat", text=self.lang["data-text"][5],
-            font=("Century Gothic", round(self.screen_width / 64)),
-            width=round(self.screen_width / 57), bg="#5f99af", fg="#e7e7e7")
+            font=("Century Gothic", self.sizes["left-mid"][0]),
+            width=self.sizes["left-mid"][1], bg="#5f99af", fg="#e7e7e7")
 
         self.people_finder_section()
-        self.left_mid.pack(pady=(self.screen_height * 0.017, 0))
+        self.left_mid.pack(pady=(self.sizes["left-mid"][2], 0))
         self.people_over.pack(side="top", fill="x")
         self.finder_frame.pack(
-            fill="both", expand="yes", pady=(0, self.screen_height * 0.013))
+            fill="both", expand="yes", pady=(0, self.sizes["left-mid"][3]))
 
     def people_finder_section(self):
         """
@@ -248,10 +248,10 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.finder_frame = tk.Frame(self.left_mid, bg="#5d8999")
 
         self.canvas = tk.Canvas(
-            self.finder_frame, bg="#5d8999", width=self.screen_width * 0.29,
-            height=self.screen_height * 0.47, highlightthickness=0)
+            self.finder_frame, bg="#5d8999", width=self.sizes["left-mid"][4],
+            height=self.sizes["left-mid"][5], highlightthickness=0)
         self.canvas.pack(
-            side="left", fill="both", ipadx=self.screen_width * 0.014 / 2)
+            side="left", fill="both", ipadx=self.sizes["left-mid"][6])
 
         self.yscrollbar = tk.Scrollbar(
             self.finder_frame, orient="vertical", command=self.canvas.yview)
@@ -300,9 +300,9 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.left_bottom, image=self.privacy_src, bg="#436169",
             cursor="hand2", bd=0, activebackground="#436169")
 
-        pady = (self.screen_height * 0.004, 0)
-        padx = (self.screen_width * 0.0162, self.screen_width * 0.005)
-        self.left_bottom.pack(fill="both", ipady=50)
+        pady = (self.sizes["left-bot"][0], 0)
+        padx = (self.sizes["left-bot"][1], self.sizes["left-bot"][2])
+        self.left_bottom.pack(fill="both", ipady=self.sizes["left-bot"][3])
         self.license_icon.pack(side="left", pady=pady, padx=padx)
         self.privacy_icon.pack(side="left", pady=pady, padx=padx)
 
@@ -325,16 +325,16 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.right_top.pack(anchor="ne")
 
-        pady = (self.screen_height * 0.017, 0)
+        pady = (self.sizes["right-top"][0], 0)
         self.people_adder_bg.pack(pady=pady, side="left")
 
-        padx = self.screen_height * 0.005
+        padx = self.sizes["right-top"][1]
         self.people_adder.pack(padx=padx)
 
-        padx = (self.screen_width * 0.1215, self.screen_width * 0.006)
-        pady = (self.screen_height * 0.02, 0)
+        padx = (self.sizes["right-top"][2], self.sizes["right-top"][3])
+        pady = (self.sizes["right-top"][4], 0)
         self.nut_icon.pack(padx=padx, pady=pady, side="top")
-        pady = (self.screen_height * 0.03, 0)
+        pady = (self.sizes["right-top"][5], 0)
         self.about_icon.pack(padx=padx, pady=pady, side="top")
 
         self.people_adder_left()
@@ -451,8 +451,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.people_adder, image=self.clear_src,
             bg="#668A97", activebackground="#668A97", bd=0, cursor="hand2")
 
-        padx = (0, self.screen_width * 0.01)
-        pady = (self.screen_height * 0.031, 0)
+        padx = (0, self.sizes["right-top"][6])
+        pady = (self.sizes["right-top"][7], 0)
         self.male_icon.grid(pady=pady, row=0, column=2)
         self.female_icon.grid(pady=pady, row=0, column=3)
         self.male_button.grid(row=1, column=2, padx=padx)
@@ -460,11 +460,11 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.img_adder.grid(row=0, column=4, rowspan=2)
 
-        padx = (self.screen_height * 0.01, self.screen_height * 0.01)
+        padx = self.sizes["right-top"][8]
         self.accept.grid(padx=padx, row=0, column=5)
         self.clear.grid(padx=padx, row=1, column=5)
 
-        pady = (0, self.screen_height * 0.004)
+        pady = (0, self.sizes["right-top"][9])
         self.first_name.pack(pady=pady)
         self.second_name.pack(pady=pady)
         self.birth_date.pack(pady=pady)
@@ -500,7 +500,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.edit_country = edit_button(self.inner_country, self.edit_src)
         self.edit_birth = edit_button(self.inner_birth, self.edit_src)
 
-        pady = (self.screen_height * 0.023, 0)
+        pady = (self.sizes["right-mid"][6], 0)
         self.right_mid.pack(anchor="ne", pady=pady)
 
         self.right_mid_bg_packing()
@@ -630,18 +630,18 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.birthday_counter = tk.Label(
             self.birthday_counter_bg, text="Today is the birthday of x people",
-            font=("Century Gothic", round(self.screen_width * 0.016)),
+            font=("Century Gothic", self.sizes["right-bot"][0]),
             fg="#e3e3e3", bg="#303c41")
 
         self.right_bottom.pack(fill="both")
-        padx = (0, self.screen_width * 0.016)
+        padx = (0, self.sizes["right-bot"][0])
         self.github_icon.pack(padx=padx, side="right")
         self.twitter_icon.pack(padx=padx, side="right")
         self.linkedin_icon.pack(padx=padx, side="right")
 
-        padx = (self.screen_width * 0.0545, 0)
+        padx = (self.sizes["right-bot"][1], 0)
         self.birthday_counter_bg.pack(padx=padx, anchor="w")
-        self.birthday_counter.pack(ipady=self.screen_height)
+        self.birthday_counter.pack(ipady=self.sizes["right-bot"][2])
 
     def open_settings(self):
         if self.settings_state:
@@ -670,23 +670,23 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.settings_bg = tk.Frame(self.settings, bg="#475d66")
 
         self.settings_sound = settings_label(
-            self.settings_bg, self.sizes["settings-label"][0],
-            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
+            self.settings_bg, self.sizes["settings"][0],
+            self.sizes["settings"][1], self.sizes["settings"][1],
             self.lang["settings"][0], row=0)
 
         self.settings_ask_before_del = settings_label(
-            self.settings_bg, self.sizes["settings-label"][0],
-            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
+            self.settings_bg, self.sizes["settings"][0],
+            self.sizes["settings"][1], self.sizes["settings"][1],
             self.lang["settings"][1], row=2)
 
         self.settings_language = settings_label(
-            self.settings_bg, self.sizes["settings-label"][0],
-            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
-            self.lang["settings"][2], row=4)
+            self.settings_bg, self.sizes["settings"][0],
+            self.sizes["settings"][1], self.sizes["settings"][1],
+            self.lang["settings"][1], row=4)
 
         self.settings_remove_people = settings_label(
-            self.settings_bg, self.sizes["settings-label"][0],
-            self.sizes["settings-label"][1], self.sizes["settings-label"][2],
+            self.settings_bg, self.sizes["settings"][0],
+            self.sizes["settings"][1], self.sizes["settings"][1],
             self.lang["settings"][3], row=6)
 
         self.settings_checkButtons()
@@ -694,41 +694,43 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.button_delete_people()
 
         self.settings_bg.pack(fill="both")
-        self.settings_sound.pack(pady=(0, self.screen_height * 0.009))
-        self.settings_ask_before_del.pack(pady=(0, self.screen_height * 0.009))
-        self.settings_language.pack(pady=(0, self.screen_height * 0.009))
-        self.settings_remove_people.pack(pady=(0, self.screen_height * 0.009))
+        self.settings_sound.pack(
+            pady=(0, self.sizes["settings"][2]))
+        self.settings_ask_before_del.pack(
+            pady=(0, self.sizes["settings"][2]))
+        self.settings_language.pack(
+            pady=(0, self.sizes["settings"][2]))
+        self.settings_remove_people.pack(
+            pady=(0, self.sizes["settings"][2]))
 
     def settings_checkButtons(self):
         self.sound_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.sound_var,
-            lambda: mixer.Sound.play(self.accept_se))
+            self.sound_var, lambda: mixer.Sound.play(self.accept_se))
 
         self.ask_before_del_button = check_button(
             self.settings_bg, self.check_button0, self.check_button1,
-            self.screen_width, self.ask_before_del_var,
-            lambda: self.play_sound(self.accept_se))
+            self.ask_before_del_var, lambda: self.play_sound(self.accept_se))
 
         self.sound_button.grid(
-            row=1, column=0, padx=(self.screen_width * 0.05, 0),
-            pady=(0, self.screen_height * 0.01), sticky="w")
+            row=1, column=0, padx=(self.sizes["settings"][0], 0),
+            pady=(0, self.sizes["settings"][3]), sticky="w")
         self.ask_before_del_button.grid(
-            row=3, column=0, padx=(self.screen_width * 0.05, 0),
-            pady=(0, self.screen_height * 0.01), sticky="w")
+            row=3, column=0, padx=(self.sizes["settings"][0], 0),
+            pady=(0, self.sizes["settings"][3]), sticky="w")
 
     def settings_language_list(self):
         self.languages = ttk.Combobox(
             self.settings_bg, height=2, state="readonly",
-            font=("Century Gothic", round(self.screen_width / 75)))
+            font=("Century Gothic", self.sizes["settings"][4]))
         self.languages["values"] = [
             self.lang["languages"][0], self.lang["languages"][1]]
         self.languages.set(self.lang["current-lang"])
 
         self.languages.bind("<<ComboboxSelected>>", self.change_language)
         self.languages.grid(
-            row=5, column=0, padx=(self.screen_width * 0.05, 0),
-            pady=(0, self.screen_height * 0.01), sticky="w")
+            row=5, column=0, padx=(self.sizes["settings"][0], 0),
+            pady=(0, self.sizes["settings"][3]), sticky="w")
 
     def button_delete_people(self):
         self.remove_people = tk.Frame(self.settings_bg, bg="#602020")
@@ -736,12 +738,12 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.remove_people, activebackground="#6d2e2e",
             bg="#863535", activeforeground="#e3e3e3",
             fg="#e3e3e3", relief="flat", text=self.lang["settings"][4],
-            font=("Century Gothic", round(self.screen_width / 75)),
+            font=("Century Gothic", self.sizes["settings"][4]),
             command=self.delete_all_people)
 
         self.remove_people.grid(
-            row=7, column=0, padx=(self.screen_width * 0.05, 0),
-            pady=(0, self.screen_height * 0.25), sticky="w")
+            row=7, column=0, padx=(self.sizes["settings"][0], 0),
+            pady=(0, self.sizes["settings"][5]), sticky="w")
 
-        margins = self.screen_width * 0.002
+        margins = self.sizes["settings"][6]
         self.delete_button.pack(padx=margins, pady=margins)

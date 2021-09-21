@@ -6,6 +6,7 @@ from ctypes import windll
 from io import BytesIO
 import tkinter as tk
 import pystray
+import json
 import os
 
 
@@ -76,13 +77,14 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the main window of a geometry and position.
         """
-        self.screen_width = 1440
-        self.screen_height = 810
+        self.prepare_resized_widgets_dict()
+
+        self.screen_width = self.sizes["window-size"][0]
+        self.screen_height = self.sizes["window-size"][1]
 
         self.x_position = round(width / 7.5)
         self.y_position = round(height / 8)
 
-        self.prepare_resized_widgets_dict()
         return (
             f"{self.screen_width}x{self.screen_height}+" +
             f"{self.x_position}+{self.y_position}")
@@ -91,10 +93,8 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         """
         This method provides the toplevel of a geometry and position.
         """
-        self.settings_width = round(
-            self.root.winfo_screenwidth() * 0.252 + 192)
-        self.settings_height = round(
-            self.root.winfo_screenheight() * 0.434 + 216)
+        self.settings_width = self.sizes["window-size"][2]
+        self.settings_height = self.sizes["window-size"][3]
 
         self.x_settings_position = round(self.root.winfo_screenwidth() / 3)
         self.y_settings_position = round(self.root.winfo_screenheight() / 5.5)
@@ -110,16 +110,15 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
         width = self.root.winfo_screenwidth()
         height = self.root.winfo_screenheight()
 
-        if width >= 1600 and height >= 900:
-            self.sizes = {
-                "title-bar": (14, 7),
-                "left-top": (38, 19, 24, 233.328, 21.6, 11.34, 14.4),
-                "adder-entry": (14, 13, 19.8225, 15.39, 19.777),
-                "mid-entry": ((17, 26), (16, 20), (5, 29), (14, 20), 6.48),
-                "settings-label": (72, 24, 24),
-                "right-mid": (4.32, 9.72, 6.48, 5.76, 3.24, 2.88),
-                "mid-border": (5.67, 64.08, 105.408, 20.25, 36, 10.08, 10.53)
-            }
+        with open("bin//resolution.json", "r", encoding="utf-8") as json_file:
+            self.sizes = json.load(json_file)
+
+        if (width, height) >= (1680, 1050):
+            self.sizes = self.sizes[">=1680x1050"]
+        elif (width, height) >= (1440, 900):
+            self.sizes = self.sizes[">=1440x900"]
+        elif (width, height) < (1440, 900):
+            self.sizes = self.sizes["<1440x900"]
 
     def get_license(self):
         """
@@ -173,70 +172,90 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
             if img in (
                 "close-button.png", "minimize-button.png",
                     "maximize-button.png", "maximized-button.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.04, 0.04))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][0], self.sizes["src-height"][0]))
             # Title bar section
             elif img in ("BirDayBerIcon.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.065, 0.065))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][1], self.sizes["src-height"][1]))
             # Main entry section
             elif img in ("user-white.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.07, 0.09))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][2], self.sizes["src-height"][2]))
             # Footer section
             elif img in ("license.png", "privacy-policy.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.07, 0.08))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][3], self.sizes["src-height"][3]))
             # People adder's icon
             elif img in ("add-person.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.075, 0.087))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][4], self.sizes["src-height"][4]))
             # Extra buttons in the right-top section
             elif img in ("nut.png", "about.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.056, 0.069))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][5], self.sizes["src-height"][5]))
             # Gender radio buttons.
             elif img in ("radiobutton-0.png", "radiobutton-1.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.015, 0.0255))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][6], self.sizes["src-height"][6]))
             # Accept and clear buttons of the people_adder widget
             elif img in ("accept.png", "clear.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.040, 0.059))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][7], self.sizes["src-height"][7]))
             # Skull icon
             elif img in ("randolph.png", "party-randolph.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.051, 0.073))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][8], self.sizes["src-height"][8]))
             # Garbage icons
             elif img in ("garbage1.png", "garbage2.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.1, 0.1))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][9], self.sizes["src-height"][9]))
             # Image adder icon
             elif img in ("user-black-1.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.056, 0.24))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][10], self.sizes["src-height"][10]))
             # Person default icon
             elif img in ("user-black-2.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.05, 0.2))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][11], self.sizes["src-height"][11]))
             # Image not found (user base image)
             elif img in ("image-not-found.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.37, 0.37))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][12], self.sizes["src-height"][12]))
             # Twitter & GitHub icon
             elif img in ("twitter.png", "github.png", "linkedin.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.041, 0.073))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][13], self.sizes["src-height"][13]))
             # Edit icon
             elif img in ("edit.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.028, 0.028))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][14], self.sizes["src-height"][14]))
             # Update button icon
             elif img in ("update.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.028, 0.028))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][15], self.sizes["src-height"][15]))
             # Default right-mid background
             elif img in ("default-right-img.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.596, 0.596))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][16], self.sizes["src-height"][16]))
             # Settings-checkbutton icons
             elif img in ("checkButton0.png", "checkButton1.png"):
-                responsive_img.thumbnail(self.thumbnail_size(0.066, 0.065))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][17], self.sizes["src-height"][17]))
 
             # Gender icons
             elif img in ("male.png", "female.png"):
                 # Small icons
-                responsive_img.thumbnail(self.thumbnail_size(0.021, 0.037))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][18], self.sizes["src-height"][18]))
                 responsive_img.save("%s//responsive//%s" % (
                     location, img.replace(".png", "2.png")))
                 responsive_img.close()
 
                 # Big icons
                 responsive_img = Image.open("%s//%s" % (location, img))
-                responsive_img.thumbnail(self.thumbnail_size(0.056, 0.069))
+                responsive_img.thumbnail(
+                    (self.sizes["src-width"][19], self.sizes["src-height"][19]))
 
             responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
