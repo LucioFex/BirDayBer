@@ -24,8 +24,8 @@ def adder_entry(master, width, textvariable, font_size):
 
 def mid_entry(master, width, font_size, textvar=None, style=""):
     return tk.Entry(
-        master, relief="flat", width=width, justify="center",
-        font=("Century Gothic", font_size, style), fg="#212121",
+        master, relief="flat", width=round(width), justify="center",
+        font=("Century Gothic", round(font_size), style), fg="#212121",
         textvariable=textvar, selectbackground="#778954", bg="#ffffff",
         insertbackground="#798a5a", disabledbackground="#ffffff",
         disabledforeground="#212121", cursor="arrow", state="disabled")
@@ -44,7 +44,7 @@ def settings_label(master, width, height, font, text, row):
 
     return tk.Label(
         underscore, text=text, bg="#475d66", fg="#e3e3e3",
-        font=("Century Gothic", font))
+        font=("Century Gothic", round(font)))
 
 
 def check_button(master, image1, image2, boolean, command=None):
@@ -189,7 +189,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.title = tk.Label(
             self.left_top, bg="#2e4c53", text="BirDayBer", fg="#e3e3e3",
-            font=("Century Gothic", self.sizes["left-top"][0]))
+            font=("Century Gothic", round(self.sizes["left-top"][0])))
 
         self.person_icon = tk.Label(
             self.search_bg, image=self.person_icon_src, bg="#4d717f")
@@ -200,8 +200,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.browser = tk.Entry(
             self.search_bg, bg="#517684", selectbackground="#4a92ab",
             relief="flat", fg="#d1d1d1", insertbackground="#d7f5ff",
-            width=self.sizes["left-top"][1], textvariable=self.search,
-            font=("Century Gothic", self.sizes["left-top"][2]))
+            width=round(self.sizes["left-top"][1]), textvariable=self.search,
+            font=("Century Gothic", round(self.sizes["left-top"][2])))
 
         self.prepare_placeholder(
             self.browser, self.lang["data-text"][4], self.search)
@@ -231,8 +231,8 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.people_over = tk.Label(
             self.left_mid, relief="flat", text=self.lang["data-text"][5],
-            font=("Century Gothic", self.sizes["left-mid"][0]),
-            width=self.sizes["left-mid"][1], bg="#5f99af", fg="#e7e7e7")
+            font=("Century Gothic", round(self.sizes["left-mid"][0])),
+            width=round(self.sizes["left-mid"][1]), bg="#5f99af", fg="#e7e7e7")
 
         self.people_finder_section()
         self.left_mid.pack(pady=(self.sizes["left-mid"][2], 0))
@@ -386,17 +386,17 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
         self.add_birth_var.set(self.lang["data-text"][3])
 
         self.first_name = adder_entry(
-            self.first_name_edge, self.sizes["adder-entry"][0],
-            self.add_name_var, self.sizes["adder-entry"][1])
+            self.first_name_edge, round(self.sizes["adder-entry"][0]),
+            self.add_name_var, round(self.sizes["adder-entry"][1]))
         self.second_name = adder_entry(
-            self.surname_edge, self.sizes["adder-entry"][0],
-            self.add_surname_var, self.sizes["adder-entry"][1])
+            self.surname_edge, round(self.sizes["adder-entry"][0]),
+            self.add_surname_var, round(self.sizes["adder-entry"][1]))
         self.country = adder_entry(
-            self.country_edge, self.sizes["adder-entry"][0],
-            self.add_country_var, self.sizes["adder-entry"][1])
+            self.country_edge, round(self.sizes["adder-entry"][0]),
+            self.add_country_var, round(self.sizes["adder-entry"][1]))
         self.birth_date = adder_entry(
-            self.birth_date_edge, self.sizes["adder-entry"][0],
-            self.add_birth_var, self.sizes["adder-entry"][1])
+            self.birth_date_edge, round(self.sizes["adder-entry"][0]),
+            self.add_birth_var, round(self.sizes["adder-entry"][1]))
 
         self.root.bind_all("<Button-1>", self.remove_entry_focus)
         self.people_adder_placeholders()
@@ -630,7 +630,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
 
         self.birthday_counter = tk.Label(
             self.birthday_counter_bg, text="Today is the birthday of x people",
-            font=("Century Gothic", self.sizes["right-bot"][0]),
+            font=("Century Gothic", round(self.sizes["right-bot"][0])),
             fg="#e3e3e3", bg="#303c41")
 
         self.right_bottom.pack(fill="both")
@@ -722,7 +722,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
     def settings_language_list(self):
         self.languages = ttk.Combobox(
             self.settings_bg, height=2, state="readonly",
-            font=("Century Gothic", self.sizes["settings"][4]))
+            font=("Century Gothic", round(self.sizes["settings"][4])))
         self.languages["values"] = [
             self.lang["languages"][0], self.lang["languages"][1]]
         self.languages.set(self.lang["current-lang"])
@@ -738,7 +738,7 @@ class Interface_structure(BirDayBer_setUp.Birdayber_setUp):
             self.remove_people, activebackground="#6d2e2e",
             bg="#863535", activeforeground="#e3e3e3",
             fg="#e3e3e3", relief="flat", text=self.lang["settings"][4],
-            font=("Century Gothic", self.sizes["settings"][4]),
+            font=("Century Gothic", round(self.sizes["settings"][4])),
             command=self.delete_all_people)
 
         self.remove_people.grid(
