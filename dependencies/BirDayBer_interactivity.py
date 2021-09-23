@@ -96,8 +96,8 @@ def finder_row_content(
     array = ((0, 1), (1, 1), (0, 2), (1, 2))  # Grid
     for text, grid in zip(texts, array):
         row_person = tk.Label(
-            master, bg=bg2, fg="#e3e3e3", width=w1,
-            font=("Century Gothic", w2, "bold"), text=text)
+            master, bg=bg2, fg="#e3e3e3", width=round(w1),
+            font=("Century Gothic", round(w2), "bold"), text=text)
 
         row_person.grid(row=grid[0], column=grid[1], padx=w3)
 
