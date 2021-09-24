@@ -33,19 +33,11 @@ def check_realistic_birth_date(date):
     today = datetime.strftime(datetime.now(), "%d/%m/%Y").split("/")
 
     logic_1 = (
-        int(date[0]) > int(today[0]) and  # Day
-        int(date[1]) >= int(today[1]) and  # Month
-        int(date[2]) >= int(today[2]))  # Year
+        int(date[0]) > int(today[0]) and    # Day
+        int(date[1]) >= int(today[1]))      # Month
 
-    logic_2 = (
-        int(date[0]) >= int(today[0]) and  # Day
-        int(date[1]) > int(today[1]) and  # Month
-        int(date[2]) >= int(today[2]))  # Year
-
-    logic_3 = (
-        int(date[0]) >= int(today[0]) and  # Day
-        int(date[1]) >= int(today[1]) and  # Month
-        int(date[2]) > int(today[2]))  # Year
+    logic_2 = int(date[1]) > int(today[1])  # Month
+    logic_3 = int(date[2]) > int(today[2])  # Year
 
     if logic_1 or logic_2 or logic_3:
         return False
