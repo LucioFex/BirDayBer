@@ -707,7 +707,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         elif error_detected:
             messagebox.showerror(
-                self.lang["check-field"][5], self.lang["check-field"][8])
+                self.lang["check-field"][3], self.lang["check-field"][8])
             return True
 
     def ask_before_delete(self):
