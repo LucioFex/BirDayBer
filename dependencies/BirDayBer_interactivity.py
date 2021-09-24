@@ -33,19 +33,15 @@ def check_realistic_birth_date(date):
     today = datetime.strftime(datetime.now(), "%d/%m/%Y").split("/")
 
     logic_1 = (
-        int(date[0]) > int(today[0]) and  # Day
-        int(date[1]) >= int(today[1]) and  # Month
-        int(date[2]) >= int(today[2]))  # Year
+        int(date[0]) > int(today[0]) and    # Day
+        int(date[1]) >= int(today[1]) and   # Month
+        int(date[2]) == int(today[2]))      # Year
 
     logic_2 = (
-        int(date[0]) >= int(today[0]) and  # Day
-        int(date[1]) > int(today[1]) and  # Month
-        int(date[2]) >= int(today[2]))  # Year
+        int(date[1]) > int(today[1]) and    # Month
+        int(date[2]) == int(today[2]))      # Year
 
-    logic_3 = (
-        int(date[0]) >= int(today[0]) and  # Day
-        int(date[1]) >= int(today[1]) and  # Month
-        int(date[2]) > int(today[2]))  # Year
+    logic_3 = int(date[2]) > int(today[2])  # Year
 
     if logic_1 or logic_2 or logic_3:
         return False
@@ -366,7 +362,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 ]
 
         if birthday:
-            data[6] = self.skull_party_src
+            data[8] = self.skull_party_src
 
         finder_row_content(*data)
         self.showed_people[person_id] = row_person_border
@@ -463,7 +459,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that checks if the people adder's fields input are correct.
         If any of these are, then It will throw an error message.
         """
-        if self.check_name_field():
+        if self.check_names_field():
             return False
         elif self.check_birthdate_field(self.add_birth_var):
             return False
@@ -472,10 +468,18 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.remove_adder_placeholders()
 
-    def check_name_field(self):
+    def check_names_field(self):
+        length_name = len(self.add_name_var.get().split(" ")) > 1
+        length_surname = len(self.add_surname_var.get().split(" ")) > 1
+
         if self.add_name_var.get() == self.lang["data-text"][0]:
             messagebox.showerror(
                 self.lang["check-field"][0], self.lang["check-field"][1])
+            return True
+
+        elif length_name or length_surname:
+            messagebox.showerror(
+                self.lang["check-field"][3], self.lang["check-field"][9])
             return True
 
     def check_gender_field(self):
@@ -540,6 +544,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.right_mid_bg_packing()
         self.remove_row_peopleviewer(person_id)
+        self.refresh_today_birthdays()
         self.play_sound(self.delete_se)
 
     def delete_all_people(self):
@@ -551,6 +556,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.reset_database()
         self.reset_people_finder()
+        self.refresh_today_birthdays()
         self.play_sound(self.delete_se)
 
         self.right_bg.pack_forget()
@@ -699,7 +705,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         elif error_detected:
             messagebox.showerror(
-                self.lang["check-field"][5], self.lang["check-field"][8])
+                self.lang["check-field"][3], self.lang["check-field"][8])
             return True
 
     def ask_before_delete(self):

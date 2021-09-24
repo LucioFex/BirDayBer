@@ -212,50 +212,50 @@ class Birdayber_setUp(BirDayBer_DB.Birdayber_database):
                     (self.sizes["src-width"][9], self.sizes["src-height"][9]))
             # Image adder icon
             elif img in ("user-black-1.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][10], self.sizes["src-height"][10]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][10], self.sizes["src-height"][10]))
             # Person default icon
             elif img in ("user-black-2.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][11], self.sizes["src-height"][11]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][11], self.sizes["src-height"][11]))
             # Image not found (user base image)
             elif img in ("image-not-found.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][12], self.sizes["src-height"][12]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][12], self.sizes["src-height"][12]))
             # Twitter & GitHub icon
             elif img in ("twitter.png", "github.png", "linkedin.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][13], self.sizes["src-height"][13]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][13], self.sizes["src-height"][13]))
             # Edit icon
             elif img in ("edit.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][14], self.sizes["src-height"][14]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][14], self.sizes["src-height"][14]))
             # Update button icon
             elif img in ("update.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][15], self.sizes["src-height"][15]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][15], self.sizes["src-height"][15]))
             # Default right-mid background
             elif img in ("default-right-img.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][16], self.sizes["src-height"][16]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][16], self.sizes["src-height"][16]))
             # Settings-checkbutton icons
             elif img in ("checkButton0.png", "checkButton1.png"):
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][17], self.sizes["src-height"][17]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][17], self.sizes["src-height"][17]))
 
             # Gender icons
             elif img in ("male.png", "female.png"):
                 # Small icons
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][18], self.sizes["src-height"][18]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][18], self.sizes["src-height"][18]))
                 responsive_img.save("%s//responsive//%s" % (
                     location, img.replace(".png", "2.png")))
                 responsive_img.close()
 
                 # Big icons
                 responsive_img = Image.open("%s//%s" % (location, img))
-                responsive_img.thumbnail(
-                    (self.sizes["src-width"][19], self.sizes["src-height"][19]))
+                responsive_img.thumbnail((
+                    self.sizes["src-width"][19], self.sizes["src-height"][19]))
 
             responsive_img.save("%s//responsive//%s" % (location, img))
             responsive_img.close()
