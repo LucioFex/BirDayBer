@@ -366,7 +366,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
                 ]
 
         if birthday:
-            data[6] = self.skull_party_src
+            data[8] = self.skull_party_src
 
         finder_row_content(*data)
         self.showed_people[person_id] = row_person_border
@@ -548,6 +548,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.right_mid_bg_packing()
         self.remove_row_peopleviewer(person_id)
+        self.refresh_today_birthdays()
         self.play_sound(self.delete_se)
 
     def delete_all_people(self):
@@ -559,6 +560,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.reset_database()
         self.reset_people_finder()
+        self.refresh_today_birthdays()
         self.play_sound(self.delete_se)
 
         self.right_bg.pack_forget()
