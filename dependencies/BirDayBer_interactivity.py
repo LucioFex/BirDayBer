@@ -463,7 +463,7 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
         Method that checks if the people adder's fields input are correct.
         If any of these are, then It will throw an error message.
         """
-        if self.check_name_field():
+        if self.check_names_field():
             return False
         elif self.check_birthdate_field(self.add_birth_var):
             return False
@@ -472,10 +472,18 @@ class BirDayBer_interactivity(BirDayber_structure.Interface_structure):
 
         self.remove_adder_placeholders()
 
-    def check_name_field(self):
+    def check_names_field(self):
+        length_name = len(self.add_name_var.get().split(" ")) > 1
+        length_surname = len(self.add_surname_var.get().split(" ")) > 1
+
         if self.add_name_var.get() == self.lang["data-text"][0]:
             messagebox.showerror(
                 self.lang["check-field"][0], self.lang["check-field"][1])
+            return True
+
+        elif length_name or length_surname:
+            messagebox.showerror(
+                self.lang["check-field"][3], self.lang["check-field"][9])
             return True
 
     def check_gender_field(self):

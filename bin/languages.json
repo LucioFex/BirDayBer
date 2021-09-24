@@ -36,7 +36,8 @@
 
             "Field data problem",
             "There was a problem with the input numbers of the Date of Birth field. Check if the inserted digits are correct.",
-            "You cannot add more than one space in the Full Name field."
+            "You cannot add more than one space in the Full Name field.",
+            "You cannot add any space in the First or Second Name."
         ],
         "file-selection": [
             "Select an image",
@@ -108,7 +109,8 @@
 
             "Problema con los Datos del campo",
             "Hubo un problema con los números de entrada del campo Fecha de Nacimiento. Compruebe si los dígitos son correctos.",
-            "No puede agregar más de Un espacio en el campo Nombre Completo."
+            "No puede agregar más de Un espacio en el campo Nombre Completo.",
+            "No puedes añadir más espacios al campo Nombre o Apellído."
         ],
         "file-selection": [
             "Seleccione una imagen",
