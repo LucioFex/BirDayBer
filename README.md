@@ -8,8 +8,8 @@ This project will remind you with a notification for your operating system if it
 
 
 <div align="center">
-  <img src="conceptual/interface-design-updated.png" width=618 height=auto>
-  <img src="conceptual/settings-button-design.png" width=344 height=auto>
+  <img src="conceptual/interface-design-updated.png" width=540 height=auto>
+  <img src="conceptual/settings-button-design.png" width=300 height=auto>
 </div>
 
 
