@@ -7,10 +7,8 @@ It allows you to add the date of birth and other minimal information to a local 
 This project will remind you with a notification for your operating system if it is someone's birthday on the same day or it will notify you if it's soon.
 
 
-<div align="center">
-  <img src="conceptual/interface-design-updated.png" width=540 height=auto>
-  <img src="conceptual/settings-button-design.png" width=300 height=auto>
-</div>
+<div align="center"><img src="conceptual/interface-design-updated.png"></div>
+<div align="left"><img src="conceptual/settings-button-design.png"></div>
 
 
 ## Technologies used in the project:
