@@ -7,9 +7,10 @@ It allows you to add the date of birth and other minimal information to a local 
 This project will remind you with a notification for your operating system if it is someone's birthday on the same day or it will notify you if it's soon.
 
 
-![.](conceptual/interface-design-updated.png)
-
-![.](conceptual/settings-button-design.png)
+<div align="center">
+  <img src="conceptual/interface-design-updated.png" width=618 height=auto>
+  <img src="conceptual/settings-button-design.png" width=344 height=auto>
+</div>
 
 
 ## Technologies used in the project:
@@ -43,7 +44,8 @@ This project will remind you with a notification for your operating system if it
 
 ## How to run:
 
-- You just have to execute the `BirDayBer.py` file.
+- Install all dependencies / libraries with `Pip`, or install them with `PipEnv` and the `requirements.txt` file.
+- Then, you just have to execute the `BirDayBer.py` file.
 
 
 ## Contributions
@@ -57,6 +59,13 @@ opening an issue to check that change that you want to make.
 
 I'll try to be active with this proyect, so I'll be doing what is planificated 
 with this one, but that doesn't mean that I couldn't change some ideas of the concept. 
+
+
+## Try it now, it's free!
+
+#### You can download the executable program, so you don't have to install any dependencies.
+### Download BirDayBer [Here](https://drive.google.com/file/d/1ahERd_hLDlgP1GtENC5nlEB6y7gbcb-c/view?usp=sharing).
+
 
 
 ## Credits
