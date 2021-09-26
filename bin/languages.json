@@ -9,7 +9,7 @@
         "about": "About BirDayBer",
         "data-text": [
             "First Name",
-            "Second Name",
+            "Last Name",
             "Country",
             "Date of Birth",
             "Search",
@@ -37,7 +37,7 @@
             "Field data problem",
             "There was a problem with the input numbers of the Date of Birth field. Check if the inserted digits are correct.",
             "You cannot add more than one space in the Full Name field.",
-            "You cannot add any space in the First or Second Name."
+            "You cannot add any space in the First or Last Name."
         ],
         "file-selection": [
             "Select an image",
