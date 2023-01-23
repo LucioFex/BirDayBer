@@ -107,8 +107,6 @@ class Birdayber_database:
 
         people_data = self.db.column_search(
             "person", select,
-            """INNER JOIN
-                birth on birth.id_birth = person.id_birth1_fk
             INNER JOIN
                 photo on photo.id_photo = person.id_photo1_fk
             INNER JOIN
